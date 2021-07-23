@@ -249,7 +249,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -262,7 +262,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -328,27 +327,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 21.7, y: 46.1, z: -37.7}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 3.36, z: -4.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff24d72c8cb65cd4cbc2cac782b9db5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCameraPoint: {fileID: 492451491}
-  offset: 15
+  m_Father: {fileID: 111686653}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!1 &1857484261
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +428,7 @@ Transform:
   m_LocalScale: {x: 15, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &118355432313141591
 PrefabInstance:
@@ -454,7 +439,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 118355430315355435, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 118355430315355435, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
       propertyPath: m_LocalPosition.x
@@ -496,9 +481,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 118355430315355436, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 118355430315355437, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
+      propertyPath: maxMotorTorque
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 118355430315355437, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
+      propertyPath: maxSteeringAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 118355430315355437, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
+      propertyPath: axleInfos.Array.data[1].motor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 118355430315355438, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
       propertyPath: m_Name
       value: CarRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 118355430931899308, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9507d19d9ff68c4faa7791b43721c30, type: 3}
@@ -511,7 +516,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2311307577611210194, guid: 4ef00ca37784f5b429a1b4c36728ab72, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2311307577611210194, guid: 4ef00ca37784f5b429a1b4c36728ab72, type: 3}
       propertyPath: m_LocalPosition.x
