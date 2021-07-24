@@ -228,7 +228,7 @@ public class MSSceneControllerFree : MonoBehaviour {
 				player.SetActive (false);
 			} else {
 				playerIsNull = true;
-			}
+			}/*
 			if (startInPlayer) {
 				if (player) {
 					player.SetActive (true);
@@ -242,6 +242,11 @@ public class MSSceneControllerFree : MonoBehaviour {
 				if (vehicles.Length > startingVehicle && vehicles [currentVehicle]) {
 					vehicles [startingVehicle].GetComponent<MSVehicleControllerFree> ().isInsideTheCar = true;
 				}
+			}*/
+			for(var i = 0; i< vehicles.Length; i++)
+            {
+				vehicles[i].GetComponent<MSVehicleControllerFree>().isInsideTheCar = true;
+
 			}
 		}
 	}

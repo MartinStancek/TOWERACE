@@ -244,6 +244,9 @@ public class StandardSkiddingSoundsClassFree {
 [RequireComponent(typeof(Rigidbody))]
 public class MSVehicleControllerFree : MonoBehaviour {
 
+	[Tooltip("Poradie aktualneho hraca; minimum 1, maximum 4")]
+	public int playerIndex = 1;
+
 	[Space(7)][Tooltip("In this variable, empty objects must be associated with positions close to the vehicle doors.")]
 	public GameObject[] doorPosition;
 
@@ -976,8 +979,8 @@ public class MSVehicleControllerFree : MonoBehaviour {
 		wheelTDIsGrounded = _wheels.rightRearWheel.wheelCollider.isGrounded;
 		wheelTEIsGrounded = _wheels.leftRearWheel.wheelCollider.isGrounded;
 
-		verticalInput = controls.verticalInput;
-		horizontalInput = controls.horizontalInput;
+		verticalInput = Input.GetAxis("Vertical" + playerIndex);
+		horizontalInput = Input.GetAxis("Horizontal" + playerIndex);
 		mouseXInput = controls.mouseXInput;
 		mouseYInput = controls.mouseYInput;
 		mouseScrollWheelInput = controls.mouseScrollWheelInput;
