@@ -30,11 +30,22 @@ public class GameController : MonoBehaviour
 
     public TMP_Text countDownText;
 
+    public GameObject resultsPanel;
+    public TMP_Text[] resultTexts;
+
+    private List<int> playersFinished;
+
     public void StartRace()
     {
         SetCarCameras(true);
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(true);
+        resultsPanel.SetActive(false);
+        foreach(var t in resultTexts)
+        {
+            t.text = "";
+        }
+        playersFinished.Clear();
 
         var vehs = MSSceneControllerFree.Instance.vehicles;
         for (var i = 0; i < vehs.Length; i++)
@@ -50,6 +61,7 @@ public class GameController : MonoBehaviour
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(false);
+        resultsPanel.SetActive(true);
 
         var vehs = MSSceneControllerFree.Instance.vehicles;
         for (var i = 0; i < vehs.Length; i++)
@@ -69,11 +81,20 @@ public class GameController : MonoBehaviour
         StartCoroutine(RemoveCountDownText());
     }
 
-    public void CarFinished()
+    public void CarFinished(int playerIndex)
     {
-        countDownText.gameObject.SetActive(true);
-        countDownText.text = "" + waitingTime;
-        StartCoroutine(SetEndRaceCountDown(waitingTime - 1, EndRace));
+        if (playersFinished.Count == 0)
+        {
+            countDownText.gameObject.SetActive(true);
+            countDownText.text = "" + waitingTime;
+            StartCoroutine(SetEndRaceCountDown(waitingTime - 1, EndRace));
+        }
+        if (playersFinished.Count < 3)
+        {
+            resultTexts[playersFinished.Count].text = "Player " + playerIndex;
+        }
+        playersFinished.Add(playerIndex);
+
     }
     private IEnumerator SetEndRaceCountDown(int secondsRemain, Action finishAction)
     {
@@ -125,9 +146,11 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        playersFinished = new List<int>();
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
         countDownText.gameObject.SetActive(false);
+        resultsPanel.SetActive(false);
 
     }
 

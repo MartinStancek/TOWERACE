@@ -32,8 +32,9 @@ public class CarManager : MonoBehaviour
             if (lastCheckPointIndex + 1 == checkPoints.transform.childCount) 
             {
                 lastCheckPointIndex++;
-                GameController.Instance.CarFinished();
-                Debug.Log("Player "+GetComponent<MSVehicleControllerFree>().playerIndex+" finished the race!");
+                var playerIndex = GetComponent<MSVehicleControllerFree>().playerIndex;
+                GameController.Instance.CarFinished(playerIndex);
+                Debug.Log("Player " + playerIndex + " finished the race!");
                 GetComponent<MSVehicleControllerFree>().handBrakeTrue = true;
                 GetComponent<MSVehicleControllerFree>().raceStarted = false; ;
                 GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;
