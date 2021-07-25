@@ -40,6 +40,21 @@ public class ControlsFree {
 }
 
 public class MSSceneControllerFree : MonoBehaviour {
+	#region Singleton
+	private static MSSceneControllerFree _instance;
+	public static MSSceneControllerFree Instance
+	{
+		get
+		{
+			if (!_instance)
+			{
+				_instance = GameObject.FindObjectOfType<MSSceneControllerFree>();
+			}
+			return _instance;
+
+		}
+	}
+	#endregion
 
 	#region defineInputs
 	[Tooltip("Vertical input recognized by the system")]
@@ -242,12 +257,12 @@ public class MSSceneControllerFree : MonoBehaviour {
 				if (vehicles.Length > startingVehicle && vehicles [currentVehicle]) {
 					vehicles [startingVehicle].GetComponent<MSVehicleControllerFree> ().isInsideTheCar = true;
 				}
-			}*/
+			}*//*
 			for(var i = 0; i< vehicles.Length; i++)
             {
 				vehicles[i].GetComponent<MSVehicleControllerFree>().isInsideTheCar = true;
 
-			}
+			}*/
 		}
 	}
 

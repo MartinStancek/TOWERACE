@@ -27,6 +27,47 @@ public class GameController : MonoBehaviour
     {
         SetCarCameras(true);
         mapCamera.gameObject.SetActive(false);
+
+        var vehs = MSSceneControllerFree.Instance.vehicles;
+        for (var i = 0; i< vehs.Length; i++)
+        {
+            vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = false;
+            vehs[i].GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;
+        }
+        StartCountdown();
+
+    }
+    private void StartCountdown()
+    {
+        StartCoroutine(SetCountdownText(3));
+        StartCoroutine(SetCountdownText(2));
+        StartCoroutine(SetCountdownText(1));
+        StartCoroutine(SetCountdownText(0));
+    }
+    private IEnumerator SetCountdownText(int secondsRemain)
+    {
+        yield return new WaitForSeconds(3-secondsRemain);
+        if(secondsRemain == 0)
+        {
+            Debug.Log("GO!!!" );
+            var vehs = MSSceneControllerFree.Instance.vehicles;
+            for (var i = 0; i < vehs.Length; i++)
+            {
+                vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = true;
+            }
+        }
+        else
+        {
+            Debug.Log(secondsRemain);
+        }
+        if(secondsRemain == 1)
+        {
+            var vehs = MSSceneControllerFree.Instance.vehicles;
+            for (var i = 0; i < vehs.Length; i++)
+            {
+                vehs[i].GetComponent<MSVehicleControllerFree>().EnterInVehicle();
+            }
+        }
     }
 
     void Start()

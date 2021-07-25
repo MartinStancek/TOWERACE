@@ -247,6 +247,9 @@ public class MSVehicleControllerFree : MonoBehaviour {
 	[Tooltip("Poradie aktualneho hraca; minimum 1, maximum 4")]
 	public int playerIndex = 1;
 
+	[Tooltip("Poradie aktualneho hraca; minimum 1, maximum 4")]
+	public bool raceStarted = false;
+
 	[Space(7)][Tooltip("In this variable, empty objects must be associated with positions close to the vehicle doors.")]
 	public GameObject[] doorPosition;
 
@@ -979,8 +982,17 @@ public class MSVehicleControllerFree : MonoBehaviour {
 		wheelTDIsGrounded = _wheels.rightRearWheel.wheelCollider.isGrounded;
 		wheelTEIsGrounded = _wheels.leftRearWheel.wheelCollider.isGrounded;
 
-		verticalInput = Input.GetAxis("Vertical" + playerIndex);
-		horizontalInput = Input.GetAxis("Horizontal" + playerIndex);
+		if (raceStarted)
+		{
+			verticalInput = Input.GetAxis("Vertical" + playerIndex);
+			horizontalInput = Input.GetAxis("Horizontal" + playerIndex);
+		} 
+		else
+        {
+			verticalInput = 0;
+			horizontalInput = 0;
+
+		}
 		mouseXInput = controls.mouseXInput;
 		mouseYInput = controls.mouseYInput;
 		mouseScrollWheelInput = controls.mouseScrollWheelInput;
@@ -1021,6 +1033,7 @@ public class MSVehicleControllerFree : MonoBehaviour {
 
 	public void EnterInVehicle(){
 		isInsideTheCar = true;
+		theEngineIsRunning = true;
 		EnableCameras (indexCamera);
 	}
 
