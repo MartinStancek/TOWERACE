@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private bool isDestroing = false;
 
-    public float destroyAfter = 0.2f;
+    public float destroyAfter = 0.1f;
 
     private void OnCollisionEnter(Collision collision)
     {
