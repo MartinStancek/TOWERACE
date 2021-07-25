@@ -247,8 +247,12 @@ public class MSVehicleControllerFree : MonoBehaviour {
 	[Tooltip("Poradie aktualneho hraca; minimum 1, maximum 4")]
 	public int playerIndex = 1;
 
-	[Tooltip("Poradie aktualneho hraca; minimum 1, maximum 4")]
+	[Tooltip("Premenna urcujuca, ci sa hrac moze pouzivat - potrebne koli zaciatocnemu odpoctu")]
 	public bool raceStarted = false;
+
+	[Tooltip("Treba nastavit ktore vrstvy kamera nema brat do uvahy (kvoli checkpointom)")]
+	public LayerMask cameraLayerMask;
+
 
 	[Space(7)][Tooltip("In this variable, empty objects must be associated with positions close to the vehicle doors.")]
 	public GameObject[] doorPosition;
@@ -664,7 +668,7 @@ public class MSVehicleControllerFree : MonoBehaviour {
 				newCamera.AddComponent (typeof(Camera));
 				newCamera.AddComponent (typeof(FlareLayer));
 				//newCamera.AddComponent (typeof(GUILayer));
-				newCamera.AddComponent (typeof(AudioListener));
+				//newCamera.AddComponent (typeof(AudioListener));
 				_cameras.cameras [x]._camera = newCamera.GetComponent<Camera>();
 				newCamera.transform.parent = transform;
 				newCamera.transform.localPosition = new Vector3 (0, 0, 0);
@@ -712,7 +716,7 @@ public class MSVehicleControllerFree : MonoBehaviour {
 			}
 			AudioListener _audListner = _cameras.cameras [x]._camera.GetComponent<AudioListener> ();
 			if (!_audListner) {
-				_cameras.cameras [x]._camera.transform.gameObject.AddComponent (typeof(AudioListener));
+				//_cameras.cameras [x]._camera.transform.gameObject.AddComponent (typeof(AudioListener));
 			}
 			if (_cameras.cameras [x].volume == 0) {
 				_cameras.cameras [x].volume = 1;
@@ -835,10 +839,10 @@ public class MSVehicleControllerFree : MonoBehaviour {
 			_cameras.cameras [indexCamera]._camera.transform.localRotation = Quaternion.Lerp (_cameras.cameras [indexCamera]._camera.transform.localRotation, newRotationCameras, Time.deltaTime*10.0f*timeScaleSpeed);
 			break;
 		case CameraTypeClassFree.TipoRotac.FollowPlayer:
-			if (!Physics.Linecast (transform.position, startPositionCameras [indexCamera].transform.position)) {
+			if (!Physics.Linecast (transform.position, startPositionCameras [indexCamera].transform.position, cameraLayerMask)) {
 				_cameras.cameras [indexCamera]._camera.transform.position = Vector3.Lerp (_cameras.cameras [indexCamera]._camera.transform.position, startPositionCameras [indexCamera].transform.position, Time.deltaTime * _cameras.cameraSettings.followPlayerCamera.displacementSpeed);
 			}
-			else if (Physics.Linecast (transform.position, startPositionCameras [indexCamera].transform.position, out hitCameras)) {
+			else if (Physics.Linecast (transform.position, startPositionCameras [indexCamera].transform.position, out hitCameras, cameraLayerMask)) {
 				_cameras.cameras [indexCamera]._camera.transform.position = Vector3.Lerp (_cameras.cameras [indexCamera]._camera.transform.position, hitCameras.point, Time.deltaTime * _cameras.cameraSettings.followPlayerCamera.displacementSpeed);
 			}
 
