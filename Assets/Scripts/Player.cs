@@ -91,7 +91,9 @@ public class Player : MonoBehaviour
             tower.playerOwner = playerIndex;
             foreach (var mesh in tower.coloredParts)
             {
-                mesh.material.color = playerColor;
+                var a = mesh.material.color.a;
+                mesh.material.color = new Color(playerColor.r, playerColor.g, playerColor.b, a);
+
             }
         }
     }
