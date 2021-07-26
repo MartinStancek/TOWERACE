@@ -86,9 +86,14 @@ public class GameController : MonoBehaviour
             vehs[i].GetComponent<CarManager>().RestartCar();
         }
         gameMode = GameMode.TOWER_PLACING;
+        foreach (var p in players)
+        {
+            p.ClaimRandomSpot();
+        }
 
-    }
-    private void StartCountdown()
+
+        }
+        private void StartCountdown()
     {
         StartCoroutine(SetCountdownText(3));
         StartCoroutine(SetCountdownText(2));
