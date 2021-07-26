@@ -14,6 +14,8 @@ public class Tower : MonoBehaviour
     public float shootEvery = 1f;
     private float lastShot = 0f;
 
+    public List<MeshRenderer> coloredParts = new List<MeshRenderer>();
+
     private List<Rigidbody> targets = new List<Rigidbody>();
 
     void FixedUpdate()

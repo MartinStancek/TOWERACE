@@ -4,6 +4,11 @@ using UnityEngine;
 using TMPro;
 using System;
 
+
+public enum GameMode
+{
+    TOWER_PLACING, RACING, TOWER_CHOOSING
+}
 public class GameController : MonoBehaviour
 {
     #region Singleton
@@ -33,7 +38,15 @@ public class GameController : MonoBehaviour
     public GameObject resultsPanel;
     public TMP_Text[] resultTexts;
 
+    public GameObject towersSnapParent;
+
+
     private List<int> playersFinished;
+
+    public List<Player> players;
+
+    [HideInInspector]
+    public GameMode gameMode = GameMode.TOWER_PLACING;
 
     public void StartRace()
     {
@@ -55,6 +68,7 @@ public class GameController : MonoBehaviour
             vehs[i].GetComponent<CarManager>().RestartCar();
         }
         StartCountdown();
+        gameMode = GameMode.RACING;
     }
     public void EndRace()
     {
@@ -71,6 +85,8 @@ public class GameController : MonoBehaviour
             vehs[i].GetComponent<MSVehicleControllerFree>().handBrakeTrue = true;
             vehs[i].GetComponent<CarManager>().RestartCar();
         }
+        gameMode = GameMode.TOWER_PLACING;
+
     }
     private void StartCountdown()
     {
@@ -152,6 +168,12 @@ public class GameController : MonoBehaviour
         countDownText.gameObject.SetActive(false);
         resultsPanel.SetActive(false);
 
+        foreach(var p in players)
+        {
+            p.ClaimRandomSpot();
+
+        }
+
     }
 
     private void SetCarCameras(bool value)
@@ -161,4 +183,35 @@ public class GameController : MonoBehaviour
             carCameras[i].gameObject.SetActive(value);
         }
     }
+
+    public List<TowerSnap> GetFreeTowerSnaps(int fromIndex, int toIndex)
+    {
+        var freeTowerSnaps = new List<TowerSnap>();
+        for(var i = fromIndex; i< toIndex; i++)
+        {
+            var snap = towersSnapParent.transform.GetChild(i).GetComponent<TowerSnap>();
+            if (!snap.isOccupied)
+            {
+                freeTowerSnaps.Add(snap);
+
+            }
+        }
+
+        return freeTowerSnaps;
+    }
+
+    public int IndexOfSnap(TowerSnap snap)
+    {
+        var i = 0;
+        foreach(Transform s in towersSnapParent.transform)
+        {
+            if (s.Equals(snap.transform))
+            {
+                return i;
+            }
+            i++;
+        }
+        throw new Exception("Unable to find snap in towerSnapParent");
+    }
+
 }

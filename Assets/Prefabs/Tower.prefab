@@ -64,6 +64,8 @@ MonoBehaviour:
   bulletSpawn: {fileID: 7235765292480691546}
   bulletSpeed: 70
   shootEvery: 0.4
+  coloredParts:
+  - {fileID: 7235765292347161413}
 --- !u!1 &7235765291566964488
 GameObject:
   m_ObjectHideFlags: 0
