@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
         {
             if (isVAxisInUse == false)
             {
-                if(vInput < 0)
+                if(vInput > 0)
                 {
                     MoveLeft();
                 }
-                if (vInput > 0)
+                if (vInput < 0)
                 {
                     MoveRight();
                 }
@@ -87,7 +87,9 @@ public class Player : MonoBehaviour
             Debug.Log("Claiming number: " + snapIndex);
 
             actualTower = Instantiate(towerPrefab, snaps[snapIndex].transform.position, snaps[snapIndex].transform.rotation);
-            foreach (var mesh in actualTower.GetComponent<Tower>().coloredParts)
+            var tower = actualTower.GetComponent<Tower>();
+            tower.playerOwner = playerIndex;
+            foreach (var mesh in tower.coloredParts)
             {
                 mesh.material.color = playerColor;
             }

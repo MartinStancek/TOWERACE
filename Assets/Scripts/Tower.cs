@@ -14,6 +14,8 @@ public class Tower : MonoBehaviour
     public float shootEvery = 1f;
     private float lastShot = 0f;
 
+    public int playerOwner = 0;
+
     public List<MeshRenderer> coloredParts = new List<MeshRenderer>();
 
     private List<Rigidbody> targets = new List<Rigidbody>();
@@ -39,7 +41,7 @@ public class Tower : MonoBehaviour
     {
         var t = other.GetComponentInParent<Rigidbody>();
         Debug.Log("Tower trigger: " + other.transform.name);
-        if (t && t.tag.Equals("Car"))
+        if (t && t.tag.Equals("Car") && playerOwner != t.GetComponent<MSVehicleControllerFree>().playerIndex)
         {
             targets.Add(t);
         }
