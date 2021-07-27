@@ -59,14 +59,14 @@ public class GameController : MonoBehaviour
             t.text = "";
         }
         playersFinished.Clear();
-
+        /*
         var vehs = MSSceneControllerFree.Instance.vehicles;
         for (var i = 0; i < vehs.Length; i++)
         {
             vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = false;
             vehs[i].GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;
             vehs[i].GetComponent<CarManager>().RestartCar();
-        }
+        }*/
         StartCountdown();
         gameMode = GameMode.RACING;
     }
@@ -138,11 +138,11 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("GO!!!" );
             countDownText.text = "GO!";
-            var vehs = MSSceneControllerFree.Instance.vehicles;
+            /*var vehs = MSSceneControllerFree.Instance.vehicles;
             for (var i = 0; i < vehs.Length; i++)
             {
                 vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = true;
-            }
+            }*/
         }
         else
         {
@@ -151,11 +151,11 @@ public class GameController : MonoBehaviour
         }
         if(secondsRemain == 1)
         {
-            var vehs = MSSceneControllerFree.Instance.vehicles;
+            /*var vehs = MSSceneControllerFree.Instance.vehicles;
             for (var i = 0; i < vehs.Length; i++)
             {
                 vehs[i].GetComponent<MSVehicleControllerFree>().EnterInVehicle();
-            }
+            }*/
         }
     }
     private IEnumerator RemoveCountDownText()

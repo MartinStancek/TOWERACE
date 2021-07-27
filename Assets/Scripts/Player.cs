@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        var vInput = Input.GetAxis("Horizontal" + playerIndex);
+        var vInput = 0;/*Input.GetAxis("Horizontal" + playerIndex);*/
 
         if (vInput != 0)
         {

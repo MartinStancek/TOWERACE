@@ -63,8 +63,8 @@ MonoBehaviour:
   head: {fileID: 7235765292763797989}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
   bulletSpawn: {fileID: 7235765292480691546}
-  bulletSpeed: 70
-  shootEvery: 0.4
+  bulletSpeed: 120
+  shootEvery: 0.2
   playerOwner: 0
   coloredParts:
   - {fileID: 7235765292347161413}

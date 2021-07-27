@@ -41,7 +41,7 @@ public class Tower : MonoBehaviour
     {
         var t = other.GetComponentInParent<Rigidbody>();
         Debug.Log("Tower trigger: " + other.transform.name);
-        if (t && t.tag.Equals("Car") && playerOwner != t.GetComponent<MSVehicleControllerFree>().playerIndex)
+        if (t && t.tag.Equals("Car") /*&& playerOwner != t.GetComponent<MSVehicleControllerFree>().playerIndex*/)
         {
             targets.Add(t);
         }
