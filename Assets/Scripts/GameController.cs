@@ -214,6 +214,7 @@ public class GameController : MonoBehaviour
 
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
+        backGroundCamera.gameObject.SetActive(false);
 
 
 

@@ -39,19 +39,25 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var t = other.GetComponentInParent<Rigidbody>();
+        var t = other.GetComponent<Rigidbody>();
         Debug.Log("Tower trigger: " + other.transform.name);
-        if (t && t.tag.Equals("Car") /*&& playerOwner != t.GetComponent<MSVehicleControllerFree>().playerIndex*/)
+
+        if (t && t.tag.Equals("CarSphere") )
         {
-            targets.Add(t);
+            var cs = t.GetComponent<CarSphere>().carObject;
+            var tp = cs.GetComponentInParent<TowerPlacer>();
+            if (tp.playerIndex != playerOwner)
+            {
+                targets.Add(t);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        var t = other.GetComponentInParent<Rigidbody>();
+        var t = other.GetComponent<Rigidbody>();
         Debug.Log("Tower trigger exit: " + other.transform.name);
-        if (t && t.tag.Equals("Car") && targets.Contains(t))
+        if (t && t.tag.Equals("CarSphere") && targets.Contains(t))
         {
             targets.Remove(t);
         }

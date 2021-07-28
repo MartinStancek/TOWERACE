@@ -63,12 +63,15 @@ public class PlayerManager : MonoBehaviour
         input.transform.position = GameController.Instance.spawnPoints.GetChild(playerCount).position;
 
         input.camera.cullingMask = cameraMasks[playerCount];
+        var tp = input.gameObject.GetComponent<TowerPlacer>();
+        tp.playerIndex = playerCount;
+        tp.playerColor = playerColors[playerCount];
         playerCount++;
 
         input.camera.transform.parent.Find("CMvcam").gameObject.layer = LayerMask.NameToLayer("Cam" + playerCount);
         input.camera.gameObject.layer = LayerMask.NameToLayer("Cam" + playerCount);
 
-        GameController.Instance.players.Add(input.gameObject.GetComponent<TowerPlacer>());
+        GameController.Instance.players.Add(tp);
 
     }
 }

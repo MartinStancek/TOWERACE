@@ -50,6 +50,7 @@ MonoBehaviour:
   playerIndex: 1
   playerColor: {r: 1, g: 0, b: 0, a: 1}
   towerPrefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
+  clickTime: 0.2
 --- !u!114 &7729441139150352868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +431,19 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &8490568986075805946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754894381871459761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c502b68508bcc2248a041a4583697a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carObject: {fileID: 8754894382217880354}
 --- !u!114 &7726507170281116244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +515,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2909134994325039510, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_TagString
+      value: CarSphere
+      objectReference: {fileID: 0}
     - target: {fileID: 5357994013029077917, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -528,3 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5519a00effff24d4a9a105335523f683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8754894381871459761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2909134994325039510, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+  m_PrefabInstance: {fileID: 5845937106326914087}
+  m_PrefabAsset: {fileID: 0}
