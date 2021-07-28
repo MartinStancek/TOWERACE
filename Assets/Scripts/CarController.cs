@@ -33,29 +33,31 @@ public class CarController : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
 
+    public bool isActivated = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb.transform.parent = null;
+        SetEmmision(0f);
     }
 
     public void OnAcceleration(InputAction.CallbackContext context)
     {
+
         var input = context.ReadValue<float>();
-        Debug.Log("OnMove: " + input);
+        //Debug.Log("OnMove: " + input);
 
         verticalInput = input;
     }
     public void OnSteering(InputAction.CallbackContext context)
     {
         var input = context.ReadValue<float>();
-        Debug.Log("OnMove: " + input);
+        //Debug.Log("OnMove: " + input);
 
         horizontalInput = input;
     }
-
-
 
     void Update()
     {
@@ -84,6 +86,11 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isActivated)
+        {
+            return;
+        }
+
         grounded = false;
         RaycastHit hit;
 
@@ -113,11 +120,21 @@ public class CarController : MonoBehaviour
             rb.AddForce(Vector3.up * -gravityForce * 100f);
         }
 
-        foreach(var p in dustTrial)
+        SetEmmision(emissionRate);
+    }
+
+    private void SetEmmision(float emissionRate)
+    {
+        foreach (var p in dustTrial)
         {
             var emissionModule = p.emission;
             emissionModule.rate = emissionRate;
         }
+    }
+
+    public void RestartPostion()
+    {
+
     }
 
 }

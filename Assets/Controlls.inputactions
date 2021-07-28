@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControlls",
+    "name": "Controlls",
     "maps": [
         {
             "name": "Player",
@@ -17,6 +17,30 @@
                     "name": "Steering",
                     "type": "Button",
                     "id": "91016e24-1f7e-4631-9ea8-5c04a07185dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TowerLeft",
+                    "type": "Button",
+                    "id": "6e6a5662-33b0-4b4f-aaf3-f59da0b41152",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TowerRight",
+                    "type": "Button",
+                    "id": "8f89077a-5d40-4ee9-b053-73277359b821",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TowerClick",
+                    "type": "Button",
+                    "id": "276e7b3b-dc8e-4c83-901c-ff978c5b041b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -154,6 +178,72 @@
                     "action": "Steering",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "cb1b5a80-d305-4a45-98a5-56881cd43fd0",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TowerLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0911cb2c-4e74-4888-92a5-b6f6c686f2de",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "TowerLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e335dc43-f553-45a9-a3ac-d4905f416716",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TowerRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd629973-255c-43f7-b931-1f2058b8a88e",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "TowerRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6130f1d3-379f-47c2-a857-32322a61bae0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TowerClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e81555ec-0ebf-4638-9955-3cc6ebc18eb7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "TowerClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

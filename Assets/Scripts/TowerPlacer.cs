@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class TowerPlacer : MonoBehaviour
 {
     public int playerIndex;
     public Color playerColor;
@@ -15,35 +16,69 @@ public class Player : MonoBehaviour
 
     private GameObject actualTower = null;
 
+    private bool rightInput = false;
+    private bool leftInput = false;
+    private float lastLeftClickTime = 0f;
+    private float lastRightClickTime = 0f;
 
-    private void Update()
+    public float clickTime = 0.2f;
+
+
+    public void OnTowerLeft(InputAction.CallbackContext context)
     {
-        if (GameController.Instance.gameMode != GameMode.TOWER_PLACING)
+        var value = context.ReadValue<float>();
+        Debug.Log("Right: "+value);
+        if(value > 0.5)
+        {
+            leftInput = true;
+        } 
+        else
+        {
+            leftInput = false;
+            lastLeftClickTime = 0f;
+        }
+    }
+    public void OnTowerRight(InputAction.CallbackContext context)
+    {
+        var value = context.ReadValue<float>();
+        if (value > 0.5)
+        {
+            rightInput = true;
+        }
+        else
+        {
+            rightInput = false;
+            lastRightClickTime = 0f;
+        }
+    }
+
+    void Update()
+    {
+        if(GameController.Instance.gameMode != GameMode.TOWER_PLACING)
         {
             return;
         }
-        var vInput = 0;/*Input.GetAxis("Horizontal" + playerIndex);*/
 
-        if (vInput != 0)
+        if(leftInput && Time.time - lastLeftClickTime > clickTime)
         {
-            if (isVAxisInUse == false)
-            {
-                if(vInput > 0)
-                {
-                    MoveLeft();
-                }
-                if (vInput < 0)
-                {
-                    MoveRight();
-                }
-                isVAxisInUse = true;
-            }
+            MoveLeft();
+            lastLeftClickTime = Time.time;
         }
-        if (vInput == 0)
+        if (rightInput && Time.time - lastRightClickTime > clickTime)
         {
-            isVAxisInUse = false;
+            MoveRight();
+            lastRightClickTime = Time.time;
         }
+
+
     }
+
+    public void OnTowerClick(InputAction.CallbackContext context)
+    {
+
+    }
+
+
 
     public void MoveLeft()
     {

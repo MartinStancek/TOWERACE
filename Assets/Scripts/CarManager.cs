@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CarManager : MonoBehaviour
 {
-    public GameObject checkPoints;
-
     private Vector3 startPosition;
     private Quaternion startRotation;
     private Rigidbody rb;
+
+    private Transform checkPoints;
 
     private int lastCheckPointIndex = -1;
 
@@ -17,19 +17,20 @@ public class CarManager : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
+        checkPoints = GameController.Instance.checkPonts;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if((other.gameObject.layer & LayerMask.NameToLayer("CheckPoint")) != 0)
         {
-            if (lastCheckPointIndex + 1 < checkPoints.transform.childCount && checkPoints.transform.GetChild(lastCheckPointIndex + 1).Equals(other.transform))
+            if (lastCheckPointIndex + 1 < checkPoints.childCount && checkPoints.GetChild(lastCheckPointIndex + 1).Equals(other.transform))
             {
                 lastCheckPointIndex++;
                 //Debug.Log("CheckPoint:" + lastCheckPointIndex);
             }
 
-            if (lastCheckPointIndex + 1 == checkPoints.transform.childCount) 
+            if (lastCheckPointIndex + 1 == checkPoints.childCount) 
             {
                 lastCheckPointIndex++;
                 var playerIndex = GetComponent<MSVehicleControllerFree>().playerIndex;

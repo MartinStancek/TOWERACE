@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 
 public enum GameMode
 {
-    TOWER_PLACING, RACING, TOWER_CHOOSING
+    PLAYER_JOINING, TOWER_PLACING, RACING, TOWER_CHOOSING
 }
 public class GameController : MonoBehaviour
 {
@@ -30,12 +31,18 @@ public class GameController : MonoBehaviour
     [Tooltip("Vyjadrenie, kolko sa bude cakat po prvom aute, ktore prislo do ciela v sekundach")]
     public int waitingTime = 10;
 
-    public Camera[] carCameras;
+    [HideInInspector]
+    public List<Camera> carCameras = new List<Camera>();
     public Camera mapCamera;
+    public Camera backGroundCamera;
 
     public TMP_Text countDownText;
 
     public GameObject resultsPanel;
+    public GameObject joinPanel;
+    public Button startGameButton;
+    public Button startRaceButton;
+
     public TMP_Text[] resultTexts;
 
     public GameObject towersSnapParent;
@@ -43,7 +50,11 @@ public class GameController : MonoBehaviour
 
     private List<int> playersFinished;
 
-    public List<Player> players;
+    public List<TowerPlacer> players;
+
+    public Transform checkPonts;
+
+    public Transform spawnPoints;
 
     [HideInInspector]
     public GameMode gameMode = GameMode.TOWER_PLACING;
@@ -52,6 +63,11 @@ public class GameController : MonoBehaviour
     {
         SetCarCameras(true);
         mapCamera.gameObject.SetActive(false);
+        if (players.Count == 3)
+        {
+            backGroundCamera.gameObject.SetActive(true);
+        }
+        
         countDownText.gameObject.SetActive(true);
         resultsPanel.SetActive(false);
         foreach(var t in resultTexts)
@@ -59,14 +75,14 @@ public class GameController : MonoBehaviour
             t.text = "";
         }
         playersFinished.Clear();
-        /*
-        var vehs = MSSceneControllerFree.Instance.vehicles;
-        for (var i = 0; i < vehs.Length; i++)
+
+        foreach(var player in players)
         {
-            vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = false;
-            vehs[i].GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;
-            vehs[i].GetComponent<CarManager>().RestartCar();
-        }*/
+            var cc = player.GetComponentInChildren<CarController>();
+            cc.RestartPostion();
+            cc.isActivated = false;
+        }
+        
         StartCountdown();
         gameMode = GameMode.RACING;
     }
@@ -74,26 +90,24 @@ public class GameController : MonoBehaviour
     {
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
+        backGroundCamera.gameObject.SetActive(false);
+
         countDownText.gameObject.SetActive(false);
         resultsPanel.SetActive(true);
 
-        var vehs = MSSceneControllerFree.Instance.vehicles;
-        for (var i = 0; i < vehs.Length; i++)
-        {
-            vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = false;
-            vehs[i].GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;
-            vehs[i].GetComponent<MSVehicleControllerFree>().handBrakeTrue = true;
-            vehs[i].GetComponent<CarManager>().RestartCar();
-        }
         gameMode = GameMode.TOWER_PLACING;
-        foreach (var p in players)
+
+        foreach (var player in players)
         {
-            p.ClaimRandomSpot();
-        }
+            player.ClaimRandomSpot();
 
-
+            var cc = player.GetComponentInChildren<CarController>();
+            cc.RestartPostion();
+            cc.isActivated = false;
         }
-        private void StartCountdown()
+    }
+
+    private void StartCountdown()
     {
         StartCoroutine(SetCountdownText(3));
         StartCoroutine(SetCountdownText(2));
@@ -138,11 +152,13 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("GO!!!" );
             countDownText.text = "GO!";
-            /*var vehs = MSSceneControllerFree.Instance.vehicles;
-            for (var i = 0; i < vehs.Length; i++)
+
+            foreach (var player in players)
             {
-                vehs[i].GetComponent<MSVehicleControllerFree>().raceStarted = true;
-            }*/
+                var cc = player.GetComponentInChildren<CarController>();
+                cc.isActivated = true;
+            }
+
         }
         else
         {
@@ -151,6 +167,7 @@ public class GameController : MonoBehaviour
         }
         if(secondsRemain == 1)
         {
+
             /*var vehs = MSSceneControllerFree.Instance.vehicles;
             for (var i = 0; i < vehs.Length; i++)
             {
@@ -169,24 +186,46 @@ public class GameController : MonoBehaviour
     {
         playersFinished = new List<int>();
         SetCarCameras(false);
-        mapCamera.gameObject.SetActive(true);
+        mapCamera.gameObject.SetActive(false);
+        backGroundCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
         resultsPanel.SetActive(false);
+        joinPanel.SetActive(true);
+        startGameButton.gameObject.SetActive(true);
+        startRaceButton.gameObject.SetActive(false);
 
-        foreach(var p in players)
+    }
+
+    public void StartGame()
+    {
+        joinPanel.SetActive(false);
+        gameMode = GameMode.TOWER_PLACING;
+
+        foreach (var p in players)
         {
             p.ClaimRandomSpot();
 
+            var cc = p.GetComponentInChildren<CarController>();
+            cc.isActivated = false;
+            cc.RestartPostion();
         }
+        startRaceButton.gameObject.SetActive(true);
+        startGameButton.gameObject.SetActive(false);
+
+        SetCarCameras(false);
+        mapCamera.gameObject.SetActive(true);
+
+
 
     }
 
     private void SetCarCameras(bool value)
     {
-        for (var i = 0; i < carCameras.Length; i++)
+        foreach (var cam in carCameras)
         {
-            carCameras[i].gameObject.SetActive(value);
+            cam.gameObject.SetActive(value);
         }
+
     }
 
     public List<TowerSnap> GetFreeTowerSnaps(int fromIndex, int toIndex)
