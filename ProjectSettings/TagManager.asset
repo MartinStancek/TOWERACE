@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Car
+  - CarSphere
   layers:
   - Default
   - TransparentFX
@@ -19,15 +20,15 @@ TagManager:
   - 
   - 
   - CheckPoint
+  - IgnoreCameraFlow
+  - 
+  - Ground
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Cam1
+  - Cam2
+  - Cam3
+  - Cam4
   - 
   - 
   - 
