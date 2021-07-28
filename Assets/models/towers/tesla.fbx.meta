@@ -1,8 +1,44 @@
 fileFormatVersion: 2
-guid: c1e1dca0b1e6f294f9929a6444f80195
+guid: 00074931b3cd9d846afec35b35cb48eb
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -2016049870720198306
+    second: Torus.032|IcosphereAction
+  - first:
+      74: -6051263043630303652
+    second: Torus.032|IcosphereAction.001
+  - first:
+      74: -3984776045442228192
+    second: Torus.032|IcosphereAction.002
+  - first:
+      74: -5280878264871112964
+    second: Torus.032|Torus.011Action
+  - first:
+      74: -6204947352915114639
+    second: Torus.032|Torus.011Action.001
+  - first:
+      74: -8202932075784646488
+    second: Torus.032|Torus.011Action.002
+  - first:
+      74: -718050115359926848
+    second: Torus.032|Torus.011Action.003
+  - first:
+      74: -5191807236347449731
+    second: Torus.032|Torus.011Action.004
+  - first:
+      74: 7534067245932283917
+    second: Torus.032|Torus.011Action.005
+  - first:
+      74: -6581860208688167446
+    second: Torus.032|Torus.011Action.006
+  - first:
+      74: 131537470545027270
+    second: Torus.032|Torus.011Action.007
+  - first:
+      74: -1123220516896706202
+    second: Torus.032|Torus.011Action.008
   externalObjects: {}
   materials:
     materialImportMode: 2
