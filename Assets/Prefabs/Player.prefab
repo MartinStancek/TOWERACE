@@ -185,7 +185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.20060624, y: 1.8846864e-15, z: 1.8086618e-16, w: 0.97967196}
+  m_LocalRotation: {x: 0.20060621, y: -0.000000029196501, z: 0.0000000059785314, w: 0.97967196}
   m_LocalPosition: {x: 0, y: 3.3, z: -7.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -253,7 +253,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.20060624, y: 1.8846864e-15, z: 1.8086618e-16, w: 0.97967196}
+  m_LocalRotation: {x: 0.20060621, y: -0.000000029196501, z: 0.0000000059785314, w: 0.97967196}
   m_LocalPosition: {x: 0, y: 3.3, z: -7.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -444,13 +444,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carObject: {fileID: 8754894382217880354}
---- !u!114 &7726507170281116244
+--- !u!114 &1063748104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754894382217880354}
+  m_GameObject: {fileID: 8754894381871459761}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2646612c63680a243aa0cb7b98c8e6a1, type: 3}

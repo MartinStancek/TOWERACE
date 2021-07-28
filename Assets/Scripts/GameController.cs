@@ -81,8 +81,10 @@ public class GameController : MonoBehaviour
             var cc = player.GetComponentInChildren<CarController>();
             cc.RestartPostion();
             cc.isActivated = false;
+
+            cc.rb.transform.GetComponent<CheckPointController>().lastCheckPointIndex = -1;
         }
-        
+
         StartCountdown();
         gameMode = GameMode.RACING;
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarManager : MonoBehaviour
+public class CheckPointController : MonoBehaviour
 {
     private Vector3 startPosition;
     private Quaternion startRotation;
@@ -10,7 +10,7 @@ public class CarManager : MonoBehaviour
 
     private Transform checkPoints;
 
-    private int lastCheckPointIndex = -1;
+    public int lastCheckPointIndex = -1;
 
     void Start()
     {
@@ -33,12 +33,13 @@ public class CarManager : MonoBehaviour
             if (lastCheckPointIndex + 1 == checkPoints.childCount) 
             {
                 lastCheckPointIndex++;
-                var playerIndex = GetComponent<MSVehicleControllerFree>().playerIndex;
+                var playerIndex = GetComponent<CarSphere>().carObject.GetComponentInParent<TowerPlacer>().playerIndex;
                 GameController.Instance.CarFinished(playerIndex);
                 Debug.Log("Player " + playerIndex + " finished the race!");
-                GetComponent<MSVehicleControllerFree>().handBrakeTrue = true;
+                GetComponent<CarSphere>().carObject.GetComponent<CarController>().isActivated = false;
+                /*GetComponent<MSVehicleControllerFree>().handBrakeTrue = true;
                 GetComponent<MSVehicleControllerFree>().raceStarted = false; ;
-                GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;
+                GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;*/
 
             }
 
@@ -47,10 +48,6 @@ public class CarManager : MonoBehaviour
 
     public void RestartCar()
     {
-        transform.position = startPosition;
-        transform.rotation = startRotation;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        lastCheckPointIndex = -1;
+
     }
 }
