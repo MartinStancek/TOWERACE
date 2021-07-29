@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
 
     private List<int> playersFinished;
 
-    public List<TowerPlacer> players;
+    public List<Player> players;
 
     public Transform checkPonts;
 
@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
 
         foreach (var player in players)
         {
-            player.ClaimRandomSpot();
+            player.GetComponent<TowerPlacer>().ClaimRandomSpot();
 
             var cc = player.GetComponentInChildren<CarController>();
             cc.RestartPostion();
@@ -205,7 +205,7 @@ public class GameController : MonoBehaviour
 
         foreach (var p in players)
         {
-            p.ClaimRandomSpot();
+            p.GetComponent<TowerPlacer>().ClaimRandomSpot();
 
             var cc = p.GetComponentInChildren<CarController>();
             cc.isActivated = false;

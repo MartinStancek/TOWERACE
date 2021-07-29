@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Player))]
 public class TowerPlacer : MonoBehaviour
 {
-    public int playerIndex;
-    public Color playerColor;
-
     private int towerIndex = 0;
 
-    private bool isVAxisInUse = false;
+    private Player player;
 
     public GameObject towerPrefab;
 
@@ -23,6 +21,10 @@ public class TowerPlacer : MonoBehaviour
 
     public float clickTime = 0.2f;
 
+    void Awake()
+    {
+        player = GetComponent<Player>();
+    }
 
     public void OnTowerLeft(InputAction.CallbackContext context)
     {
@@ -123,11 +125,11 @@ public class TowerPlacer : MonoBehaviour
 
             actualTower = Instantiate(towerPrefab, snaps[snapIndex].transform.position, snaps[snapIndex].transform.rotation);
             var tower = actualTower.GetComponent<Tower>();
-            tower.playerOwner = playerIndex;
+            tower.playerOwner = player.playerIndex;
             foreach (var mesh in tower.coloredParts)
             {
                 var a = mesh.material.color.a;
-                mesh.material.color = new Color(playerColor.r, playerColor.g, playerColor.b, a);
+                mesh.material.color = new Color(player.playerColor.r, player.playerColor.g, player.playerColor.b, a);
 
             }
         }

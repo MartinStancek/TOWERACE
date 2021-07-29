@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5845937106439852003}
   - component: {fileID: 5845937106439852002}
   - component: {fileID: 7729441139150352868}
+  - component: {fileID: 641373233649129941}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,11 +157,31 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 276e7b3b-dc8e-4c83-901c-ff978c5b041b
     m_ActionName: CarMovement/ClickTower[/Keyboard/e,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c25aff5c-32d6-4130-8cbd-0373c3d8fb95
+    m_ActionName: Player/JoinGame[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db454f08-69e0-4e72-b93f-35637c6a140c
+    m_ActionName: Player2/JoinGame[/Keyboard/rightCtrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4252000830672934312}
+--- !u!114 &641373233649129941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845937106439851996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf49d3021c5b96428c0c41ac5f8b609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7840582908964435625
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +206,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.27544892, y: -0.000000016540456, z: 0.0000000047393907, w: 0.96131575}
+  m_LocalRotation: {x: 0.27544892, y: 0.000000016540765, z: -0.000000004739479, w: 0.96131575}
   m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -253,7 +274,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.27544892, y: -0.000000016540456, z: 0.0000000047393907, w: 0.96131575}
+  m_LocalRotation: {x: 0.27544892, y: 0.000000016540765, z: -0.000000004739479, w: 0.96131575}
   m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

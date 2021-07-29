@@ -33,7 +33,7 @@ public class CheckPointController : MonoBehaviour
             if (lastCheckPointIndex + 1 == checkPoints.childCount) 
             {
                 lastCheckPointIndex++;
-                var playerIndex = GetComponent<CarSphere>().carObject.GetComponentInParent<TowerPlacer>().playerIndex;
+                var playerIndex = GetComponent<CarSphere>().carObject.GetComponentInParent<Player>().playerIndex;
                 GameController.Instance.CarFinished(playerIndex);
                 Debug.Log("Player " + playerIndex + " finished the race!");
                 GetComponent<CarSphere>().carObject.GetComponent<CarController>().isActivated = false;
