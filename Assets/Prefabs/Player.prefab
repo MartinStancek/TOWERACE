@@ -185,8 +185,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.20060621, y: -0.000000029196501, z: 0.0000000059785314, w: 0.97967196}
-  m_LocalPosition: {x: 0, y: 3.3, z: -7.72}
+  m_LocalRotation: {x: 0.27544892, y: -0.000000016540456, z: 0.0000000047393907, w: 0.96131575}
+  m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 282739488771337626}
@@ -253,8 +253,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.20060621, y: -0.000000029196501, z: 0.0000000059785314, w: 0.97967196}
-  m_LocalPosition: {x: 0, y: 3.3, z: -7.72}
+  m_LocalRotation: {x: 0.27544892, y: -0.000000016540456, z: 0.0000000047393907, w: 0.96131575}
+  m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5845937106439852003}
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
@@ -422,15 +422,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 3.3, z: -7.72}
+  m_FollowOffset: {x: 0, y: 2.31, z: -3.7}
   m_XDamping: 1
   m_YDamping: 1
-  m_ZDamping: 1
+  m_ZDamping: 2.16
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &1063748104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754894381871459761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2646612c63680a243aa0cb7b98c8e6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastCheckPointIndex: -1
 --- !u!114 &8490568986075805946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,18 +457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carObject: {fileID: 8754894382217880354}
---- !u!114 &1063748104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754894381871459761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2646612c63680a243aa0cb7b98c8e6a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5845937106326914087
 PrefabInstance:
   m_ObjectHideFlags: 0
