@@ -3623,7 +3623,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_JoinAction:
-    m_UseReference: 0
+    m_UseReference: 1
     m_Action:
       m_Name: Join
       m_Type: 0
@@ -3648,7 +3648,7 @@ MonoBehaviour:
         m_Groups: 
         m_Action: Join
         m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 3718544045782917686, guid: 9b60a51eb4bd0414a8814c6ac3830b44, type: 3}
   m_PlayerPrefab: {fileID: 5845937106439851996, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0

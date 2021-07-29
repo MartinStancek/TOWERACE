@@ -27,7 +27,7 @@ public class TowerPlacer : MonoBehaviour
     public void OnTowerLeft(InputAction.CallbackContext context)
     {
         var value = context.ReadValue<float>();
-        Debug.Log("Right: "+value);
+        //Debug.Log("Right: "+value);
         if(value > 0.5)
         {
             leftInput = true;
@@ -90,7 +90,7 @@ public class TowerPlacer : MonoBehaviour
 
             actualTower.transform.position = snaps[snaps.Count - 1].transform.position;
 
-            Debug.Log("MoveLeft " + towerIndex + ", " + snaps[snaps.Count - 1].gameObject.name);
+            //Debug.Log("MoveLeft " + towerIndex + ", " + snaps[snaps.Count - 1].gameObject.name);
         }
     }
 
@@ -106,7 +106,7 @@ public class TowerPlacer : MonoBehaviour
             towerIndex = GameController.Instance.IndexOfSnap(snaps[0]);
             snaps[0].isOccupied = true;
             actualTower.transform.position = snaps[0].transform.position;
-            Debug.Log("MoveRight " + towerIndex + ", " + snaps[0].gameObject.name);
+            //Debug.Log("MoveRight " + towerIndex + ", " + snaps[0].gameObject.name);
         }
     }
 
@@ -119,7 +119,7 @@ public class TowerPlacer : MonoBehaviour
             var snapIndex = Random.Range(0, snaps.Count);
             towerIndex = GameController.Instance.IndexOfSnap(snaps[snapIndex]);
             snaps[snapIndex].isOccupied = true;
-            Debug.Log("Claiming number: " + snapIndex);
+            //Debug.Log("Claiming number: " + snapIndex);
 
             actualTower = Instantiate(towerPrefab, snaps[snapIndex].transform.position, snaps[snapIndex].transform.rotation);
             var tower = actualTower.GetComponent<Tower>();

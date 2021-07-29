@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "JoinGame",
+                    "type": "Button",
+                    "id": "c25aff5c-32d6-4130-8cbd-0373c3d8fb95",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -244,6 +252,55 @@
                     "action": "TowerClick",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8f7c8f8-4987-4a83-9349-af911775fd55",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e077d44-4d00-40a4-a908-d4bd9a0737da",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player2",
+            "id": "4cf89a7c-3038-4340-965b-6f6d596dad1a",
+            "actions": [
+                {
+                    "name": "JoinGame",
+                    "type": "Button",
+                    "id": "db454f08-69e0-4e72-b93f-35637c6a140c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "66129a63-358d-4ae3-aabf-f4fd0276471c",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard2",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -266,6 +323,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard2",
+            "bindingGroup": "Keyboard2",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
                     "isOptional": true,
                     "isOR": false
                 }
