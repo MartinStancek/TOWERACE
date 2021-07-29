@@ -94,6 +94,8 @@ public class CarController : MonoBehaviour
         grounded = false;
         RaycastHit hit;
 
+        Debug.DrawRay(groundRayPoint.position, -transform.up, Color.green, groundRayLength);
+
         if(Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround))
         {
             grounded = true;

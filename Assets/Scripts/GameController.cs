@@ -120,31 +120,39 @@ public class GameController : MonoBehaviour
 
     public void CarFinished(int playerIndex)
     {
-        if (playersFinished.Count == 0)
+        playersFinished.Add(playerIndex);
+
+        if (playersFinished.Count == 1)
         {
             countDownText.gameObject.SetActive(true);
             countDownText.text = "" + waitingTime;
             StartCoroutine(SetEndRaceCountDown(waitingTime - 1, EndRace));
         }
-        if (playersFinished.Count < 3)
+        if (playersFinished.Count < 4) // len 3 miesta na "podiu" su
         {
-            resultTexts[playersFinished.Count].text = "Player " + playerIndex;
+            resultTexts[playersFinished.Count - 1].text = "Player " + playerIndex;
         }
-        playersFinished.Add(playerIndex);
 
     }
     private IEnumerator SetEndRaceCountDown(int secondsRemain, Action finishAction)
     {
-        yield return new WaitForSeconds(1);
-        Debug.Log("EndRaceCountDown: " + secondsRemain);
-        if (secondsRemain > 0)
-        {
-            countDownText.text = "" + secondsRemain;
-            yield return SetEndRaceCountDown(secondsRemain - 1, finishAction);
-        } 
-        else
+        if (playersFinished.Count == players.Count)
         {
             finishAction.Invoke();
+        }
+        else
+        {
+            yield return new WaitForSeconds(1);
+            Debug.Log("EndRaceCountDown: " + secondsRemain);
+            if (secondsRemain > 0)
+            {
+                countDownText.text = "" + secondsRemain;
+                yield return SetEndRaceCountDown(secondsRemain - 1, finishAction);
+            }
+            else
+            {
+                finishAction.Invoke();
+            }
         }
     }
     private IEnumerator SetCountdownText(int secondsRemain)
