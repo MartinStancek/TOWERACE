@@ -10,9 +10,9 @@ public class TowerPlacer : MonoBehaviour
 
     private Player player;
 
-    public GameObject towerPrefab;
+    public GameObject towerPointer;
 
-    private GameObject actualTower = null;
+    private GameObject actualTowerPointer = null;
 
     private bool rightInput = false;
     private bool leftInput = false;
@@ -86,11 +86,18 @@ public class TowerPlacer : MonoBehaviour
     {
         var snaps = GameController.Instance.GetFreeTowerSnaps(0, towerIndex);
         if (snaps.Count != 0) {
-            GameController.Instance.towersSnapParent.transform.GetChild(towerIndex).GetComponent<TowerSnap>().isOccupied = false;
-            snaps[snaps.Count - 1].isOccupied = true;
-            towerIndex = GameController.Instance.IndexOfSnap(snaps[snaps.Count - 1]);
+            var origTS = GameController.Instance.towersSnapParent.transform.GetChild(towerIndex).GetComponent<TowerSnap>();
+            origTS.isOccupied = false;
+            origTS.ResetColor();
+            origTS.buyPanel.gameObject.SetActive(false);
 
-            actualTower.transform.position = snaps[snaps.Count - 1].transform.position;
+            towerIndex = GameController.Instance.IndexOfSnap(snaps[snaps.Count - 1]);
+            
+            var nextTS = snaps[snaps.Count - 1];
+            nextTS.isOccupied = true;
+            nextTS.SetColor(player.playerColor);
+            nextTS.buyPanel.gameObject.SetActive(true);
+            //actualTowerPointer.transform.position = snaps[snaps.Count - 1].transform.position;
 
             //Debug.Log("MoveLeft " + towerIndex + ", " + snaps[snaps.Count - 1].gameObject.name);
         }
@@ -103,11 +110,18 @@ public class TowerPlacer : MonoBehaviour
 
         if (snaps.Count != 0)
         {
-            GameController.Instance.towersSnapParent.transform.GetChild(towerIndex).GetComponent<TowerSnap>().isOccupied = false;
+            var origTS = GameController.Instance.towersSnapParent.transform.GetChild(towerIndex).GetComponent<TowerSnap>();
+            origTS.isOccupied = false;
+            origTS.ResetColor();
+            origTS.buyPanel.gameObject.SetActive(false);
 
             towerIndex = GameController.Instance.IndexOfSnap(snaps[0]);
-            snaps[0].isOccupied = true;
-            actualTower.transform.position = snaps[0].transform.position;
+            var nextTS = snaps[0];
+            nextTS.isOccupied = true;
+            nextTS.SetColor(player.playerColor);
+            nextTS.buyPanel.gameObject.SetActive(true);
+
+            //actualTowerPointer.transform.position = snaps[0].transform.position;
             //Debug.Log("MoveRight " + towerIndex + ", " + snaps[0].gameObject.name);
         }
     }
@@ -121,17 +135,22 @@ public class TowerPlacer : MonoBehaviour
             var snapIndex = Random.Range(0, snaps.Count);
             towerIndex = GameController.Instance.IndexOfSnap(snaps[snapIndex]);
             snaps[snapIndex].isOccupied = true;
+            snaps[snapIndex].SetColor(player.playerColor);
+            snaps[snapIndex].buyPanel.gameObject.SetActive(true);
+
             //Debug.Log("Claiming number: " + snapIndex);
 
-            actualTower = Instantiate(towerPrefab, snaps[snapIndex].transform.position, snaps[snapIndex].transform.rotation);
-            var tower = actualTower.GetComponent<Tower>();
-            tower.playerOwner = player.playerIndex;
-            foreach (var mesh in tower.coloredParts)
+            /*actualTowerPointer = Instantiate(towerPointer, snaps[snapIndex].transform.position, snaps[snapIndex].transform.rotation);
+            var tp = actualTowerPointer.GetComponent<TowerPointer>();
+            tp.playerOwner = player.playerIndex;
+            tp.*/
+
+            /*foreach (var mesh in tp.coloredParts)
             {
                 var a = mesh.material.color.a;
                 mesh.material.color = new Color(player.playerColor.r, player.playerColor.g, player.playerColor.b, a);
 
-            }
+            }*/
         }
     }
 }
