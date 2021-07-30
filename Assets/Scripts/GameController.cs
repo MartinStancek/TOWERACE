@@ -5,7 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
-
+using System.Linq;
 
 public enum GameMode
 {
@@ -113,6 +113,14 @@ public class GameController : MonoBehaviour
             var cc = player.GetComponentInChildren<CarController>();
             cc.RestartPostion();
             cc.isActivated = false;
+
+            player.money += player.moneyByRound;
+        }
+
+        for (var i = 0; i < playersFinished.Count; i++)
+        {
+            var p = players.Where(e => e.playerIndex == playersFinished[i]).FirstOrDefault();
+            p.money += (int)((4 - i) * p.scoreMultilier);
         }
     }
 
