@@ -221,6 +221,8 @@ public class GameController : MonoBehaviour
             var cc = p.GetComponentInChildren<CarController>();
             cc.isActivated = false;
             cc.RestartPostion();
+
+            p.vcam.Follow = p.car.transform;
         }
         startRaceButton.gameObject.SetActive(false);
         startGameButton.gameObject.SetActive(false);

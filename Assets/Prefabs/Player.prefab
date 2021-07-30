@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5255068722557371490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8298800645963441824}
+  m_Layer: 0
+  m_Name: LobbyCameraDirection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8298800645963441824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255068722557371490}
+  m_LocalRotation: {x: 0.08971876, y: 0.9015924, z: -0.22614741, w: 0.35768595}
+  m_LocalPosition: {x: -0.47, y: -2.29, z: 1.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5845937106439852003}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 28.162, y: 136.721, z: 0}
 --- !u!1 &5845937106439851996
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,8 +61,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8754894382217880352}
-  - {fileID: 276690134139415249}
   - {fileID: 6990050086330467579}
+  - {fileID: 8298800645963441824}
+  - {fileID: 276690134139415249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -159,10 +190,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c25aff5c-32d6-4130-8cbd-0373c3d8fb95
     m_ActionName: Player/JoinGame[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: db454f08-69e0-4e72-b93f-35637c6a140c
-    m_ActionName: Player2/JoinGame[/Keyboard/rightCtrl]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -182,6 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 0
   playerColor: {r: 0, g: 0, b: 0, a: 0}
+  vcam: {fileID: 6050347965251838978}
+  car: {fileID: 8754894382217880353}
 --- !u!1 &7840582908964435625
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,13 +235,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.2754489, y: -0.000000011866994, z: 0.0000000034002878, w: 0.96131575}
-  m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
+  m_LocalRotation: {x: 0.000530547, y: 0.95744234, z: -0.0017599962, w: 0.28861892}
+  m_LocalPosition: {x: -3.006546, y: 0.01999998, z: 4.5336847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 282739488771337626}
   m_Father: {fileID: 5845937106439852003}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6050347965251838978
 MonoBehaviour:
@@ -233,7 +262,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 8754894382217880352}
-  m_Follow: {fileID: 8754894382217880352}
+  m_Follow: {fileID: 8298800645963441824}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -266,7 +295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &276690134139415249
 Transform:
   m_ObjectHideFlags: 0
@@ -274,12 +303,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.2754489, y: -0.000000011866994, z: 0.0000000034002878, w: 0.96131575}
-  m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
+  m_LocalRotation: {x: 0.08971876, y: 0.9015924, z: -0.22614741, w: 0.35768595}
+  m_LocalPosition: {x: -2.08, y: 0.95, z: 3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5845937106439852003}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4252000830672934312
 Camera:
@@ -495,7 +524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: isActivated
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: dragOnGround
