@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 117}
+  m_AnchoredPosition: {x: 0, y: 117}
   m_SizeDelta: {x: 50, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5413663747821909266
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca233c8b376cda4c934aa192a3ee499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
+  towerPointer: {fileID: 7894747575586699092, guid: 5cc17f4bf73eb984286a58d75051a6c6, type: 3}
   clickTime: 0.2
 --- !u!114 &7729441139150352868
 MonoBehaviour:
@@ -971,6 +971,10 @@ PrefabInstance:
     - target: {fileID: 2909134993912293125, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: turnSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: isActivated

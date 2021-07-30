@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Car
   - CarSphere
+  - Floor
   layers:
   - Default
   - TransparentFX

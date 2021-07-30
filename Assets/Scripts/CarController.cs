@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
     private float horizontalInput;
 
     public bool isActivated = true;
-
+    public float turnSpeed = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +71,7 @@ public class CarController : MonoBehaviour
             speedInput = verticalInput * reverseAccel * 1000f;
         }
 
-        turnInput = horizontalInput;
+        turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime*turnSpeed);
 
         if (grounded)
         {
