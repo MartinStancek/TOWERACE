@@ -46,6 +46,24 @@ public class CheckPointController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.other.CompareTag("Floor"))
+        {
+            rb.angularVelocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
+            Debug.Log("target: " + checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount)));
+            Debug.Log("nextTarget: " + checkPoints.GetChild(mod(lastCheckPointIndex+1, checkPoints.childCount)));
+            Transform target = checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount));
+            Transform nextTarget = checkPoints.GetChild(mod(lastCheckPointIndex + 1, checkPoints.childCount));
+
+            rb.MovePosition(target.position);
+            rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
+            rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
+        }
+    }
+    int mod(int k, int n) { return ((k %= n) < 0) ? k + n : k; }
+
     public void RestartCar()
     {
 

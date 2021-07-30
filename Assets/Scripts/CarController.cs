@@ -13,6 +13,7 @@ public class CarController : MonoBehaviour
     public float turnStrength = 180f;
     public float gravityForce = 10f;
     public float dragOnGround = 3f;
+    public float dragOnFly = 0.1f;
 
     private bool grounded;
 

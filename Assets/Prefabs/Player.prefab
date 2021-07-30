@@ -973,6 +973,10 @@ PrefabInstance:
       value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: dragOnFly
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: turnSpeed
       value: 12
       objectReference: {fileID: 0}
