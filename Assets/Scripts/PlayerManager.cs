@@ -16,42 +16,39 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         playerCount = 0;
+        GameController.Instance.backGroundCamera.gameObject.SetActive(true);
     }
 
     public void OnPlayerJoined(PlayerInput input)
     {
         if (playerCount == 0)
         {
-            input.camera.rect = new Rect(new Vector2(0f, 0f), new Vector2(1f, 1f));
-            GameController.Instance.backGroundCamera.gameObject.SetActive(false);
+            input.camera.rect = new Rect(new Vector2(0f, 0.5f), new Vector2(1f, 0.5f));
+            GameController.Instance.backGroundCamera.rect = new Rect(new Vector2(0f, 0f), new Vector2(1f, 0.5f));
 
         }
 
         if (playerCount == 1)
         {
-            input.camera.rect = new Rect(new Vector2(0f, 0f), new Vector2(1f, 0.5f));
-            playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(1f, 0.5f));
-            GameController.Instance.backGroundCamera.gameObject.SetActive(false);
-
+            playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(0.5f, 0.5f));
+            input.camera.rect = new Rect(new Vector2(0f, 0f), new Vector2(0.5f, 0.5f));
+            GameController.Instance.backGroundCamera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 1f));
         }
-
+        
         if (playerCount == 2)
         {
             playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(0.5f, 0.5f));
             playerCameras[1].rect = new Rect(new Vector2(0f, 0f), new Vector2(0.5f, 0.5f));
             input.camera.rect = new Rect(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
-            GameController.Instance.backGroundCamera.gameObject.SetActive(true);
-        }
+            GameController.Instance.backGroundCamera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
 
+        }
+        /* TODO test*/
         if (playerCount == 3)
         {
-            playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(0.5f, 0.5f));
-            playerCameras[1].rect = new Rect(new Vector2(0f, 0f), new Vector2(0.5f, 0.5f));
-            playerCameras[2].rect = new Rect(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             input.camera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
-            GameController.Instance.backGroundCamera.gameObject.SetActive(false);
-
         }
+
         playerCameras.Add(input.camera);
         GameController.Instance.carCameras.Add(input.camera);
 
@@ -73,5 +70,45 @@ public class PlayerManager : MonoBehaviour
 
         GameController.Instance.players.Add(p);
 
+        GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
+
     }
+
+    private void SetPlayerCameraFinal()
+    {
+        if (playerCount == 1)
+        {
+            playerCameras[0].rect = new Rect(new Vector2(0f, 0f), new Vector2(1f, 1f));
+            GameController.Instance.backGroundCamera.gameObject.SetActive(false);
+
+        }
+
+        if (playerCount == 2)
+        {
+            playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(1f, 0.5f));
+            playerCameras[1].rect = new Rect(new Vector2(0f, 0f), new Vector2(1f, 0.5f));
+            GameController.Instance.backGroundCamera.gameObject.SetActive(false);
+
+            GameController.Instance.backGroundCamera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 1f));
+        }
+        if (playerCount == 3)
+        {
+            playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(0.5f, 0.5f));
+            playerCameras[1].rect = new Rect(new Vector2(0f, 0f), new Vector2(0.5f, 0.5f));
+            playerCameras[2].rect = new Rect(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            GameController.Instance.backGroundCamera.gameObject.SetActive(true);
+        }
+
+        if (playerCount == 4)
+        {
+            playerCameras[0].rect = new Rect(new Vector2(0f, 0.5f), new Vector2(0.5f, 0.5f));
+            playerCameras[1].rect = new Rect(new Vector2(0f, 0f), new Vector2(0.5f, 0.5f));
+            playerCameras[2].rect = new Rect(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
+            playerCameras[3].rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
+            GameController.Instance.backGroundCamera.gameObject.SetActive(false);
+        }
+
+    }
+
+
 }

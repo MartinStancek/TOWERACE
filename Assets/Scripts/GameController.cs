@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 
 public enum GameMode
@@ -55,6 +56,9 @@ public class GameController : MonoBehaviour
     public Transform checkPonts;
 
     public Transform spawnPoints;
+
+    [HideInInspector]
+    public UnityEvent onStartGame;
 
     [HideInInspector]
     public GameMode gameMode = GameMode.TOWER_PLACING;
@@ -197,7 +201,6 @@ public class GameController : MonoBehaviour
         playersFinished = new List<int>();
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(false);
-        backGroundCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
         resultsPanel.SetActive(false);
         joinPanel.SetActive(true);
@@ -209,24 +212,25 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         joinPanel.SetActive(false);
-        gameMode = GameMode.TOWER_PLACING;
+        gameMode = GameMode.RACING;
 
         foreach (var p in players)
         {
-            p.GetComponent<TowerPlacer>().ClaimRandomSpot();
+            /* p.GetComponent<TowerPlacer>().ClaimRandomSpot();*/
 
             var cc = p.GetComponentInChildren<CarController>();
             cc.isActivated = false;
             cc.RestartPostion();
         }
-        startRaceButton.gameObject.SetActive(true);
+        startRaceButton.gameObject.SetActive(false);
         startGameButton.gameObject.SetActive(false);
 
-        SetCarCameras(false);
-        mapCamera.gameObject.SetActive(true);
+        SetCarCameras(true);
+        mapCamera.gameObject.SetActive(false);
         backGroundCamera.gameObject.SetActive(false);
 
-
+        StartRace();
+        onStartGame.Invoke();
 
     }
 
