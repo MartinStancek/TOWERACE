@@ -87,6 +87,9 @@ public class GameController : MonoBehaviour
             cc.isActivated = false;
 
             cc.rb.transform.GetComponent<CheckPointController>().lastCheckPointIndex = -1;
+
+            player.vcam.Follow = player.car.transform;
+
         }
 
         StartCountdown();
@@ -212,28 +215,9 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         joinPanel.SetActive(false);
-        gameMode = GameMode.RACING;
-
-        foreach (var p in players)
-        {
-            /* p.GetComponent<TowerPlacer>().ClaimRandomSpot();*/
-
-            var cc = p.GetComponentInChildren<CarController>();
-            cc.isActivated = false;
-            cc.RestartPostion();
-
-            p.vcam.Follow = p.car.transform;
-        }
-        startRaceButton.gameObject.SetActive(false);
-        startGameButton.gameObject.SetActive(false);
-
-        SetCarCameras(true);
-        mapCamera.gameObject.SetActive(false);
-        backGroundCamera.gameObject.SetActive(false);
 
         StartRace();
         onStartGame.Invoke();
-
     }
 
     private void SetCarCameras(bool value)
