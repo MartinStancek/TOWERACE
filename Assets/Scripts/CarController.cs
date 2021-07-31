@@ -135,10 +135,10 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public void RestartPostion()
+    public void RestartPostion(Vector3 targetPosition)
     {
-        /*transform.position = startPosition;
-        transform.rotation = startRotation;*/
+        rb.MovePosition(targetPosition);
+        transform.rotation = Quaternion.identity;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }

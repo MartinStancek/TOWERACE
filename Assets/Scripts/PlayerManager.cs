@@ -71,6 +71,7 @@ public class PlayerManager : MonoBehaviour
         GameController.Instance.players.Add(p);
 
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
+        GameController.Instance.playersFinished.Insert(0, p.playerIndex);
 
     }
 

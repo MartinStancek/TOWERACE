@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
     public GameObject towersSnapParent;
 
 
-    private List<int> playersFinished;
+    public List<int> playersFinished;
 
     public List<Player> players;
 
@@ -71,19 +71,19 @@ public class GameController : MonoBehaviour
         {
             backGroundCamera.gameObject.SetActive(true);
         }
-        
+
         countDownText.gameObject.SetActive(true);
         resultsPanel.SetActive(false);
-        foreach(var t in resultTexts)
+        foreach (var t in resultTexts)
         {
             t.text = "";
         }
-        playersFinished.Clear();
 
-        foreach(var player in players)
+        foreach (var player in players)
         {
             var cc = player.GetComponentInChildren<CarController>();
-            cc.RestartPostion();
+            var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
+            cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
 
             cc.rb.transform.GetComponent<CheckPointController>().lastCheckPointIndex = -1;
@@ -91,6 +91,7 @@ public class GameController : MonoBehaviour
             player.vcam.Follow = player.car.transform;
 
         }
+        playersFinished.Clear();
 
         StartCountdown();
         gameMode = GameMode.RACING;
@@ -105,23 +106,40 @@ public class GameController : MonoBehaviour
         resultsPanel.SetActive(true);
 
         gameMode = GameMode.TOWER_PLACING;
+        var i = 0;
 
+        for (i = 0; i < playersFinished.Count; i++)
+        {
+            var p = players.Where(e => e.playerIndex == playersFinished[i]).FirstOrDefault();
+            p.money += (int)((4 - i) * p.scoreMultilier);
+        }
+
+        FixFinishedPlayersCount();
+
+        i = 0;
         foreach (var player in players)
         {
             player.GetComponent<TowerPlacer>().ClaimRandomSpot();
 
             var cc = player.GetComponentInChildren<CarController>();
-            cc.RestartPostion();
+            cc.RestartPostion(spawnPoints.GetChild(i++).position);
             cc.isActivated = false;
 
             player.money += player.moneyByRound;
         }
+    }
 
-        for (var i = 0; i < playersFinished.Count; i++)
+    private void FixFinishedPlayersCount()
+    {
+        //add players to finished player to complete list for next round spawning cars in correct order
+        while (playersFinished.Count < players.Count)
         {
-            var p = players.Where(e => e.playerIndex == playersFinished[i]).FirstOrDefault();
-            p.money += (int)((4 - i) * p.scoreMultilier);
+            var nextPlayer = players.Where(e => !playersFinished.Contains(e.playerIndex))
+                .OrderBy(e => e.car.rb.GetComponent<CheckPointController>().lastCheckPointIndex)
+                .FirstOrDefault();
+            playersFinished.Add(nextPlayer.playerIndex);
         }
+
     }
 
     private void StartCountdown()
@@ -172,10 +190,10 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator SetCountdownText(int secondsRemain)
     {
-        yield return new WaitForSeconds(3-secondsRemain);
-        if(secondsRemain == 0)
+        yield return new WaitForSeconds(3 - secondsRemain);
+        if (secondsRemain == 0)
         {
-            Debug.Log("GO!!!" );
+            Debug.Log("GO!!!");
             countDownText.text = "GO!";
 
             foreach (var player in players)
@@ -190,7 +208,7 @@ public class GameController : MonoBehaviour
             countDownText.text = "" + secondsRemain;
             Debug.Log(secondsRemain);
         }
-        if(secondsRemain == 1)
+        if (secondsRemain == 1)
         {
 
             /*var vehs = MSSceneControllerFree.Instance.vehicles;
