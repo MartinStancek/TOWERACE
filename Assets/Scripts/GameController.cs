@@ -57,6 +57,8 @@ public class GameController : MonoBehaviour
 
     public Transform spawnPoints;
 
+    public Transform moneyPanel;
+
     [HideInInspector]
     public UnityEvent onStartGame;
 
@@ -122,7 +124,8 @@ public class GameController : MonoBehaviour
             player.GetComponent<TowerPlacer>().ClaimRandomSpot();
 
             var cc = player.GetComponentInChildren<CarController>();
-            cc.RestartPostion(spawnPoints.GetChild(i++).position);
+            var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
+            cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
 
             player.money += player.moneyByRound;
