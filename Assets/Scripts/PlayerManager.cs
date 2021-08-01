@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -63,6 +65,12 @@ public class PlayerManager : MonoBehaviour
         var p = input.gameObject.GetComponent<Player>();
         p.playerIndex = playerCount;
         p.playerColor = playerColors[playerCount];
+
+        var panel = GameController.Instance.moneyPanel.GetChild(playerCount);
+        panel.gameObject.SetActive(true);
+        panel.GetComponent<Image>().color = p.playerColor;
+        p.moneyVisual = panel.GetComponentInChildren<TMP_Text>();
+        p.money = p.startMoney;
         playerCount++;
 
         input.camera.transform.parent.Find("CMvcam").gameObject.layer = LayerMask.NameToLayer("Cam" + playerCount);
@@ -72,6 +80,7 @@ public class PlayerManager : MonoBehaviour
 
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
+
 
     }
 

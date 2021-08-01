@@ -24,7 +24,7 @@ public class Tower : MonoBehaviour
     {
         if (targets.Count > 0)
         {
-            head.transform.LookAt(targets[0].transform);
+            head.transform.LookAt(targets[0].GetComponent<CarSphere>().shootTarget);
 
             if(Time.time - lastShot > shootEvery)
             {

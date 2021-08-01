@@ -92,6 +92,9 @@ public class GameController : MonoBehaviour
 
             player.vcam.Follow = player.car.transform;
 
+            var tt = player.GetComponent<TowerPlacer>();
+            tt.placingState = TowerPlaceState.CHOOSING_SPOT;
+            towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null);
         }
         playersFinished.Clear();
 
@@ -258,13 +261,13 @@ public class GameController : MonoBehaviour
 
     }
 
-    public List<TowerSnap> GetFreeTowerSnaps(int fromIndex, int toIndex)
+    public List<TowerSnap> GetFreeTowerSnaps(int fromIndex, int toIndex, Player player)
     {
         var freeTowerSnaps = new List<TowerSnap>();
         for(var i = fromIndex; i< toIndex; i++)
         {
             var snap = towersSnapParent.transform.GetChild(i).GetComponent<TowerSnap>();
-            if (!snap.isOccupied)
+            if (!snap.isOccupied && (snap.playerOwner == null || snap.playerOwner.Equals(player)))
             {
                 freeTowerSnaps.Add(snap);
 
