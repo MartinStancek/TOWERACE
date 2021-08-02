@@ -286,10 +286,10 @@
                 {
                     "name": "",
                     "id": "aacf2913-9a0f-4c4a-a3c6-cfaa0ae3c1a7",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "LobbyReady",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -297,10 +297,10 @@
                 {
                     "name": "",
                     "id": "641501d1-db09-4bf2-b1a3-758b8055694f",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "LobbyReady",
                     "isComposite": false,
                     "isPartOfComposite": false

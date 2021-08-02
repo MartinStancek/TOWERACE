@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameController.Instance.gameMode != GameMode.LOBBY)
+        var allowedModes = new List<GameMode>() { GameMode.LOBBY, GameMode.TOWER_PLACING };
+        if (!allowedModes.Contains(GameController.Instance.gameMode))
         {
             return;
         }
@@ -62,18 +63,31 @@ public class Player : MonoBehaviour
 
     public void ToggleReady()
     {
+        SetReady(!GameController.Instance.lobbyReadyParent.GetChild(playerIndex).GetChild(0).gameObject.activeInHierarchy);
+    }
+
+    public void SetReady(bool value)
+    {
         var playerPanel = GameController.Instance.lobbyReadyParent.GetChild(playerIndex);
         var readyPanel = playerPanel.GetChild(0);
         var notReadyPanel = playerPanel.GetChild(1);
-        notReadyPanel.gameObject.SetActive(readyPanel.gameObject.activeInHierarchy);
-        readyPanel.gameObject.SetActive(!readyPanel.gameObject.activeInHierarchy);
-        if (GameController.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+        readyPanel.gameObject.SetActive(value);
+        notReadyPanel.gameObject.SetActive(!value);
+
+        switch (GameController.Instance.gameMode)
         {
-            GameController.Instance.LobbyPlayersReady();
-        } 
-        else
-        {
-            GameController.Instance.ResetLobbyPlayersReady();
+            case GameMode.LOBBY:
+                if (GameController.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+                {
+                    GameController.Instance.LobbyPlayersReady();
+                }
+                else
+                {
+                    GameController.Instance.ResetLobbyPlayersReady();
+                }
+                break;
+            case GameMode.TOWER_PLACING:
+                break;
         }
     }
 }

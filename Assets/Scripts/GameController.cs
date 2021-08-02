@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 
 public enum GameMode
 {
-    LOBBY, PLAYER_JOINING, TOWER_PLACING, RACING, TOWER_CHOOSING
+    LOBBY, TOWER_PLACING, RACING, RACING_RESULT
 }
 public class GameController : MonoBehaviour
 {
@@ -39,12 +39,11 @@ public class GameController : MonoBehaviour
     public Camera backGroundCamera;
 
     public TMP_Text countDownText;
+    public TMP_Text countDonwScoreText;
 
     public GameObject resultsPanel;
     public GameObject joinPanel;
     public Button startRaceButton;
-
-    public TMP_Text[] resultTexts;
 
     public GameObject towersSnapParent;
     public Transform lobbyReadyParent;
@@ -79,10 +78,6 @@ public class GameController : MonoBehaviour
 
         countDownText.gameObject.SetActive(true);
         resultsPanel.SetActive(false);
-        foreach (var t in resultTexts)
-        {
-            t.text = "";
-        }
 
         foreach (var player in players)
         {
@@ -114,11 +109,22 @@ public class GameController : MonoBehaviour
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
         backGroundCamera.gameObject.SetActive(false);
-
         countDownText.gameObject.SetActive(false);
+
         resultsPanel.SetActive(true);
 
-        gameMode = GameMode.TOWER_PLACING;
+        gameMode = GameMode.RACING_RESULT;
+
+        countDonwScoreText.text = "" + 3;
+
+        readyCor = StartCoroutine(SetEndRacingResultCountDonw(2,()=> 
+        {
+            gameMode = GameMode.TOWER_PLACING;
+            resultsPanel.SetActive(false);
+
+        }));
+
+
         var i = 0;
 
         for (i = 0; i < playersFinished.Count; i++)
@@ -139,9 +145,34 @@ public class GameController : MonoBehaviour
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
 
+            player.SetReady(false);
+
             player.money += player.moneyByRound;
         }
+
+        for(i = 0; i < players.Count; i++)
+        {
+            lobbyReadyParent.GetChild(i).gameObject.SetActive(true);
+        }
     }
+
+    private IEnumerator SetEndRacingResultCountDonw(int secondsRemain, Action finishAction)
+    {
+
+        yield return new WaitForSeconds(1);
+        Debug.Log("EndRaceResultCountDonw: " + secondsRemain);
+        if (secondsRemain > 0)
+        {
+            countDonwScoreText.text = "" + secondsRemain;
+            yield return SetEndRacingResultCountDonw(secondsRemain - 1, finishAction);
+        }
+        else
+        {
+            finishAction.Invoke();
+        }
+
+    }
+
 
     private void FixFinishedPlayersCount()
     {
@@ -174,10 +205,6 @@ public class GameController : MonoBehaviour
             countDownText.gameObject.SetActive(true);
             countDownText.text = "" + waitingTime;
             StartCoroutine(SetEndRaceCountDown(waitingTime - 1, EndRace));
-        }
-        if (playersFinished.Count < 4) // len 3 miesta na "podiu" su
-        {
-            resultTexts[playersFinished.Count - 1].text = "Player " + playerIndex;
         }
 
     }
