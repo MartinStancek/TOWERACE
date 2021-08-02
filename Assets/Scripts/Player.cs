@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
         }
         get { return _money; }
     }
+    public int stars = 0;
+
+
 
     public TMP_Text moneyVisual;
 
@@ -87,6 +90,10 @@ public class Player : MonoBehaviour
                 }
                 break;
             case GameMode.TOWER_PLACING:
+                if (GameController.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+                {
+                    GameController.Instance.StartRace();
+                }
                 break;
         }
     }

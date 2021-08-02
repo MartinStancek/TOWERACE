@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
 
     public TMP_Text countDownText;
     public TMP_Text countDonwScoreText;
+    public Transform playersScoreParent;
 
     public GameObject resultsPanel;
     public GameObject joinPanel;
@@ -47,6 +48,11 @@ public class GameController : MonoBehaviour
 
     public GameObject towersSnapParent;
     public Transform lobbyReadyParent;
+    public Transform towerCountDownParent;
+    public TMP_Text winnerText;
+
+    public int round = 1;
+    public TMP_Text roundText;
 
 
     public List<int> playersFinished;
@@ -66,6 +72,11 @@ public class GameController : MonoBehaviour
     public GameMode gameMode = GameMode.LOBBY;
 
     private Coroutine readyCor = null;
+
+    public Sprite blackStar;
+    public Sprite yellowStar;
+    public Sprite blackyellowStar;
+
 
     public void StartRace()
     {
@@ -112,28 +123,49 @@ public class GameController : MonoBehaviour
         countDownText.gameObject.SetActive(false);
 
         resultsPanel.SetActive(true);
-
+        roundText.text = "" + (round++);
         gameMode = GameMode.RACING_RESULT;
 
-        countDonwScoreText.text = "" + 3;
+        countDonwScoreText.text = "" + 6;
 
-        readyCor = StartCoroutine(SetEndRacingResultCountDonw(2,()=> 
-        {
-            gameMode = GameMode.TOWER_PLACING;
-            resultsPanel.SetActive(false);
 
-        }));
 
+
+        var playersIncome = new int[players.Count];
 
         var i = 0;
+        for (i = 0; i < players.Count; i++)
+        {
+            playersIncome[i] = players[i].moneyByRound;
+        }
+        FixFinishedPlayersCount();
 
         for (i = 0; i < playersFinished.Count; i++)
         {
             var p = players.Where(e => e.playerIndex == playersFinished[i]).FirstOrDefault();
-            p.money += (int)((4 - i) * p.scoreMultilier);
-        }
+            var extra_income = (int)((4 - i) * p.scoreMultilier);
+            p.money += extra_income;
+            playersIncome[p.playerIndex] += extra_income;
 
-        FixFinishedPlayersCount();
+            var playerPanel = playersScoreParent.GetChild(p.playerIndex);
+
+            for (var j = 0; j < p.stars; j++)
+            {
+                if (j < 10)
+                {
+                    playerPanel.Find("Stars").GetChild(j).GetComponent<Image>().sprite = yellowStar;
+                }
+            }
+
+            for (var j = 0; j < (3 - i); j++)
+            {
+                if (p.stars < 10)
+                {
+                    playerPanel.Find("Stars").GetChild(p.stars).GetComponent<Image>().sprite = blackyellowStar;
+                }
+                p.stars++;
+            }
+        }
 
         i = 0;
         foreach (var player in players)
@@ -152,8 +184,34 @@ public class GameController : MonoBehaviour
 
         for(i = 0; i < players.Count; i++)
         {
-            lobbyReadyParent.GetChild(i).gameObject.SetActive(true);
+            var playerPanel = playersScoreParent.GetChild(i);
+
+            playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + playersIncome[i] + "$";
         }
+
+        var maxstars = players.Max(e => e.stars);
+        if(maxstars>= 10)
+        {
+            var winners = players.Where(e => e.stars == maxstars).Select(e=>"player"+(e.playerIndex+1)).ToArray();
+            winnerText.text = "The Winner is: " + String.Join(" and ", winners);
+            winnerText.gameObject.SetActive(true);
+            towerCountDownParent.gameObject.SetActive(false);
+        } 
+        else
+        {
+            towerCountDownParent.gameObject.SetActive(true);
+
+            StartCoroutine(SetEndRacingResultCountDonw(5, () =>
+            {
+                gameMode = GameMode.TOWER_PLACING;
+                resultsPanel.SetActive(false);
+                for (var i = 0; i < players.Count; i++)
+                {
+                    lobbyReadyParent.GetChild(i).gameObject.SetActive(true);
+                }
+            }));
+        }
+
     }
 
     private IEnumerator SetEndRacingResultCountDonw(int secondsRemain, Action finishAction)
