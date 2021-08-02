@@ -6,6 +6,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public enum GameMode
 {
@@ -309,6 +310,7 @@ public class GameController : MonoBehaviour
     {
         joinPanel.SetActive(false);
 
+        transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
         StartRace();
         onStartGame.Invoke();
     }
