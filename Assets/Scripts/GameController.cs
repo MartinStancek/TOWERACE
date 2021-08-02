@@ -9,7 +9,7 @@ using System.Linq;
 
 public enum GameMode
 {
-    PLAYER_JOINING, TOWER_PLACING, RACING, TOWER_CHOOSING
+    LOBBY, PLAYER_JOINING, TOWER_PLACING, RACING, TOWER_CHOOSING
 }
 public class GameController : MonoBehaviour
 {
@@ -41,12 +41,12 @@ public class GameController : MonoBehaviour
 
     public GameObject resultsPanel;
     public GameObject joinPanel;
-    public Button startGameButton;
     public Button startRaceButton;
 
     public TMP_Text[] resultTexts;
 
     public GameObject towersSnapParent;
+    public Transform lobbyReadyParent;
 
 
     public List<int> playersFinished;
@@ -63,7 +63,9 @@ public class GameController : MonoBehaviour
     public UnityEvent onStartGame;
 
     [HideInInspector]
-    public GameMode gameMode = GameMode.TOWER_PLACING;
+    public GameMode gameMode = GameMode.LOBBY;
+
+    private Coroutine readyCor = null;
 
     public void StartRace()
     {
@@ -97,6 +99,11 @@ public class GameController : MonoBehaviour
             towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null);
         }
         playersFinished.Clear();
+
+        foreach(Transform t in lobbyReadyParent)
+        {
+            t.gameObject.SetActive(false);
+        }
 
         StartCountdown();
         gameMode = GameMode.RACING;
@@ -239,9 +246,63 @@ public class GameController : MonoBehaviour
         countDownText.gameObject.SetActive(false);
         resultsPanel.SetActive(false);
         joinPanel.SetActive(true);
-        startGameButton.gameObject.SetActive(true);
         startRaceButton.gameObject.SetActive(false);
 
+    }
+
+    public void LobbyPlayersReady()
+    {
+        countDownText.gameObject.SetActive(true);
+        countDownText.text = "" + 3;
+
+        readyCor = StartCoroutine(SetEndLobbyCountDonw(2, StartGame, ()=>
+        {
+            countDownText.gameObject.SetActive(false);
+
+        }));
+    }
+    public void ResetLobbyPlayersReady()
+    {
+        if(readyCor != null)
+        {
+            StopCoroutine(readyCor);
+        }
+        countDownText.gameObject.SetActive(false);
+    }
+
+    public int ReadyPlayersCount()
+    {
+        int count = 0;
+        foreach(Transform t in lobbyReadyParent)
+        {
+            if (t.GetChild(0).gameObject.activeInHierarchy)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    private IEnumerator SetEndLobbyCountDonw(int secondsRemain, Action finishAction, Action reverseAction)
+    {
+
+        yield return new WaitForSeconds(1);
+        if (ReadyPlayersCount() < players.Count)
+        {
+            reverseAction.Invoke();
+        }
+        else
+        {
+            Debug.Log("EndLobbyCountDonw: " + secondsRemain);
+            if (secondsRemain > 0)
+            {
+                countDownText.text = "" + secondsRemain;
+                yield return SetEndLobbyCountDonw(secondsRemain - 1, finishAction, reverseAction);
+            }
+            else
+            {
+                finishAction.Invoke();
+            }
+        }
     }
 
     public void StartGame()

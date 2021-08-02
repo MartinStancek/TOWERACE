@@ -71,6 +71,8 @@ public class PlayerManager : MonoBehaviour
         panel.GetComponent<Image>().color = p.playerColor;
         p.moneyVisual = panel.GetComponentInChildren<TMP_Text>();
         p.money = p.startMoney;
+        GameController.Instance.lobbyReadyParent.GetChild(playerCount).gameObject.SetActive(true);
+
         playerCount++;
 
         input.camera.transform.parent.Find("CMvcam").gameObject.layer = LayerMask.NameToLayer("Cam" + playerCount);
@@ -80,7 +82,6 @@ public class PlayerManager : MonoBehaviour
 
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
-
 
     }
 
