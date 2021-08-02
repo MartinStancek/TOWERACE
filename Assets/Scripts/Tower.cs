@@ -24,7 +24,7 @@ public class Tower : MonoBehaviour
     {
         if (targets.Count > 0)
         {
-            head.transform.LookAt(targets[0].transform);
+            head.transform.LookAt(targets[0].GetComponent<CarSphere>().shootTarget);
 
             if(Time.time - lastShot > shootEvery)
             {
@@ -45,8 +45,8 @@ public class Tower : MonoBehaviour
         if (t && t.tag.Equals("CarSphere") )
         {
             var cs = t.GetComponent<CarSphere>().carObject;
-            var tp = cs.GetComponentInParent<TowerPlacer>();
-            if (tp.playerIndex != playerOwner)
+            var p = cs.GetComponentInParent<Player>();
+            if (p.playerIndex != playerOwner)
             {
                 targets.Add(t);
             }

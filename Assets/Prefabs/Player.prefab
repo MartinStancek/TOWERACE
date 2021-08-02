@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5255068722557371490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8298800645963441824}
+  m_Layer: 0
+  m_Name: LobbyCameraDirection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8298800645963441824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5255068722557371490}
+  m_LocalRotation: {x: 0.08971876, y: 0.9015924, z: -0.22614741, w: 0.35768595}
+  m_LocalPosition: {x: -0.47, y: -2.29, z: 1.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5845937106439852003}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 28.162, y: 136.721, z: 0}
+--- !u!1 &5826512465725823684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2346289696822357391}
+  m_Layer: 0
+  m_Name: ShootTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2346289696822357391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5826512465725823684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8754894382217880352}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5845937106439851996
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +71,7 @@ GameObject:
   - component: {fileID: 5845937106439852003}
   - component: {fileID: 5845937106439852002}
   - component: {fileID: 7729441139150352868}
+  - component: {fileID: 641373233649129941}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -30,8 +91,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8754894382217880352}
-  - {fileID: 276690134139415249}
   - {fileID: 6990050086330467579}
+  - {fileID: 8298800645963441824}
+  - {fileID: 276690134139415249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,10 +109,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ca233c8b376cda4c934aa192a3ee499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerIndex: 1
-  playerColor: {r: 1, g: 0, b: 0, a: 1}
-  towerPrefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
+  snapIndex: 0
+  towerIndex: 0
+  towerPointer: {fileID: 7894747575586699092, guid: 5cc17f4bf73eb984286a58d75051a6c6, type: 3}
+  towerOptions:
+  - prefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
+    price: 120
+    preview: {fileID: 21300000, guid: 259d7e8f40aa8db449ad0536b209a5f3, type: 3}
+  - prefab: {fileID: 172822847912285114, guid: 084101eb06c9dc243a40c69f6e88b251, type: 3}
+    price: 200
+    preview: {fileID: 21300000, guid: 276e7ae39472e0b4295ee0717435d417, type: 3}
   clickTime: 0.2
+  placingState: 0
 --- !u!114 &7729441139150352868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +192,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 6e6a5662-33b0-4b4f-aaf3-f59da0b41152
-    m_ActionName: CarMovement/TowerLeft[/Keyboard/a,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/right]
+    m_ActionId: f79e9089-e769-4a90-9c27-e025f7eac5ca
+    m_ActionName: Car/TowerLeft[/Keyboard/a,/DualShock4GamepadHID/leftStick/left]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5845937106439852002}
@@ -138,8 +208,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 8f89077a-5d40-4ee9-b053-73277359b821
-    m_ActionName: CarMovement/TowerRight[/Keyboard/d,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/right]
+    m_ActionId: b91b73ff-c4ab-4634-bb73-6823ef93055d
+    m_ActionName: Car/TowerRight[/Keyboard/d,/DualShock4GamepadHID/leftStick/right]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5845937106439852002}
@@ -154,13 +224,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 276e7b3b-dc8e-4c83-901c-ff978c5b041b
-    m_ActionName: CarMovement/ClickTower[/Keyboard/e,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
+    m_ActionId: e92dda6e-b2c3-410e-a85e-fad10bd1e22a
+    m_ActionName: Car/TowerClick[/Keyboard/e,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5845937106439852002}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnTowerBackClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ccb31df2-75ae-4d9b-bbdc-98e3e70f147a
+    m_ActionName: Car/TowerBack[/DualShock4GamepadHID/buttonEast,/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4252000830672934312}
+--- !u!114 &641373233649129941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845937106439851996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf49d3021c5b96428c0c41ac5f8b609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: 0
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
+  vcam: {fileID: 6050347965251838978}
+  car: {fileID: 8754894382217880353}
+  startMoney: 80
+  moneyByRound: 100
+  scoreMultilier: 30
+  moneyVisual: {fileID: 0}
 --- !u!1 &7840582908964435625
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,13 +291,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.20060624, y: 1.8846864e-15, z: 1.8086618e-16, w: 0.97967196}
-  m_LocalPosition: {x: 0, y: 3.3, z: -7.72}
+  m_LocalRotation: {x: 0.000530547, y: 0.95744234, z: -0.0017599962, w: 0.28861892}
+  m_LocalPosition: {x: -3.006546, y: 0.01999998, z: 4.5336847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 282739488771337626}
   m_Father: {fileID: 5845937106439852003}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6050347965251838978
 MonoBehaviour:
@@ -212,7 +318,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 8754894382217880352}
-  m_Follow: {fileID: 8754894382217880352}
+  m_Follow: {fileID: 8298800645963441824}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -245,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &276690134139415249
 Transform:
   m_ObjectHideFlags: 0
@@ -253,12 +359,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.20060624, y: 1.8846864e-15, z: 1.8086618e-16, w: 0.97967196}
-  m_LocalPosition: {x: 0, y: 3.3, z: -7.72}
+  m_LocalRotation: {x: 0.08971876, y: 0.9015924, z: -0.22614741, w: 0.35768595}
+  m_LocalPosition: {x: -2.08, y: 0.95, z: 3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5845937106439852003}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4252000830672934312
 Camera:
@@ -396,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
@@ -422,15 +528,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 3.3, z: -7.72}
+  m_FollowOffset: {x: 0, y: 2.31, z: -3.7}
   m_XDamping: 1
   m_YDamping: 1
-  m_ZDamping: 1
+  m_ZDamping: 2.16
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &1063748104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754894381871459761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2646612c63680a243aa0cb7b98c8e6a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastCheckPointIndex: -1
 --- !u!114 &8490568986075805946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,18 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carObject: {fileID: 8754894382217880354}
---- !u!114 &7726507170281116244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754894382217880354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2646612c63680a243aa0cb7b98c8e6a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  shootTarget: {fileID: 2346289696822357391}
 --- !u!1001 &5845937106326914087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -463,13 +571,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5845937106439852003}
     m_Modifications:
+    - target: {fileID: 2909134993876593187, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.482
+      objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293125, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: dragOnFly
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: turnSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: isActivated
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: dragOnGround
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134993912293126, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: groundRayLength
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2909134993912293127, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: m_RootOrder
@@ -519,10 +647,38 @@ PrefabInstance:
       propertyPath: m_TagString
       value: CarSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 2909134994325039531, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134994325039531, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134994325039531, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134994452407837, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.20699993
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909134994452407837, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18
+      objectReference: {fileID: 0}
     - target: {fileID: 5357994013029077917, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 09f15e9d8dce45446acaf8259e9a3dce, type: 2}
+    - target: {fileID: 7864945295920448223, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7069999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7864945295920448223, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa20f005e9e23ac44a0bbc767ba400a6, type: 3}
 --- !u!1 &8754894382217880354 stripped

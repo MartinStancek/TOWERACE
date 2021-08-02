@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7235765291477247929}
   - component: {fileID: 7235765291477247928}
   m_Layer: 13
-  m_Name: Tower
+  m_Name: ShootingTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 13.5
+  m_Radius: 14.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7235765291477247928
 MonoBehaviour:
@@ -65,7 +65,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 7235765292480691546}
   bulletSpeed: 120
   shootEvery: 0.2
-  playerOwner: 0
+  playerOwner: -1
   coloredParts:
   - {fileID: 7235765292347161413}
   - {fileID: 8270596806724490044}

@@ -13,6 +13,7 @@ public class CarController : MonoBehaviour
     public float turnStrength = 180f;
     public float gravityForce = 10f;
     public float dragOnGround = 3f;
+    public float dragOnFly = 0.1f;
 
     private bool grounded;
 
@@ -34,7 +35,7 @@ public class CarController : MonoBehaviour
     private float horizontalInput;
 
     public bool isActivated = true;
-
+    public float turnSpeed = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +72,7 @@ public class CarController : MonoBehaviour
             speedInput = verticalInput * reverseAccel * 1000f;
         }
 
-        turnInput = horizontalInput;
+        turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime*turnSpeed);
 
         if (grounded)
         {
@@ -94,7 +95,9 @@ public class CarController : MonoBehaviour
         grounded = false;
         RaycastHit hit;
 
-        if(Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround))
+        Debug.DrawRay(groundRayPoint.position, -transform.up, Color.green, groundRayLength);
+
+        if(Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround) && isActivated)
         {
             grounded = true;
 
@@ -132,9 +135,12 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public void RestartPostion()
+    public void RestartPostion(Vector3 targetPosition)
     {
-
+        rb.MovePosition(targetPosition);
+        transform.rotation = Quaternion.identity;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
 }

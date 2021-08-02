@@ -24,7 +24,7 @@
                 {
                     "name": "TowerLeft",
                     "type": "Button",
-                    "id": "6e6a5662-33b0-4b4f-aaf3-f59da0b41152",
+                    "id": "f79e9089-e769-4a90-9c27-e025f7eac5ca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -32,7 +32,7 @@
                 {
                     "name": "TowerRight",
                     "type": "Button",
-                    "id": "8f89077a-5d40-4ee9-b053-73277359b821",
+                    "id": "b91b73ff-c4ab-4634-bb73-6823ef93055d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -40,7 +40,15 @@
                 {
                     "name": "TowerClick",
                     "type": "Button",
-                    "id": "276e7b3b-dc8e-4c83-901c-ff978c5b041b",
+                    "id": "e92dda6e-b2c3-410e-a85e-fad10bd1e22a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TowerBack",
+                    "type": "Button",
+                    "id": "ccb31df2-75ae-4d9b-bbdc-98e3e70f147a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -181,7 +189,7 @@
                 },
                 {
                     "name": "",
-                    "id": "cb1b5a80-d305-4a45-98a5-56881cd43fd0",
+                    "id": "793448f5-742b-4e6b-bcc6-1fac945ebf34",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -192,7 +200,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0911cb2c-4e74-4888-92a5-b6f6c686f2de",
+                    "id": "afad6230-c4d4-4b17-b9af-884470ab8dc8",
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
@@ -203,7 +211,7 @@
                 },
                 {
                     "name": "",
-                    "id": "e335dc43-f553-45a9-a3ac-d4905f416716",
+                    "id": "4f57c627-6748-415c-8d4d-3fd6a41c4d04",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -214,7 +222,7 @@
                 },
                 {
                     "name": "",
-                    "id": "dd629973-255c-43f7-b931-1f2058b8a88e",
+                    "id": "0e6b4d9a-edc5-43e2-b653-27dfdef75b88",
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
@@ -225,7 +233,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6130f1d3-379f-47c2-a857-32322a61bae0",
+                    "id": "bee88a53-6d42-42cd-8046-c5d2aa02b54c",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -236,12 +244,34 @@
                 },
                 {
                     "name": "",
-                    "id": "e81555ec-0ebf-4638-9955-3cc6ebc18eb7",
+                    "id": "da6fdede-ec41-4b81-9105-761859eaa4c7",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
                     "action": "TowerClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee71db68-b246-4f2f-bab2-67061f639680",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "TowerBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7031dd8e-656d-418b-97f4-aa16faace854",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TowerBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

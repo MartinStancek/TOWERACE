@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Car
   - CarSphere
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -30,10 +31,10 @@ TagManager:
   - Cam3
   - Cam4
   - 
+  - JoinPlayerLayer
   - 
   - 
-  - 
-  - 
+  - Bullet
   - 
   - 
   - 
