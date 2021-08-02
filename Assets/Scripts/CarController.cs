@@ -87,13 +87,13 @@ public class CarController : MonoBehaviour
 
     void FixedUpdate()
     {
+        grounded = false;
+        RaycastHit hit;
+
         if (!isActivated)
         {
             return;
         }
-
-        grounded = false;
-        RaycastHit hit;
 
         Debug.DrawRay(groundRayPoint.position, -transform.up, Color.green, groundRayLength);
 
