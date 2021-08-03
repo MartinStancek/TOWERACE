@@ -4847,6 +4847,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760157032322325066, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
+      propertyPath: m_text
+      value: 'Player2
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
 --- !u!224 &661371288 stripped
@@ -9593,6 +9599,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760157032322325066, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
+      propertyPath: m_text
+      value: 'Player3
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
 --- !u!224 &1164245231 stripped
@@ -10824,6 +10836,12 @@ PrefabInstance:
     - target: {fileID: 3760157032193156667, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760157032322325066, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
+      propertyPath: m_text
+      value: 'Player4
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4a7081b5689b0741ae6730784361afa, type: 3}
