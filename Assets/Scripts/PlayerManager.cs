@@ -72,9 +72,6 @@ public class PlayerManager : MonoBehaviour
         p.moneyVisual = panel.GetComponentInChildren<TMP_Text>();
         p.money = p.startMoney;
         GameController.Instance.lobbyReadyParent.GetChild(playerCount).gameObject.SetActive(true);
-        var scorePlayer = GameController.Instance.playersScoreParent.GetChild(playerCount);
-        scorePlayer.gameObject.SetActive(true);
-        scorePlayer.GetComponent<Image>().color = playerColors[playerCount];
 
         playerCount++;
 

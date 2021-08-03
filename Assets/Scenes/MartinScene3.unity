@@ -1975,6 +1975,7 @@ Transform:
   m_Children:
   - {fileID: 1743550439}
   - {fileID: 832815138}
+  - {fileID: 1881596467}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1995,17 +1996,9 @@ MonoBehaviour:
   mapCamera: {fileID: 214191699}
   backGroundCamera: {fileID: 27429120}
   countDownText: {fileID: 2146922680}
-  countDonwScoreText: {fileID: 1775252164}
-  playersScoreParent: {fileID: 838793742}
-  resultsPanel: {fileID: 377304479}
   joinPanel: {fileID: 1507404752}
-  startRaceButton: {fileID: 755863049}
   towersSnapParent: {fileID: 2099575878}
   lobbyReadyParent: {fileID: 2054706560}
-  towerCountDownParent: {fileID: 1651178049}
-  winnerText: {fileID: 1249709245}
-  round: 1
-  roundText: {fileID: 1609675973}
   playersFinished: 
   players: []
   checkPonts: {fileID: 215720960}
@@ -2014,10 +2007,16 @@ MonoBehaviour:
   onStartGame:
     m_PersistentCalls:
       m_Calls: []
+  onStartRace:
+    m_PersistentCalls:
+      m_Calls: []
+  onEndRace:
+    m_PersistentCalls:
+      m_Calls: []
+  onRacingResultEnd:
+    m_PersistentCalls:
+      m_Calls: []
   gameMode: 0
-  blackStar: {fileID: 21300000, guid: 0f3b1f1c5f10d2e4980aca758163e6ff, type: 3}
-  yellowStar: {fileID: 21300000, guid: 2dbf2a9d25d82f24ebb1d5b1a4c55eeb, type: 3}
-  blackyellowStar: {fileID: 21300000, guid: 2a78ba94c73a7a049b24bbdd63999802, type: 3}
 --- !u!1 &239246471
 GameObject:
   m_ObjectHideFlags: 0
@@ -14496,6 +14495,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+--- !u!1 &1881596466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1881596467}
+  - component: {fileID: 1881596468}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1881596467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881596466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 232940785}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1881596468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881596466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2bc42b1bd975a24ea1490e2eee51d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playersScoreParent: {fileID: 838793742}
+  starImages:
+    black: {fileID: 21300000, guid: 0f3b1f1c5f10d2e4980aca758163e6ff, type: 3}
+    yellow: {fileID: 21300000, guid: 2dbf2a9d25d82f24ebb1d5b1a4c55eeb, type: 3}
+    blackYellow: {fileID: 21300000, guid: 2a78ba94c73a7a049b24bbdd63999802, type: 3}
+  countDonwScoreText: {fileID: 1775252164}
+  roundText: {fileID: 1609675973}
+  winnerText: {fileID: 1249709245}
+  resultsPanel: {fileID: 377304479}
+  towerCountDownParent: {fileID: 1651178049}
 --- !u!1 &1897973907
 GameObject:
   m_ObjectHideFlags: 0
