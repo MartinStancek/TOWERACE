@@ -45,8 +45,6 @@ public class GameController : MonoBehaviour
     public GameObject towersSnapParent;
     public Transform lobbyReadyParent;
 
-
-
     public List<int> playersFinished;
 
     public List<Player> players;
@@ -71,9 +69,6 @@ public class GameController : MonoBehaviour
 
     [HideInInspector]
     public GameMode gameMode = GameMode.LOBBY;
-
-    private Coroutine readyCor = null;
-
 
     public void StartRace()
     {
@@ -154,9 +149,6 @@ public class GameController : MonoBehaviour
         onRacingResultEnd.Invoke();
     }
 
-
-
-
     private void FixFinishedPlayersCount()
     {
         //add players to finished player to complete list for next round spawning cars in correct order
@@ -232,15 +224,6 @@ public class GameController : MonoBehaviour
             countDownText.text = "" + secondsRemain;
             Debug.Log(secondsRemain);
         }
-        if (secondsRemain == 1)
-        {
-
-            /*var vehs = MSSceneControllerFree.Instance.vehicles;
-            for (var i = 0; i < vehs.Length; i++)
-            {
-                vehs[i].GetComponent<MSVehicleControllerFree>().EnterInVehicle();
-            }*/
-        }
     }
     private IEnumerator RemoveCountDownText()
     {
@@ -257,61 +240,6 @@ public class GameController : MonoBehaviour
         countDownText.gameObject.SetActive(false);
         joinPanel.SetActive(true);
 
-    }
-
-    public void LobbyPlayersReady()
-    {
-        countDownText.gameObject.SetActive(true);
-        countDownText.text = "" + 3;
-
-        readyCor = StartCoroutine(SetEndLobbyCountDonw(2, StartGame, () =>
-        {
-            countDownText.gameObject.SetActive(false);
-
-        }));
-    }
-    public void ResetLobbyPlayersReady()
-    {
-        if (readyCor != null)
-        {
-            StopCoroutine(readyCor);
-        }
-        countDownText.gameObject.SetActive(false);
-    }
-
-    public int ReadyPlayersCount()
-    {
-        int count = 0;
-        foreach (Transform t in lobbyReadyParent)
-        {
-            if (t.GetChild(0).gameObject.activeInHierarchy)
-            {
-                count++;
-            }
-        }
-        return count;
-    }
-    private IEnumerator SetEndLobbyCountDonw(int secondsRemain, Action finishAction, Action reverseAction)
-    {
-
-        yield return new WaitForSeconds(1);
-        if (ReadyPlayersCount() < players.Count)
-        {
-            reverseAction.Invoke();
-        }
-        else
-        {
-            Debug.Log("EndLobbyCountDonw: " + secondsRemain);
-            if (secondsRemain > 0)
-            {
-                countDownText.text = "" + secondsRemain;
-                yield return SetEndLobbyCountDonw(secondsRemain - 1, finishAction, reverseAction);
-            }
-            else
-            {
-                finishAction.Invoke();
-            }
-        }
     }
 
     public void StartGame()

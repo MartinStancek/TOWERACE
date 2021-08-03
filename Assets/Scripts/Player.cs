@@ -80,17 +80,17 @@ public class Player : MonoBehaviour
         switch (GameController.Instance.gameMode)
         {
             case GameMode.LOBBY:
-                if (GameController.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+                if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
                 {
-                    GameController.Instance.LobbyPlayersReady();
+                    LobbyManager.Instance.LobbyPlayersReady();
                 }
                 else
                 {
-                    GameController.Instance.ResetLobbyPlayersReady();
+                    LobbyManager.Instance.ResetLobbyPlayersReady();
                 }
                 break;
             case GameMode.TOWER_PLACING:
-                if (GameController.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+                if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
                 {
                     GameController.Instance.StartRace();
                 }
