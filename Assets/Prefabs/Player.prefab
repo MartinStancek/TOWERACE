@@ -242,6 +242,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ccb31df2-75ae-4d9b-bbdc-98e3e70f147a
     m_ActionName: Car/TowerBack[/DualShock4GamepadHID/buttonEast,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 641373233649129941}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d9ae3961-14b6-4c0c-acb8-e9aa2fd41638
+    m_ActionName: Player/LobbyReady[/Keyboard/e,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player

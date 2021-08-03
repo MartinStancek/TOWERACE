@@ -6,10 +6,11 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public enum GameMode
 {
-    PLAYER_JOINING, TOWER_PLACING, RACING, TOWER_CHOOSING
+    LOBBY, TOWER_PLACING, RACING, RACING_RESULT
 }
 public class GameController : MonoBehaviour
 {
@@ -39,15 +40,10 @@ public class GameController : MonoBehaviour
 
     public TMP_Text countDownText;
 
-    public GameObject resultsPanel;
     public GameObject joinPanel;
-    public Button startGameButton;
-    public Button startRaceButton;
-
-    public TMP_Text[] resultTexts;
 
     public GameObject towersSnapParent;
-
+    public Transform lobbyReadyParent;
 
     public List<int> playersFinished;
 
@@ -63,7 +59,16 @@ public class GameController : MonoBehaviour
     public UnityEvent onStartGame;
 
     [HideInInspector]
-    public GameMode gameMode = GameMode.TOWER_PLACING;
+    public UnityEvent onStartRace;
+
+    [HideInInspector]
+    public UnityEvent onEndRace;
+
+    [HideInInspector]
+    public UnityEvent onRacingResultEnd;
+
+    [HideInInspector]
+    public GameMode gameMode = GameMode.LOBBY;
 
     public void StartRace()
     {
@@ -75,11 +80,6 @@ public class GameController : MonoBehaviour
         }
 
         countDownText.gameObject.SetActive(true);
-        resultsPanel.SetActive(false);
-        foreach (var t in resultTexts)
-        {
-            t.text = "";
-        }
 
         foreach (var player in players)
         {
@@ -98,30 +98,27 @@ public class GameController : MonoBehaviour
         }
         playersFinished.Clear();
 
+        foreach (Transform t in lobbyReadyParent)
+        {
+            t.gameObject.SetActive(false);
+        }
+
         StartCountdown();
         gameMode = GameMode.RACING;
+
+        onStartRace.Invoke();
     }
     public void EndRace()
     {
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
         backGroundCamera.gameObject.SetActive(false);
-
         countDownText.gameObject.SetActive(false);
-        resultsPanel.SetActive(true);
 
-        gameMode = GameMode.TOWER_PLACING;
-        var i = 0;
-
-        for (i = 0; i < playersFinished.Count; i++)
-        {
-            var p = players.Where(e => e.playerIndex == playersFinished[i]).FirstOrDefault();
-            p.money += (int)((4 - i) * p.scoreMultilier);
-        }
+        gameMode = GameMode.RACING_RESULT;
 
         FixFinishedPlayersCount();
 
-        i = 0;
         foreach (var player in players)
         {
             player.GetComponent<TowerPlacer>().ClaimRandomSpot();
@@ -130,9 +127,26 @@ public class GameController : MonoBehaviour
             var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
+            player.SetReady(false);
 
-            player.money += player.moneyByRound;
+            var playerPosition = playersFinished.IndexOf(player.playerIndex);
+            var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
+
+            player.money += player.moneyByRound + extra_income;
         }
+
+        onEndRace.Invoke();
+    }
+
+    public void EndRacingResult()
+    {
+        gameMode = GameMode.TOWER_PLACING;
+        for (var i = 0; i < players.Count; i++)
+        {
+            lobbyReadyParent.GetChild(i).gameObject.SetActive(true);
+        }
+
+        onRacingResultEnd.Invoke();
     }
 
     private void FixFinishedPlayersCount()
@@ -166,10 +180,6 @@ public class GameController : MonoBehaviour
             countDownText.gameObject.SetActive(true);
             countDownText.text = "" + waitingTime;
             StartCoroutine(SetEndRaceCountDown(waitingTime - 1, EndRace));
-        }
-        if (playersFinished.Count < 4) // len 3 miesta na "podiu" su
-        {
-            resultTexts[playersFinished.Count - 1].text = "Player " + playerIndex;
         }
 
     }
@@ -214,15 +224,6 @@ public class GameController : MonoBehaviour
             countDownText.text = "" + secondsRemain;
             Debug.Log(secondsRemain);
         }
-        if (secondsRemain == 1)
-        {
-
-            /*var vehs = MSSceneControllerFree.Instance.vehicles;
-            for (var i = 0; i < vehs.Length; i++)
-            {
-                vehs[i].GetComponent<MSVehicleControllerFree>().EnterInVehicle();
-            }*/
-        }
     }
     private IEnumerator RemoveCountDownText()
     {
@@ -237,10 +238,7 @@ public class GameController : MonoBehaviour
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
-        resultsPanel.SetActive(false);
         joinPanel.SetActive(true);
-        startGameButton.gameObject.SetActive(true);
-        startRaceButton.gameObject.SetActive(false);
 
     }
 
@@ -248,6 +246,7 @@ public class GameController : MonoBehaviour
     {
         joinPanel.SetActive(false);
 
+        transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
         StartRace();
         onStartGame.Invoke();
     }
@@ -264,10 +263,10 @@ public class GameController : MonoBehaviour
     public List<TowerSnap> GetFreeTowerSnaps(int fromIndex, int toIndex, Player player)
     {
         var freeTowerSnaps = new List<TowerSnap>();
-        for(var i = fromIndex; i< toIndex; i++)
+        for (var i = fromIndex; i < toIndex; i++)
         {
             var snap = towersSnapParent.transform.GetChild(i).GetComponent<TowerSnap>();
-            if (!snap.isOccupied && (snap.playerOwner == null || snap.playerOwner.Equals(player)))
+            if ((!snap.isOccupied && snap.playerOwner == null) || (snap.playerOwner != null && snap.playerOwner.Equals(player)))
             {
                 freeTowerSnaps.Add(snap);
 
@@ -280,7 +279,7 @@ public class GameController : MonoBehaviour
     public int IndexOfSnap(TowerSnap snap)
     {
         var i = 0;
-        foreach(Transform s in towersSnapParent.transform)
+        foreach (Transform s in towersSnapParent.transform)
         {
             if (s.Equals(snap.transform))
             {

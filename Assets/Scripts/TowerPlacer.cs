@@ -304,10 +304,10 @@ public class TowerPlacer : MonoBehaviour
         var snaps = GameController.Instance.GetFreeTowerSnaps(0, count, player);
         if(snaps.Count != 0)
         {
+            var origTS = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
             var tmpIndex = Random.Range(0, snaps.Count);
             snapIndex = GameController.Instance.IndexOfSnap(snaps[tmpIndex]);
-            snaps[tmpIndex].isOccupied = true;
-            snaps[tmpIndex].SetPanel(snaps[tmpIndex].buySnapPanel, player.playerColor);
+            SetSnap(snaps[tmpIndex], origTS);
         }
     }
 }
