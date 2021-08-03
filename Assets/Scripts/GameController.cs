@@ -415,7 +415,7 @@ public class GameController : MonoBehaviour
         for(var i = fromIndex; i< toIndex; i++)
         {
             var snap = towersSnapParent.transform.GetChild(i).GetComponent<TowerSnap>();
-            if (!snap.isOccupied && (snap.playerOwner == null || snap.playerOwner.Equals(player)))
+            if ((!snap.isOccupied && snap.playerOwner == null) || (snap.playerOwner != null && snap.playerOwner.Equals(player)))
             {
                 freeTowerSnaps.Add(snap);
 
