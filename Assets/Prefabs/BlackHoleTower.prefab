@@ -60,7 +60,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -6478536213147159724, guid: 45c65425282ca0d40a1b8c79936308cd, type: 3}
-  - {fileID: -3846018093981099296, guid: 45c65425282ca0d40a1b8c79936308cd, type: 3}
+  - {fileID: 2100000, guid: 93cf1f9969c66a3469600ce3e94be155, type: 2}
   - {fileID: 4874126678125670354, guid: 45c65425282ca0d40a1b8c79936308cd, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -92,6 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 532826928194586759}
+  - component: {fileID: 231630079}
+  - component: {fileID: 231630078}
   m_Layer: 0
   m_Name: BlackHoleTower
   m_TagString: Untagged
@@ -115,6 +117,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &231630079
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502274560526825319}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &231630078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502274560526825319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5acc9f4cfff8af0448fe4086e84319ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOwner: -1
+  shootEvery: 0.2
+  coloredParts:
+  - renderer: {fileID: 2209092193386803790}
+    materialIndexes: 0100000002000000
+  strengthMultiplier: 40000
+  backwardMultiplier: 40000
 --- !u!1 &5788533920940114788
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,19 +262,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5788533920653484249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6156624914609238135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e31f7bc31135549b2cc322452b0bf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
 --- !u!1001 &5788533920653484255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,11 +335,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab0b3603b97f0274c9d3a4eca0e88eed, type: 3}
---- !u!1 &6156624914609238135 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 370906310801346728, guid: ab0b3603b97f0274c9d3a4eca0e88eed, type: 3}
-  m_PrefabInstance: {fileID: 5788533920653484255}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6156624914609466455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 370906310801378440, guid: ab0b3603b97f0274c9d3a4eca0e88eed, type: 3}
