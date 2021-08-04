@@ -175,7 +175,7 @@ public class TowerPlacer : MonoBehaviour
             snap.tower = go.GetComponent<Tower>();
             foreach(var p in snap.tower.coloredParts)
             {
-                p.material.color = player.playerColor;
+                p.SetColor(player.playerColor);
             }
             snap.tower.playerOwner = player.playerIndex;
 
