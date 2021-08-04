@@ -178,6 +178,8 @@ public class TowerPlacer : MonoBehaviour
                 p.SetColor(player.playerColor);
             }
             snap.tower.playerOwner = player.playerIndex;
+            snap.SetPanel(snap.selectSnapPanel, player.playerColor);
+            placingState = TowerPlaceState.CHOOSING_SPOT;
 
 
         }
