@@ -143,10 +143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOwner: -1
-  shootEvery: 0.2
+  shootEvery: 0.3
   coloredParts:
   - renderer: {fileID: 2209092193386803790}
     materialIndexes: 0100000002000000
+  - renderer: {fileID: 5788533922034374191}
+    materialIndexes: 00000000
   strengthMultiplier: 40000
   backwardMultiplier: 40000
 --- !u!1 &5788533920940114788

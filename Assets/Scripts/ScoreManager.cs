@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject resultsPanel;
     public Transform towerCountDownParent;
 
-    private int[] previousMoney;
+    public int[] previousMoney;
     private int[] previousStars;
     private GameController gc;
 
@@ -37,6 +37,7 @@ public class ScoreManager : MonoBehaviour
     {
         gc = GameController.Instance;
         gc.onEndRace.AddListener(EndRaceScoreHandle);
+        gc.onStartRace.AddListener(RoundReinicialization);
         gc.onStartGame.AddListener(StartGameInit);
         resultsPanel.SetActive(false);
     }
@@ -98,8 +99,6 @@ public class ScoreManager : MonoBehaviour
 
             StartCoroutine(SetEndRacingResultCountDonw(5, EndRacingResult));
         }
-
-        RoundReinicialization();
     }
 
     private void StartGameInit()

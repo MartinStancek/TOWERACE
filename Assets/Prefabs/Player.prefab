@@ -314,7 +314,7 @@ MonoBehaviour:
   vcam: {fileID: 6050347965251838978}
   car: {fileID: 8754894382217880353}
   startMoney: 300
-  moneyByRound: 1000
+  moneyByRound: 150
   scoreMultilier: 30
   stars: 0
   moneyVisual: {fileID: 0}

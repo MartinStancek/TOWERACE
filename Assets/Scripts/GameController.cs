@@ -247,8 +247,8 @@ public class GameController : MonoBehaviour
         joinPanel.SetActive(false);
 
         transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
-        StartRace();
         onStartGame.Invoke();
+        StartRace();
     }
 
     private void SetCarCameras(bool value)
