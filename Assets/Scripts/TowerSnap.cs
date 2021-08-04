@@ -48,10 +48,7 @@ public class TowerSnap : MonoBehaviour
         var j = 0;
         foreach (var cp in coloredParts)
         {
-            foreach (var i in cp.materialIndexes)
-            {
-                cp.renderer.materials[i].color = originalcolors[j++];
-            }
+            cp.SetColor(originalcolors[j++]);
         }
     }
 
@@ -60,10 +57,7 @@ public class TowerSnap : MonoBehaviour
         var j = 0;
         foreach(var cp in coloredParts)
         {
-            foreach(var i in cp.materialIndexes)
-            {
-                cp.renderer.materials[i].color = c;
-            }
+            cp.SetColor(c);
         }
     }
 

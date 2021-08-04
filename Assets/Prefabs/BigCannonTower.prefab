@@ -381,15 +381,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a994abaa16288489da48d1f95cf1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOwner: -1
+  shootEvery: 0.5
+  coloredParts:
+  - renderer: {fileID: 172822846488956736}
+    materialIndexes: 
+  - renderer: {fileID: 1497562037716461369}
+    materialIndexes: 00000000
   head: {fileID: 172822847179288032}
   bulltePrefab: {fileID: 6059517550104626611, guid: 652e51689e6a5df4dbd635b375b277fc, type: 3}
   bulletSpawn: {fileID: 172822846891968863}
   bulletSpeed: 70
-  shootEvery: 0.5
-  playerOwner: -1
-  coloredParts:
-  - {fileID: 172822846488956736}
-  - {fileID: 1497562037716461369}
 --- !u!1 &1798123965641163385
 GameObject:
   m_ObjectHideFlags: 0
