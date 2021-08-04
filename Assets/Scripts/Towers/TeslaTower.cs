@@ -38,7 +38,6 @@ public class TeslaTower : Tower
                 var cs = t.GetComponent<CarSphere>();
                 cs.carObject.transform.Find("race0").localPosition = dir;
                 t.AddForce(cs.carObject.transform.forward * -backwardMultiplier);
-                Debug.Log("Adding force in direction: " + dir);
             }
         }
     }

@@ -147,12 +147,12 @@ MonoBehaviour:
   - prefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
     price: 120
     preview: {fileID: 21300000, guid: 259d7e8f40aa8db449ad0536b209a5f3, type: 3}
-  - prefab: {fileID: 172822847912285114, guid: 084101eb06c9dc243a40c69f6e88b251, type: 3}
-    price: 200
-    preview: {fileID: 21300000, guid: 276e7ae39472e0b4295ee0717435d417, type: 3}
   - prefab: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
-    price: 150
+    price: 130
     preview: {fileID: 21300000, guid: fb6d118a3d467c141a3179177ee90b29, type: 3}
+  - prefab: {fileID: 3502274560526825319, guid: 0216621c280422149962dc26b0775a98, type: 3}
+    price: 140
+    preview: {fileID: 21300000, guid: 690a20a396dcd9b4da060e95c548b919, type: 3}
   clickTime: 0.2
   placingState: 0
 --- !u!114 &7729441139150352868

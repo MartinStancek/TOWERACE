@@ -70,15 +70,15 @@ Material:
     - _DESIGN: 0
     - _Design: 1
     - _DetailNormalMapScale: 1
-    - _DistortionFactor: 1.27
+    - _DistortionFactor: 2
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HaloWidth: 0.84
+    - _HaloWidth: 0.905
     - _LightBrightness: 2.87
-    - _LightSpeed: 4.03
-    - _LightWidth: 0.264
+    - _LightSpeed: 6.99
+    - _LightWidth: 0.061
     - _LightWidthO: 0.1
     - _Metallic: 0
     - _Mode: 0
@@ -86,15 +86,16 @@ Material:
     - _OffsetFactor: 1.4
     - _Old: 0
     - _Parallax: 0.02
-    - _SmoothnessFactor: 2
+    - _SmoothnessFactor: 3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Thickness: 0.0073
+    - _Thickness: 0.1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BrightLightColor: {r: 0.82199997, g: 0.7889732, b: 0.73392856, a: 1}
+    - _BrightLightColor: {r: 0.9433962, g: 0.9204111, b: 0.8846564, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HaloColor: {r: 0.77647066, g: 0.57647055, b: 0.44705886, a: 0}
+    - _HaloColor: {r: 0.8490566, g: 0.705106, b: 0.61196154, a: 0}
+  m_BuildTextureStacks: []
