@@ -141,7 +141,7 @@ public class TowerPlacer : MonoBehaviour
         if (placingState == TowerPlaceState.CHOOSING_TOWER)
         {
             placingState = TowerPlaceState.CHOOSING_SPOT;
-            snap.SetPanel(snap.selectSnapPanel, player.playerColor);
+            snap.SetPanel(snap.selectSnapPanel, player.playerColor, player.playerIndex);
 
         }
     }
@@ -156,13 +156,13 @@ public class TowerPlacer : MonoBehaviour
             snap.playerOwner = player;
             player.money -= snap.price;
             placingState = TowerPlaceState.CHOOSING_TOWER;
-            snap.SetPanel(snap.buyTowerPanel, player.playerColor);
+            snap.SetPanel(snap.buyTowerPanel, player.playerColor, player.playerIndex);
             SetTowerInMenu();
         }
         else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && placingState == TowerPlaceState.CHOOSING_SPOT)
         {
             Debug.Log("Player " + player.playerIndex + " Entering snap " + snap.name);
-            snap.SetPanel(snap.buyTowerPanel, player.playerColor);
+            snap.SetPanel(snap.buyTowerPanel, player.playerColor, player.playerIndex);
             placingState = TowerPlaceState.CHOOSING_TOWER;
             SetTowerInMenu();
         }
@@ -178,7 +178,7 @@ public class TowerPlacer : MonoBehaviour
                 p.SetColor(player.playerColor);
             }
             snap.tower.playerOwner = player.playerIndex;
-            snap.SetPanel(snap.selectSnapPanel, player.playerColor);
+            snap.SetPanel(snap.selectSnapPanel, player.playerColor, player.playerIndex);
             placingState = TowerPlaceState.CHOOSING_SPOT;
 
             foreach (var pad in snap.nearBoostPads)
@@ -292,17 +292,17 @@ public class TowerPlacer : MonoBehaviour
         if(previousSnap != null)
         {
             previousSnap.isOccupied = false;
-            previousSnap.SetPanel(null);
+            previousSnap.SetPanel(null, -1);
         }
 
         targetSnap.isOccupied = true;
         if (targetSnap.playerOwner == null)
         {
-            targetSnap.SetPanel(targetSnap.buySnapPanel, player.playerColor);
+            targetSnap.SetPanel(targetSnap.buySnapPanel, player.playerColor, player.playerIndex);
         }
         else
         {
-            targetSnap.SetPanel(targetSnap.selectSnapPanel, player.playerColor);
+            targetSnap.SetPanel(targetSnap.selectSnapPanel, player.playerColor, player.playerIndex);
         }
     }
 
