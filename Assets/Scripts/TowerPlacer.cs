@@ -159,21 +159,21 @@ public class TowerPlacer : MonoBehaviour
             snap.SetPanel(snap.buyTowerPanel, player.playerColor);
             SetTowerInMenu();
         }
-        else if(snap.playerOwner != null && snap.playerOwner.Equals(player) && placingState == TowerPlaceState.CHOOSING_SPOT)
+        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && placingState == TowerPlaceState.CHOOSING_SPOT)
         {
             Debug.Log("Player " + player.playerIndex + " Entering snap " + snap.name);
             snap.SetPanel(snap.buyTowerPanel, player.playerColor);
             placingState = TowerPlaceState.CHOOSING_TOWER;
             SetTowerInMenu();
         }
-        else if(snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money >= towerOptions[towerIndex].price)
+        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money >= towerOptions[towerIndex].price)
         {
             Debug.Log("Player " + player.playerIndex + " is buying " + towerOptions[towerIndex].prefab.name);
 
             player.money -= towerOptions[towerIndex].price;
             var go = Instantiate(towerOptions[towerIndex].prefab, snap.transform.position, snap.transform.rotation);
             snap.tower = go.GetComponent<Tower>();
-            foreach(var p in snap.tower.coloredParts)
+            foreach (var p in snap.tower.coloredParts)
             {
                 p.SetColor(player.playerColor);
             }
@@ -181,6 +181,12 @@ public class TowerPlacer : MonoBehaviour
             snap.SetPanel(snap.selectSnapPanel, player.playerColor);
             placingState = TowerPlaceState.CHOOSING_SPOT;
 
+            foreach (var pad in snap.nearBoostPads)
+            {
+                pad.gameObject.SetActive(false);
+            }
+
+            
 
         }
     }
