@@ -19,6 +19,7 @@ public class TowerSnap : MonoBehaviour
     public TMP_Text priceText;
 
     public Tower tower = null;
+    public List<BoostPad> nearBoostPads;
 
 
     List<Color> originalcolors = new List<Color>();

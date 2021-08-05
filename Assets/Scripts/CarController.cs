@@ -7,6 +7,8 @@ public class CarController : MonoBehaviour
 {
     public Rigidbody rb;
 
+    [HideInInspector]
+    public float originalAccel;
     public float forwardAccel = 8f;
     public float reverseAccel = 4f; 
     public float maxSpeed = 50f;
@@ -41,6 +43,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb.transform.parent = null;
+        originalAccel = forwardAccel;
         SetEmmision(0f);
     }
 
