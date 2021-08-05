@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     }
     public int stars = 0;
 
-
+    public string controlScheme;
 
     public TMP_Text moneyVisual;
 

@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
 
             var tt = player.GetComponent<TowerPlacer>();
             tt.placingState = TowerPlaceState.CHOOSING_SPOT;
-            towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null);
+            towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null, -1);
         }
         playersFinished.Clear();
 
