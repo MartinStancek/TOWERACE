@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfdf92522d9de440bd461b582ad64e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitingTime: 2
+  waitingTime: 10
   carCameras: []
   mapCamera: {fileID: 214191699}
   backGroundCamera: {fileID: 27429120}
@@ -5372,10 +5372,10 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 69251127
   playerColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.41960785, b: 1, a: 1}
-  - {r: 0.15686275, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.972549, b: 0, a: 1}
+  - {r: 1, g: 0.32941177, b: 0, a: 1}
+  - {r: 0, g: 0.8666667, b: 0.90588236, a: 1}
+  - {r: 0.90588236, g: 0, b: 0.69803923, a: 1}
+  - {r: 0.85490197, g: 1, b: 0, a: 1}
 --- !u!114 &832815141
 MonoBehaviour:
   m_ObjectHideFlags: 0
