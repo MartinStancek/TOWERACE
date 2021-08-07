@@ -32,37 +32,25 @@ public class Player : MonoBehaviour
 
     public TMP_Text moneyVisual;
 
-    private bool readyInput = false;
-    private float lastReadyTime = 0f;
+
+    public PlayerInput playerInput;
+
+
+    void Start()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        //playerInput.SwitchCurrentActionMap("Spot");
+    }
 
     public void OnPlayerReady(InputAction.CallbackContext context)
     {
-        var value = context.ReadValue<float>();
-        if (value > 0.5)
+        if (context.performed)
         {
-            readyInput = true;
-        }
-        else
-        {
-            readyInput = false;
-            lastReadyTime = 0f;
-        }
-    }
-
-    void Update()
-    {
-        var allowedModes = new List<GameMode>() { GameMode.LOBBY, GameMode.TOWER_PLACING };
-        if (!allowedModes.Contains(GameController.Instance.gameMode))
-        {
-            return;
-        }
-
-        if (readyInput && Time.time - lastReadyTime > 1f)
-        {
+            Debug.Log("Ready");
             ToggleReady();
-            lastReadyTime = Time.time;
         }
     }
+
 
     public void ToggleReady()
     {

@@ -42,13 +42,13 @@ public class ControlsManager : MonoBehaviour
 
     public Sprite GetSprite(int playerIndex, InputType type)
     {
-        Debug.Log("Player" + playerIndex + ", type" + type);
+        //Debug.Log("Player" + playerIndex + ", type" + type);
         if(playerIndex == -1)
         {
             playerIndex = 0;
         }
         var scheme = GameController.Instance.players[playerIndex].controlScheme;
-        Debug.Log("Scheme is: " + scheme);
+        //Debug.Log("Scheme is: " + scheme);
         switch (scheme)
         {
             case "Keyboard":

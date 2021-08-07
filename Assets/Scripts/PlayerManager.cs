@@ -84,7 +84,9 @@ public class PlayerManager : MonoBehaviour
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
 
-
+        var towerPointer = GameController.Instance.towerPointerParent.GetChild(p.playerIndex);
+        towerPointer.gameObject.SetActive(true);
+        towerPointer.GetComponent<TowerPointerUI>().SetColor(p.playerColor);
     }
 
     private void SetPlayerCameraFinal()

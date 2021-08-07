@@ -22,6 +22,8 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text roundText;
     public TMP_Text winnerText;
 
+    public int timeInSeconds = 3;
+
     public GameObject resultsPanel;
     public Transform towerCountDownParent;
 
@@ -83,7 +85,7 @@ public class ScoreManager : MonoBehaviour
             playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money - previousMoney[i]) + "$";
         }
 
-        countDonwScoreText.text = "" + 6;
+        countDonwScoreText.text = "" + timeInSeconds;
 
         var maxstars = gc.players.Max(e => e.stars);
         if (maxstars >= 10)
@@ -97,7 +99,7 @@ public class ScoreManager : MonoBehaviour
         {
             towerCountDownParent.gameObject.SetActive(true);
 
-            StartCoroutine(SetEndRacingResultCountDonw(5, EndRacingResult));
+            StartCoroutine(SetEndRacingResultCountDonw(timeInSeconds - 1, EndRacingResult));
         }
     }
 
