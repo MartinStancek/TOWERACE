@@ -249,7 +249,7 @@ public class TowerPlacer : MonoBehaviour
         if (previousSnap != null)
         {
             previousSnap.isOccupied = false;
-            previousSnap.SetPanel(null, -1);
+            //previousSnap.SetPanel(null, -1);
         }
 
         targetSnap.isOccupied = true;

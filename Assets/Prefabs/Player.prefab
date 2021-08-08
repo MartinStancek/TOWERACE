@@ -144,16 +144,15 @@ MonoBehaviour:
   towerIndex: 0
   towerPointer: {fileID: 7894747575586699092, guid: 5cc17f4bf73eb984286a58d75051a6c6, type: 3}
   towerOptions:
-  - prefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
+  - prefab: {fileID: 953750827910792910, guid: a7f0c8c0d3b45a147b566aaa82f29c22, type: 3}
     price: 120
-    preview: {fileID: 21300000, guid: 259d7e8f40aa8db449ad0536b209a5f3, type: 3}
+    preview: {fileID: 21300000, guid: c02455faa23dbcf43bd0b089bae13c15, type: 3}
   - prefab: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
     price: 130
     preview: {fileID: 21300000, guid: fb6d118a3d467c141a3179177ee90b29, type: 3}
   - prefab: {fileID: 3502274560526825319, guid: 0216621c280422149962dc26b0775a98, type: 3}
     price: 140
     preview: {fileID: 21300000, guid: 690a20a396dcd9b4da060e95c548b919, type: 3}
-  placingState: 0
 --- !u!114 &641373233649129941
 MonoBehaviour:
   m_ObjectHideFlags: 0
