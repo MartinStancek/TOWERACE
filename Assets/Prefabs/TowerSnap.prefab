@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 0
-  price: 120
+  price: 100
   playerOwner: {fileID: 0}
   coloredParts:
   - renderer: {fileID: 9021383984725793581}
