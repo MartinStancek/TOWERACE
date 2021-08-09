@@ -65,13 +65,13 @@ public class PlayerManager : MonoBehaviour
         var p = input.gameObject.GetComponent<Player>();
         p.playerIndex = playerCount;
         p.playerColor = playerColors[playerCount];
+        p.controlScheme = input.currentControlScheme;
 
         var panel = GameController.Instance.moneyPanel.GetChild(playerCount);
         panel.gameObject.SetActive(true);
         panel.GetComponent<Image>().color = p.playerColor;
         p.moneyVisual = panel.GetComponentInChildren<TMP_Text>();
         p.money = p.startMoney;
-        GameController.Instance.lobbyReadyParent.GetChild(playerCount).gameObject.SetActive(true);
 
         playerCount++;
 
@@ -79,11 +79,14 @@ public class PlayerManager : MonoBehaviour
         input.camera.gameObject.layer = LayerMask.NameToLayer("Cam" + playerCount);
 
         GameController.Instance.players.Add(p);
+        GameController.Instance.lobbyReadyParent.GetChild(p.playerIndex).gameObject.SetActive(true);
 
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
 
-
+        var towerPointer = GameController.Instance.towerPointerParent.GetChild(p.playerIndex);
+        towerPointer.gameObject.SetActive(true);
+        towerPointer.GetComponent<TowerPointerUI>().SetColor(p.playerColor);
     }
 
     private void SetPlayerCameraFinal()

@@ -101,8 +101,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5845937106439852003}
   - component: {fileID: 5845937106439852002}
-  - component: {fileID: 7729441139150352868}
   - component: {fileID: 641373233649129941}
+  - component: {fileID: 9126561931698728850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -144,18 +144,39 @@ MonoBehaviour:
   towerIndex: 0
   towerPointer: {fileID: 7894747575586699092, guid: 5cc17f4bf73eb984286a58d75051a6c6, type: 3}
   towerOptions:
-  - prefab: {fileID: 7235765291477247935, guid: 04514de1ac972054bb798e572ef9be5d, type: 3}
+  - prefab: {fileID: 953750827910792910, guid: a7f0c8c0d3b45a147b566aaa82f29c22, type: 3}
     price: 120
-    preview: {fileID: 21300000, guid: 259d7e8f40aa8db449ad0536b209a5f3, type: 3}
+    preview: {fileID: 21300000, guid: c02455faa23dbcf43bd0b089bae13c15, type: 3}
   - prefab: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
     price: 130
     preview: {fileID: 21300000, guid: fb6d118a3d467c141a3179177ee90b29, type: 3}
   - prefab: {fileID: 3502274560526825319, guid: 0216621c280422149962dc26b0775a98, type: 3}
     price: 140
     preview: {fileID: 21300000, guid: 690a20a396dcd9b4da060e95c548b919, type: 3}
-  clickTime: 0.2
-  placingState: 0
---- !u!114 &7729441139150352868
+--- !u!114 &641373233649129941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845937106439851996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf49d3021c5b96428c0c41ac5f8b609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIndex: 0
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
+  vcam: {fileID: 6050347965251838978}
+  car: {fileID: 8754894382217880353}
+  startMoney: 300
+  moneyByRound: 150
+  scoreMultilier: 30
+  stars: 0
+  controlScheme: 
+  moneyVisual: {fileID: 0}
+  playerInput: {fileID: 0}
+--- !u!114 &9126561931698728850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,8 +215,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: ee4492b8-2a53-4972-8889-459e1e6ebf2e
-    m_ActionName: CarMovement/Acceleration[/Keyboard/s,/Keyboard/w,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/rightTrigger]
+    m_ActionId: 08ea905c-8c65-4588-b179-32d275c89d58
+    m_ActionName: Car/Acceleration[/Keyboard/s,/Keyboard/w,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightTrigger]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8754894382217880353}
@@ -210,8 +231,88 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 91016e24-1f7e-4631-9ea8-5c04a07185dc
-    m_ActionName: CarMovement/Steering[/Keyboard/a,/Keyboard/d,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/right]
+    m_ActionId: bcc8b768-36bc-40bf-9231-33bd923bf862
+    m_ActionName: Car/Steering[/Keyboard/a,/Keyboard/d,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 641373233649129941}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9961964e-52b5-4164-beaa-b6a1cb6c4d93
+    m_ActionName: Lobby/Ready[/Keyboard/r,/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5845937106439852002}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0e0af4a5-4c6b-421b-a66d-6fc83117c920
+    m_ActionName: Spot/Right[/Keyboard/d,/DualShock4GamepadHID/leftStick/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5845937106439852002}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd3091b4-0d3b-4b49-84a5-54789e89f70b
+    m_ActionName: Spot/Left[/Keyboard/a,/DualShock4GamepadHID/leftStick/left]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5845937106439852002}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c6a1f27a-fb70-434f-af51-f2fa57e91d1d
+    m_ActionName: Spot/Enter[/Keyboard/e,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 641373233649129941}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d9ce14f-51a7-4ce8-a581-312f5dda4e06
+    m_ActionName: Spot/Ready[/Keyboard/r,/DualShock4GamepadHID/buttonNorth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5845937106439852002}
@@ -227,7 +328,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: f79e9089-e769-4a90-9c27-e025f7eac5ca
-    m_ActionName: Car/TowerLeft[/Keyboard/a,/DualShock4GamepadHID/leftStick/left]
+    m_ActionName: Towers/Left[/Keyboard/a,/DualShock4GamepadHID/leftStick/left]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5845937106439852002}
@@ -243,7 +344,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: b91b73ff-c4ab-4634-bb73-6823ef93055d
-    m_ActionName: Car/TowerRight[/Keyboard/d,/DualShock4GamepadHID/leftStick/right]
+    m_ActionName: Towers/Right[/Keyboard/d,/DualShock4GamepadHID/leftStick/right]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5845937106439852002}
@@ -259,7 +360,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: e92dda6e-b2c3-410e-a85e-fad10bd1e22a
-    m_ActionName: Car/TowerClick[/Keyboard/e,/DualShock4GamepadHID/buttonSouth]
+    m_ActionName: Towers/Click[/Keyboard/e,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5845937106439852002}
@@ -275,7 +376,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: ccb31df2-75ae-4d9b-bbdc-98e3e70f147a
-    m_ActionName: Car/TowerBack[/DualShock4GamepadHID/buttonEast,/Keyboard/q]
+    m_ActionName: Towers/Back[/DualShock4GamepadHID/buttonEast,/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 641373233649129941}
@@ -290,34 +391,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: d9ae3961-14b6-4c0c-acb8-e9aa2fd41638
-    m_ActionName: Player/LobbyReady[/Keyboard/e,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID/buttonSouth]
+    m_ActionId: 9ffda243-69cb-42d6-93b9-b644c280ea34
+    m_ActionName: Towers/Ready[/Keyboard/r,/DualShock4GamepadHID/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Lobby
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 4252000830672934312}
---- !u!114 &641373233649129941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5845937106439851996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf49d3021c5b96428c0c41ac5f8b609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 0
-  playerColor: {r: 0, g: 0, b: 0, a: 0}
-  vcam: {fileID: 6050347965251838978}
-  car: {fileID: 8754894382217880353}
-  startMoney: 300
-  moneyByRound: 1000
-  scoreMultilier: 30
-  stars: 0
-  moneyVisual: {fileID: 0}
 --- !u!1 &7840582908964435625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5656,6 +5736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8754894381871459760}
+  originalAccel: 0
   forwardAccel: 8
   reverseAccel: 4
   maxSpeed: 50
