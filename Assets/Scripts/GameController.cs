@@ -45,6 +45,8 @@ public class GameController : MonoBehaviour
     public GameObject towersSnapParent;
     public Transform lobbyReadyParent;
 
+    public Transform towerPointerParent;
+
     public List<int> playersFinished;
 
     public List<Player> players;
@@ -89,18 +91,24 @@ public class GameController : MonoBehaviour
             cc.isActivated = false;
 
             cc.rb.transform.GetComponent<CheckPointController>().lastCheckPointIndex = -1;
+            player.playerInput.SwitchCurrentActionMap("Car");
 
             player.vcam.Follow = player.car.transform;
 
             var tt = player.GetComponent<TowerPlacer>();
-            tt.placingState = TowerPlaceState.CHOOSING_SPOT;
-            towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null);
+            //tt.placingState = TowerPlaceState.CHOOSING_SPOT;
+            //towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null, -1);
         }
         playersFinished.Clear();
 
         foreach (Transform t in lobbyReadyParent)
         {
             t.gameObject.SetActive(false);
+        }
+
+        foreach(Transform t in towerPointerParent)
+        {
+            t.GetComponent<TowerPointerUI>().SetPanel(null);
         }
 
         StartCountdown();
@@ -121,8 +129,6 @@ public class GameController : MonoBehaviour
 
         foreach (var player in players)
         {
-            player.GetComponent<TowerPlacer>().ClaimRandomSpot();
-
             var cc = player.GetComponentInChildren<CarController>();
             var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
@@ -144,6 +150,10 @@ public class GameController : MonoBehaviour
         for (var i = 0; i < players.Count; i++)
         {
             lobbyReadyParent.GetChild(i).gameObject.SetActive(true);
+            var p = players[i];
+            p.GetComponent<TowerPlacer>().ClaimRandomSpot();
+            p.playerInput.SwitchCurrentActionMap("Spot");
+
         }
 
         onRacingResultEnd.Invoke();

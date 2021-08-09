@@ -2,13 +2,13 @@
     "name": "Controlls",
     "maps": [
         {
-            "name": "Player",
-            "id": "ea4a47b4-55c4-47f0-8570-ea6b4ef2d3cd",
+            "name": "Car",
+            "id": "c6120f1a-f1a0-4e03-94be-a9dc3a09312f",
             "actions": [
                 {
                     "name": "Acceleration",
                     "type": "PassThrough",
-                    "id": "ee4492b8-2a53-4972-8889-459e1e6ebf2e",
+                    "id": "08ea905c-8c65-4588-b179-32d275c89d58",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
@@ -16,47 +16,7 @@
                 {
                     "name": "Steering",
                     "type": "Button",
-                    "id": "91016e24-1f7e-4631-9ea8-5c04a07185dc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "TowerLeft",
-                    "type": "Button",
-                    "id": "f79e9089-e769-4a90-9c27-e025f7eac5ca",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "TowerRight",
-                    "type": "Button",
-                    "id": "b91b73ff-c4ab-4634-bb73-6823ef93055d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "TowerClick",
-                    "type": "Button",
-                    "id": "e92dda6e-b2c3-410e-a85e-fad10bd1e22a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "TowerBack",
-                    "type": "Button",
-                    "id": "ccb31df2-75ae-4d9b-bbdc-98e3e70f147a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "LobbyReady",
-                    "type": "Button",
-                    "id": "d9ae3961-14b6-4c0c-acb8-e9aa2fd41638",
+                    "id": "bcc8b768-36bc-40bf-9231-33bd923bf862",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -65,7 +25,7 @@
             "bindings": [
                 {
                     "name": "Acceleration",
-                    "id": "f4433ca7-0f68-4283-b0d5-ea61ea8c31b6",
+                    "id": "89c0af5c-4e2a-475b-a2b3-e9937f70bd19",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -76,7 +36,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "c0b0f229-619c-41f1-8e95-1c4b7963e189",
+                    "id": "ed2313b7-59f1-4c76-8554-8b43518d1b46",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -87,7 +47,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "48e56eed-ea09-458b-a7e4-2cfff2a9b649",
+                    "id": "e78361f0-7045-4520-bb10-715b5360c649",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -98,7 +58,7 @@
                 },
                 {
                     "name": "Acceleration",
-                    "id": "f8fd40bf-47c7-42b8-938f-45c6541ca5d4",
+                    "id": "76bfcf2d-35d0-4736-9aaa-c6f14147264a",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -109,10 +69,10 @@
                 },
                 {
                     "name": "negative",
-                    "id": "92b3db92-b1c1-4f1f-9b10-677a8e08261e",
+                    "id": "16c38b4a-326a-403b-8341-2a6ed96a2259",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Controller",
                     "action": "Acceleration",
                     "isComposite": false,
@@ -120,10 +80,10 @@
                 },
                 {
                     "name": "positive",
-                    "id": "c3b474bb-5343-44cb-b3b3-295163a60b3e",
+                    "id": "c505280b-a3e9-4f6f-b23a-00e628179406",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Controller",
                     "action": "Acceleration",
                     "isComposite": false,
@@ -131,7 +91,7 @@
                 },
                 {
                     "name": "Steering",
-                    "id": "99dd744c-cc27-4c8c-9144-4f4f5ff9c913",
+                    "id": "dbd68665-b95d-4895-8ed6-1ee79c58099f",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -142,7 +102,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "c1c6853c-6efd-477d-af34-a634ad2b14cc",
+                    "id": "de74f9dc-dc74-488b-a710-e915921268b5",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -153,7 +113,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "37c82ea0-3a16-42ca-9ed3-ad130b517645",
+                    "id": "b25deeca-402d-4d9c-89a3-b26f7fd2ffa9",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -164,7 +124,7 @@
                 },
                 {
                     "name": "Steering",
-                    "id": "ca8576b2-ce2c-4ff0-b667-b7fb26b71269",
+                    "id": "7f127671-321d-4166-a5f8-68566b870877",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -175,10 +135,10 @@
                 },
                 {
                     "name": "negative",
-                    "id": "04b7acb6-4c6f-4d6e-a45c-efcad6756a56",
+                    "id": "0ea3081a-a617-4849-b7d2-60a5b8ec7893",
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Controller",
                     "action": "Steering",
                     "isComposite": false,
@@ -186,15 +146,229 @@
                 },
                 {
                     "name": "positive",
-                    "id": "5930577a-d088-4d92-b1da-eab5fe351537",
+                    "id": "b765150c-3c8e-4b25-b755-1b6b29e3e331",
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "groups": "Controller",
                     "action": "Steering",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Lobby",
+            "id": "89f9ea42-4df5-4c91-87c6-b222933dcd57",
+            "actions": [
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "9961964e-52b5-4164-beaa-b6a1cb6c4d93",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b728bea3-32ae-4167-af65-022d741f9515",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
+                {
+                    "name": "",
+                    "id": "13a2dfe8-c9d3-44ea-a1d2-3a54a07d2dda",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Spot",
+            "id": "c36709a7-6ad5-4d7c-9b41-0446967d07f0",
+            "actions": [
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "0e0af4a5-4c6b-421b-a66d-6fc83117c920",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "bd3091b4-0d3b-4b49-84a5-54789e89f70b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Enter",
+                    "type": "Button",
+                    "id": "c6a1f27a-fb70-434f-af51-f2fa57e91d1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "7d9ce14f-51a7-4ce8-a581-312f5dda4e06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b8bbfb9b-963a-4792-9598-ade10cbcbf7d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "172d95bc-3028-4d43-a557-b6a6875fdeef",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5279ad60-5dda-4016-9826-7ac4c3b53900",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "594c0aab-411f-4493-8d48-df8e78ed7d3e",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0abec9b4-6421-4abc-a001-d6c562ae1585",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02bcecf0-48b0-44be-b028-fa680b1d11c6",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc30e0a4-55c0-4ced-ac4b-81212b43c6e1",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e50f31db-e6ee-49ff-87d5-b97e901ff8bd",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Towers",
+            "id": "ea4a47b4-55c4-47f0-8570-ea6b4ef2d3cd",
+            "actions": [
+                {
+                    "name": "Left",
+                    "type": "Button",
+                    "id": "f79e9089-e769-4a90-9c27-e025f7eac5ca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "b91b73ff-c4ab-4634-bb73-6823ef93055d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "e92dda6e-b2c3-410e-a85e-fad10bd1e22a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "ccb31df2-75ae-4d9b-bbdc-98e3e70f147a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "9ffda243-69cb-42d6-93b9-b644c280ea34",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
                     "id": "793448f5-742b-4e6b-bcc6-1fac945ebf34",
@@ -202,7 +376,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "TowerLeft",
+                    "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -213,7 +387,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "TowerLeft",
+                    "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -224,7 +398,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "TowerRight",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,7 +409,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "TowerRight",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -246,7 +420,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "TowerClick",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -257,7 +431,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "TowerClick",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -268,7 +442,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "TowerBack",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -279,29 +453,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "TowerBack",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "aacf2913-9a0f-4c4a-a3c6-cfaa0ae3c1a7",
+                    "id": "2dbe36cb-7622-409c-99d3-e19f886460ac",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "LobbyReady",
+                    "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "641501d1-db09-4bf2-b1a3-758b8055694f",
+                    "id": "4462bbc9-6436-4759-bee6-a9f493bcde1d",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "LobbyReady",
+                    "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

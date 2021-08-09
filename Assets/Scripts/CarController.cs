@@ -26,6 +26,7 @@ public class CarController : MonoBehaviour
     public Transform leftFrontWheel;
     public Transform rightFrontWheel;
     public float maxWheelTurn = 25f;
+    private float wheelXAngle = 0f;
 
     public ParticleSystem[] dustTrial;
     public float maxEmission = 25f;
@@ -35,6 +36,9 @@ public class CarController : MonoBehaviour
 
     private float verticalInput;
     private float horizontalInput;
+
+    public List<Transform> backWheels;
+    public float wheelRotationSpeed = 0.1f;
 
     public bool isActivated = true;
     public float turnSpeed = 0.1f;
@@ -66,7 +70,7 @@ public class CarController : MonoBehaviour
     void Update()
     {
         speedInput = 0f;
-        if(verticalInput > 0)
+        if (verticalInput > 0)
         {
             speedInput = verticalInput * forwardAccel * 1000f;
         }
@@ -75,17 +79,19 @@ public class CarController : MonoBehaviour
             speedInput = verticalInput * reverseAccel * 1000f;
         }
 
-        turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime*turnSpeed);
+        turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime * turnSpeed);
 
         if (grounded)
         {
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * verticalInput, 0f));
         }
-
-        leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn) - 180, leftFrontWheel.localRotation.eulerAngles.z);
+        wheelXAngle = (wheelXAngle + wheelRotationSpeed * Time.deltaTime) % 360 /*rb.velocity.magnitude **/;
+        leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn)/* - 180*/, leftFrontWheel.localRotation.eulerAngles.z);
         rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn, rightFrontWheel.localRotation.eulerAngles.z);
-        
+        //Debug.Log(wheelXAngle);
         transform.position = rb.transform.position;
+
+        //Debug.Log(rb.velocity.magnitude);
     }
 
     void FixedUpdate()

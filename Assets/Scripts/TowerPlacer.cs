@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -11,11 +12,11 @@ public class TowerData
     public int price;
     public Sprite preview;
 }
-
+/*
 public enum TowerPlaceState
 {
-    CHOOSING_SPOT, CHOOSING_TOWER
-}
+    BUYING_SPOT, CHOOSING_TOWER
+}*/
 
 [RequireComponent(typeof(Player))]
 public class TowerPlacer : MonoBehaviour
@@ -31,19 +32,7 @@ public class TowerPlacer : MonoBehaviour
 
     private GameObject actualTowerPointer = null;
 
-    private bool rightInput = false;
-    private bool leftInput = false;
-    private bool clickInput = false;
-    private bool backInput = false;
-    
-    private float lastLeftClickTime = 0f;
-    private float lastRightClickTime = 0f;
-    private float lastClickTime = 0f;
-    private float lastBackClickTime = 0f;
-
-    public float clickTime = 0.2f;
-
-    public TowerPlaceState placingState = TowerPlaceState.CHOOSING_SPOT;
+    /*public TowerPlaceState placingState = TowerPlaceState.BUYING_SPOT;*/
 
     void Awake()
     {
@@ -52,118 +41,107 @@ public class TowerPlacer : MonoBehaviour
 
     public void OnTowerLeft(InputAction.CallbackContext context)
     {
-        var value = context.ReadValue<float>();
-        //Debug.Log("Right: "+value);
-        if(value > 0.5)
+        if (context.performed)
         {
-            leftInput = true;
-        } 
-        else
-        {
-            leftInput = false;
-            lastLeftClickTime = 0f;
+            //Debug.Log("OnTowerLeft performed");
+            MoveTowerLeft();
         }
     }
     public void OnTowerRight(InputAction.CallbackContext context)
     {
-        var value = context.ReadValue<float>();
-        if (value > 0.5)
+        if (context.performed)
         {
-            rightInput = true;
+            //Debug.Log("OnTowerRight performed");
+            MoveTowerRight();
+
         }
-        else
+    }
+    public void OnSpotLeft(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            rightInput = false;
-            lastRightClickTime = 0f;
+            //Debug.Log("OnSpotLeft performed");
+            MoveSpotLeft();
+
+        }
+    }
+    public void OnSpotRight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //Debug.Log("OnSpotRight performed");
+            MoveSpotRight();
+
         }
     }
     public void OnTowerClick(InputAction.CallbackContext context)
     {
-        var value = context.ReadValue<float>();
-        if (value > 0.5)
+        if (context.performed)
         {
-            clickInput = true;
+            //Debug.Log("OnTowerClick performed");
+            Clicked();
+
         }
-        else
+    }
+    public void OnSpotClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
-            clickInput = false;
-            lastClickTime = 0f;
+            Debug.Log("OnSpotClick performed");
+            var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+            var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
+            if(snap.playerOwner == null)
+            {
+                pointer.SetPanel(pointer.buySpot);
+                player.playerInput.SwitchCurrentActionMap("Towers");
+            }
+            else if(snap.tower == null)
+            {
+                pointer.SetPanel(pointer.selectTower);
+                player.playerInput.SwitchCurrentActionMap("Towers");
+            }
+            else
+            {
+                pointer.SetPanel(pointer.tower);
+                pointer.SetTowerName(snap.tower.name);
+
+            }
+
         }
     }
     public void OnTowerBackClick(InputAction.CallbackContext context)
     {
-        var value = context.ReadValue<float>();
-        if (value > 0.5)
+        if (context.performed)
         {
-            backInput = true;
-        }
-        else
-        {
-            backInput = false;
-            lastBackClickTime = 0f;
-        }
-    }
-
-    void Update()
-    {
-        if(GameController.Instance.gameMode != GameMode.TOWER_PLACING)
-        {
-            return;
-        }
-
-        if(leftInput && Time.time - lastLeftClickTime > clickTime)
-        {
-            MoveLeft();
-            lastLeftClickTime = Time.time;
-        }
-        if (rightInput && Time.time - lastRightClickTime > clickTime)
-        {
-            MoveRight();
-            lastRightClickTime = Time.time;
-        }
-
-        if (clickInput && Time.time - lastClickTime > 10f)//musi odkliknut
-        {
-            Clicked();
-            lastClickTime = Time.time;
-        }
-
-        if (backInput && Time.time - lastBackClickTime > 10f)//musi odkliknut
-        {
+            Debug.Log("OnTowerBackClick performed");
             BackClicked();
-            lastBackClickTime = Time.time;
         }
     }
+    
     public void BackClicked()
     {
         var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
 
-        if (placingState == TowerPlaceState.CHOOSING_TOWER)
-        {
-            placingState = TowerPlaceState.CHOOSING_SPOT;
-            snap.SetPanel(snap.selectSnapPanel, player.playerColor);
+        pointer.SetPanel(pointer.selectSpot);
+        player.playerInput.SwitchCurrentActionMap("Spot");
 
-        }
     }
+
     public void Clicked()
     {
         Debug.Log("Clicked");
         var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+
         if (player.money >= snap.price && snap.playerOwner == null)
         {
             Debug.Log("Player " + player.playerIndex + " is buying snap " + snap.name);
             snap.SetColor(player.playerColor);
             snap.playerOwner = player;
             player.money -= snap.price;
-            placingState = TowerPlaceState.CHOOSING_TOWER;
-            snap.SetPanel(snap.buyTowerPanel, player.playerColor);
-            SetTowerInMenu();
-        }
-        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && placingState == TowerPlaceState.CHOOSING_SPOT)
-        {
-            Debug.Log("Player " + player.playerIndex + " Entering snap " + snap.name);
-            snap.SetPanel(snap.buyTowerPanel, player.playerColor);
-            placingState = TowerPlaceState.CHOOSING_TOWER;
+            //placingState = TowerPlaceState.CHOOSING_TOWER;
+            pointer.SetPanel(pointer.selectTower);
             SetTowerInMenu();
         }
         else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money >= towerOptions[towerIndex].price)
@@ -172,14 +150,18 @@ public class TowerPlacer : MonoBehaviour
 
             player.money -= towerOptions[towerIndex].price;
             var go = Instantiate(towerOptions[towerIndex].prefab, snap.transform.position, snap.transform.rotation);
+            go.name = towerOptions[towerIndex].prefab.name;
             snap.tower = go.GetComponent<Tower>();
             foreach (var p in snap.tower.coloredParts)
             {
                 p.SetColor(player.playerColor);
             }
             snap.tower.playerOwner = player.playerIndex;
-            snap.SetPanel(snap.selectSnapPanel, player.playerColor);
-            placingState = TowerPlaceState.CHOOSING_SPOT;
+            pointer.SetPanel(pointer.tower);
+            pointer.SetTowerName(snap.tower.name);
+
+            //placingState = TowerPlaceState.CHOOSING_SPOT;
+            player.playerInput.SwitchCurrentActionMap("Spot");
 
             foreach (var pad in snap.nearBoostPads)
             {
@@ -188,32 +170,6 @@ public class TowerPlacer : MonoBehaviour
 
             
 
-        }
-    }
-
-    public void MoveLeft()
-    {
-        switch (placingState)
-        {
-            case TowerPlaceState.CHOOSING_SPOT:
-                MoveSpotLeft();
-                break;
-            case TowerPlaceState.CHOOSING_TOWER:
-                MoveTowerLeft();
-                break;
-        }
-
-    }
-    public void MoveRight()
-    {
-        switch (placingState)
-        {
-            case TowerPlaceState.CHOOSING_SPOT:
-                MoveSpotRight();
-                break;
-            case TowerPlaceState.CHOOSING_TOWER:
-                MoveTowerRight();
-                break;
         }
     }
 
@@ -235,11 +191,12 @@ public class TowerPlacer : MonoBehaviour
     }
     private void SetTowerInMenu()
     {
-        var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
-        var panel = snap.buyTowerPanel;
+        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+       
+        var panel = pointer.selectTower;
         panel.Find("Price").GetComponent<TMP_Text>().text = "" + towerOptions[towerIndex].price + "$";
-        panel.Find("Name").GetComponent<TMP_Text>().text = towerOptions[towerIndex].prefab.name;
-        panel.Find("TowerPreview").GetComponent<SpriteRenderer>().sprite = towerOptions[towerIndex].preview;
+        panel.Find("NamePanel/Name").GetComponent<TMP_Text>().text = towerOptions[towerIndex].prefab.name;
+        panel.Find("Preview").GetComponent<Image>().sprite = towerOptions[towerIndex].preview;
 
         if (towerIndex == towerOptions.Count - 1)
         {
@@ -289,20 +246,24 @@ public class TowerPlacer : MonoBehaviour
 
     private void SetSnap(TowerSnap targetSnap, TowerSnap previousSnap)
     {
-        if(previousSnap != null)
+        if (previousSnap != null)
         {
             previousSnap.isOccupied = false;
-            previousSnap.SetPanel(null);
+            //previousSnap.SetPanel(null, -1);
         }
 
         targetSnap.isOccupied = true;
-        if (targetSnap.playerOwner == null)
+        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+
+        pointer.SetPointer(targetSnap.gameObject);
+        if (targetSnap.tower == null)
         {
-            targetSnap.SetPanel(targetSnap.buySnapPanel, player.playerColor);
-        }
+            pointer.SetPanel(pointer.selectSpot);
+        } 
         else
         {
-            targetSnap.SetPanel(targetSnap.selectSnapPanel, player.playerColor);
+            pointer.SetPanel(pointer.tower);
+            pointer.SetTowerName(targetSnap.tower.name);
         }
     }
 
