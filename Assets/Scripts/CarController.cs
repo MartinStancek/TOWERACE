@@ -10,7 +10,7 @@ public class CarController : MonoBehaviour
     [HideInInspector]
     public float originalAccel;
     public float forwardAccel = 8f;
-    public float reverseAccel = 4f; 
+    public float reverseAccel = 4f;
     public float maxSpeed = 50f;
     public float turnStrength = 180f;
     public float gravityForce = 10f;
@@ -26,7 +26,6 @@ public class CarController : MonoBehaviour
     public Transform leftFrontWheel;
     public Transform rightFrontWheel;
     public float maxWheelTurn = 25f;
-    private float wheelXAngle = 0f;
 
     public ParticleSystem[] dustTrial;
     public float maxEmission = 25f;
@@ -37,11 +36,12 @@ public class CarController : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
 
-    public List<Transform> backWheels;
+    public List<Transform> wheels;
     public float wheelRotationSpeed = 0.1f;
 
     public bool isActivated = true;
     public float turnSpeed = 0.1f;
+    private int direction = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -72,11 +72,13 @@ public class CarController : MonoBehaviour
         speedInput = 0f;
         if (verticalInput > 0)
         {
+            direction = 1;
             speedInput = verticalInput * forwardAccel * 1000f;
         }
         else if (verticalInput < 0)
         {
             speedInput = verticalInput * reverseAccel * 1000f;
+            direction = -1;
         }
 
         turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime * turnSpeed);
@@ -85,13 +87,23 @@ public class CarController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * verticalInput, 0f));
         }
-        wheelXAngle = (wheelXAngle + wheelRotationSpeed * Time.deltaTime) % 360 /*rb.velocity.magnitude **/;
-        leftFrontWheel.localRotation = Quaternion.Euler(leftFrontWheel.localRotation.eulerAngles.x, (turnInput * maxWheelTurn)/* - 180*/, leftFrontWheel.localRotation.eulerAngles.z);
-        rightFrontWheel.localRotation = Quaternion.Euler(rightFrontWheel.localRotation.eulerAngles.x, turnInput * maxWheelTurn, rightFrontWheel.localRotation.eulerAngles.z);
-        //Debug.Log(wheelXAngle);
+        foreach (var t in wheels)
+        {
+            t.Rotate(Vector3.right, wheelRotationSpeed * Time.deltaTime * rb.velocity.magnitude * direction, Space.Self);
+        }
+        leftFrontWheel.localEulerAngles = new Vector3(leftFrontWheel.localEulerAngles.x, (turnInput * maxWheelTurn)/* - 180*/, 0f);
+        rightFrontWheel.localEulerAngles = new Vector3(rightFrontWheel.localEulerAngles.x, turnInput * maxWheelTurn, 0f);
+
+
+
+
         transform.position = rb.transform.position;
 
         //Debug.Log(rb.velocity.magnitude);
+    }
+    void LateUpdate()
+    {
+
     }
 
     void FixedUpdate()
@@ -106,7 +118,7 @@ public class CarController : MonoBehaviour
 
         Debug.DrawRay(groundRayPoint.position, -transform.up, Color.green, groundRayLength);
 
-        if(Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround) && isActivated)
+        if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, whatIsGround) && isActivated)
         {
             grounded = true;
 
@@ -125,7 +137,7 @@ public class CarController : MonoBehaviour
 
                 emissionRate = maxEmission;
             }
-        } 
+        }
         else
         {
             rb.drag = 0.1f;

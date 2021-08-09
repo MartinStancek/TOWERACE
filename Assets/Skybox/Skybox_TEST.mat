@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mRoadEdge
-  m_Shader: {fileID: -6465566751694194690, guid: 7b4366abaf868e64488069ea62dd8692, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 2
+  m_Name: Skybox_TEST
+  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _SUNDISK_NONE
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_ae7239db30be4744bfddd0ab0f765884:
-        m_Texture: {fileID: 2800000, guid: d2171022440330d42b506f5f99c2e33d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -81,6 +77,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
+    - _AtmosphereThickness: 0.22
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -91,6 +88,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Exposure: 0.57
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -103,21 +101,21 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SunDisk: 0
+    - _SunSize: 0
+    - _SunSizeConvergence: 5
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_06a587c84a19472186eea2a5fde9f7cc: {r: 0.364475, g: 0.1602927, b: 0, a: 1}
-    - Color_ad554fb10aad4617bedcae4488b990eb: {r: 0.27478665, g: 0.081084594, b: 1.0090526, a: 1}
-    - Color_eccffa92d38d40de8a8b62e48bdbb12f: {r: 2.374296, g: 0.4569399, b: 1.91933, a: 1}
-    - Color_ee35040271b849d5b7b9c83c77966fc4: {r: 0, g: 1.3041189, b: 0.36187592, a: 0}
-    - Vector2_99ff3d4c97744cc4a2717d82f635336f: {r: 1, g: 1, b: 0, a: 0}
-    - _BaseColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GroundColor: {r: 0.048237268, g: 0.0475258, b: 0.09433961, a: 1}
+    - _SkyTint: {r: 0.04705883, g: 0.04705883, b: 0.09411766, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3975231710527164506
+--- !u!114 &4237665145769428558
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -93,6 +93,7 @@ public class TowerPlacer : MonoBehaviour
             if(snap.playerOwner == null)
             {
                 pointer.SetPanel(pointer.buySpot);
+                pointer.buySpot.Find("Price").GetComponent<TMP_Text>().text = "" + snap.price + "$";
                 player.playerInput.SwitchCurrentActionMap("Towers");
             }
             else if(snap.tower == null)
