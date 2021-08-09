@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_Hologram_Global
+  m_Name: mNitroPad
   m_Shader: {fileID: -6465566751694194690, guid: c63ff0a13716ee547abc1b12d0505900, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

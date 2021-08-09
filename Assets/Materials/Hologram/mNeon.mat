@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_Neon
+  m_Name: mNeon
   m_Shader: {fileID: -6465566751694194690, guid: 7b4366abaf868e64488069ea62dd8692, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
