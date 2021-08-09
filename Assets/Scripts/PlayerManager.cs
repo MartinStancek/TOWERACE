@@ -56,8 +56,9 @@ public class PlayerManager : MonoBehaviour
 
         input.camera.gameObject.SetActive(true);
 
-        var body = input.transform.Find("Car/race0/race/body");
-        body.GetComponent<MeshRenderer>().materials[0].color = playerColors[playerCount];
+        var body = input.transform.Find("Car/race0/Skin/auto_ready1");
+        body.GetComponent<MeshRenderer>().materials[1].color = playerColors[playerCount];
+        //body.GetComponent<MeshRenderer>().materials[0].color = playerColors[playerCount];
 
         input.transform.position = GameController.Instance.spawnPoints.GetChild(playerCount).position;
 

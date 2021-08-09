@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: dc18afb5c697a6a439ac004e9242a715, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 910acb3d412eaec48bae40d2495ff161, type: 2}
     - target: {fileID: 919132149155446097, guid: dc18afb5c697a6a439ac004e9242a715, type: 3}
       propertyPath: m_Name
       value: stlpspodok
@@ -173,6 +177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e612894f8def31e4e9e4def4b8d236b1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 910acb3d412eaec48bae40d2495ff161, type: 2}
     - target: {fileID: 919132149155446097, guid: e612894f8def31e4e9e4def4b8d236b1, type: 3}
       propertyPath: m_Name
       value: stlpvrch
