@@ -138,7 +138,7 @@ public class GameController : MonoBehaviour
             var playerPosition = playersFinished.IndexOf(player.playerIndex);
             var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
 
-            player.money += player.moneyByRound + extra_income;
+            player.money += (4 * player.moneyByRound) / players.Count + extra_income;
         }
 
         onEndRace.Invoke();

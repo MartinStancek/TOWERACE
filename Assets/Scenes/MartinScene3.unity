@@ -35890,7 +35890,7 @@ MonoBehaviour:
   countDonwScoreText: {fileID: 1775252164}
   roundText: {fileID: 1609675973}
   winnerText: {fileID: 1249709245}
-  timeInSeconds: 1
+  timeInSeconds: 5
   resultsPanel: {fileID: 377304479}
   towerCountDownParent: {fileID: 1651178049}
   previousMoney: 
