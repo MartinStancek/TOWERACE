@@ -137,6 +137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stlp
       objectReference: {fileID: 0}
+    - target: {fileID: 946047305251413980, guid: 9a77b50e1c8c1ea40abb4786bac181eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2570135480624313963, guid: 9a77b50e1c8c1ea40abb4786bac181eb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -210,6 +214,10 @@ PrefabInstance:
     - target: {fileID: 946047305251413980, guid: 9a77b50e1c8c1ea40abb4786bac181eb, type: 3}
       propertyPath: m_Name
       value: Stlp (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 946047305251413980, guid: 9a77b50e1c8c1ea40abb4786bac181eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2570135480624313963, guid: 9a77b50e1c8c1ea40abb4786bac181eb, type: 3}
       propertyPath: m_RootOrder
