@@ -51,10 +51,6 @@ MonoBehaviour:
   coloredParts:
   - renderer: {fileID: 9021383984725793581}
     materialIndexes: 01000000
-  buySnapPanel: {fileID: 0}
-  buyTowerPanel: {fileID: 0}
-  selectSnapPanel: {fileID: 0}
-  priceText: {fileID: 0}
   tower: {fileID: 0}
   nearBoostPads: []
   inputImages:
