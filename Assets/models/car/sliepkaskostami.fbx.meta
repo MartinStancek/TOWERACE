@@ -30,6 +30,12 @@ ModelImporter:
   - first:
       74: -9037841625477971120
     second: Armature|Plane.007Action.003
+  - first:
+      74: 6221187890141279125
+    second: Armature|ArmatureAction.004
+  - first:
+      74: -8718967029479517697
+    second: Armature|ArmatureAction.006
   externalObjects: {}
   materials:
     materialImportMode: 2
