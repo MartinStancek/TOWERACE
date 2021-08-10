@@ -60,12 +60,35 @@ public class CheckPointController : MonoBehaviour
             rb.MovePosition(target.position);
             rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
             rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
+
+            rb.GetComponent<CarSphere>().isRespawned = true;
+
+            if (revertRespawnCor != null)
+            {
+                StopCoroutine(revertRespawnCor);
+            }
+            revertRespawnCor = StartCoroutine(RevertRespawn());
+
         }
     }
     int mod(int k, int n) { return ((k %= n) < 0) ? k + n : k; }
 
-    public void RestartCar()
+    Coroutine revertRespawnCor = null;
+    public void RestartPostion(Vector3 targetPosition)
     {
+        rb.MovePosition(targetPosition);
+        transform.rotation = Quaternion.identity;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+    }
+
+    private IEnumerator RevertRespawn()
+    {
+        yield return new WaitForSeconds(2);
+
+        rb.GetComponent<CarSphere>().isRespawned = false;
+        revertRespawnCor = null;
 
     }
 }

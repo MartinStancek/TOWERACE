@@ -20,9 +20,10 @@ public abstract class Tower : MonoBehaviour
 
         if (t && t.tag.Equals("CarSphere"))
         {
-            var cs = t.GetComponent<CarSphere>().carObject;
-            var p = cs.GetComponentInParent<Player>();
-            if (p.playerIndex != playerOwner)
+            var cs = t.GetComponent<CarSphere>();
+            var co = cs.carObject;
+            var p = co.GetComponentInParent<Player>();
+            if (p.playerIndex != playerOwner && !cs.isRespawned)
             {
                 targets.Add(t);
                 OnEnemyEnter(t);
