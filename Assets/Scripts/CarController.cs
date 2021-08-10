@@ -18,7 +18,7 @@ public class CarController : MonoBehaviour
     public float dragOnFly = 0.1f;
 
     private bool grounded;
-
+    public float speedGrainMultiplier = 3f; 
     public LayerMask whatIsGround;
     public float groundRayLength = 0.5f;
     public Transform groundRayPoint;
@@ -69,23 +69,24 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        speedInput = 0f;
+        var accel = 1f;
         if (verticalInput > 0)
         {
+            accel = forwardAccel;
             direction = 1;
-            speedInput = verticalInput * forwardAccel * 1000f;
         }
         else if (verticalInput < 0)
         {
-            speedInput = verticalInput * reverseAccel * 1000f;
+            accel = reverseAccel;
             direction = -1;
         }
+        speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
 
         turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime * turnSpeed);
 
         if (grounded)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * verticalInput, 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * speedInput, 0f));
         }
         foreach (var t in wheels)
         {
@@ -100,10 +101,6 @@ public class CarController : MonoBehaviour
         transform.position = rb.transform.position;
 
         //Debug.Log(rb.velocity.magnitude);
-    }
-    void LateUpdate()
-    {
-
     }
 
     void FixedUpdate()
