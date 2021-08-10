@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
 
     public GameObject towersSnapParent;
     public Transform lobbyReadyParent;
+    public Transform racePositionParent;
 
     public Transform towerPointerParent;
 
@@ -86,7 +87,10 @@ public class GameController : MonoBehaviour
         foreach (var player in players)
         {
             var cc = player.GetComponentInChildren<CarController>();
-            var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
+            var position = players.Count - playersFinished.IndexOf(player.playerIndex);
+            var targetPositionIndex = position - 1;
+            racePositionParent.GetChild(player.playerIndex).Find("Position").GetComponent<TMP_Text>().text = "" + position;
+
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
 
@@ -96,6 +100,8 @@ public class GameController : MonoBehaviour
             player.vcam.Follow = player.car.transform;
 
             var tt = player.GetComponent<TowerPlacer>();
+
+            racePositionParent.GetChild(player.playerIndex).gameObject.SetActive(true);
             //tt.placingState = TowerPlaceState.CHOOSING_SPOT;
             //towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null, -1);
         }
@@ -139,6 +145,8 @@ public class GameController : MonoBehaviour
             var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
 
             player.money += (4 * player.moneyByRound) / players.Count + extra_income;
+            racePositionParent.GetChild(player.playerIndex).gameObject.SetActive(false);
+
         }
 
         onEndRace.Invoke();
@@ -298,6 +306,19 @@ public class GameController : MonoBehaviour
             i++;
         }
         throw new Exception("Unable to find snap in towerSnapParent");
+    }
+
+    public void UpdateCheckPointPanel()
+    {
+        var orderedPlayers = players.OrderByDescending(e => e.checkPointController.lastCheckPointIndex).ToList();
+
+        for (var i = 0; i < orderedPlayers.Count; i++)
+        {
+            var player = orderedPlayers[i];
+            var panel = racePositionParent.GetChild(player.playerIndex);
+            Debug.Log("Player " + player.playerIndex);
+            panel.Find("Position").GetComponent<TMP_Text>().text = "" + (i + 1);
+        }
     }
 
 }

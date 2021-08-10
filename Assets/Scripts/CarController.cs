@@ -43,6 +43,9 @@ public class CarController : MonoBehaviour
     public float turnSpeed = 0.1f;
     private int direction = 1;
 
+    public Animator animChicken;
+    public float animChickenMultiplier = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,12 +84,17 @@ public class CarController : MonoBehaviour
             direction = -1;
         }
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
-
+        //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
         turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime * turnSpeed);
 
         if (grounded)
         {
+            animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * speedInput, 0f));
+        } 
+        else
+        {
+            animChicken.SetFloat("Speed", 0f);
         }
         foreach (var t in wheels)
         {
@@ -152,7 +160,6 @@ public class CarController : MonoBehaviour
             emissionModule.rate = emissionRate;
         }
     }
-
     public void RestartPostion(Vector3 targetPosition)
     {
         rb.MovePosition(targetPosition);
@@ -160,5 +167,7 @@ public class CarController : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
+
+
 
 }

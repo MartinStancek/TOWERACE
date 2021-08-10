@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     public CinemachineVirtualCamera vcam;
     public CarController car;
+    public CheckPointController checkPointController;
 
     public int startMoney = 100;
     public int moneyByRound = 100;

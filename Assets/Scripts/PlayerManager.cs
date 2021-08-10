@@ -81,6 +81,12 @@ public class PlayerManager : MonoBehaviour
 
         GameController.Instance.players.Add(p);
         GameController.Instance.lobbyReadyParent.GetChild(p.playerIndex).gameObject.SetActive(true);
+        var PosPanell = GameController.Instance.racePositionParent.GetChild(p.playerIndex);
+        PosPanell.GetComponent<Image>().color = p.playerColor;
+        foreach(Transform PosPanel in GameController.Instance.racePositionParent)
+        {
+            PosPanel.Find("PlayerCount").GetComponent<TMP_Text>().text = "" + GameController.Instance.players.Count;
+        }
 
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
@@ -88,6 +94,8 @@ public class PlayerManager : MonoBehaviour
         var towerPointer = GameController.Instance.towerPointerParent.GetChild(p.playerIndex);
         towerPointer.gameObject.SetActive(true);
         towerPointer.GetComponent<TowerPointerUI>().SetColor(p.playerColor);
+        GameController.Instance.UpdateCheckPointPanel();
+
     }
 
     private void SetPlayerCameraFinal()
