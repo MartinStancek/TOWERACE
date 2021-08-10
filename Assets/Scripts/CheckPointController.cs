@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CheckPointController : MonoBehaviour
 {
@@ -42,7 +45,7 @@ public class CheckPointController : MonoBehaviour
                 GetComponent<MSVehicleControllerFree>().isInsideTheCar = false;*/
 
             }
-
+            GameController.Instance.UpdateCheckPointPanel();
         }
     }
 

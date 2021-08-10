@@ -84,7 +84,7 @@ public class CarController : MonoBehaviour
             direction = -1;
         }
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
-        Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
+        //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
         turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime * turnSpeed);
 
         if (grounded)
