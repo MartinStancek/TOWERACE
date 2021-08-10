@@ -65,6 +65,9 @@
         },
         {
             "m_Id": "af063c433d6c438cbfdfb90297927f84"
+        },
+        {
+            "m_Id": "3fa602b6ba1f47a7af589b0cd038f8eb"
         }
     ],
     "m_GroupDatas": [],
@@ -237,6 +240,9 @@
             },
             {
                 "m_Id": "d03518ef4486480ea9504338d107a4ea"
+            },
+            {
+                "m_Id": "3fa602b6ba1f47a7af589b0cd038f8eb"
             }
         ]
     },
@@ -592,6 +598,39 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "3fa602b6ba1f47a7af589b0cd038f8eb",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.Alpha",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "85c203af74ae49778a49ca15daa32bb8"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.Alpha"
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "3fd3791424bc46acb7879053fc4f1946",
     "m_Id": 4,
@@ -906,7 +945,7 @@
     "m_ActiveSubTarget": {
         "m_Id": "b064aff6a48644ff8cb91384c541e71f"
     },
-    "m_SurfaceType": 0,
+    "m_SurfaceType": 1,
     "m_AlphaMode": 2,
     "m_TwoSided": false,
     "m_AlphaClip": false,
@@ -1007,6 +1046,21 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "85c203af74ae49778a49ca15daa32bb8",
+    "m_Id": 0,
+    "m_DisplayName": "Alpha",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Alpha",
+    "m_StageCapability": 2,
+    "m_Value": 1.0,
+    "m_DefaultValue": 1.0,
+    "m_Labels": []
 }
 
 {
