@@ -87,7 +87,10 @@ public class GameController : MonoBehaviour
         foreach (var player in players)
         {
             var cc = player.GetComponentInChildren<CarController>();
-            var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
+            var position = players.Count - playersFinished.IndexOf(player.playerIndex);
+            var targetPositionIndex = position - 1;
+            racePositionParent.GetChild(player.playerIndex).Find("Position").GetComponent<TMP_Text>().text = "" + position;
+
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
 
