@@ -39,6 +39,9 @@ ModelImporter:
   - first:
       74: 7738622313493689335
     second: Armature.003|ArmatureAction
+  - first:
+      74: 854842193812224381
+    second: Armature.003|ArmatureAction
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -69,7 +72,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Armature.003|ArmatureAction
-      takeName: Armature.003|ArmatureAction
+      takeName: kosti|ArmatureAction
       internalID: 0
       firstFrame: 4
       lastFrame: 20

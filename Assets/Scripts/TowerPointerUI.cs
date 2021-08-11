@@ -19,12 +19,19 @@ public class TowerPointerUI : MonoBehaviour
     public float horizontalOffsetWidth = 20f;
     public float verticalOffsetWidth = 5f;
 
+    public int actualSnapIndex = -1;
+
     public float horizontalOffsetWidthVertical = 20f;
     public float verticalOffsetWidthVertical = 5f;
 
     public Vector2 offset = new Vector2(10f, 10f);
 
     private TMP_Text towerName;
+
+    public RectTransform leftArrow;
+    public RectTransform rightArrow;
+    public RectTransform upArrow;
+    public RectTransform downArrow;
 
     void Start()
     {
@@ -60,6 +67,7 @@ public class TowerPointerUI : MonoBehaviour
     public void SetPointer(GameObject target)
     {
         var pointerRect = GetComponent<RectTransform>();
+        actualSnapIndex = target.transform.GetSiblingIndex();
 
         //this is your object that you want to have the UI element hovering over
         GameObject WorldObject = target.gameObject;
@@ -102,6 +110,30 @@ public class TowerPointerUI : MonoBehaviour
             verticalLine.rectTransform.sizeDelta = new Vector2(verticalWidth, verticalLine.rectTransform.sizeDelta.y);
         }
 
+        SetArrow(upArrow, Vector2.up);
+        SetArrow(downArrow, Vector2.down);
+        SetArrow(rightArrow, Vector2.right);
+        SetArrow(leftArrow, Vector2.left);
+    }
+
+    private void SetArrow(RectTransform arrow, Vector2 direction)
+    {
+        var player = GameController.Instance.players[transform.GetSiblingIndex()];
+        var snaps = GameController.Instance.GetFreeTowerSnapsInDirection(actualSnapIndex, direction, player);
+        if(snaps.Count > 0)
+        {
+            arrow.gameObject.SetActive(true);
+            var positioNext = GameController.Instance.snapsUI[snaps[0].transform.GetSiblingIndex()].position;
+            var position = GameController.Instance.snapsUI[actualSnapIndex].position;
+            var dir = positioNext - (position + (Vector2.one * 35 * direction));
+
+            arrow.eulerAngles = new Vector3(0, 0f, Vector2.SignedAngle(Vector2.right, dir));
+
+        }
+        else
+        {
+            arrow.gameObject.SetActive(false);
+        }
     }
 
     public void SetColor(Color c)
@@ -114,5 +146,9 @@ public class TowerPointerUI : MonoBehaviour
         selectSpot.GetComponent<Image>().color = c;
         buySpot.GetComponent<Image>().color = c;
         tower.GetComponent<Image>().color = c;
+        upArrow.GetComponentInChildren<Image>().color = c;
+        downArrow.GetComponentInChildren<Image>().color = c;
+        rightArrow.GetComponentInChildren<Image>().color = c;
+        leftArrow.GetComponentInChildren<Image>().color = c;
     }
 }

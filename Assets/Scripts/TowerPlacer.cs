@@ -61,7 +61,7 @@ public class TowerPlacer : MonoBehaviour
         if (context.performed)
         {
             //Debug.Log("OnSpotLeft performed");
-            MoveSpotLeft();
+            MoveSpot(Vector2.left);
 
         }
     }
@@ -70,7 +70,25 @@ public class TowerPlacer : MonoBehaviour
         if (context.performed)
         {
             //Debug.Log("OnSpotRight performed");
-            MoveSpotRight();
+            MoveSpot(Vector2.right);
+
+        }
+    }
+    public void OnSpotUp(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //Debug.Log("OnSpotLeft performed");
+            MoveSpot(Vector2.up);
+
+        }
+    }
+    public void OnSpotDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //Debug.Log("OnSpotRight performed");
+            MoveSpot(Vector2.down);
 
         }
     }
@@ -219,22 +237,10 @@ public class TowerPlacer : MonoBehaviour
 
     }
 
-    private void MoveSpotLeft()
-    {
-        var snaps = GameController.Instance.GetFreeTowerSnaps(0, snapIndex, player);
-        if (snaps.Count != 0)
-        {
-            var origTS = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
-            snapIndex = GameController.Instance.IndexOfSnap(snaps[snaps.Count - 1]);
-            var nextTS = snaps[snaps.Count - 1];
-            SetSnap(nextTS, origTS);
-        }
-    }
-
-    private void MoveSpotRight()
+    private void MoveSpot(Vector2 direction)
     {
         var count = GameController.Instance.towersSnapParent.transform.childCount;
-        var snaps = GameController.Instance.GetFreeTowerSnaps(snapIndex + 1, count, player);
+        var snaps = GameController.Instance.GetFreeTowerSnapsInDirection(snapIndex, direction, player);
 
         if (snaps.Count != 0)
         {
@@ -271,7 +277,7 @@ public class TowerPlacer : MonoBehaviour
     public void ClaimRandomSpot()
     {
         var count = GameController.Instance.towersSnapParent.transform.childCount;
-        var snaps = GameController.Instance.GetFreeTowerSnaps(0, count, player);
+        var snaps = GameController.Instance.GetAllFreeTowerSnapes(player);
         if(snaps.Count != 0)
         {
             var origTS = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
