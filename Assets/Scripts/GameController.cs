@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
     public GameObject towersSnapParent;
     public Transform lobbyReadyParent;
     public Transform racePositionParent;
+    public Transform wrongWayParent;
 
     public Transform towerPointerParent;
 
@@ -94,7 +95,9 @@ public class GameController : MonoBehaviour
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
 
-            cc.rb.transform.GetComponent<CheckPointController>().lastCheckPointIndex = -1;
+            var cpc = cc.rb.transform.GetComponent<CheckPointController>();
+            cpc.lastCheckPointIndex = -1;
+            cpc.lastPassed = -1;
             player.playerInput.SwitchCurrentActionMap("Car");
 
             player.vcam.Follow = player.car.transform;

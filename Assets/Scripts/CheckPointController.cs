@@ -15,6 +15,9 @@ public class CheckPointController : MonoBehaviour
 
     public int lastCheckPointIndex = -1;
 
+    public int lastPassed = -1;
+
+
     void Start()
     {
         startPosition = transform.position;
@@ -27,11 +30,26 @@ public class CheckPointController : MonoBehaviour
     {
         if((other.gameObject.layer & LayerMask.NameToLayer("CheckPoint")) != 0)
         {
+            var passed = other.transform.GetSiblingIndex();
             if (lastCheckPointIndex + 1 < checkPoints.childCount && checkPoints.GetChild(lastCheckPointIndex + 1).Equals(other.transform))
             {
                 lastCheckPointIndex++;
                 //Debug.Log("CheckPoint:" + lastCheckPointIndex);
+
             }
+            Debug.Log("passed: " + passed + ", checkPoints.childCount: " + checkPoints.childCount);
+            if (passed < lastPassed)
+            {
+                Debug.Log("setting wrongway");
+                SetWrongWay(true);
+            } 
+            else
+            {
+                Debug.Log("setting normalway");
+                SetWrongWay(false);
+            }
+
+            lastPassed = passed < checkPoints.childCount - 1 ? passed : lastPassed;
 
             if (lastCheckPointIndex + 1 == checkPoints.childCount) 
             {
@@ -47,6 +65,16 @@ public class CheckPointController : MonoBehaviour
             }
             GameController.Instance.UpdateCheckPointPanel();
         }
+    }
+
+    private void SetWrongWay(bool value)
+    {
+        var playerIndex = GetComponent<CarSphere>().carObject.transform.parent.GetComponent<Player>().playerIndex;
+        var playerCount = GameController.Instance.players.Count;
+        playerCount = playerCount == 3 ? 4 : playerCount;
+
+        var panel = GameController.Instance.wrongWayParent.Find("" + playerCount + "Players");
+        panel.GetChild(playerIndex).gameObject.SetActive(value);
     }
 
     private void OnCollisionEnter(Collision collision)
