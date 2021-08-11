@@ -37,15 +37,15 @@ public class CheckPointController : MonoBehaviour
                 //Debug.Log("CheckPoint:" + lastCheckPointIndex);
 
             }
-            Debug.Log("passed: " + passed + ", checkPoints.childCount: " + checkPoints.childCount);
+            //Debug.Log("passed: " + passed + ", checkPoints.childCount: " + checkPoints.childCount);
             if (passed < lastPassed)
             {
-                Debug.Log("setting wrongway");
+                //Debug.Log("setting wrongway");
                 SetWrongWay(true);
             } 
             else
             {
-                Debug.Log("setting normalway");
+                //Debug.Log("setting normalway");
                 SetWrongWay(false);
             }
 
