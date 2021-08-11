@@ -49,7 +49,7 @@ public class CheckPointController : MonoBehaviour
                 SetWrongWay(false);
             }
 
-            lastPassed = passed < checkPoints.childCount - 1 ? passed : lastPassed;
+            lastPassed = passed < checkPoints.childCount - 1 ? passed : -1;
 
             if (lastCheckPointIndex + 1 == checkPoints.childCount) 
             {
