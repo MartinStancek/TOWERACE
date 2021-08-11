@@ -88,7 +88,6 @@ public class GameController : MonoBehaviour
     public GameMode gameMode = GameMode.LOBBY;
 
     public List<SnapUI> snapsUI;
-    public GameObject snapUIPrefab;
 
     public void StartRace()
     {
