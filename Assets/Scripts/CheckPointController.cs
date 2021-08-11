@@ -28,7 +28,7 @@ public class CheckPointController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if((other.gameObject.layer & LayerMask.NameToLayer("CheckPoint")) != 0)
+        if(other.CompareTag("CheckPoint"))
         {
             var passed = other.transform.GetSiblingIndex();
             if (lastCheckPointIndex + 1 < checkPoints.childCount && checkPoints.GetChild(lastCheckPointIndex + 1).Equals(other.transform))
