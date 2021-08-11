@@ -13,7 +13,6 @@ public class SnapUI
 {
     public int index;
     public Vector2 position;
-    public GameObject go;
     public TowerSnap snap;
 
     public override string ToString()
@@ -342,11 +341,11 @@ public class GameController : MonoBehaviour
                 {
                     freeTowerSnaps.Add(snapUI);
                 }
-                snapUI.go.GetComponent<Image>().color = Color.cyan;
+                //snapUI.go.GetComponent<Image>().color = Color.cyan;
             } 
             else
             {
-                snapUI.go.GetComponent<Image>().color = Color.white;
+                //snapUI.go.GetComponent<Image>().color = Color.white;
 
             }
 
@@ -369,10 +368,6 @@ public class GameController : MonoBehaviour
             //this is your object that you want to have the UI element hovering over
             GameObject WorldObject = target.gameObject;
 
-            var go = Instantiate(snapUIPrefab, transform);
-            //this is the ui element
-            RectTransform UI_Element = go.GetComponent<RectTransform>();
-
             //first you need the RectTransform component of your canvas
             RectTransform CanvasRect = towerPointerParent.parent.GetComponent<RectTransform>();
 
@@ -384,13 +379,10 @@ public class GameController : MonoBehaviour
             ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * pointerRect.pivot.x)),
             ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * pointerRect.pivot.y)));
 
-            //now you can set the position of the ui element
-            UI_Element.anchoredPosition = WorldObject_ScreenPosition - towerPointerUI.offset;
 
             var newSnap = new SnapUI();
             newSnap.index = i;
             newSnap.position = WorldObject_ScreenPosition - towerPointerUI.offset;
-            newSnap.go = go;
             newSnap.snap = target.GetComponent<TowerSnap>();
 
             Debug.Log(newSnap.ToString());
