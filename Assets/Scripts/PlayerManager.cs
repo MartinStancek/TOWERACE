@@ -56,9 +56,17 @@ public class PlayerManager : MonoBehaviour
 
         input.camera.gameObject.SetActive(true);
 
-        var body = input.transform.Find("Car/race0/Skin/auto_ready1");
-        //body.GetComponent<MeshRenderer>().materials[1].color = playerColors[playerCount];
-        body.GetComponent<MeshRenderer>().materials[0].color = playerColors[playerCount];
+        var auto = input.transform.Find("Car/race0/Skin/auto_ready1");
+        var wheelLF = input.transform.Find("Car/race0/Skin/Wheels/FrontLeft/prednekolesolave");
+        var wheelRF = input.transform.Find("Car/race0/Skin/Wheels/FrontRight/prednekolesoprave");
+        var wheelLB = input.transform.Find("Car/race0/Skin/Wheels/zadnekolesolave");
+        var wheelRB = input.transform.Find("Car/race0/Skin/Wheels/zadnekolesoprave");
+
+        auto.GetComponent<MeshRenderer>().materials[1].color = playerColors[playerCount];
+        wheelLF.GetComponent<MeshRenderer>().materials[0].color = playerColors[playerCount];
+        wheelRF.GetComponent<MeshRenderer>().materials[0].color = playerColors[playerCount];
+        wheelLB.GetComponent<MeshRenderer>().materials[1].color = playerColors[playerCount];
+        wheelRB.GetComponent<MeshRenderer>().materials[1].color = playerColors[playerCount];
 
         input.transform.position = GameController.Instance.spawnPoints.GetChild(playerCount).position;
 
@@ -95,8 +103,8 @@ public class PlayerManager : MonoBehaviour
         towerPointer.gameObject.SetActive(true);
         towerPointer.GetComponent<TowerPointerUI>().SetColor(p.playerColor);
         GameController.Instance.UpdateCheckPointPanel();
-
     }
+
 
     private void SetPlayerCameraFinal()
     {

@@ -26,6 +26,7 @@ public class CarController : MonoBehaviour
     public Transform leftFrontWheel;
     public Transform rightFrontWheel;
     public float maxWheelTurn = 25f;
+    public float maxCarRotationDelta = 1f;
 
     public ParticleSystem[] dustTrial;
     public float maxEmission = 25f;
@@ -90,7 +91,9 @@ public class CarController : MonoBehaviour
         if (grounded)
         {
             animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * speedInput, 0f));
+            var rotationDelta = Mathf.Clamp(turnInput * turnStrength * Time.deltaTime * speedInput, -maxCarRotationDelta, maxCarRotationDelta);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotationDelta, 0f));
+            Debug.Log("rotationDelta: " + rotationDelta);
         } 
         else
         {
