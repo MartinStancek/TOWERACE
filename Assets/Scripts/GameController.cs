@@ -303,6 +303,11 @@ public class GameController : MonoBehaviour
 
         foreach (var snapUI in snapsUI)
         {
+            if (actualSnapIndex == snapUI.index)
+            {
+                continue;
+            }
+
             var p = new Vector2(actualSnap.position.x, actualSnap.position.z);
             var p0 = snapsUI[actualSnapIndex].position;
             var dist = 1000f;
@@ -346,7 +351,6 @@ public class GameController : MonoBehaviour
             else
             {
                 //snapUI.go.GetComponent<Image>().color = Color.white;
-
             }
 
         }

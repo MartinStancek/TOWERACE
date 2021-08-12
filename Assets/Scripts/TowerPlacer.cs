@@ -242,6 +242,8 @@ public class TowerPlacer : MonoBehaviour
         var count = GameController.Instance.towersSnapParent.transform.childCount;
         var snaps = GameController.Instance.GetFreeTowerSnapsInDirection(snapIndex, direction, player);
 
+        //Debug.Log("Moving in direction: " + direction + "actualIndex: " + snapIndex + "SnapsCount: " + snaps.Count);
+
         if (snaps.Count != 0)
         {
             var origTS = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
