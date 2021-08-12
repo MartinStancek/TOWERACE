@@ -9882,6 +9882,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5788533920940114791}
     m_Modifications:
+    - target: {fileID: 555272659728022970, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1656637768544039708, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: m_LocalScale.x
       value: 400
@@ -9964,7 +9968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3512311704944927392, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3525597931980155292, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: m_Enabled
@@ -9980,7 +9984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622605069069160706, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 1
+      value: 0.4117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622605069069160706, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
+      propertyPath: InitialModule.startColor.minColor.a
+      value: 0.5254902
       objectReference: {fileID: 0}
     - target: {fileID: 3622605069069160706, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: InitialModule.startColor.minColor.b
@@ -9996,7 +10004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622605069069160706, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3641257746308237619, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: m_Mesh
@@ -10113,6 +10121,10 @@ PrefabInstance:
     - target: {fileID: 7032746733690158444, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036326919570631490, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
+      propertyPath: m_Name
+      value: PulseIn
       objectReference: {fileID: 0}
     - target: {fileID: 7432685125296590656, guid: b1c258c5f23d6c24bb735082c6f28bf3, type: 3}
       propertyPath: ShapeModule.type
