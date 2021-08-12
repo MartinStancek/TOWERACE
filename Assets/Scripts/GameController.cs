@@ -8,6 +8,18 @@ using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
+public class SnapUI
+{
+    public int index;
+    public Vector2 position;
+    public TowerSnap snap;
+
+    public override string ToString()
+    {
+        return base.ToString() + "[index=" + index + ", position=" + position + "]";
+    }
+}
 public enum GameMode
 {
     LOBBY, TOWER_PLACING, RACING, RACING_RESULT
@@ -73,6 +85,8 @@ public class GameController : MonoBehaviour
 
     [HideInInspector]
     public GameMode gameMode = GameMode.LOBBY;
+
+    public List<SnapUI> snapsUI;
 
     public void StartRace()
     {
@@ -260,7 +274,6 @@ public class GameController : MonoBehaviour
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
         joinPanel.SetActive(true);
-
     }
 
     public void StartGame()
@@ -269,7 +282,9 @@ public class GameController : MonoBehaviour
 
         transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
         onStartGame.Invoke();
-        StartRace();
+        SetupUISnaps();
+
+        EndRace();
     }
 
     private void SetCarCameras(bool value)
@@ -281,20 +296,128 @@ public class GameController : MonoBehaviour
 
     }
 
-    public List<TowerSnap> GetFreeTowerSnaps(int fromIndex, int toIndex, Player player)
+    public List<TowerSnap> GetFreeTowerSnapsInDirection(int actualSnapIndex, Vector2 direction, Player player)
     {
-        var freeTowerSnaps = new List<TowerSnap>();
-        for (var i = fromIndex; i < toIndex; i++)
+        var freeTowerSnaps = new List<SnapUI>();
+        var actualSnap = towersSnapParent.transform.GetChild(actualSnapIndex);
+
+        foreach (var snapUI in snapsUI)
         {
-            var snap = towersSnapParent.transform.GetChild(i).GetComponent<TowerSnap>();
-            if ((!snap.isOccupied && snap.playerOwner == null) || (snap.playerOwner != null && snap.playerOwner.Equals(player)))
+            var p = new Vector2(actualSnap.position.x, actualSnap.position.z);
+            var p0 = snapsUI[actualSnapIndex].position;
+            var dist = 1000f;
+            var y_offset = Mathf.Tan(0.25f * Mathf.PI) * dist;
+            Vector2 p1, p2;
+            if (direction == Vector2.right)
             {
-                freeTowerSnaps.Add(snap);
+                p1 = new Vector2(p0.x + dist, p0.y + y_offset);
+                p2 = new Vector2(p0.x + dist, p0.y - y_offset);
+            }
+            else if (direction == Vector2.left)
+            {
+                p1 = new Vector2(p0.x - dist, p0.y + y_offset);
+                p2 = new Vector2(p0.x - dist, p0.y - y_offset);
+            }
+            else if (direction == Vector2.up)
+            {
+                p1 = new Vector2(p0.x + y_offset, p0.y + dist);
+                p2 = new Vector2(p0.x - y_offset, p0.y + dist);
+            }
+            else if (direction == Vector2.down)
+            {
+                p1 = new Vector2(p0.x + y_offset, p0.y - dist);
+                p2 = new Vector2(p0.x - y_offset, p0.y - dist);
+            }
+            else
+            {
+                throw new Exception("Unknown direction vector: " + direction);
+            }
+
+            if (PointInTriangle(snapUI.position, p0, p1, p2))
+            {
+                var snap = snapUI.snap;
+                if ((!snap.isOccupied && snap.playerOwner == null) ||
+                    (snap.playerOwner != null && snap.playerOwner.Equals(player)))
+                {
+                    freeTowerSnaps.Add(snapUI);
+                }
+                //snapUI.go.GetComponent<Image>().color = Color.cyan;
+            } 
+            else
+            {
+                //snapUI.go.GetComponent<Image>().color = Color.white;
 
             }
+
         }
 
+        return freeTowerSnaps
+            .OrderBy(e => Vector2.Distance(e.position, snapsUI[actualSnapIndex].position))
+            .Select(e => e.snap)
+            .ToList();
+    }
+    public void SetupUISnaps()
+    {
+        snapsUI = new List<SnapUI>();
+        var towerPointerUI = towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
+        for (var i = 0; i < towersSnapParent.transform.childCount; i++)
+        {
+            var target = towersSnapParent.transform.GetChild(i);
+            var pointerRect = towerPointerUI.GetComponent<RectTransform>();
+
+            //this is your object that you want to have the UI element hovering over
+            GameObject WorldObject = target.gameObject;
+
+            //first you need the RectTransform component of your canvas
+            RectTransform CanvasRect = towerPointerParent.parent.GetComponent<RectTransform>();
+
+            //then you calculate the position of the UI element
+            //0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
+
+            Vector2 ViewportPosition = mapCamera.WorldToViewportPoint(WorldObject.transform.position);
+            Vector2 WorldObject_ScreenPosition = new Vector2(
+            ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * pointerRect.pivot.x)),
+            ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * pointerRect.pivot.y)));
+
+
+            var newSnap = new SnapUI();
+            newSnap.index = i;
+            newSnap.position = WorldObject_ScreenPosition - towerPointerUI.offset;
+            newSnap.snap = target.GetComponent<TowerSnap>();
+
+            Debug.Log(newSnap.ToString());
+            snapsUI.Add(newSnap);
+        }
+    }
+    public List<TowerSnap> GetAllFreeTowerSnapes(Player player)
+    {
+        var freeTowerSnaps = new List<TowerSnap>();
+        foreach (Transform snapT in towersSnapParent.transform)
+        {
+            var snap = snapT.GetComponent<TowerSnap>();
+            if ((!snap.isOccupied && snap.playerOwner == null) ||
+                (snap.playerOwner != null && snap.playerOwner.Equals(player)))
+            {
+                freeTowerSnaps.Add(snap);
+            }
+        }
         return freeTowerSnaps;
+
+    }
+
+    public static bool PointInTriangle(Vector2 p, Vector2 p0, Vector2 p1, Vector2 p2)
+    {
+        var s = p0.y * p2.x - p0.x * p2.y + (p2.y - p0.y) * p.x + (p0.x - p2.x) * p.y;
+        var t = p0.x * p1.y - p0.y * p1.x + (p0.y - p1.y) * p.x + (p1.x - p0.x) * p.y;
+
+        if ((s < 0) != (t < 0))
+            return false;
+
+        var A = -p1.y * p2.x + p0.y * (p2.x - p1.x) + p0.x * (p1.y - p2.y) + p1.x * p2.y;
+
+        return A < 0 ?
+                (s <= 0 && s + t >= A) :
+                (s >= 0 && s + t <= A);
     }
 
     public int IndexOfSnap(TowerSnap snap)

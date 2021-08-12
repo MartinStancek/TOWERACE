@@ -208,6 +208,22 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Up",
+                    "type": "Button",
+                    "id": "b2a6c383-add2-44da-89d9-0f8b8f00a70d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "990f2fc7-ddd6-4285-9492-1c26fbe6103d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Left",
                     "type": "Button",
                     "id": "bd3091b4-0d3b-4b49-84a5-54789e89f70b",
@@ -318,6 +334,50 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "345e99ea-e484-483c-9c6f-d1be85989b00",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebf08ae2-a4a9-46e9-a418-2655dd7153df",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2e25aee-364f-4ede-b3c7-54fe5df9bb36",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a46ab23f-4bd6-4576-95ff-c32a0e7e6774",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

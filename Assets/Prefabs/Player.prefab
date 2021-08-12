@@ -512,6 +512,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9ffda243-69cb-42d6-93b9-b644c280ea34
     m_ActionName: Towers/Ready[/Keyboard/r,/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5845937106439852002}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b2a6c383-add2-44da-89d9-0f8b8f00a70d
+    m_ActionName: Spot/Up[/Keyboard/w,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID1/leftStick/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5845937106439852002}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 990f2fc7-ddd6-4285-9492-1c26fbe6103d
+    m_ActionName: Spot/Down[/Keyboard/s,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID1/leftStick/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Lobby
@@ -572,7 +604,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.2754489, y: -0.0000000112683995, z: 0.000000003228771, w: 0.96131575}
+  m_LocalRotation: {x: 0.27544886, y: 0.000000028649444, z: -0.000000008209017, w: 0.96131575}
   m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -641,8 +673,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.2754491, y: -0, z: -0, w: 0.9613157}
-  m_LocalPosition: {x: 2, y: 4.46, z: 98.55}
+  m_LocalRotation: {x: 0.27544886, y: 0.000000028649444, z: -0.000000008209017, w: 0.96131575}
+  m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5845937106439852003}

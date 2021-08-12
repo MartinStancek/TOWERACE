@@ -5340,6 +5340,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameMode: 0
+  snapsUI: []
+  snapUIPrefab: {fileID: 7122784733898025953, guid: 5dc71e6cbf5e35247ba0d47bf9c91013, type: 3}
 --- !u!1 &233465947
 GameObject:
   m_ObjectHideFlags: 0
@@ -42128,7 +42130,7 @@ MonoBehaviour:
   countDonwScoreText: {fileID: 1775252164}
   roundText: {fileID: 1609675973}
   winnerText: {fileID: 1249709245}
-  timeInSeconds: 5
+  timeInSeconds: 1
   resultsPanel: {fileID: 377304479}
   towerCountDownParent: {fileID: 1651178049}
   previousMoney: 
@@ -58023,6 +58025,10 @@ PrefabInstance:
     - target: {fileID: 8025638019232933522, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019232933522, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b898a7a08b47048b171252244562c5, type: 3}
