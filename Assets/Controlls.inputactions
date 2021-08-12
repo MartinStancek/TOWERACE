@@ -145,9 +145,31 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "negative",
+                    "id": "1cc8fdc6-c1f6-4d1a-8e09-61c3bf67cdb4",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "positive",
                     "id": "b765150c-3c8e-4b25-b755-1b6b29e3e331",
                     "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Steering",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "20f7f63a-f08a-4629-942a-48774f0a2e94",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -273,6 +295,17 @@
                 },
                 {
                     "name": "",
+                    "id": "480428ec-893c-40d0-abc9-fcde1a357562",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5279ad60-5dda-4016-9826-7ac4c3b53900",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -286,6 +319,17 @@
                     "name": "",
                     "id": "594c0aab-411f-4493-8d48-df8e78ed7d3e",
                     "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12cde0ce-a008-4af8-b364-2d3bb6812f5b",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -361,6 +405,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c302dfeb-b394-4d7b-b373-0a2e9978a111",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a2e25aee-364f-4ede-b3c7-54fe5df9bb36",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -374,6 +429,17 @@
                     "name": "",
                     "id": "a46ab23f-4bd6-4576-95ff-c32a0e7e6774",
                     "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d0e3d97-94c0-4770-99aa-bd6316c09e07",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -453,6 +519,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5517d3e8-6f28-4441-8ae7-94f174fcb899",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4f57c627-6748-415c-8d4d-3fd6a41c4d04",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -466,6 +543,17 @@
                     "name": "",
                     "id": "0e6b4d9a-edc5-43e2-b653-27dfdef75b88",
                     "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4dbbf4cc-c65d-48e7-b8e5-0afbb8342936",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
