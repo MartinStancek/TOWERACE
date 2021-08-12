@@ -90,7 +90,7 @@ public class TowerPointerUI : MonoBehaviour
         UI_Element.anchoredPosition = WorldObject_ScreenPosition - offset;
         var height = Mathf.Abs(circlePointer.rectTransform.anchoredPosition.y) + narrowLine.rectTransform.anchoredPosition.y;
         var length = height / Mathf.Sin(0.25f * Mathf.PI);
-        Debug.Log(height);
+        //Debug.Log(height);
         skewLine.rectTransform.sizeDelta = new Vector2(Mathf.Abs(length+ verticalOffsetWidth), skewLine.rectTransform.sizeDelta.y);
         var width = height / Mathf.Tan(0.25f * Mathf.PI);
         var horizontalWidth = (Mathf.Abs(circlePointer.rectTransform.anchoredPosition.x) - width + horizontalOffsetWidth);
