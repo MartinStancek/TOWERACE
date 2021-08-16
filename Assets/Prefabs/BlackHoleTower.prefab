@@ -4949,10 +4949,18 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.3
   coloredParts:
-  - renderer: {fileID: 2209092193386803790}
+  - particles: {fileID: 0}
+    renderer: {fileID: 2209092193386803790}
     materialIndexes: 0100000002000000
-  - renderer: {fileID: 5788533922034374191}
+  - particles: {fileID: 0}
+    renderer: {fileID: 5788533922034374191}
     materialIndexes: 00000000
+  - particles: {fileID: 910415965126372958}
+    renderer: {fileID: 0}
+    materialIndexes: 
+  - particles: {fileID: 7193407921716950654}
+    renderer: {fileID: 0}
+    materialIndexes: 
   strengthMultiplier: 40000
   backwardMultiplier: 40000
 --- !u!1 &5788533920940114788
@@ -5014,7 +5022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5788533922034374189}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 60, y: 0.01, z: 60}
   m_Children:
   - {fileID: 5306807488790304360}
