@@ -19,11 +19,13 @@ public class MeshRendererMaterials
                 renderer.materials[i].color = new Color(color.r, color.g, color.b, matA);
             }
         }
-        
+
         if (particles != null)
         {
             var main = particles.main;
-            main.startColor = color;
+            var matA = main.startColor.color.a;
+
+            main.startColor = new Color(color.r, color.g, color.b, matA);
         }
 
     }

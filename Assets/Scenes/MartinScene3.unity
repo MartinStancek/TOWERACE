@@ -345,9 +345,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 113158193}
+  - particles: {fileID: 0}
+    renderer: {fileID: 113158193}
     materialIndexes: 00000000
-  - renderer: {fileID: 1121438929}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1121438929}
     materialIndexes: 00000000
   head: {fileID: 409068136}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -1333,9 +1335,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1239114823}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1239114823}
     materialIndexes: 00000000
-  - renderer: {fileID: 539760683}
+  - particles: {fileID: 0}
+    renderer: {fileID: 539760683}
     materialIndexes: 00000000
   head: {fileID: 129606697}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -8958,9 +8962,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1535544417}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1535544417}
     materialIndexes: 00000000
-  - renderer: {fileID: 191023941}
+  - particles: {fileID: 0}
+    renderer: {fileID: 191023941}
     materialIndexes: 00000000
   head: {fileID: 161209737}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -10489,9 +10495,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1709887447}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1709887447}
     materialIndexes: 00000000
-  - renderer: {fileID: 1114570979}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1114570979}
     materialIndexes: 00000000
   head: {fileID: 521201488}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -10747,9 +10755,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1449293053}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1449293053}
     materialIndexes: 00000000
-  - renderer: {fileID: 206678279}
+  - particles: {fileID: 0}
+    renderer: {fileID: 206678279}
     materialIndexes: 00000000
   head: {fileID: 137853188}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -16914,9 +16924,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 848041634}
+  - particles: {fileID: 0}
+    renderer: {fileID: 848041634}
     materialIndexes: 00000000
-  - renderer: {fileID: 726241809}
+  - particles: {fileID: 0}
+    renderer: {fileID: 726241809}
     materialIndexes: 00000000
   head: {fileID: 90104151}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -24239,9 +24251,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1146983853}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1146983853}
     materialIndexes: 00000000
-  - renderer: {fileID: 233465949}
+  - particles: {fileID: 0}
+    renderer: {fileID: 233465949}
     materialIndexes: 00000000
   head: {fileID: 1576303596}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -29607,9 +29621,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1992616736}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1992616736}
     materialIndexes: 00000000
-  - renderer: {fileID: 1260192296}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1260192296}
     materialIndexes: 00000000
   head: {fileID: 575250702}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -32849,9 +32865,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1832379969}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1832379969}
     materialIndexes: 00000000
-  - renderer: {fileID: 1344290505}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1344290505}
     materialIndexes: 00000000
   head: {fileID: 1421189249}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -34156,9 +34174,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 999091881}
+  - particles: {fileID: 0}
+    renderer: {fileID: 999091881}
     materialIndexes: 00000000
-  - renderer: {fileID: 2144604540}
+  - particles: {fileID: 0}
+    renderer: {fileID: 2144604540}
     materialIndexes: 00000000
   head: {fileID: 408460934}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -35066,9 +35086,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1930098918}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1930098918}
     materialIndexes: 00000000
-  - renderer: {fileID: 409074738}
+  - particles: {fileID: 0}
+    renderer: {fileID: 409074738}
     materialIndexes: 00000000
   head: {fileID: 1836826423}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -39680,9 +39702,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1086042094}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1086042094}
     materialIndexes: 00000000
-  - renderer: {fileID: 1501640660}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1501640660}
     materialIndexes: 00000000
   head: {fileID: 2122988422}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -42533,9 +42557,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 240304848}
+  - particles: {fileID: 0}
+    renderer: {fileID: 240304848}
     materialIndexes: 00000000
-  - renderer: {fileID: 107823707}
+  - particles: {fileID: 0}
+    renderer: {fileID: 107823707}
     materialIndexes: 00000000
   head: {fileID: 1123673661}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -44083,9 +44109,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 1089842948}
+  - particles: {fileID: 0}
+    renderer: {fileID: 1089842948}
     materialIndexes: 00000000
-  - renderer: {fileID: 866616086}
+  - particles: {fileID: 0}
+    renderer: {fileID: 866616086}
     materialIndexes: 00000000
   head: {fileID: 1818097758}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -48329,8 +48357,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278255612
+  m_fontColor: {r: 0.9866247, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -48632,6 +48660,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -49455,6 +49487,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -50941,9 +50977,11 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 4416366472314681411}
+  - particles: {fileID: 0}
+    renderer: {fileID: 4416366472314681411}
     materialIndexes: 00000000
-  - renderer: {fileID: 4416366472575845342}
+  - particles: {fileID: 0}
+    renderer: {fileID: 4416366472575845342}
     materialIndexes: 00000000
   head: {fileID: 4416366471660954346}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
@@ -51896,6 +51934,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -51961,6 +52003,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -52627,6 +52673,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -52761,6 +52811,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -53216,6 +53270,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -53614,6 +53672,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -54512,6 +54574,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -54634,6 +54700,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -55280,6 +55350,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -57197,6 +57271,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -57392,6 +57470,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -57595,6 +57677,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -58111,6 +58197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4416366470773691930}
     m_Modifications:
+    - target: {fileID: 3088138752995595023, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4923217540681022331, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
       propertyPath: m_RootOrder
       value: 9
