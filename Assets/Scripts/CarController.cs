@@ -18,7 +18,7 @@ public class CarController : MonoBehaviour
     public float dragOnFly = 0.1f;
 
     private bool grounded;
-    public float speedGrainMultiplier = 3f; 
+    public float speedGrainMultiplier = 3f;
     public LayerMask whatIsGround;
     public float groundRayLength = 0.5f;
     public Transform groundRayPoint;
@@ -46,6 +46,13 @@ public class CarController : MonoBehaviour
 
     public Animator animChicken;
     public float animChickenMultiplier = 10f;
+
+    public GameObject chickenSkin;
+    public GameObject carSkin;
+
+    public float chickenBoost = 1.2f;
+    private float actualChickenBoost = 1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -94,8 +101,8 @@ public class CarController : MonoBehaviour
             var rotationDelta = Mathf.Clamp(turnInput * turnStrength * Time.deltaTime * speedInput, -maxCarRotationDelta, maxCarRotationDelta);
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotationDelta, 0f));
             //Debug.Log("rotationDelta: " + rotationDelta);
-        } 
-        else if(animChicken.isActiveAndEnabled)
+        }
+        else if (animChicken.isActiveAndEnabled)
         {
             animChicken.SetFloat("Speed", 0f);
         }
@@ -141,7 +148,7 @@ public class CarController : MonoBehaviour
 
             if (Mathf.Abs(speedInput) > 0)
             {
-                rb.AddForce(transform.forward * speedInput);
+                rb.AddForce(transform.forward * speedInput * actualChickenBoost);
 
                 emissionRate = maxEmission;
             }
@@ -169,6 +176,20 @@ public class CarController : MonoBehaviour
         transform.rotation = Quaternion.identity;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+    }
+
+    public void SetChickenSkin()
+    {
+        chickenSkin.SetActive(true);
+        carSkin.SetActive(false);
+        actualChickenBoost = chickenBoost;
+    }
+
+    public void SetCarSkin()
+    {
+        chickenSkin.SetActive(false);
+        carSkin.SetActive(true);
+        actualChickenBoost = 1f;
     }
 
 

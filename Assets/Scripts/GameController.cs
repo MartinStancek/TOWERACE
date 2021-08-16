@@ -113,6 +113,7 @@ public class GameController : MonoBehaviour
 
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
+            cc.SetCarSkin();
 
             var cpc = cc.rb.transform.GetComponent<CheckPointController>();
             cpc.lastCheckPointIndex = -1;
@@ -147,6 +148,8 @@ public class GameController : MonoBehaviour
             StopCoroutine(towerPlacingCountdownCor);
         }
 
+        
+
         onStartRace.Invoke();
     }
     public void EndRace()
@@ -166,6 +169,8 @@ public class GameController : MonoBehaviour
             var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
+            cc.SetCarSkin();
+
             player.SetReady(false);
 
             var playerPosition = playersFinished.IndexOf(player.playerIndex);

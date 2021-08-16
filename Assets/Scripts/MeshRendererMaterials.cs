@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeshRendererMaterials
 {
     public ParticleSystem particles;
-    public MeshRenderer renderer;
+    public Renderer renderer;
     public List<int> materialIndexes;
     public string colorField;
 
