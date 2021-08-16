@@ -322,7 +322,7 @@ public class GameController : MonoBehaviour
         onStartGame.Invoke();
         SetupUISnaps();
 
-        EndRace();
+        StartRace();
     }
 
     private void SetCarCameras(bool value)
