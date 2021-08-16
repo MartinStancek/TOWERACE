@@ -49,6 +49,7 @@ public class CarController : MonoBehaviour
 
     public GameObject chickenSkin;
     public GameObject carSkin;
+    public ParticleSystem chickenEffect;
 
     public float chickenBoost = 1.2f;
     private float actualChickenBoost = 1f;
@@ -180,16 +181,24 @@ public class CarController : MonoBehaviour
 
     public void SetChickenSkin()
     {
-        chickenSkin.SetActive(true);
         carSkin.SetActive(false);
+
         actualChickenBoost = chickenBoost;
+        if (!chickenSkin.activeInHierarchy)
+        {
+            chickenSkin.SetActive(true);
+            chickenEffect.Play();
+        }
     }
 
     public void SetCarSkin()
     {
         chickenSkin.SetActive(false);
-        carSkin.SetActive(true);
         actualChickenBoost = 1f;
+        if (!carSkin.activeInHierarchy) {
+            carSkin.SetActive(true);
+            chickenEffect.Play();
+        }
     }
 
 
