@@ -182,10 +182,13 @@ public class TowerPlacer : MonoBehaviour
             //placingState = TowerPlaceState.CHOOSING_SPOT;
             player.playerInput.SwitchCurrentActionMap("Spot");
 
+            ClaimRandomSpot();
+
             foreach (var pad in snap.nearBoostPads)
             {
                 pad.gameObject.SetActive(false);
             }
+
 
             
 

@@ -8,6 +8,7 @@ public class MeshRendererMaterials
     public ParticleSystem particles;
     public MeshRenderer renderer;
     public List<int> materialIndexes;
+    public string colorField;
 
     public void SetColor(Color color)
     {
@@ -18,7 +19,16 @@ public class MeshRendererMaterials
                 var matA = renderer.materials[i].color.a;
                 renderer.materials[i].color = new Color(color.r, color.g, color.b, matA);
             }
+
+            if (!string.IsNullOrEmpty(colorField))
+            {
+                var matA = renderer.material.GetColor(colorField).a;
+
+                renderer.material.SetColor(colorField, new Color(color.r, color.g, color.b, matA));
+            }
         }
+
+
 
         if (particles != null)
         {

@@ -375,7 +375,7 @@ public class GameController : MonoBehaviour
             {
                 var snap = snapUI.snap;
                 if ((!snap.isOccupied && snap.playerOwner == null) ||
-                    (snap.playerOwner != null && snap.playerOwner.Equals(player)))
+                    (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null))
                 {
                     freeTowerSnaps.Add(snapUI);
                 }
@@ -433,7 +433,7 @@ public class GameController : MonoBehaviour
         {
             var snap = snapT.GetComponent<TowerSnap>();
             if ((!snap.isOccupied && snap.playerOwner == null) ||
-                (snap.playerOwner != null && snap.playerOwner.Equals(player)))
+                (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null))
             {
                 freeTowerSnaps.Add(snap);
             }
