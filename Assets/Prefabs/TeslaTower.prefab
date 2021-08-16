@@ -75,7 +75,7 @@ MonoBehaviour:
   - particles: {fileID: 0}
     renderer: {fileID: 2254561873730837102}
     materialIndexes: 
-    colorField: Color_20ca814cfed747f5898c1c88132d98ed
+    colorField: Color_f8cb50be49e64291a81b7ed6fdc742a9
   - particles: {fileID: 211966101985001782}
     renderer: {fileID: 0}
     materialIndexes: 
