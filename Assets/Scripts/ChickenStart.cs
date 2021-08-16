@@ -46,6 +46,10 @@ public class ChickenStart : MonoBehaviour
         {
             targetBar.GetChild(carPassed).GetComponent<MeshRenderer>().material.color = passColor;
             carPassed++;
+            if(carPassed > GameController.Instance.players.Count)
+            {
+                RoundRestart();
+            }
             if (carPassed == GameController.Instance.players.Count)
             {
                 var cc = t.GetComponent<CarSphere>().carObject.GetComponent<CarController>();
