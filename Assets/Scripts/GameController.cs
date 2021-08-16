@@ -88,6 +88,11 @@ public class GameController : MonoBehaviour
 
     public List<SnapUI> snapsUI;
 
+    public Transform towerPlacingCountdown;
+    public TMP_Text towerPlacingCountdownText;
+    private Coroutine towerPlacingCountdownCor;
+    public int towerPlacingSeconds = 20;
+
     public void StartRace()
     {
         SetCarCameras(true);
@@ -136,6 +141,11 @@ public class GameController : MonoBehaviour
 
         StartCountdown();
         gameMode = GameMode.RACING;
+        towerPlacingCountdown.gameObject.SetActive(false);
+        if (towerPlacingCountdownCor != null) 
+        {
+            StopCoroutine(towerPlacingCountdownCor);
+        }
 
         onStartRace.Invoke();
     }
@@ -180,7 +190,13 @@ public class GameController : MonoBehaviour
             p.playerInput.SwitchCurrentActionMap("Spot");
 
         }
-
+        towerPlacingCountdown.gameObject.SetActive(true);
+        towerPlacingCountdownText.text = "" + towerPlacingSeconds;
+        towerPlacingCountdownCor = StartCoroutine(SetTowerPlacingCountDown(towerPlacingSeconds - 1, () =>
+        {
+            towerPlacingCountdownCor = null;
+            StartRace();
+        }));
         onRacingResultEnd.Invoke();
     }
 
@@ -239,6 +255,21 @@ public class GameController : MonoBehaviour
             }
         }
     }
+    private IEnumerator SetTowerPlacingCountDown(int secondsRemain, Action finishAction)
+    {
+        yield return new WaitForSeconds(1);
+
+        Debug.Log("TowerPlacingCountDown: " + secondsRemain);
+        if (secondsRemain > 0)
+        {
+            towerPlacingCountdownText.text = "" + secondsRemain;
+            yield return SetTowerPlacingCountDown(secondsRemain - 1, finishAction);
+        }
+        else
+        {
+            finishAction.Invoke();
+        }
+    }
     private IEnumerator SetCountdownText(int secondsRemain)
     {
         yield return new WaitForSeconds(3 - secondsRemain);
@@ -274,6 +305,8 @@ public class GameController : MonoBehaviour
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
         joinPanel.SetActive(true);
+        towerPlacingCountdown.gameObject.SetActive(false);
+
     }
 
     public void StartGame()
@@ -389,7 +422,7 @@ public class GameController : MonoBehaviour
             newSnap.position = WorldObject_ScreenPosition - towerPointerUI.offset;
             newSnap.snap = target.GetComponent<TowerSnap>();
 
-            Debug.Log(newSnap.ToString());
+            //Debug.Log(newSnap.ToString());
             snapsUI.Add(newSnap);
         }
     }
@@ -446,7 +479,7 @@ public class GameController : MonoBehaviour
         {
             var player = orderedPlayers[i];
             var panel = racePositionParent.GetChild(player.playerIndex);
-            Debug.Log("Player " + player.playerIndex);
+            //Debug.Log("Player " + player.playerIndex);
             panel.Find("Position").GetComponent<TMP_Text>().text = "" + (i + 1);
         }
     }

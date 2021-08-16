@@ -90,12 +90,12 @@ public class CarController : MonoBehaviour
 
         if (grounded)
         {
-            animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
+            if (animChicken.isActiveAndEnabled) animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
             var rotationDelta = Mathf.Clamp(turnInput * turnStrength * Time.deltaTime * speedInput, -maxCarRotationDelta, maxCarRotationDelta);
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotationDelta, 0f));
-            Debug.Log("rotationDelta: " + rotationDelta);
+            //Debug.Log("rotationDelta: " + rotationDelta);
         } 
-        else
+        else if(animChicken.isActiveAndEnabled)
         {
             animChicken.SetFloat("Speed", 0f);
         }
