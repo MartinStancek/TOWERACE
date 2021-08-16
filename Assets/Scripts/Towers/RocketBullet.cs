@@ -21,6 +21,8 @@ public class RocketBullet : MonoBehaviour
     public float radius = 10f;
     public float hitIntensity = 100f;
 
+    public GameObject rocketEffectPrefab;
+
     private void Update()
     {
         speed = Mathf.Lerp(speed, maxSpeed, Time.deltaTime * speedAcceleration);
@@ -51,12 +53,13 @@ public class RocketBullet : MonoBehaviour
                 Debug.Log("Object In Radius: " + obj.name);
                 if (obj.CompareTag("CarSphere"))
                 {
-                    var dir = (hit.point - obj.transform.position).normalized * hitIntensity;
+                    var dir = (obj.transform.position - hit.point).normalized * hitIntensity;
                     Debug.Log("Pushing car in " + dir);
 
                     obj.GetComponent<Rigidbody>().AddForce(dir);
                 }
             }
+            Instantiate(rocketEffectPrefab, hit.point, Quaternion.identity);
             Destroy(gameObject);
         }
     }

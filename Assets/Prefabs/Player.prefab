@@ -6015,7 +6015,7 @@ MonoBehaviour:
   animChickenMultiplier: 0.04
   chickenSkin: {fileID: 919132149374455012}
   carSkin: {fileID: 866345395}
-  chickenBoost: 1.1
+  chickenBoost: 1.2
 --- !u!1 &8754894382503140655
 GameObject:
   m_ObjectHideFlags: 0
