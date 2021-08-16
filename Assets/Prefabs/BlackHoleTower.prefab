@@ -4864,7 +4864,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
-  m_MinParticleSize: 0
+  m_MinParticleSize: 1
   m_MaxParticleSize: 1
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
@@ -4952,15 +4952,19 @@ MonoBehaviour:
   - particles: {fileID: 0}
     renderer: {fileID: 2209092193386803790}
     materialIndexes: 0100000002000000
+    colorField: 
   - particles: {fileID: 0}
     renderer: {fileID: 5788533922034374191}
     materialIndexes: 00000000
+    colorField: 
   - particles: {fileID: 910415965126372958}
     renderer: {fileID: 0}
     materialIndexes: 
+    colorField: 
   - particles: {fileID: 7193407921716950654}
     renderer: {fileID: 0}
     materialIndexes: 
+    colorField: 
   strengthMultiplier: 40000
   backwardMultiplier: 40000
 --- !u!1 &5788533920940114788
@@ -9860,7 +9864,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
-  m_MinParticleSize: 0
+  m_MinParticleSize: 1
   m_MaxParticleSize: 1
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
