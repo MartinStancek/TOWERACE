@@ -1,0 +1,385 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &337239402839353949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264718958557233319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 306f787295c668c4392087fbf66f5ae5, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3166921833423973466}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnAcceleration
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 08ea905c-8c65-4588-b179-32d275c89d58
+    m_ActionName: Car/Acceleration[/Keyboard/downArrow,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3166921833423973466}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnSteering
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bcc8b768-36bc-40bf-9231-33bd923bf862
+    m_ActionName: Car/Steering[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6515043038440150702}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9961964e-52b5-4164-beaa-b6a1cb6c4d93
+    m_ActionName: Lobby/Ready[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0e0af4a5-4c6b-421b-a66d-6fc83117c920
+    m_ActionName: Spot/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b2a6c383-add2-44da-89d9-0f8b8f00a70d
+    m_ActionName: Spot/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 990f2fc7-ddd6-4285-9492-1c26fbe6103d
+    m_ActionName: Spot/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd3091b4-0d3b-4b49-84a5-54789e89f70b
+    m_ActionName: Spot/Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnSpotClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c6a1f27a-fb70-434f-af51-f2fa57e91d1d
+    m_ActionName: Spot/Enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6515043038440150702}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d9ce14f-51a7-4ce8-a581-312f5dda4e06
+    m_ActionName: Spot/Ready[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnTowerLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f79e9089-e769-4a90-9c27-e025f7eac5ca
+    m_ActionName: Towers/Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnTowerRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b91b73ff-c4ab-4634-bb73-6823ef93055d
+    m_ActionName: Towers/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnTowerClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e92dda6e-b2c3-410e-a85e-fad10bd1e22a
+    m_ActionName: Towers/Click[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 264718958557233305}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: OnTowerBackClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ccb31df2-75ae-4d9b-bbdc-98e3e70f147a
+    m_ActionName: Towers/Back[/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6515043038440150702}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPlayerReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9ffda243-69cb-42d6-93b9-b644c280ea34
+    m_ActionName: Towers/Ready[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Lobby
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 7606206576532118227}
+--- !u!1001 &5948279492018622331
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2754489
+      objectReference: {fileID: 0}
+    - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1.6389228e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 9.041256e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980347957167298490, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439851996, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_Name
+      value: PlayerKeyboard2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845937106439852003, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990050086330467579, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.2754489
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990050086330467579, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1.6389228e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990050086330467579, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 9.041256e-17
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9126561931698728850, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+--- !u!1 &264718958557233319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5845937106439851996, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+  m_PrefabInstance: {fileID: 5948279492018622331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &264718958557233305 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5845937106439852002, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+  m_PrefabInstance: {fileID: 5948279492018622331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264718958557233319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca233c8b376cda4c934aa192a3ee499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6515043038440150702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 641373233649129941, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+  m_PrefabInstance: {fileID: 5948279492018622331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264718958557233319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf49d3021c5b96428c0c41ac5f8b609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3166921833423973466 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8754894382217880353, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+  m_PrefabInstance: {fileID: 5948279492018622331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5519a00effff24d4a9a105335523f683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!20 &7606206576532118227 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4252000830672934312, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+  m_PrefabInstance: {fileID: 5948279492018622331}
+  m_PrefabAsset: {fileID: 0}

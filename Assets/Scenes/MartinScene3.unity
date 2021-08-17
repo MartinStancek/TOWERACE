@@ -19475,6 +19475,7 @@ MonoBehaviour:
   - {r: 0, g: 0.8666667, b: 0.90588236, a: 1}
   - {r: 0.90588236, g: 0, b: 0.69803923, a: 1}
   - {r: 0.85490197, g: 1, b: 0, a: 1}
+  customKeyboardPlayerPrefab: {fileID: 264718958557233319, guid: ec4a50fd86c6bbd42aed17357bbc9668, type: 3}
 --- !u!114 &832815141
 MonoBehaviour:
   m_ObjectHideFlags: 0
