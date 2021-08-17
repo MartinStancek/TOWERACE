@@ -15,14 +15,28 @@ public class PlayerManager : MonoBehaviour
 
     public List<Color> playerColors;
 
+    public GameObject customKeyboardPlayerPrefab;
+    private bool customPlayerJoined = false;
     private void Awake()
     {
         playerCount = 0;
         GameController.Instance.backGroundCamera.gameObject.SetActive(true);
     }
 
+    private void Update()
+    {
+        if (Keyboard.current.enterKey.wasPressedThisFrame && !customPlayerJoined)
+        {
+            //var pim = GetComponent<PlayerInputManager>();
+            var go = Instantiate(customKeyboardPlayerPrefab);
+            //OnPlayerJoined(go.GetComponent<PlayerInputCustom>());
+            customPlayerJoined = true;
+        }
+    }
+
     public void OnPlayerJoined(PlayerInput input)
     {
+        Debug.Log("PlayerJoined!");
         if (playerCount == 0)
         {
             input.camera.rect = new Rect(new Vector2(0f, 0.5f), new Vector2(1f, 0.5f));
