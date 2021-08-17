@@ -114,6 +114,7 @@ public class GameController : MonoBehaviour
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
             cc.SetCarSkin();
+            //cc.SetChickenSkin();
 
             var cpc = cc.rb.transform.GetComponent<CheckPointController>();
             cpc.lastCheckPointIndex = -1;
