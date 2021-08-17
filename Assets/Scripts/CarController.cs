@@ -54,7 +54,8 @@ public class CarController : MonoBehaviour
     public float chickenBoost = 1.2f;
     private float actualChickenBoost = 1f;
 
-
+    private float wheelRotationInput = 0;
+    public float magnitudePowMultiplier = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -94,13 +95,15 @@ public class CarController : MonoBehaviour
         }
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
         //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
-        turnInput = Mathf.Lerp(turnInput, horizontalInput, Time.deltaTime * turnSpeed);
+        wheelRotationInput = Mathf.Lerp(wheelRotationInput, horizontalInput, Time.deltaTime * turnSpeed);
 
+        var clampedMagnitude = Mathf.Clamp(Mathf.Pow(rb.velocity.magnitude, magnitudePowMultiplier), -maxCarRotationDelta, maxCarRotationDelta);
+        turnInput = Mathf.Lerp(turnInput, horizontalInput * turnStrength * clampedMagnitude, Time.deltaTime * turnSpeed);
+        Debug.Log(clampedMagnitude);
         if (grounded)
         {
             if (animChicken.isActiveAndEnabled) animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
-            var rotationDelta = Mathf.Clamp(turnInput * turnStrength * Time.deltaTime * speedInput, -maxCarRotationDelta, maxCarRotationDelta);
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, rotationDelta, 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * Time.deltaTime, 0f));
             //Debug.Log("rotationDelta: " + rotationDelta);
         }
         else if (animChicken.isActiveAndEnabled)
@@ -111,8 +114,8 @@ public class CarController : MonoBehaviour
         {
             t.Rotate(Vector3.right, wheelRotationSpeed * Time.deltaTime * rb.velocity.magnitude * direction, Space.Self);
         }
-        leftFrontWheel.localEulerAngles = new Vector3(leftFrontWheel.localEulerAngles.x, (turnInput * maxWheelTurn)/* - 180*/, 0f);
-        rightFrontWheel.localEulerAngles = new Vector3(rightFrontWheel.localEulerAngles.x, turnInput * maxWheelTurn, 0f);
+        leftFrontWheel.localEulerAngles = new Vector3(leftFrontWheel.localEulerAngles.x, (wheelRotationInput * maxWheelTurn)/* - 180*/, 0f);
+        rightFrontWheel.localEulerAngles = new Vector3(rightFrontWheel.localEulerAngles.x, wheelRotationInput * maxWheelTurn, 0f);
 
 
 
@@ -149,7 +152,7 @@ public class CarController : MonoBehaviour
 
             if (Mathf.Abs(speedInput) > 0)
             {
-                rb.AddForce(transform.forward * speedInput * actualChickenBoost);
+                rb.AddForce(transform.forward * speedInput * actualChickenBoost, ForceMode.Force);
 
                 emissionRate = maxEmission;
             }
@@ -157,7 +160,7 @@ public class CarController : MonoBehaviour
         else
         {
             rb.drag = 0.1f;
-            rb.AddForce(Vector3.up * -gravityForce * 100f);
+            rb.AddForce(Vector3.up * -gravityForce * 100f, ForceMode.Force);
         }
 
         SetEmmision(emissionRate);
