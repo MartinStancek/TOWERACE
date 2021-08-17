@@ -249,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207418998812580366}
   m_LocalRotation: {x: 0.7052838, y: -0, z: -0, w: 0.7089251}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1.04, y: 1.04, z: 1.04}
   m_Children: []
   m_Father: {fileID: 62542434969660110}
@@ -264,7 +264,7 @@ ParticleSystem:
   m_GameObject: {fileID: 207418998812580366}
   serializedVersion: 7
   lengthInSec: 5
-  simulationSpeed: 0.75
+  simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -445,7 +445,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.48235294}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.7058824}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5053,7 +5053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8709098719679649780
 Transform:
   m_ObjectHideFlags: 0
@@ -5077,7 +5077,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4466205759128569880}
   serializedVersion: 7
   lengthInSec: 5
-  simulationSpeed: 2
+  simulationSpeed: 4
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -5258,7 +5258,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6017,28 +6017,28 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0.8648649
-          inSlope: 0.2731414
-          outSlope: 0.2731414
+          time: 0.02906686
+          value: 0.91786224
+          inSlope: 0.16602069
+          outSlope: 0.16602069
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.49474415
+          time: 0.523811
           value: 1
-          inSlope: 0.00096045434
-          outSlope: 0.00096045434
+          inSlope: -0.0032345727
+          outSlope: -0.0032345727
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.9929923
-          value: 0.8648649
-          inSlope: -0.2712205
-          outSlope: -0.2712205
+          time: 1
+          value: 0.91786224
+          inSlope: -0.17248984
+          outSlope: -0.17248984
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -6350,31 +6350,31 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 0, g: 0, b: 0, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 1, g: 1, b: 1, a: 0}
+        key3: {r: 1, g: 1, b: 1, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 30840
-        ctime2: 64764
-        ctime3: 0
+        ctime1: 21588
+        ctime2: 46838
+        ctime3: 64764
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 30647
-        atime2: 65535
-        atime3: 0
-        atime4: 0
+        atime1: 22359
+        atime2: 33924
+        atime3: 46453
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 3
-        m_NumAlphaKeys: 3
+        m_NumColorKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9803,7 +9803,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b62e9e0e6a72aca44a87431518783a9f, type: 2}
+  - {fileID: 2100000, guid: a973c75352b9e2543aa282e19aa98055, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
