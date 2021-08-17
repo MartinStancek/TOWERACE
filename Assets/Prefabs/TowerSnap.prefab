@@ -48,8 +48,10 @@ MonoBehaviour:
   price: 100
   playerOwner: {fileID: 0}
   coloredParts:
-  - renderer: {fileID: 5105858804119100477}
+  - particles: {fileID: 0}
+    renderer: {fileID: 5105858804119100477}
     materialIndexes: 01000000
+    colorField: 
   tower: {fileID: 0}
   nearBoostPads: []
   inputImages:

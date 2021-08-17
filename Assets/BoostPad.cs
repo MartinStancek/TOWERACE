@@ -9,7 +9,7 @@ public class BoostPad : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         var t = other.GetComponent<Rigidbody>();
-        Debug.Log("BoostPad trigger: " + other.transform.name);
+        //Debug.Log("BoostPad trigger: " + other.transform.name);
 
         if (t && t.tag.Equals("CarSphere"))
         {

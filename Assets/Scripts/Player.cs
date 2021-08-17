@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+
+    public List<MeshRendererMaterials> coloredParts;
+
     public int playerIndex;
     public Color playerColor;
 
