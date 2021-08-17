@@ -250,7 +250,7 @@ MonoBehaviour:
     m_ActionId: 9ffda243-69cb-42d6-93b9-b644c280ea34
     m_ActionName: Towers/Ready[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Lobby
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7606206576532118227}
@@ -272,6 +272,10 @@ PrefabInstance:
     - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.z
       value: 9.041256e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 641373233649129941, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+      propertyPath: isCustomPlayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1980347957167298490, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_Materials.Array.data[0]

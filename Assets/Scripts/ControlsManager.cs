@@ -37,7 +37,8 @@ public class ControlsManager : MonoBehaviour
         }
     }
     #endregion
-    public InputIcons keyboardIcon;
+    public InputIcons keyboardIcons;
+    public InputIcons keyboard2Icons;
     public InputIcons gamepadIcons;
 
     public Sprite GetSprite(int playerIndex, InputType type)
@@ -48,11 +49,13 @@ public class ControlsManager : MonoBehaviour
             playerIndex = 0;
         }
         var scheme = GameController.Instance.players[playerIndex].controlScheme;
-        //Debug.Log("Scheme is: " + scheme);
+        Debug.Log("Scheme is: " + scheme);
         switch (scheme)
         {
             case "Keyboard":
-                return GetType(type, keyboardIcon);
+                return GetType(type, keyboardIcons);
+            case "Keyboard2":
+                return GetType(type, keyboard2Icons);
             case "Controller":
                 return GetType(type, gamepadIcons);
             default:
