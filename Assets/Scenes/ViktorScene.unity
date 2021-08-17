@@ -188,7 +188,7 @@ Transform:
   - {fileID: 1495616701}
   - {fileID: 129674631}
   m_Father: {fileID: 1457997487}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7033370
 MonoBehaviour:
@@ -205,10 +205,14 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 808211989}
+  - particles: {fileID: 0}
+    renderer: {fileID: 808211989}
     materialIndexes: 00000000
-  - renderer: {fileID: 129674632}
+    colorField: 
+  - particles: {fileID: 0}
+    renderer: {fileID: 129674632}
     materialIndexes: 00000000
+    colorField: 
   head: {fileID: 1495616700}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
   bulletSpawn: {fileID: 688501651}
@@ -2165,6 +2169,9 @@ MonoBehaviour:
   joinPanel: {fileID: 1507404752}
   towersSnapParent: {fileID: 2099575878}
   lobbyReadyParent: {fileID: 2054706560}
+  racePositionParent: {fileID: 0}
+  wrongWayParent: {fileID: 0}
+  towerPointerParent: {fileID: 0}
   playersFinished: 
   players: []
   checkPonts: {fileID: 215720960}
@@ -2183,6 +2190,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameMode: 0
+  snapsUI: []
+  towerPlacingCountdown: {fileID: 0}
+  towerPlacingCountdownText: {fileID: 0}
+  towerPlacingSeconds: 20
 --- !u!1 &239246471
 GameObject:
   m_ObjectHideFlags: 0
@@ -15324,6 +15335,7 @@ MonoBehaviour:
   countDonwScoreText: {fileID: 1775252164}
   roundText: {fileID: 1609675973}
   winnerText: {fileID: 1249709245}
+  timeInSeconds: 3
   resultsPanel: {fileID: 377304479}
   towerCountDownParent: {fileID: 1651178049}
   previousMoney: 
@@ -19316,10 +19328,14 @@ MonoBehaviour:
   playerOwner: -1
   shootEvery: 0.2
   coloredParts:
-  - renderer: {fileID: 8608288882230758660}
+  - particles: {fileID: 0}
+    renderer: {fileID: 8608288882230758660}
     materialIndexes: 00000000
-  - renderer: {fileID: 7051331803893196157}
+    colorField: 
+  - particles: {fileID: 0}
+    renderer: {fileID: 7051331803893196157}
     materialIndexes: 00000000
+    colorField: 
   head: {fileID: 8608288881813860260}
   bulltePrefab: {fileID: 1492888531822598295, guid: 35f8d2f9d3a70c246af2321c4c20f53a, type: 3}
   bulletSpawn: {fileID: 8608288881560095515}
@@ -19358,7 +19374,7 @@ Transform:
   - {fileID: 8608288881813860261}
   - {fileID: 8859473133712126937}
   m_Father: {fileID: 1989694326}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8608288882804870200
 MeshFilter:
