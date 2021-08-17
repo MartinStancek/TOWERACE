@@ -99,7 +99,6 @@ public class CarController : MonoBehaviour
 
         var clampedMagnitude = Mathf.Clamp(Mathf.Pow(rb.velocity.magnitude, magnitudePowMultiplier), -maxCarRotationDelta, maxCarRotationDelta);
         turnInput = Mathf.Lerp(turnInput, horizontalInput * turnStrength * clampedMagnitude, Time.deltaTime * turnSpeed);
-        Debug.Log(clampedMagnitude);
         if (grounded)
         {
             if (animChicken.isActiveAndEnabled) animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
