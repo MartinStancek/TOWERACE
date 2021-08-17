@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
 
     public TMP_Text moneyVisual;
 
+    public bool isCustomPlayer = false;
 
     public PlayerInput playerInput;
 

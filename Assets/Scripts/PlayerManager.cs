@@ -36,7 +36,6 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput input)
     {
-        Debug.Log("PlayerJoined!");
         if (playerCount == 0)
         {
             input.camera.rect = new Rect(new Vector2(0f, 0.5f), new Vector2(1f, 0.5f));
@@ -76,9 +75,17 @@ public class PlayerManager : MonoBehaviour
         var p = input.gameObject.GetComponent<Player>();
         p.playerIndex = playerCount;
         p.playerColor = playerColors[playerCount];
-        p.controlScheme = input.currentControlScheme;
+        if (p.isCustomPlayer)
+        {
+            p.controlScheme = "Keyboard2";
+        }
+        else
+        {
+            p.controlScheme = input.currentControlScheme;
+        }
+        Debug.Log("PlayerJoined with scheme: \"" + p.controlScheme + "\"");
 
-        foreach(var r in p.coloredParts)
+        foreach (var r in p.coloredParts)
         {
             r.SetColor(p.playerColor);
         }
