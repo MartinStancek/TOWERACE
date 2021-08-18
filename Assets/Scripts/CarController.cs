@@ -46,8 +46,9 @@ public class CarController : MonoBehaviour
 
     public Animator animChicken;
     public float animChickenMultiplier = 10f;
+    public float animChickenMaxSpeed = 2f;
 
-    public GameObject chickenSkin;
+    public SkinnedMeshRenderer chickenSkin;
     public GameObject carSkin;
     public ParticleSystem chickenEffect;
 
@@ -101,7 +102,12 @@ public class CarController : MonoBehaviour
         turnInput = Mathf.Lerp(turnInput, horizontalInput * turnStrength * clampedMagnitude, Time.deltaTime * turnSpeed);
         if (grounded)
         {
-            if (animChicken.isActiveAndEnabled) animChicken.SetFloat("Speed", rb.velocity.magnitude * animChickenMultiplier);
+            if (animChicken.isActiveAndEnabled)
+            {
+                var speed = Mathf.Clamp(rb.velocity.magnitude * animChickenMultiplier, -animChickenMaxSpeed, animChickenMaxSpeed);
+                animChicken.SetFloat("Speed", speed);
+            }
+
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * Time.deltaTime, 0f));
             //Debug.Log("rotationDelta: " + rotationDelta);
         }
@@ -183,21 +189,22 @@ public class CarController : MonoBehaviour
 
     public void SetChickenSkin()
     {
-        carSkin.SetActive(false);
-
         actualChickenBoost = chickenBoost;
-        if (!chickenSkin.activeInHierarchy)
+        if (!chickenSkin.gameObject.activeInHierarchy)
         {
-            chickenSkin.SetActive(true);
+            chickenSkin.gameObject.SetActive(true);
             chickenEffect.Play();
+            carSkin.SetActive(false);
+
         }
     }
 
     public void SetCarSkin()
     {
-        chickenSkin.SetActive(false);
         actualChickenBoost = 1f;
-        if (!carSkin.activeInHierarchy) {
+        if (!carSkin.activeInHierarchy)
+        {
+            chickenSkin.gameObject.SetActive(false);
             carSkin.SetActive(true);
             chickenEffect.Play();
         }
