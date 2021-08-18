@@ -7,6 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    #region Singleton
+    private static MenuManager _instance;
+    public static MenuManager Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                _instance = GameObject.FindObjectOfType<MenuManager>();
+            }
+            return _instance;
+
+        }
+    }
+    #endregion
     public Button startButton;
 
     public Transform mainMenuPanel;
@@ -14,14 +29,25 @@ public class MenuManager : MonoBehaviour
     public Transform controlsPanel;
     public Transform soundPanel;
 
-    void Start()
+    public bool isPaused
     {
+        get { return Time.timeScale == 0; }
+    }
+
+    void Awake()
+    {
+        _instance = this;
         try
         {
             startButton.Select();
         } catch (Exception e)
         {
             //jeble unity 
+        }
+
+        if (GameController.Instance)
+        {
+            gameObject.SetActive(false);
         }
     }
 
@@ -46,4 +72,16 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void ContinueGame()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void PauseGame()
+    {
+        gameObject.SetActive(true);
+        startButton.Select();
+        Time.timeScale = 0f;
+    }
 }
