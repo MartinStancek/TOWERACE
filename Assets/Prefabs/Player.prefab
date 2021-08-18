@@ -10804,7 +10804,7 @@ MonoBehaviour:
   reverseAccel: 4
   maxSpeed: 50
   turnStrength: 3.5
-  gravityForce: 10
+  gravityForce: 20
   dragOnGround: 2
   dragOnFly: 0.5
   speedGrainMultiplier: 2.5

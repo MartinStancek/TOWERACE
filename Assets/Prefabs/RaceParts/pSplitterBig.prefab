@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!64 &1410397411658216726
+--- !u!64 &1428638752035482649
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,7 +49,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1523425506973765331, guid: 5f5bfa6f92f6dfe41806c477aae9cd15, type: 3}
+  m_Mesh: {fileID: -81034120217961924, guid: 5f5bfa6f92f6dfe41806c477aae9cd15, type: 3}
 --- !u!1001 &941407803322432511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,6 +199,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 5f5bfa6f92f6dfe41806c477aae9cd15, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 5f5bfa6f92f6dfe41806c477aae9cd15, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: de2c044264e5ff249994fb11aa1fc7d7, type: 2}
     - target: {fileID: 919132149155446097, guid: 5f5bfa6f92f6dfe41806c477aae9cd15, type: 3}
       propertyPath: m_Name
       value: ROZDVOJKA_Y_6_WIDE

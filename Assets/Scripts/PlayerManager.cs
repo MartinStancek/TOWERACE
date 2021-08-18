@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Linq;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class PlayerManager : MonoBehaviour
             customPlayerJoined = true;
         }
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame || Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0)
         {
             if (MenuManager.Instance.isPaused)
             {
