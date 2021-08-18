@@ -32,6 +32,19 @@ public class PlayerManager : MonoBehaviour
             //OnPlayerJoined(go.GetComponent<PlayerInputCustom>());
             customPlayerJoined = true;
         }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (MenuManager.Instance.isPaused)
+            {
+                MenuManager.Instance.ContinueGame();
+            }
+            else
+            {
+                MenuManager.Instance.PauseGame();
+
+            }
+        }
     }
 
     public void OnPlayerJoined(PlayerInput input)
@@ -62,6 +75,11 @@ public class PlayerManager : MonoBehaviour
         if (playerCount == 3)
         {
             input.camera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
+        }
+
+        foreach(var d in input.devices)
+        {
+            Debug.Log("player " + playerCount + "controller: " + d.displayName);
         }
 
         playerCameras.Add(input.camera);
