@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &4573482259584648070
+--- !u!64 &1240995848789323488
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,7 +13,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 9108634492903771258, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
+  m_Mesh: {fileID: 8852869811627428449, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
 --- !u!1 &4573482260694398752
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -248,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -269,11 +269,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 5033703511601670329, guid: 0bcb227a9c35279488fc13068f451e1e, type: 3}
+      objectReference: {fileID: 2100000, guid: 910acb3d412eaec48bae40d2495ff161, type: 2}
     - target: {fileID: -7511558181221131132, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 910acb3d412eaec48bae40d2495ff161, type: 2}
+      objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
     - target: {fileID: -7511558181221131132, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
@@ -281,7 +281,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
-      objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
+      objectReference: {fileID: 2100000, guid: de2c044264e5ff249994fb11aa1fc7d7, type: 2}
     - target: {fileID: 919132149155446097, guid: eaf908b7b9b2a6147b8f79805a44d2e9, type: 3}
       propertyPath: m_Name
       value: ROZDVOJKA_Y_2_WIDE

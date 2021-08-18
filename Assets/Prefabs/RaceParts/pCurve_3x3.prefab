@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &2099340325816974580
+--- !u!64 &8264172392218430043
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,7 +13,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 5970940083674261721, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
+  m_Mesh: {fileID: -1480868573848560481, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
 --- !u!1 &6154527137798071065
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: de2c044264e5ff249994fb11aa1fc7d7, type: 2}
     - target: {fileID: 919132149155446097, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
       propertyPath: m_Name
       value: curve_3x3_WIDE
