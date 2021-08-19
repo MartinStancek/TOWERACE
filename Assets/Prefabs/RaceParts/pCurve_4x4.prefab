@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: de2c044264e5ff249994fb11aa1fc7d7, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 36ff976440c9d9446a34a2ff33bd36c4, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
     - target: {fileID: 919132149155446097, guid: 36ff976440c9d9446a34a2ff33bd36c4, type: 3}
       propertyPath: m_Name
       value: curve_4x4_WIDE

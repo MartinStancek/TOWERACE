@@ -197,9 +197,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
     - target: {fileID: -7511558181221131132, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: de2c044264e5ff249994fb11aa1fc7d7, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41286210a3bab184b96ed4af8cbdce1b, type: 2}
     - target: {fileID: 919132149155446097, guid: 1207f52395bfc2e4597c9e47877c18b5, type: 3}
       propertyPath: m_Name
       value: curve_3x3_WIDE
