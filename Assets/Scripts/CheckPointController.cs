@@ -83,40 +83,43 @@ public class CheckPointController : MonoBehaviour
         {
             rb.angularVelocity = Vector3.zero;
             rb.velocity = Vector3.zero;
-            Debug.Log("target: " + checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount)));
-            Debug.Log("nextTarget: " + checkPoints.GetChild(mod(lastCheckPointIndex+1, checkPoints.childCount)));
-            Transform target = checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount));
-            Transform nextTarget = checkPoints.GetChild(mod(lastCheckPointIndex + 1, checkPoints.childCount));
 
-            rb.MovePosition(target.position);
-            rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
-            rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
-
-            rb.GetComponent<CarSphere>().isRespawned = true;
-
-            if (revertRespawnCor != null)
-            {
-                StopCoroutine(revertRespawnCor);
-            }
-            revertRespawnCor = StartCoroutine(RevertRespawn());
+            Respawn();
 
         }
     }
+
+    public void Respawn()
+    {
+        Debug.Log("target: " + checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount)));
+        Debug.Log("nextTarget: " + checkPoints.GetChild(mod(lastCheckPointIndex + 1, checkPoints.childCount)));
+
+        Transform target = checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount));
+        Transform nextTarget = checkPoints.GetChild(mod(lastCheckPointIndex + 1, checkPoints.childCount));
+
+        rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
+        rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
+
+        rb.GetComponent<CarSphere>().isRespawned = true;
+
+        rb.GetComponent<CarSphere>().carObject.GetComponent<CarController>().RestartPostion(target.position, 0.6f);
+        rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
+        rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
+
+        if (revertRespawnCor != null)
+        {
+            StopCoroutine(revertRespawnCor);
+        }
+        revertRespawnCor = StartCoroutine(RevertRespawn());
+    }
+
     int mod(int k, int n) { return ((k %= n) < 0) ? k + n : k; }
 
     Coroutine revertRespawnCor = null;
-    public void RestartPostion(Vector3 targetPosition)
-    {
-        rb.MovePosition(targetPosition);
-        transform.rotation = Quaternion.identity;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-    }
 
     private IEnumerator RevertRespawn()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
 
         rb.GetComponent<CarSphere>().isRespawned = false;
         revertRespawnCor = null;

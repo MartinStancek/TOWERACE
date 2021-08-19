@@ -181,10 +181,17 @@ public class CarController : MonoBehaviour
     }
     public void RestartPostion(Vector3 targetPosition)
     {
+        RestartPostion(targetPosition, 0f);
+    }
+
+    public void RestartPostion(Vector3 targetPosition, float slowFactor)
+    {
         rb.MovePosition(targetPosition);
         transform.rotation = Quaternion.identity;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        speedInput *= slowFactor;
+        turnInput *= slowFactor;
     }
 
     public void SetChickenSkin()
