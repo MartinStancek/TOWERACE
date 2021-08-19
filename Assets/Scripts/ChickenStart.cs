@@ -42,14 +42,10 @@ public class ChickenStart : MonoBehaviour
         var t = other.GetComponent<Rigidbody>();
         //Debug.Log("BoostPad trigger: " + other.transform.name);
 
-        if (t && t.tag.Equals("CarSphere"))
+        if (t && t.tag.Equals("CarSphere") && carPassed < GameController.Instance.players.Count)
         {
             targetBar.GetChild(carPassed).GetComponent<MeshRenderer>().material.color = passColor;
             carPassed++;
-            if(carPassed > GameController.Instance.players.Count)
-            {
-                RoundRestart();
-            }
             if (carPassed == GameController.Instance.players.Count)
             {
                 var cc = t.GetComponent<CarSphere>().carObject.GetComponent<CarController>();
