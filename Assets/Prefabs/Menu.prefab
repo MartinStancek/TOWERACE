@@ -4992,6 +4992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 5790370095376504647}
+  backButton: {fileID: 5790370094519021328}
   mainMenuPanel: {fileID: 5790370095508226597}
   loadingPanel: {fileID: 5790370094117121915}
   controlsPanel: {fileID: 5790370094655577027}
@@ -6323,6 +6324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 0}
+  backButton: {fileID: 0}
   mainMenuPanel: {fileID: 0}
   loadingPanel: {fileID: 0}
   controlsPanel: {fileID: 0}

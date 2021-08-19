@@ -23,6 +23,7 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
     public Button startButton;
+    public Button backButton;
 
     public Transform mainMenuPanel;
     public Transform loadingPanel;
@@ -60,6 +61,8 @@ public class MenuManager : MonoBehaviour
     {
         SetPanel(loadingPanel);
         SceneManager.LoadSceneAsync("MartinScene3");
+        Time.timeScale = 1f;
+
     }
 
     private void SetPanel(Transform panel)
@@ -75,6 +78,7 @@ public class MenuManager : MonoBehaviour
     public void ContinueGame()
     {
         gameObject.SetActive(false);
+        backButton.Select();
         Time.timeScale = 1f;
     }
 
