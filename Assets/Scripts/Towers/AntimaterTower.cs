@@ -8,6 +8,8 @@ public class AntimaterTower : Tower
 
     public float speed = 10f;
 
+    public ParticleSystem destructionEffect;
+
     void Update()
     {
         lasers.localEulerAngles += new Vector3(0f, speed * Time.deltaTime, 0f);

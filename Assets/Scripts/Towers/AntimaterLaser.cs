@@ -17,6 +17,8 @@ public class AntimaterLaser : MonoBehaviour
         if (t && t.tag.Equals("CarSphere") && tower.GetTargets().Contains(t) && !t.GetComponent<CarSphere>().isRespawned)
         {
             t.GetComponent<CheckPointController>().Respawn();
+            tower.destructionEffect.transform.position = t.position;
+            tower.destructionEffect.Play();
         }
     }
 }
