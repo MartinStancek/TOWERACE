@@ -214,17 +214,6 @@
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d6253dca-11d5-4b0a-8215-d6ff56aabd42",
-                    "path": "<DualShockGamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "ps4",
-                    "action": "Ready",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -659,17 +648,6 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
-                    "isOptional": true,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "ps4",
-            "bindingGroup": "ps4",
-            "devices": [
-                {
-                    "devicePath": "<DualShockGamepad>",
                     "isOptional": true,
                     "isOR": false
                 }
