@@ -84,12 +84,12 @@ public class CheckPointController : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             rb.velocity = Vector3.zero;
 
-            Respawn();
+            Respawn(true);
 
         }
     }
 
-    public void Respawn()
+    public void Respawn(bool resetCamera)
     {
         Debug.Log("target: " + checkPoints.GetChild(mod(lastCheckPointIndex, checkPoints.childCount)));
         Debug.Log("nextTarget: " + checkPoints.GetChild(mod(lastCheckPointIndex + 1, checkPoints.childCount)));
@@ -105,7 +105,10 @@ public class CheckPointController : MonoBehaviour
         rb.GetComponent<CarSphere>().carObject.GetComponent<CarController>().RestartPostion(target.position, 0.6f);
         rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
         rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
-
+        if (resetCamera)
+        {
+            rb.GetComponent<CarSphere>().vCAM.PreviousStateIsValid = false;
+        }
         if (revertRespawnCor != null)
         {
             StopCoroutine(revertRespawnCor);

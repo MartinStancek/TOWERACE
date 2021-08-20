@@ -8,7 +8,7 @@ public class RespawnBlock : MonoBehaviour
     {
         if (collision.collider.CompareTag("CarSphere"))
         {
-            collision.collider.GetComponent<CheckPointController>().Respawn();
+            collision.collider.GetComponent<CheckPointController>().Respawn(true);
         }
     }
 }
