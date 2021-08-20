@@ -136,6 +136,8 @@ public class PlayerManager : MonoBehaviour
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
 
         GameController.Instance.UpdateCheckPointPanel();
+
+        LobbyManager.Instance.ResetLobbyPlayersReady();
     }
 
 
