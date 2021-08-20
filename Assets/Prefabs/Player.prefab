@@ -5081,19 +5081,19 @@ MonoBehaviour:
   towerOptions:
   - prefab: {fileID: 953750827910792910, guid: a7f0c8c0d3b45a147b566aaa82f29c22, type: 3}
     price: 50
-    preview: {fileID: 21300000, guid: c02455faa23dbcf43bd0b089bae13c15, type: 3}
+    preview: {fileID: 21300000, guid: c94f5548993f0884d8265a910b2c41ae, type: 3}
   - prefab: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
     price: 100
-    preview: {fileID: 21300000, guid: fb6d118a3d467c141a3179177ee90b29, type: 3}
+    preview: {fileID: 21300000, guid: 5d164e22f0b2ffa4a96680c8c1ee96ce, type: 3}
   - prefab: {fileID: 62542434775429237, guid: 0b60c52518c7919468b7ea40fda293f8, type: 3}
     price: 150
-    preview: {fileID: 21300000, guid: fba7cb0cc67607f419fad1d2ef04b723, type: 3}
+    preview: {fileID: 21300000, guid: 514bfba2e25f6cd4981f777a1cf2ab29, type: 3}
   - prefab: {fileID: 3502274560526825319, guid: 0216621c280422149962dc26b0775a98, type: 3}
     price: 200
-    preview: {fileID: 21300000, guid: 690a20a396dcd9b4da060e95c548b919, type: 3}
+    preview: {fileID: 21300000, guid: fe12eba102974a14b87a89330e6ef53c, type: 3}
   - prefab: {fileID: 4979690458547984797, guid: 3e21c742cc5023a488fff4b900c490bd, type: 3}
     price: 250
-    preview: {fileID: 21300000, guid: 355bc68cf2e8a164ab56369027f75873, type: 3}
+    preview: {fileID: 21300000, guid: 04810d5f2454f794895bbd6e8b5328bc, type: 3}
 --- !u!114 &641373233649129941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5141,7 +5141,7 @@ MonoBehaviour:
   scoreMultilier: 0
   stars: 0
   controlScheme: 
-  moneyVisual: {fileID: 0}
+  towerPlacer: {fileID: 0}
   isCustomPlayer: 0
   playerInput: {fileID: 0}
 --- !u!114 &9126561931698728850
@@ -5453,7 +5453,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7840582908964435625}
-  m_LocalRotation: {x: 0.27544886, y: 0.000000028649444, z: -0.000000008209017, w: 0.96131575}
+  m_LocalRotation: {x: 0.2754489, y: -1.6389228e-15, z: 9.041256e-17, w: 0.96131575}
   m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5522,7 +5522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7866105342461844008}
-  m_LocalRotation: {x: 0.27544886, y: 0.000000028649444, z: -0.000000008209017, w: 0.96131575}
+  m_LocalRotation: {x: 0.2754489, y: -1.6389228e-15, z: 9.041256e-17, w: 0.96131575}
   m_LocalPosition: {x: 0, y: 2.31, z: -3.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
