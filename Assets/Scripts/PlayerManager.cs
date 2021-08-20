@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame || Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0)
         {
+            Debug.Log("Pausing game by player key press, key: "+ Keyboard.current.escapeKey.wasPressedThisFrame+", gamepad: "+ (Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0));
             if (MenuManager.Instance.isPaused)
             {
                 MenuManager.Instance.ContinueGame();
@@ -110,8 +111,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         var panel = GameController.Instance.towerPointerParent.GetChild(playerCount);
-        panel.gameObject.SetActive(true);
         var tpUI = panel.GetComponent<TowerPointerUI>();
+        tpUI.SetPanel(null);
+        panel.gameObject.SetActive(true);
         tpUI.SetColor(p.playerColor);
         p.towerPlacer = tpUI;
         p.money = p.startMoney;
