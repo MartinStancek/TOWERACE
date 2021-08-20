@@ -43,11 +43,6 @@ public class TowerPointerUI : MonoBehaviour
 
     public List<TMP_Text> moneyTexts;
 
-    void Start()
-    {
-        SetPanel(null);
-    }
-
     public void SetTowerName(string text)
     {
         towerName.text = text;

@@ -49,6 +49,8 @@ public class MenuManager : MonoBehaviour
         if (GameController.Instance)
         {
             gameObject.SetActive(false);
+            Time.timeScale = 1f;
+
         }
     }
 
