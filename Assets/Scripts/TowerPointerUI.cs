@@ -6,15 +6,25 @@ using TMPro;
 
 public class TowerPointerUI : MonoBehaviour
 {
-    public Image skewLine;
-    public Image verticalLine;
-    public Image narrowLine;
-    public Image circlePointer;
+    public List<Image> coloredImages;
+
+    public TMP_Text snapPrice;
+    public TMP_Text towerPrice;
+    public TMP_Text towerName;
+    public Image towerPreview;
+    public Image towerRight;
+    public Image towerLeft;
+
+    public RectTransform circlePointer;
+    public RectTransform line;
+    public RectTransform lineTargetPoint;
 
     public RectTransform selectTower;
     public RectTransform selectSpot;
     public RectTransform buySpot;
     public RectTransform tower;
+
+    public float widthOfset = 0.8f;
 
     public float horizontalOffsetWidth = 20f;
     public float verticalOffsetWidth = 5f;
@@ -26,17 +36,16 @@ public class TowerPointerUI : MonoBehaviour
 
     public Vector2 offset = new Vector2(10f, 10f);
 
-    private TMP_Text towerName;
-
     public RectTransform leftArrow;
     public RectTransform rightArrow;
     public RectTransform upArrow;
     public RectTransform downArrow;
 
+    public List<TMP_Text> moneyTexts;
+
     void Start()
     {
         SetPanel(null);
-        towerName = transform.Find("Tower/NamePanel/Name").GetComponent<TMP_Text>();
     }
 
     public void SetTowerName(string text)
@@ -55,12 +64,12 @@ public class TowerPointerUI : MonoBehaviour
         {
             panel.gameObject.SetActive(true);
             circlePointer.gameObject.SetActive(true);
-            narrowLine.gameObject.SetActive(true);
+            line.gameObject.SetActive(true);
         }
         else
         {
             circlePointer.gameObject.SetActive(false);
-            narrowLine.gameObject.SetActive(false);
+            line.gameObject.SetActive(false);
         }
     }
 
@@ -73,7 +82,7 @@ public class TowerPointerUI : MonoBehaviour
         GameObject WorldObject = target.gameObject;
 
         //this is the ui element
-        RectTransform UI_Element = circlePointer.rectTransform;
+        RectTransform UI_Element = circlePointer;
 
         //first you need the RectTransform component of your canvas
         RectTransform CanvasRect = GameController.Instance.towerPointerParent.parent.GetComponent<RectTransform>();
@@ -88,7 +97,10 @@ public class TowerPointerUI : MonoBehaviour
 
         //now you can set the position of the ui element
         UI_Element.anchoredPosition = WorldObject_ScreenPosition - offset;
-        var height = Mathf.Abs(circlePointer.rectTransform.anchoredPosition.y) + narrowLine.rectTransform.anchoredPosition.y;
+        var distance = Vector2.Distance(line.position, lineTargetPoint.position);
+        line.sizeDelta = new Vector2(distance * widthOfset, line.sizeDelta.y);
+        line.eulerAngles = new Vector3(0f, 0f, Vector2.SignedAngle(Vector2.right, lineTargetPoint.position - line.position));
+        /*var height = Mathf.Abs(circlePointer.rectTransform.anchoredPosition.y) + narrowLine.rectTransform.anchoredPosition.y;
         var length = height / Mathf.Sin(0.25f * Mathf.PI);
         //Debug.Log(height);
         skewLine.rectTransform.sizeDelta = new Vector2(Mathf.Abs(length+ verticalOffsetWidth), skewLine.rectTransform.sizeDelta.y);
@@ -109,6 +121,8 @@ public class TowerPointerUI : MonoBehaviour
             narrowLine.rectTransform.sizeDelta = new Vector2(horizontalWidth, skewLine.rectTransform.sizeDelta.y);
             verticalLine.rectTransform.sizeDelta = new Vector2(verticalWidth, verticalLine.rectTransform.sizeDelta.y);
         }
+        */
+
 
         SetArrow(upArrow, Vector2.up);
         SetArrow(downArrow, Vector2.down);
@@ -120,35 +134,40 @@ public class TowerPointerUI : MonoBehaviour
     {
         var player = GameController.Instance.players[transform.GetSiblingIndex()];
         var snaps = GameController.Instance.GetFreeTowerSnapsInDirection(actualSnapIndex, direction, player);
+        var img = arrow.GetComponentInChildren<Image>();
+        var arrowCol = img.color;
         if(snaps.Count > 0)
         {
-            arrow.gameObject.SetActive(true);
+            /*arrow.gameObject.SetActive(true);
             var positioNext = GameController.Instance.snapsUI[snaps[0].transform.GetSiblingIndex()].position;
             var position = GameController.Instance.snapsUI[actualSnapIndex].position;
             var dir = positioNext - (position + (Vector2.one * 35 * direction));
 
-            arrow.eulerAngles = new Vector3(0, 0f, Vector2.SignedAngle(Vector2.right, dir));
-
+            arrow.eulerAngles = new Vector3(0, 0f, Vector2.SignedAngle(Vector2.right, dir));*/
+            arrowCol.a = 1f;
+            img.color = arrowCol;
         }
         else
         {
-            arrow.gameObject.SetActive(false);
+            arrowCol.a = 0.5f;
+            img.color = arrowCol;
         }
     }
 
     public void SetColor(Color c)
     {
-        skewLine.color = c;
-        verticalLine.color = c;
-        narrowLine.color = c;
-        circlePointer.color = c;
-        selectTower.GetComponent<Image>().color = c;
-        selectSpot.GetComponent<Image>().color = c;
-        buySpot.GetComponent<Image>().color = c;
-        tower.GetComponent<Image>().color = c;
-        upArrow.GetComponentInChildren<Image>().color = c;
-        downArrow.GetComponentInChildren<Image>().color = c;
-        rightArrow.GetComponentInChildren<Image>().color = c;
-        leftArrow.GetComponentInChildren<Image>().color = c;
+        foreach(var i in coloredImages)
+        {
+            i.color = c;
+        }
+        towerName.color = c;
+    }
+
+    public void SetMoney(int value)
+    {
+        foreach (var t in moneyTexts)
+        {
+            t.text = "" + value + " $";
+        }
     }
 }

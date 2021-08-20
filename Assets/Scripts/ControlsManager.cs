@@ -49,7 +49,7 @@ public class ControlsManager : MonoBehaviour
             playerIndex = 0;
         }
         var scheme = GameController.Instance.players[playerIndex].controlScheme;
-        Debug.Log("Scheme is: " + scheme);
+        //Debug.Log("Scheme is: " + scheme);
         switch (scheme)
         {
             case "Keyboard":

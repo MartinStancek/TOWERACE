@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         set
         {
             _money = value;
-            moneyVisual.text = "" + value + "$";
+            towerPlacer.SetMoney(value);
         }
         get { return _money; }
     }
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     public string controlScheme;
 
-    public TMP_Text moneyVisual;
+    public TowerPointerUI towerPlacer;
 
     public bool isCustomPlayer = false;
 

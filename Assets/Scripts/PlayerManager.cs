@@ -109,10 +109,11 @@ public class PlayerManager : MonoBehaviour
             r.SetColor(p.playerColor);
         }
 
-        var panel = GameController.Instance.moneyPanel.GetChild(playerCount);
+        var panel = GameController.Instance.towerPointerParent.GetChild(playerCount);
         panel.gameObject.SetActive(true);
-        panel.GetComponent<Image>().color = p.playerColor;
-        p.moneyVisual = panel.GetComponentInChildren<TMP_Text>();
+        var tpUI = panel.GetComponent<TowerPointerUI>();
+        tpUI.SetColor(p.playerColor);
+        p.towerPlacer = tpUI;
         p.money = p.startMoney;
 
         playerCount++;
@@ -132,9 +133,6 @@ public class PlayerManager : MonoBehaviour
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
 
-        var towerPointer = GameController.Instance.towerPointerParent.GetChild(p.playerIndex);
-        towerPointer.gameObject.SetActive(true);
-        towerPointer.GetComponent<TowerPointerUI>().SetColor(p.playerColor);
         GameController.Instance.UpdateCheckPointPanel();
     }
 

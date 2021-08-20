@@ -111,7 +111,7 @@ public class TowerPlacer : MonoBehaviour
             if(snap.playerOwner == null)
             {
                 pointer.SetPanel(pointer.buySpot);
-                pointer.buySpot.Find("Price").GetComponent<TMP_Text>().text = "" + snap.price + "$";
+                pointer.snapPrice.text = "" + snap.price + "$";
                 player.playerInput.SwitchCurrentActionMap("Towers");
             }
             else if(snap.tower == null)
@@ -214,28 +214,30 @@ public class TowerPlacer : MonoBehaviour
     private void SetTowerInMenu()
     {
         var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
-       
-        var panel = pointer.selectTower;
-        panel.Find("Price").GetComponent<TMP_Text>().text = "" + towerOptions[towerIndex].price + "$";
-        panel.Find("NamePanel/Name").GetComponent<TMP_Text>().text = towerOptions[towerIndex].prefab.name;
-        panel.Find("Preview").GetComponent<Image>().sprite = towerOptions[towerIndex].preview;
 
+        pointer.towerPrice.text = "" + towerOptions[towerIndex].price + "$";
+        pointer.towerName.text = towerOptions[towerIndex].prefab.name;
+        pointer.towerPreview.sprite = towerOptions[towerIndex].preview;
+
+
+        var disableCol = Color.white;
+        disableCol.a = 0.5f;
         if (towerIndex == towerOptions.Count - 1)
         {
-            panel.Find("Right").GetComponent<TMP_Text>().color = Color.gray;
+            pointer.towerRight.color = disableCol;
         } 
         else
         {
-            panel.Find("Right").GetComponent<TMP_Text>().color = Color.black;
+            pointer.towerRight.color = Color.white;
         }
 
         if (towerIndex == 0)
         {
-            panel.Find("Left").GetComponent<TMP_Text>().color = Color.gray;
+            pointer.towerLeft.color = disableCol;
         }
         else
         {
-            panel.Find("Left").GetComponent<TMP_Text>().color = Color.black;
+            pointer.towerLeft.color = Color.white;
         }
 
     }
