@@ -615,45 +615,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5790370095077388609, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370095077388609, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370095077388609, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370095492630177, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370095492630177, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370095779163090, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370095779163090, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370096228899389, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370096228899389, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790370096228899389, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
