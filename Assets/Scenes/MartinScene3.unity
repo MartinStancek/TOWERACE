@@ -85080,7 +85080,7 @@ MonoBehaviour:
   resultsPanel: {fileID: 377304479}
   towerCountDownParent: {fileID: 1651178049}
   previousMoney: 
-  pointsDelay: 0.4
+  pointsDelay: 0.5
 --- !u!1 &1884071362
 GameObject:
   m_ObjectHideFlags: 0
