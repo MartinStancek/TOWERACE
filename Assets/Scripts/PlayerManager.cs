@@ -22,6 +22,16 @@ public class PlayerManager : MonoBehaviour
     {
         playerCount = 0;
         GameController.Instance.backGroundCamera.gameObject.SetActive(true);
+        GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
+        GameController.Instance.onStartGame.AddListener(()=>
+        {
+            var count = GameController.Instance.players.Count;
+            var targetPlayer = (count + (count == 3 ? 1 : 0));
+            var outline = GameController.Instance.playersOutlineParent.Find("" + targetPlayer + "players");
+            SetPlayerOutLine(outline);
+
+        });
+
     }
 
     private void Update()
@@ -36,6 +46,7 @@ public class PlayerManager : MonoBehaviour
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame || Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0)
         {
+            Debug.Log("Pausing game by player key press, key: "+ Keyboard.current.escapeKey.wasPressedThisFrame+", gamepad: "+ (Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0));
             if (MenuManager.Instance.isPaused)
             {
                 MenuManager.Instance.ContinueGame();
@@ -94,6 +105,8 @@ public class PlayerManager : MonoBehaviour
         var p = input.gameObject.GetComponent<Player>();
         p.playerIndex = playerCount;
         p.playerColor = playerColors[playerCount];
+
+
         if (p.isCustomPlayer)
         {
             p.controlScheme = "Keyboard2";
@@ -109,10 +122,12 @@ public class PlayerManager : MonoBehaviour
             r.SetColor(p.playerColor);
         }
 
-        var panel = GameController.Instance.moneyPanel.GetChild(playerCount);
+        var panel = GameController.Instance.towerPointerParent.GetChild(playerCount);
+        var tpUI = panel.GetComponent<TowerPointerUI>();
+        tpUI.SetPanel(null);
         panel.gameObject.SetActive(true);
-        panel.GetComponent<Image>().color = p.playerColor;
-        p.moneyVisual = panel.GetComponentInChildren<TMP_Text>();
+        tpUI.SetColor(p.playerColor);
+        p.towerPlacer = tpUI;
         p.money = p.startMoney;
 
         playerCount++;
@@ -121,24 +136,42 @@ public class PlayerManager : MonoBehaviour
         input.camera.gameObject.layer = LayerMask.NameToLayer("Cam" + playerCount);
 
         GameController.Instance.players.Add(p);
-        GameController.Instance.lobbyReadyParent.GetChild(p.playerIndex).gameObject.SetActive(true);
-        var PosPanell = GameController.Instance.racePositionParent.GetChild(p.playerIndex);
-        PosPanell.GetComponent<Image>().color = p.playerColor;
-        foreach(Transform PosPanel in GameController.Instance.racePositionParent)
-        {
-            PosPanel.Find("PlayerCount").GetComponent<TMP_Text>().text = "" + GameController.Instance.players.Count;
-        }
 
-        GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
+
+        var count = GameController.Instance.players.Count;
+        var targetPlayer = (count + 1 + (count == 2 ? 1 : 0));
+        var outline = GameController.Instance.playersOutlineParent.Find("" + targetPlayer + "players");
+        SetPlayerOutLine(outline);
+
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
 
-        var towerPointer = GameController.Instance.towerPointerParent.GetChild(p.playerIndex);
-        towerPointer.gameObject.SetActive(true);
-        towerPointer.GetComponent<TowerPointerUI>().SetColor(p.playerColor);
         GameController.Instance.UpdateCheckPointPanel();
+
+        LobbyManager.Instance.ResetLobbyPlayersReady();
+
     }
 
-
+    private void SetPlayerOutLine(Transform outline)
+    {
+        foreach (Transform op in GameController.Instance.playersOutlineParent)
+        {
+            op.gameObject.SetActive(false);
+        }
+        outline.gameObject.SetActive(true);
+        foreach (var player in GameController.Instance.players)
+        {
+            player.outline = outline.GetChild(player.playerIndex).GetComponent<PlayerOutline>();
+            player.outline.SetReady(player.isReady);
+            player.outline.readyPanel.gameObject.SetActive(true);
+            player.outline.positionPanel.gameObject.SetActive(false);
+            player.outline.gameObject.SetActive(true);
+            player.outline.positionCount.text = "" + GameController.Instance.players.Count;
+        }
+        for (var i = 0; i < outline.childCount; i++)
+        {
+            outline.GetChild(i).gameObject.SetActive(i < GameController.Instance.players.Count);
+        }
+    }
     private void SetPlayerCameraFinal()
     {
         if (playerCount == 1)

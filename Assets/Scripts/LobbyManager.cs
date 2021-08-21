@@ -55,9 +55,9 @@ public class LobbyManager : MonoBehaviour
     public int ReadyPlayersCount()
     {
         int count = 0;
-        foreach (Transform t in gc.lobbyReadyParent)
+        foreach (var p in gc.players)
         {
-            if (t.GetChild(0).gameObject.activeInHierarchy)
+            if (p.isReady)
             {
                 count++;
             }

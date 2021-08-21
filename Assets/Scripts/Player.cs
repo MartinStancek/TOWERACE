@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         set
         {
             _money = value;
-            moneyVisual.text = "" + value + "$";
+            towerPlacer.SetMoney(value);
         }
         get { return _money; }
     }
@@ -34,11 +34,13 @@ public class Player : MonoBehaviour
 
     public string controlScheme;
 
-    public TMP_Text moneyVisual;
+    public TowerPointerUI towerPlacer;
 
     public bool isCustomPlayer = false;
 
     public PlayerInput playerInput;
+    public PlayerOutline outline;
+    public bool isReady = false;
 
 
     void Start()
@@ -59,16 +61,14 @@ public class Player : MonoBehaviour
 
     public void ToggleReady()
     {
-        SetReady(!GameController.Instance.lobbyReadyParent.GetChild(playerIndex).GetChild(0).gameObject.activeInHierarchy);
+        SetReady(!isReady);
     }
 
     public void SetReady(bool value)
     {
-        var playerPanel = GameController.Instance.lobbyReadyParent.GetChild(playerIndex);
-        var readyPanel = playerPanel.GetChild(0);
-        var notReadyPanel = playerPanel.GetChild(1);
-        readyPanel.gameObject.SetActive(value);
-        notReadyPanel.gameObject.SetActive(!value);
+        isReady = value;
+        outline.SetReady(value); 
+
 
         switch (GameController.Instance.gameMode)
         {

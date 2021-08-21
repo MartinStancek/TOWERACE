@@ -55,8 +55,6 @@ public class GameController : MonoBehaviour
     public GameObject joinPanel;
 
     public GameObject towersSnapParent;
-    public Transform lobbyReadyParent;
-    public Transform racePositionParent;
     public Transform wrongWayParent;
 
     public Transform towerPointerParent;
@@ -68,8 +66,6 @@ public class GameController : MonoBehaviour
     public Transform checkPonts;
 
     public Transform spawnPoints;
-
-    public Transform moneyPanel;
 
     [HideInInspector]
     public UnityEvent onStartGame;
@@ -93,6 +89,8 @@ public class GameController : MonoBehaviour
     private Coroutine towerPlacingCountdownCor;
     public int towerPlacingSeconds = 20;
 
+    public Transform playersOutlineParent;
+
     public void StartRace()
     {
         SetCarCameras(true);
@@ -109,7 +107,7 @@ public class GameController : MonoBehaviour
             var cc = player.GetComponentInChildren<CarController>();
             var position = players.Count - playersFinished.IndexOf(player.playerIndex);
             var targetPositionIndex = position - 1;
-            racePositionParent.GetChild(player.playerIndex).Find("Position").GetComponent<TMP_Text>().text = "" + position;
+            player.outline.positionPlayer.text = "" + position;
 
             cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
             cc.isActivated = false;
@@ -125,16 +123,16 @@ public class GameController : MonoBehaviour
 
             var tt = player.GetComponent<TowerPlacer>();
 
-            racePositionParent.GetChild(player.playerIndex).gameObject.SetActive(true);
+            player.outline.readyPanel.gameObject.SetActive(false);
+            player.outline.positionPanel.gameObject.SetActive(true);
+            player.outline.gameObject.SetActive(true);
+
+
             //tt.placingState = TowerPlaceState.CHOOSING_SPOT;
             //towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null, -1);
         }
         playersFinished.Clear();
 
-        foreach (Transform t in lobbyReadyParent)
-        {
-            t.gameObject.SetActive(false);
-        }
 
         foreach(Transform t in towerPointerParent)
         {
@@ -172,13 +170,13 @@ public class GameController : MonoBehaviour
             cc.isActivated = false;
             cc.SetCarSkin();
 
-            player.SetReady(false);
 
             var playerPosition = playersFinished.IndexOf(player.playerIndex);
             var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
 
             player.money += (4 * player.moneyByRound) / players.Count + extra_income;
-            racePositionParent.GetChild(player.playerIndex).gameObject.SetActive(false);
+            player.outline.positionPanel.gameObject.SetActive(false);
+            player.outline.gameObject.SetActive(false);
 
         }
 
@@ -190,10 +188,14 @@ public class GameController : MonoBehaviour
         gameMode = GameMode.TOWER_PLACING;
         for (var i = 0; i < players.Count; i++)
         {
-            lobbyReadyParent.GetChild(i).gameObject.SetActive(true);
+
             var p = players[i];
             p.GetComponent<TowerPlacer>().ClaimRandomSpot();
             p.playerInput.SwitchCurrentActionMap("Spot");
+            p.outline.readyPanel.gameObject.SetActive(true);
+            p.outline.positionPanel.gameObject.SetActive(false);
+            p.SetReady(false);
+
 
         }
         towerPlacingCountdown.gameObject.SetActive(true);
@@ -323,8 +325,8 @@ public class GameController : MonoBehaviour
         onStartGame.Invoke();
         SetupUISnaps();
 
-        StartRace();
-        //EndRace();
+        //StartRace();
+        EndRace();
     }
 
     private void SetCarCameras(bool value)
@@ -485,9 +487,7 @@ public class GameController : MonoBehaviour
         for (var i = 0; i < orderedPlayers.Count; i++)
         {
             var player = orderedPlayers[i];
-            var panel = racePositionParent.GetChild(player.playerIndex);
-            //Debug.Log("Player " + player.playerIndex);
-            panel.Find("Position").GetComponent<TMP_Text>().text = "" + (i + 1);
+            player.outline.positionPlayer.text = "" + (i + 1);
         }
     }
 
