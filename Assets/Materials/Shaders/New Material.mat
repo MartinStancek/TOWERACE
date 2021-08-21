@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LightingRadius
-  m_Shader: {fileID: -6465566751694194690, guid: 9beef07661618e24c8c8689b3e384325, type: 3}
+  m_Name: New Material
+  m_Shader: {fileID: -6465566751694194690, guid: d1a79262d16b0694baef06d2d05e602d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_5359c5182037479ebcfb12f61a6a4017:
-        m_Texture: {fileID: 2800000, guid: d170520edeeeefc4f82016019fead3cb, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -80,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_92047938eb36409994b7fabcf36220fa: 2.5
+    - Vector1_70a51a89aa184dcb8b870ba63aa87370: 1.5
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -108,14 +104,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_a7c5a20dd3e8497c8f7c695e06c576ad: {r: 0, g: 0, b: 0, a: 0.019607844}
-    - Color_f8cb50be49e64291a81b7ed6fdc742a9: {r: 1.2807972, g: 1.2807972, b: 1.2807972, a: 0.627451}
+    - Color_4bafd0fff10b4037a77914d18ae0edab: {r: 0.9206253, g: 0.9206253, b: 0.9206253, a: 1}
+    - Color_adf1e63e1929402cab9bc33d9b1bf051: {r: 2.118547, g: 2.118547, b: 2.118547, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &4449459928900313333
+--- !u!114 &199566620172430172
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
