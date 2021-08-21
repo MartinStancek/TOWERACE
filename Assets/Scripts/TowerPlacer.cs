@@ -111,7 +111,7 @@ public class TowerPlacer : MonoBehaviour
             if(snap.playerOwner == null)
             {
                 pointer.SetPanel(pointer.buySpot);
-                pointer.snapPrice.text = "" + snap.price + "$";
+                pointer.snapPrice.text = "" + snap.price + " $";
                 player.playerInput.SwitchCurrentActionMap("Towers");
             }
             else if(snap.tower == null)
@@ -215,7 +215,7 @@ public class TowerPlacer : MonoBehaviour
     {
         var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
 
-        pointer.towerPrice.text = "" + towerOptions[towerIndex].price + "$";
+        pointer.towerPrice.text = "" + towerOptions[towerIndex].price + " $";
         pointer.towerName.text = towerOptions[towerIndex].prefab.name;
         pointer.towerPreview.sprite = towerOptions[towerIndex].preview;
 
