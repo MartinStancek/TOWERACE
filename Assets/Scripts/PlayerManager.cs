@@ -100,6 +100,7 @@ public class PlayerManager : MonoBehaviour
         input.camera.gameObject.SetActive(true);
 
         input.transform.position = GameController.Instance.spawnPoints.GetChild(playerCount).position;
+        input.transform.rotation = GameController.Instance.spawnPoints.GetChild(playerCount).rotation;
 
         input.camera.cullingMask = cameraMasks[playerCount];
         var p = input.gameObject.GetComponent<Player>();

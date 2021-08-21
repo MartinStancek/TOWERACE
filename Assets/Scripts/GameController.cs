@@ -107,8 +107,9 @@ public class GameController : MonoBehaviour
             var position = players.Count - playersFinished.IndexOf(player.playerIndex);
             var targetPositionIndex = position - 1;
             player.outline.positionPlayer.text = "" + position;
+            var point = spawnPoints.GetChild(targetPositionIndex);
 
-            cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
+            cc.RestartPostion(point.position, point.rotation);
             cc.isActivated = false;
             cc.SetCarSkin();
             //cc.SetChickenSkin();
@@ -165,7 +166,8 @@ public class GameController : MonoBehaviour
         {
             var cc = player.GetComponentInChildren<CarController>();
             var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
-            cc.RestartPostion(spawnPoints.GetChild(targetPositionIndex).position);
+            var point = spawnPoints.GetChild(targetPositionIndex);
+            cc.RestartPostion(point.position, point.rotation);
             cc.isActivated = false;
             cc.SetCarSkin();
 
@@ -324,8 +326,8 @@ public class GameController : MonoBehaviour
         onStartGame.Invoke();
         SetupUISnaps();
 
-        StartRace();
-        //EndRace();
+        //StartRace();
+        EndRace();
     }
 
     private void SetCarCameras(bool value)

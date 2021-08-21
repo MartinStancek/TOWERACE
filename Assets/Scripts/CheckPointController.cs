@@ -98,7 +98,7 @@ public class CheckPointController : MonoBehaviour
 
         rb.GetComponent<CarSphere>().isRespawned = true;
 
-        rb.GetComponent<CarSphere>().carObject.GetComponent<CarController>().RestartPostion(target.position, 0.6f);
+        rb.GetComponent<CarSphere>().carObject.GetComponent<CarController>().RestartPostion(target.position, Quaternion.identity, 0.6f);
         rb.GetComponent<CarSphere>().carObject.transform.position = target.position;
         rb.GetComponent<CarSphere>().carObject.transform.LookAt(nextTarget);
         if (resetCamera)

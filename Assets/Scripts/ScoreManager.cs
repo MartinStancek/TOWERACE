@@ -5,18 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
-[System.Serializable]
-public class StarImages
-{
-    public Sprite black;
-    public Sprite yellow;
-    public Sprite blackYellow;
-}
+
 public class ScoreManager : MonoBehaviour
 {
     public Transform playersScoreParent;
-
-    public StarImages starImages;
 
     public TMP_Text countDonwScoreText;
     public TMP_Text roundText;
@@ -69,20 +61,20 @@ public class ScoreManager : MonoBehaviour
             {
                 if (j < p.stars)
                 {
-                    starsPanel.GetChild(j).GetComponent<Image>().sprite = starImages.yellow;
+                    starsPanel.GetChild(j).GetComponent<Image>().color = p.playerColor;
                 }
                 else if (j < newStarCount)
                 {
-                    starsPanel.GetChild(j).GetComponent<Image>().sprite = starImages.blackYellow;
+                    starsPanel.GetChild(j).GetComponent<Image>().color = p.playerColor;
                 } 
                 else
                 {
-                    starsPanel.GetChild(j).GetComponent<Image>().sprite = starImages.black;
+                    //starsPanel.GetChild(j).GetComponent<Image>().sprite = starImages.black;
                 }
             }
             p.stars = newStarCount;
 
-            playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money - previousMoney[i]) + "$";
+            playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money - previousMoney[i]) + " $";
         }
 
         countDonwScoreText.text = "" + timeInSeconds;
@@ -116,7 +108,7 @@ public class ScoreManager : MonoBehaviour
 
         foreach(var p in gc.players)
         {
-            playersScoreParent.GetChild(p.playerIndex).GetComponent<Image>().color = p.playerColor;
+            playersScoreParent.GetChild(p.playerIndex).Find("Name").GetComponent<TMP_Text>().color = p.playerColor;
 
         }
 

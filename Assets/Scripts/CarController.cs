@@ -185,15 +185,15 @@ public class CarController : MonoBehaviour
             emissionModule.rate = emissionRate;
         }
     }
-    public void RestartPostion(Vector3 targetPosition)
+    public void RestartPostion(Vector3 targetPosition, Quaternion targetRotation)
     {
-        RestartPostion(targetPosition, 0f);
+        RestartPostion(targetPosition, targetRotation, 0f);
     }
 
-    public void RestartPostion(Vector3 targetPosition, float slowFactor)
+    public void RestartPostion(Vector3 targetPosition, Quaternion targetRotation, float slowFactor)
     {
         rb.MovePosition(targetPosition);
-        transform.rotation = Quaternion.identity;
+        transform.rotation = targetRotation;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         speedInput *= slowFactor;
