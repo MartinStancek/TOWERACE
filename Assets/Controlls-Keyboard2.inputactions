@@ -102,6 +102,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Acceleration",
+                    "type": "PassThrough",
+                    "id": "6733573d-40bf-4d96-83bc-42455e2bff71",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -115,6 +123,39 @@
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "353cba48-d27b-4d94-8a03-bcdf03cb9833",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5a742f66-dcc8-4e99-9380-3507927055e1",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "6ca82b64-db31-4f2f-b28c-71aa1d3f7a2b",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -127,6 +168,14 @@
                     "type": "Button",
                     "id": "0e0af4a5-4c6b-421b-a66d-6fc83117c920",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Acceleration",
+                    "type": "PassThrough",
+                    "id": "116abc9e-6f9f-4763-a2d6-a70f3540e711",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -237,6 +286,39 @@
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "a7649afd-e1b1-4a6c-b54e-256a6acf7b74",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "aa89f4f9-b88d-49d5-b41b-00a19dca372b",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9fb8f926-14a9-4053-bd01-229c23341e62",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -249,6 +331,14 @@
                     "type": "Button",
                     "id": "f79e9089-e769-4a90-9c27-e025f7eac5ca",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Acceleration",
+                    "type": "PassThrough",
+                    "id": "fab8c66f-e835-4bbb-a7ca-13e5d8c63b0d",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -340,6 +430,39 @@
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "a4e7fd49-bd3f-470f-86f0-6e948893384d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "8a819472-1112-473d-9927-a362385cf9f6",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "e8d496ff-b407-4cc7-9e3b-85d58dfad9c5",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

@@ -117,7 +117,9 @@ public class GameController : MonoBehaviour
             var cpc = cc.rb.transform.GetComponent<CheckPointController>();
             cpc.lastCheckPointIndex = -1;
             cpc.lastPassed = -1;
+            player.playerInput.currentActionMap.Disable();
             player.playerInput.SwitchCurrentActionMap("Car");
+            player.playerInput.currentActionMap.Enable();
 
             player.vcam.Follow = player.car.transform;
 

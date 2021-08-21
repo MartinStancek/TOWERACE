@@ -55,12 +55,12 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1f;
 
         }
-
         soundSlider.value = PlayerPrefs.GetFloat("sound", 0.7f);
         musicSlider.value = PlayerPrefs.GetFloat("music", 0.5f);
 
         soundSlider.onValueChanged.AddListener((value) => OnSliderChanged("sound", value));
         musicSlider.onValueChanged.AddListener((value) => OnSliderChanged("music", value));
+
     }
 
     public void Quit()

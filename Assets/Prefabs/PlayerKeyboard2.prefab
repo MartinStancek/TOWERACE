@@ -249,6 +249,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9ffda243-69cb-42d6-93b9-b644c280ea34
     m_ActionName: Towers/Ready[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3166921833423973466}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnAcceleration
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6733573d-40bf-4d96-83bc-42455e2bff71
+    m_ActionName: Lobby/Acceleration[/Keyboard/downArrow,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3166921833423973466}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnAcceleration
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 116abc9e-6f9f-4763-a2d6-a70f3540e711
+    m_ActionName: Spot/Acceleration[/Keyboard/downArrow,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3166921833423973466}
+        m_TargetAssemblyTypeName: CarController, Assembly-CSharp
+        m_MethodName: OnAcceleration
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fab8c66f-e835-4bbb-a7ca-13e5d8c63b0d
+    m_ActionName: Towers/Acceleration[/Keyboard/downArrow,/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Lobby
@@ -263,15 +311,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2754489
+      value: 0.05935844
       objectReference: {fileID: 0}
     - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.6389228e-15
+      value: 0.93014795
       objectReference: {fileID: 0}
     - target: {fileID: 276690134139415249, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 9.041256e-17
+      value: -0.17358333
       objectReference: {fileID: 0}
     - target: {fileID: 641373233649129941, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: isCustomPlayer
@@ -331,15 +379,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6990050086330467579, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2754489
+      value: 0.05935844
       objectReference: {fileID: 0}
     - target: {fileID: 6990050086330467579, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.6389228e-15
+      value: 0.93014795
       objectReference: {fileID: 0}
     - target: {fileID: 6990050086330467579, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 9.041256e-17
+      value: -0.17358333
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9126561931698728850, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}

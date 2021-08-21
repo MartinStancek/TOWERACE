@@ -190,6 +190,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Acceleration",
+                    "type": "PassThrough",
+                    "id": "f732982d-1194-406b-8e00-f1a2f27c56c8",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -214,6 +222,72 @@
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "1ff8e78c-d48d-4d34-a59c-55633ebd3ee8",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c1a37918-22ae-4a7c-9cd6-d4515ac43f4c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "e4928046-13de-462e-8980-a792d70e7107",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "9ebe81ee-3f26-4f1b-bae4-d1d94d664a01",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "Normalize(min=-0.5,max=0.5),Clamp(min=-1,max=1)",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c2f5a3b8-d938-402a-b787-7b0b886fed22",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "298dd672-680a-4738-9b46-f69ce6434e3f",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -226,6 +300,14 @@
                     "type": "Button",
                     "id": "0e0af4a5-4c6b-421b-a66d-6fc83117c920",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Acceleration",
+                    "type": "PassThrough",
+                    "id": "3965c20a-aeb5-41d7-8fe8-3e9e240db845",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -446,6 +528,72 @@
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "eb1a040c-8680-4555-a445-2c91bf124151",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a47602ce-5902-423e-b322-d956c22bb970",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "cf6f05dd-ccde-4682-9729-2151a4aa1ef7",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "c7ce36d6-f653-4005-b966-d89f580cf328",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "Normalize(min=-0.5,max=0.5),Clamp(min=-1,max=1)",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "d13deb18-0704-4e80-993b-094bb0cbc99c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "2552a21d-9246-4299-acb3-93b29546db1c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
@@ -458,6 +606,14 @@
                     "type": "Button",
                     "id": "f79e9089-e769-4a90-9c27-e025f7eac5ca",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Acceleration",
+                    "type": "PassThrough",
+                    "id": "a27a911a-ef4c-4789-b88e-6ab2c95b12c5",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -626,6 +782,72 @@
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "5a0b5d0a-e51a-4bff-984c-8c6a432937ee",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "2c64da52-5030-4555-9d03-dc5e456e960c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3981fd41-ce80-4992-b395-a8ce45a104a7",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Acceleration",
+                    "id": "c194fbfd-cc69-482a-a060-7d45dbf3cfc9",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "Normalize(min=-0.5,max=0.5),Clamp(min=-1,max=1)",
+                    "groups": "",
+                    "action": "Acceleration",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a5f280b3-1684-4023-a89d-d2d76ea2bf9f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "cbee2cd7-10a1-4f8a-8250-6208da476aa1",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Acceleration",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

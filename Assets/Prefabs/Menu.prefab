@@ -6221,7 +6221,6 @@ GameObject:
   - component: {fileID: 5790370095376504641}
   - component: {fileID: 5790370095376504640}
   - component: {fileID: 5790370095376504647}
-  - component: {fileID: 5790370095376504642}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -6343,26 +6342,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5790370095376504642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5790370095376504645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c388614de18484392baca78ee64d7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  backButton: {fileID: 0}
-  mainMenuPanel: {fileID: 0}
-  loadingPanel: {fileID: 0}
-  controlsPanel: {fileID: 0}
-  soundPanel: {fileID: 0}
-  soundSlider: {fileID: 0}
-  musicSlider: {fileID: 0}
 --- !u!1 &5790370095380685013
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,22 +66,33 @@ public class CarController : MonoBehaviour
         rb.transform.parent = null;
         originalAccel = forwardAccel;
         SetEmmision(0f);
+        /*GameController.Instance.onStartRace.AddListener(() =>
+        {
+            verticalInput = player.playerInput.actions.actionMaps[0].v
+        })*/
     }
 
     public void OnAcceleration(InputAction.CallbackContext context)
     {
 
-        var input = context.ReadValue<float>();
-        //Debug.Log("OnMove: " + input);
+        if (context.performed)
+        {
+            var input = context.ReadValue<float>();
 
-        verticalInput = input;
+            //Debug.Log("OnAcceleration: " + context);
+
+            verticalInput = input;
+        }
     }
     public void OnSteering(InputAction.CallbackContext context)
     {
-        var input = context.ReadValue<float>();
-        //Debug.Log("OnMove: " + input);
+        if (context.performed)
+        {
+            var input = context.ReadValue<float>();
+            //Debug.Log("OnMove: " + input);
 
-        horizontalInput = input;
+            horizontalInput = input;
+        }
     }
 
     void Update()
