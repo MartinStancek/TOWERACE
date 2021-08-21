@@ -55,7 +55,6 @@ public class GameController : MonoBehaviour
     public GameObject joinPanel;
 
     public GameObject towersSnapParent;
-    public Transform wrongWayParent;
 
     public Transform towerPointerParent;
 

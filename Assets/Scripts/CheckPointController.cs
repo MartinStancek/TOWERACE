@@ -69,12 +69,8 @@ public class CheckPointController : MonoBehaviour
 
     private void SetWrongWay(bool value)
     {
-        var playerIndex = GetComponent<CarSphere>().carObject.transform.parent.GetComponent<Player>().playerIndex;
-        var playerCount = GameController.Instance.players.Count;
-        playerCount = playerCount == 3 ? 4 : playerCount;
-
-        var panel = GameController.Instance.wrongWayParent.Find("" + playerCount + "Players");
-        panel.GetChild(playerIndex).gameObject.SetActive(value);
+        var player = GetComponent<CarSphere>().carObject.transform.parent.GetComponent<Player>();
+        player.outline.SetWrongWay(value);
     }
 
     private void OnCollisionEnter(Collision collision)
