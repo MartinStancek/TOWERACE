@@ -85076,10 +85076,11 @@ MonoBehaviour:
   countDonwScoreText: {fileID: 1775252164}
   roundText: {fileID: 1609675973}
   winnerText: {fileID: 1249709245}
-  timeInSeconds: 2
+  timeInSeconds: 4
   resultsPanel: {fileID: 377304479}
   towerCountDownParent: {fileID: 1651178049}
   previousMoney: 
+  pointsDelay: 0.4
 --- !u!1 &1884071362
 GameObject:
   m_ObjectHideFlags: 0

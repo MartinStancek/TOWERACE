@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     private int round;
 
+    public float pointsDelay = 0.8f;
 
 
     void Awake()
@@ -56,7 +57,7 @@ public class ScoreManager : MonoBehaviour
 
             var starIncome = Mathf.Clamp(3 - playerPosition, 0, 3);
             var newStarCount = Mathf.Clamp(p.stars + starIncome, 0, starsPanel.childCount);
-
+            var delay = pointsDelay;
             for (var j = 0; j < starsPanel.childCount; j++)
             {
                 if (j < p.stars)
@@ -65,7 +66,10 @@ public class ScoreManager : MonoBehaviour
                 }
                 else if (j < newStarCount)
                 {
-                    starsPanel.GetChild(j).GetComponent<Image>().color = p.playerColor;
+                    var color = p.playerColor;
+                    color.a = 0.6f;
+                    StartCoroutine(SetColorWithDelay(delay, starsPanel.GetChild(j).GetComponent<Image>(), color));
+                    delay += pointsDelay;
                 } 
                 else
                 {
@@ -94,6 +98,13 @@ public class ScoreManager : MonoBehaviour
             StartCoroutine(SetEndRacingResultCountDonw(timeInSeconds - 1, EndRacingResult));
         }
     }
+
+    private IEnumerator SetColorWithDelay(float delay, Image target, Color color)
+    {
+        yield return new WaitForSeconds(delay);
+        target.color = color;
+    }
+
 
     private void StartGameInit()
     {
