@@ -64066,7 +64066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095020204754, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095020204755, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_Pivot.x
@@ -64164,13 +64164,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 90.29999
       objectReference: {fileID: 0}
+    - target: {fileID: 5790370095376504647, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 5790370095508226596, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095815940257, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_text
-      value: Restart Game
+      value: MENU
       objectReference: {fileID: 0}
     - target: {fileID: 5790370096116959106, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_AnchoredPosition.y

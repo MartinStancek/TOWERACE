@@ -90,4 +90,14 @@ public class MenuManager : MonoBehaviour
         startButton.Select();
         Time.timeScale = 0f;
     }
+
+    public void Menu()
+    {
+        SetPanel(loadingPanel);
+        var operation = SceneManager.LoadSceneAsync("MainMenu");
+        operation.completed += (a) => {
+            Time.timeScale = 1f;
+        };
+
+    }
 }

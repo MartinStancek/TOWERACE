@@ -2497,9 +2497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Back
-
-'
+  m_text: BACK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
   m_sharedMaterial: {fileID: 635852391075010359, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
@@ -4370,9 +4368,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Controls
-
-'
+  m_text: CONTROLS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
   m_sharedMaterial: {fileID: 635852391075010359, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
@@ -6106,9 +6102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Quit
-
-'
+  m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
   m_sharedMaterial: {fileID: 635852391075010359, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
@@ -8484,9 +8478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Play
-
-'
+  m_text: PLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
   m_sharedMaterial: {fileID: 635852391075010359, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
@@ -9891,9 +9883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sound
-
-'
+  m_text: SOUND
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
   m_sharedMaterial: {fileID: 635852391075010359, guid: 8679444b2acff5a43a624c9f47fd2f51, type: 2}
