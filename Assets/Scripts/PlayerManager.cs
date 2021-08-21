@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject customKeyboardPlayerPrefab;
     private bool customPlayerJoined = false;
+    private bool normalPlayerJoined = false;
+    
     private void Awake()
     {
         playerCount = 0;
@@ -42,6 +44,14 @@ public class PlayerManager : MonoBehaviour
             var go = Instantiate(customKeyboardPlayerPrefab);
             //OnPlayerJoined(go.GetComponent<PlayerInputCustom>());
             customPlayerJoined = true;
+        }
+
+        if (Keyboard.current.eKey.wasPressedThisFrame && !normalPlayerJoined)
+        {
+            //var pim = GetComponent<PlayerInputManager>();
+            var go = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
+            //OnPlayerJoined(go.GetComponent<PlayerInputCustom>());
+            normalPlayerJoined = true;
         }
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame || Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0)
