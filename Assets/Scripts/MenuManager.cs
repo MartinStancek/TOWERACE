@@ -30,6 +30,9 @@ public class MenuManager : MonoBehaviour
     public Transform controlsPanel;
     public Transform soundPanel;
 
+    public Slider soundSlider;
+    public Slider musicSlider;
+
     public bool isPaused
     {
         get { return Time.timeScale == 0; }
@@ -52,6 +55,12 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1f;
 
         }
+
+        soundSlider.value = PlayerPrefs.GetFloat("sound", 0.7f);
+        musicSlider.value = PlayerPrefs.GetFloat("music", 0.5f);
+
+        soundSlider.onValueChanged.AddListener((value) => OnSliderChanged("sound", value));
+        musicSlider.onValueChanged.AddListener((value) => OnSliderChanged("music", value));
     }
 
     public void Quit()
@@ -98,6 +107,10 @@ public class MenuManager : MonoBehaviour
         operation.completed += (a) => {
             Time.timeScale = 1f;
         };
+    }
 
+    public void OnSliderChanged(string name, float value)
+    {
+        PlayerPrefs.SetFloat(name, value);
     }
 }
