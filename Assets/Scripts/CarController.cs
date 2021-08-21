@@ -57,6 +57,9 @@ public class CarController : MonoBehaviour
 
     private float wheelRotationInput = 0;
     public float magnitudePowMultiplier = 2f;
+
+    public Player player;
+    private float maxSpeedvelocity = 100f;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +98,9 @@ public class CarController : MonoBehaviour
             direction = -1;
         }
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
+
+        player.outline.SetSpeedBar(rb.velocity.magnitude / maxSpeedvelocity);
+
         //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
         wheelRotationInput = Mathf.Lerp(wheelRotationInput, horizontalInput, Time.deltaTime * turnSpeed);
 

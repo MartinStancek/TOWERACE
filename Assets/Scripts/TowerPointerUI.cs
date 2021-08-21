@@ -15,6 +15,8 @@ public class TowerPointerUI : MonoBehaviour
     public Image towerRight;
     public Image towerLeft;
 
+    public Transform readyPanel;
+
     public RectTransform circlePointer;
     public RectTransform line;
     public RectTransform lineTargetPoint;
@@ -60,11 +62,13 @@ public class TowerPointerUI : MonoBehaviour
             panel.gameObject.SetActive(true);
             circlePointer.gameObject.SetActive(true);
             line.gameObject.SetActive(true);
+            readyPanel.gameObject.SetActive(true);
         }
         else
         {
             circlePointer.gameObject.SetActive(false);
             line.gameObject.SetActive(false);
+            readyPanel.gameObject.SetActive(false);
         }
     }
 
