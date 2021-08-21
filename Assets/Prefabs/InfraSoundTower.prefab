@@ -101,8 +101,8 @@ MonoBehaviour:
     materialIndexes: 
     colorField: Color_bdd24a5cb17643a2831840517ecf2a85
   head: {fileID: 62542434052176728}
-  strengthMultiplier: 40000
-  backwardMultiplier: 40000
+  strengthMultiplier: 80000
+  backwardMultiplier: 60000
 --- !u!135 &62542434775429239
 SphereCollider:
   m_ObjectHideFlags: 0

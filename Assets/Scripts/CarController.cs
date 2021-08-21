@@ -86,13 +86,10 @@ public class CarController : MonoBehaviour
     }
     public void OnSteering(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
             var input = context.ReadValue<float>();
             //Debug.Log("OnMove: " + input);
 
             horizontalInput = input;
-        }
     }
 
     void Update()
