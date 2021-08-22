@@ -90,6 +90,8 @@ public class GameController : MonoBehaviour
 
     public Transform playersOutlineParent;
 
+    public List<ParticleSystem> finishLineConfety;
+
     public void StartRace()
     {
         SetCarCameras(true);
@@ -236,7 +238,11 @@ public class GameController : MonoBehaviour
     public void CarFinished(int playerIndex)
     {
         playersFinished.Add(playerIndex);
-
+        
+        foreach(var ps in finishLineConfety)
+        {
+            ps.Play();
+        }
         if (playersFinished.Count == 1)
         {
             countDownText.gameObject.SetActive(true);
