@@ -25,14 +25,14 @@ public class ChickenStart : MonoBehaviour
         targetBar = barParent.Find(""+GameController.Instance.players.Count+"Bar");
         targetBar.gameObject.SetActive(true);
 
-        originalcolor = targetBar.GetChild(0).GetComponent<MeshRenderer>().material.color;
+        originalcolor = targetBar.GetChild(0).GetComponent<MeshRenderer>().materials[1].color;
     }
 
     private void RoundRestart()
     {
         foreach(Transform t in targetBar)
         {
-            t.GetComponent<MeshRenderer>().material.color = originalcolor;
+            t.GetComponent<MeshRenderer>().materials[1].color = originalcolor;
         }
         carPassed = 0;
     }
@@ -44,7 +44,7 @@ public class ChickenStart : MonoBehaviour
 
         if (t && t.tag.Equals("CarSphere") && carPassed < GameController.Instance.players.Count)
         {
-            targetBar.GetChild(carPassed).GetComponent<MeshRenderer>().material.color = passColor;
+            targetBar.GetChild(carPassed).GetComponent<MeshRenderer>().materials[1].color = passColor;
             carPassed++;
             if (carPassed == GameController.Instance.players.Count)
             {
