@@ -26,6 +26,8 @@ public class SoundManager : MonoBehaviour
     public static float soundDefaultValue = 0.7f;
     public static float musicDefaultValue = 0.5f;
 
+    public static float musicPosition = 0f;
+
     [System.Serializable]
     public enum SoundType
     {
@@ -86,6 +88,7 @@ public class SoundManager : MonoBehaviour
         musicSource.volume = music.volume;
         musicSource.loop = true;
         musicSource.clip = music.clip;
+        musicSource.time = musicPosition;
         musicSource.Play();
 
         SetSoundVolume(PlayerPrefs.GetFloat("sound", soundDefaultValue));
@@ -172,6 +175,11 @@ public class SoundManager : MonoBehaviour
                 source.volume = sound.volume * value;
             }
         }
+    }
+
+    public void OnSceneChange()
+    {
+        musicPosition = musicSource.time;
     }
     public static void SetMusicVolume(float value)
     {

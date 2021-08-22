@@ -64335,7 +64335,15 @@ PrefabInstance:
       value: 90.29999
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095376504647, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1687999692}
+    - target: {fileID: 5790370095376504647, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSceneChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790370095376504647, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Menu
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095508226596, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
@@ -76299,7 +76307,7 @@ MonoBehaviour:
   music:
     type: 0
     clip: {fileID: 8300000, guid: 70375dbc2aed0e84a9d5f34fb0615b25, type: 3}
-    volume: 0.22
+    volume: 0.2
     canOverlap: 0
 --- !u!1 &1691107231
 GameObject:

@@ -4996,6 +4996,12 @@ MonoBehaviour:
   soundPanel: {fileID: 5790370094251675328}
   soundSlider: {fileID: 5790370094201980961}
   musicSlider: {fileID: 5790370095054413128}
+  onGamePaused:
+    m_PersistentCalls:
+      m_Calls: []
+  onGameResumed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!222 &5790370095020204782
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6330,6 +6336,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: OnSceneChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 5790370095020204780}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: PlayGame
