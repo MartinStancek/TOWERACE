@@ -76223,7 +76223,7 @@ MonoBehaviour:
   - type: 1
     clip: {fileID: 8300000, guid: 4ebf0d3229fb269429164e65c93bccdc, type: 3}
     volume: 1
-    canOverlap: 1
+    canOverlap: 0
   - type: 2
     clip: {fileID: 8300000, guid: 58ea662e5f0eee446bfc5ee19a25403c, type: 3}
     volume: 1

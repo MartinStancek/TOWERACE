@@ -60,13 +60,25 @@ public class SoundManager : MonoBehaviour
         public float volume = 1f;
         public bool canOverlap = true;
     }
-    private static Dictionary<SoundType, float> audioStart;
+    private class DictValue
+    {
+        public float time = 0;
+        public AudioSource source = null;
+    }
+    private static Dictionary<SoundType, DictValue> audioStart;
 
     public List<SoundAudio> audios;
     public SoundAudio music;
     private AudioSource musicSource;
     private void Start()
     {
+        audioStart = new Dictionary<SoundType, DictValue>();
+        foreach (var i in audios)
+        {
+            audioStart[i.type] = new DictValue();
+            audioStart[i.type].time = Time.time;
+        }
+
         var go = new GameObject("MUSIC_SOUND");
         go.transform.parent = transform;
         musicSource = go.AddComponent<AudioSource>();
@@ -99,38 +111,46 @@ public class SoundManager : MonoBehaviour
         };
     }
 
-    public static void PlaySound(SoundType type)
+    public static AudioSource PlaySound(SoundType type)
     {
-        var go = new GameObject(type.ToString() + "_SOUND");
-        go.transform.parent = Instance.transform;
-        var audioSource = go.AddComponent<AudioSource>();
         var sound = Instance.GetSound(type);
 
         if (sound == null)
         {
             Debug.LogWarning("Can't find audioClip for: " + type.ToString());
-            return;
+            return null;
         }
+
+        var go = new GameObject(type.ToString() + "_SOUND");
+        go.transform.parent = Instance.transform;
+        var audioSource = go.AddComponent<AudioSource>();
+
         if (CanPlay(sound))
         {
             audioSource.volume = sound.volume * PlayerPrefs.GetFloat("sound", soundDefaultValue);
-            audioSource.PlayOneShot(sound.clip);
+            audioSource.clip = sound.clip;
+            audioSource.Play();
             Destroy(go, sound.clip.length);
         }
+        else
+        {
+            return audioStart[type].source;
+        }
+        audioStart[type].source = audioSource;
+        return audioSource;
     }
 
     private static bool CanPlay(SoundAudio sound)
     {
         if (!sound.canOverlap)
         {
-            if (audioStart.ContainsKey(sound.type) && audioStart[sound.type] + sound.clip.length >= Time.time)
+            if (audioStart[sound.type].time + sound.clip.length >= Time.time)
             {
-                audioStart[sound.type] = Time.time;
                 return false;
             }
             else
             {
-                audioStart[sound.type] = Time.time;
+                audioStart[sound.type].time = Time.time;
             }
         }
         return true;

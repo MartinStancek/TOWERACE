@@ -11,6 +11,8 @@ public class TeslaTower : Tower
     public float strengthMultiplier = 0.2f;
     public float backwardMultiplier = 2000f;
 
+    AudioSource audio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,15 @@ public class TeslaTower : Tower
                 cs.carObject.transform.Find("race0").localPosition = dir;
                 t.AddForce(cs.carObject.transform.forward * -backwardMultiplier);
             }
+        }
+        if(targets.Count > 0)
+        {
+            audio = SoundManager.PlaySound(SoundManager.SoundType.TOWER_TESLA);
+        } 
+        else if(audio != null)
+        {
+            audio.Stop();
+            audio = null;
         }
     }
 
