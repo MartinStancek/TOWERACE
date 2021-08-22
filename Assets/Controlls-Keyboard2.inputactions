@@ -116,7 +116,7 @@
                 {
                     "name": "",
                     "id": "b728bea3-32ae-4167-af65-022d741f9515",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -246,7 +246,7 @@
                 {
                     "name": "",
                     "id": "0abec9b4-6421-4abc-a001-d6c562ae1585",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -257,7 +257,7 @@
                 {
                     "name": "",
                     "id": "cc30e0a4-55c0-4ced-ac4b-81212b43c6e1",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -401,7 +401,7 @@
                 {
                     "name": "",
                     "id": "bee88a53-6d42-42cd-8046-c5d2aa02b54c",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -412,7 +412,7 @@
                 {
                     "name": "",
                     "id": "7031dd8e-656d-418b-97f4-aa16faace854",
-                    "path": "<Keyboard>/backspace",
+                    "path": "<Keyboard>/delete",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -423,7 +423,7 @@
                 {
                     "name": "",
                     "id": "2dbe36cb-7622-409c-99d3-e19f886460ac",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

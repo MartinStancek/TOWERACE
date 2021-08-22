@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.enterKey.wasPressedThisFrame && !customPlayerJoined)
+        if (Keyboard.current.ctrlKey.wasPressedThisFrame && !customPlayerJoined && GameController.Instance.gameMode == GameMode.LOBBY)
         {
             //var pim = GetComponent<PlayerInputManager>();
             var go = Instantiate(customKeyboardPlayerPrefab);
@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
             customPlayerJoined = true;
         }
 
-        if (Keyboard.current.eKey.wasPressedThisFrame && !normalPlayerJoined)
+        if (Keyboard.current.eKey.wasPressedThisFrame && !normalPlayerJoined && GameController.Instance.gameMode == GameMode.LOBBY)
         {
             //var pim = GetComponent<PlayerInputManager>();
             var go = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
@@ -150,7 +150,7 @@ public class PlayerManager : MonoBehaviour
 
 
         var count = GameController.Instance.players.Count;
-        var targetPlayer = (count + 1 + (count == 2 ? 1 : 0));
+        var targetPlayer = (count + ((count == 4) ? 0 : 1) + (count == 2 ? 1 : 0));
         var outline = GameController.Instance.playersOutlineParent.Find("" + targetPlayer + "players");
         SetPlayerOutLine(outline);
 
