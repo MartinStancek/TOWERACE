@@ -58,6 +58,7 @@ public class ScoreManager : MonoBehaviour
 
             var starIncome = Mathf.Clamp(3 - playerPosition, 0, 3);
             var newStarCount = Mathf.Clamp(p.stars + starIncome, 0, starsPanel.childCount);
+            delay = pointsDelay;
             for (var j = 0; j < starsPanel.childCount; j++)
             {
                 if (j < p.stars)
