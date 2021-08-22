@@ -28,7 +28,6 @@ public class CarController : MonoBehaviour
     public float maxWheelTurn = 25f;
     public float maxCarRotationDelta = 1f;
 
-    public ParticleSystem[] dustTrial;
     public float maxEmission = 25f;
     private float emissionRate;
 
@@ -65,7 +64,6 @@ public class CarController : MonoBehaviour
     {
         rb.transform.parent = null;
         originalAccel = forwardAccel;
-        SetEmmision(0f);
         /*GameController.Instance.onStartRace.AddListener(() =>
         {
             verticalInput = player.playerInput.actions.actionMaps[0].v
@@ -181,18 +179,8 @@ public class CarController : MonoBehaviour
             rb.drag = 0.1f;
             rb.AddForce(Vector3.up * -gravityForce * 100f, ForceMode.Force);
         }
-
-        SetEmmision(emissionRate);
     }
 
-    private void SetEmmision(float emissionRate)
-    {
-        foreach (var p in dustTrial)
-        {
-            var emissionModule = p.emission;
-            emissionModule.rate = emissionRate;
-        }
-    }
     public void RestartPostion(Vector3 targetPosition, Quaternion targetRotation)
     {
         RestartPostion(targetPosition, targetRotation, 0f);
