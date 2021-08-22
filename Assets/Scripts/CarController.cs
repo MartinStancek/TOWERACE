@@ -99,14 +99,14 @@ public class CarController : MonoBehaviour
         if (verticalInput > 0)
         {
             accel = forwardAccel;
-            direction = 1;
         }
         else if (verticalInput < 0)
         {
             accel = reverseAccel;
-            direction = -1;
         }
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
+        direction = speedInput > 0 ? 1 : -1;
+
 
         player.outline.SetSpeedBar(rb.velocity.magnitude / maxSpeedvelocity);
         engineSound.pitch = (grounded) ? (rb.velocity.magnitude / maxSpeedvelocity) * 2 + 1 : 2;
@@ -115,7 +115,7 @@ public class CarController : MonoBehaviour
         wheelRotationInput = Mathf.Lerp(wheelRotationInput, horizontalInput, Time.deltaTime * turnSpeed);
 
         var clampedMagnitude = Mathf.Clamp(Mathf.Pow(rb.velocity.magnitude, magnitudePowMultiplier), -maxCarRotationDelta, maxCarRotationDelta);
-        turnInput = Mathf.Lerp(turnInput, horizontalInput * turnStrength * clampedMagnitude, Time.deltaTime * turnSpeed);
+        turnInput = Mathf.Lerp(turnInput, horizontalInput * turnStrength * clampedMagnitude * direction, Time.deltaTime * turnSpeed);
         if (grounded)
         {
             if (animChicken.isActiveAndEnabled)
