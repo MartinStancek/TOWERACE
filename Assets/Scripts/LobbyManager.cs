@@ -34,12 +34,18 @@ public class LobbyManager : MonoBehaviour
 
     public void LobbyPlayersReady()
     {
-        gc.countDownText.gameObject.SetActive(true);
-        gc.countDownText.text = "" + 3;
+        foreach(var p in gc.players)
+        {
+            p.outline.countDownPanel.gameObject.SetActive(true);
+            p.outline.countDownText.text = "" + 3;
+        }
 
         readyCor = StartCoroutine(SetEndLobbyCountDonw(2, gc.StartGame, () =>
         {
-            gc.countDownText.gameObject.SetActive(false);
+            foreach (var p in gc.players)
+            {
+                p.outline.countDownPanel.gameObject.SetActive(false);
+            }
 
         }));
     }
@@ -49,7 +55,10 @@ public class LobbyManager : MonoBehaviour
         {
             StopCoroutine(readyCor);
         }
-        gc.countDownText.gameObject.SetActive(false);
+        foreach (var p in gc.players)
+        {
+            p.outline.countDownPanel.gameObject.SetActive(false);
+        }
     }
 
     public int ReadyPlayersCount()
@@ -78,7 +87,10 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("EndLobbyCountDonw: " + secondsRemain);
             if (secondsRemain > 0)
             {
-                gc.countDownText.text = "" + secondsRemain;
+                foreach (var p in gc.players)
+                {
+                    p.outline.countDownText.text = "" + secondsRemain;
+                }
                 yield return SetEndLobbyCountDonw(secondsRemain - 1, finishAction, reverseAction);
             }
             else

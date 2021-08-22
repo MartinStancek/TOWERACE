@@ -13,12 +13,17 @@ public class PlayerOutline : MonoBehaviour
     public TMP_Text positionPlayer;
     public TMP_Text positionCount;
 
+    public Transform countDownPanel;
+    public TMP_Text countDownText;
+
     public List<RectTransform> speedBars;
     public float maxSpeedBarHeight = 256f;
 
     public List<Transform> wrongWayColoredParts;
     public Transform wrongWayPanel;
     public Color wrongWayColor;
+
+    
 
     private void Start()
     {

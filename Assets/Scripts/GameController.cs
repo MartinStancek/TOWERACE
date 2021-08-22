@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
             backGroundCamera.gameObject.SetActive(true);
         }
 
-        countDownText.gameObject.SetActive(true);
+        //countDownText.gameObject.SetActive(true);
 
         foreach (var player in players)
         {
@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
             cc.isActivated = false;
             cc.SetCarSkin();
             //cc.SetChickenSkin();
-
+            player.outline.countDownPanel.gameObject.SetActive(true);
             var cpc = cc.rb.transform.GetComponent<CheckPointController>();
             cpc.lastCheckPointIndex = -1;
             cpc.lastPassed = -1;
@@ -160,7 +160,7 @@ public class GameController : MonoBehaviour
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
         backGroundCamera.gameObject.SetActive(false);
-        countDownText.gameObject.SetActive(false);
+        //countDownText.gameObject.SetActive(false);
 
         gameMode = GameMode.RACING_RESULT;
 
@@ -174,6 +174,8 @@ public class GameController : MonoBehaviour
             cc.RestartPostion(point.position, point.rotation);
             cc.isActivated = false;
             cc.SetCarSkin();
+
+            player.outline.countDownPanel.gameObject.SetActive(false);
 
 
             var playerPosition = playersFinished.IndexOf(player.playerIndex);
@@ -293,25 +295,33 @@ public class GameController : MonoBehaviour
         if (secondsRemain == 0)
         {
             Debug.Log("GO!!!");
-            countDownText.text = "GO!";
 
             foreach (var player in players)
             {
                 var cc = player.GetComponentInChildren<CarController>();
                 cc.isActivated = true;
+                player.outline.countDownText.text = "GO!";
+
             }
 
         }
         else
         {
-            countDownText.text = "" + secondsRemain;
+            foreach (var player in players)
+            {
+                player.outline.countDownText.text = "" + secondsRemain;
+            }
+            
             Debug.Log(secondsRemain);
         }
     }
     private IEnumerator RemoveCountDownText()
     {
         yield return new WaitForSeconds(4);
-        countDownText.gameObject.SetActive(false);
+        foreach(var p in players)
+        {
+            p.outline.countDownPanel.gameObject.SetActive(false);
+        }
     }
 
 
