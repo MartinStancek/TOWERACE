@@ -16,6 +16,8 @@ public class PlayerOutline : MonoBehaviour
     public Transform countDownPanel;
     public TMP_Text countDownText;
 
+    public Transform wingItPanel;
+
     public List<RectTransform> speedBars;
     public float maxSpeedBarHeight = 256f;
 

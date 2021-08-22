@@ -204,7 +204,7 @@ public class CarController : MonoBehaviour
             chickenSkin.gameObject.SetActive(true);
             chickenEffect.Play();
             carSkin.SetActive(false);
-
+            player.outline.wingItPanel.gameObject.SetActive(true);
         }
     }
 
@@ -216,6 +216,8 @@ public class CarController : MonoBehaviour
             chickenSkin.gameObject.SetActive(false);
             carSkin.SetActive(true);
             chickenEffect.Play();
+            player.outline.wingItPanel.gameObject.SetActive(false);
+
         }
     }
 
