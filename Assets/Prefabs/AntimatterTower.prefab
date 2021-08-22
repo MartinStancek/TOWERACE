@@ -155,19 +155,19 @@ MonoBehaviour:
   - particles: {fileID: 0}
     renderer: {fileID: 246748620541998251}
     materialIndexes: 00000000
-    colorField: 
+    colorField: Color_4bafd0fff10b4037a77914d18ae0edab
   - particles: {fileID: 0}
     renderer: {fileID: 1614808350052850230}
     materialIndexes: 00000000
-    colorField: 
+    colorField: Color_4bafd0fff10b4037a77914d18ae0edab
   - particles: {fileID: 0}
     renderer: {fileID: 1614808350489246297}
     materialIndexes: 00000000
-    colorField: 
+    colorField: Color_4bafd0fff10b4037a77914d18ae0edab
   - particles: {fileID: 0}
     renderer: {fileID: 1614808350945109716}
     materialIndexes: 00000000
-    colorField: 
+    colorField: Color_4bafd0fff10b4037a77914d18ae0edab
   - particles: {fileID: 0}
     renderer: {fileID: 3971612383509506329}
     materialIndexes: 
@@ -175,7 +175,7 @@ MonoBehaviour:
   - particles: {fileID: 0}
     renderer: {fileID: 4979690459162320782}
     materialIndexes: 00000000
-    colorField: _BaseColor
+    colorField: Color_f8cb50be49e64291a81b7ed6fdc742a9
   lasers: {fileID: 4796847538635949515}
   speed: -50
   destructionEffect: {fileID: 553700525764727148}
@@ -306,7 +306,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0

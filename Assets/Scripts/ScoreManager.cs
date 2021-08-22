@@ -63,13 +63,13 @@ public class ScoreManager : MonoBehaviour
             {
                 if (j < p.stars)
                 {
-                    starsPanel.GetChild(j).GetComponent<Image>().color = p.playerColor;
+                    var color = p.playerColor;
+                    color.a = 0.6f;
+                    starsPanel.GetChild(j).GetComponent<Image>().color = color;
                 }
                 else if (j < newStarCount)
                 {
-                    var color = p.playerColor;
-                    color.a = 0.6f;
-                    StartCoroutine(SetColorWithDelay(delay, starsPanel.GetChild(j).GetComponent<Image>(), color));
+                    StartCoroutine(SetColorWithDelay(delay, starsPanel.GetChild(j).GetComponent<Image>(), p.playerColor));
                     delay += pointsDelay;
                 }
                 else
