@@ -60,6 +60,9 @@ public class CarController : MonoBehaviour
     public Player player;
     private float maxSpeedvelocity = 100f;
     // Start is called before the first frame update
+
+    public AudioSource engineSound;
+
     void Start()
     {
         rb.transform.parent = null;
@@ -106,6 +109,7 @@ public class CarController : MonoBehaviour
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
 
         player.outline.SetSpeedBar(rb.velocity.magnitude / maxSpeedvelocity);
+        engineSound.pitch = (grounded) ? (rb.velocity.magnitude / maxSpeedvelocity) * 2 + 1 : 2;
 
         //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
         wheelRotationInput = Mathf.Lerp(wheelRotationInput, horizontalInput, Time.deltaTime * turnSpeed);

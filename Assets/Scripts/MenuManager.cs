@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
@@ -33,6 +34,10 @@ public class MenuManager : MonoBehaviour
     public Slider soundSlider;
     public Slider musicSlider;
 
+    [HideInInspector]
+    public UnityEvent onGamePaused;
+    [HideInInspector]
+    public UnityEvent onGameResumed;
     public bool isPaused
     {
         get { return Time.timeScale == 0; }
@@ -55,8 +60,8 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1f;
 
         }
-        soundSlider.value = PlayerPrefs.GetFloat("sound", 0.7f);
-        musicSlider.value = PlayerPrefs.GetFloat("music", 0.5f);
+        soundSlider.value = PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
+        musicSlider.value = PlayerPrefs.GetFloat("music", SoundManager.musicDefaultValue);
 
         soundSlider.onValueChanged.AddListener((value) => OnSliderChanged("sound", value));
         musicSlider.onValueChanged.AddListener((value) => OnSliderChanged("music", value));
@@ -91,6 +96,8 @@ public class MenuManager : MonoBehaviour
         gameObject.SetActive(false);
         backButton.Select();
         Time.timeScale = 1f;
+        onGameResumed.Invoke();
+
     }
 
     public void PauseGame()
@@ -98,6 +105,7 @@ public class MenuManager : MonoBehaviour
         gameObject.SetActive(true);
         startButton.Select();
         Time.timeScale = 0f;
+        onGamePaused.Invoke();
     }
 
     public void Menu()
@@ -112,5 +120,14 @@ public class MenuManager : MonoBehaviour
     public void OnSliderChanged(string name, float value)
     {
         PlayerPrefs.SetFloat(name, value);
+        switch (name)
+        {
+            case "sound":
+                SoundManager.SetSoundVolume(value);
+                break;
+            case "music":
+                SoundManager.SetMusicVolume(value);
+                break;
+        }
     }
 }

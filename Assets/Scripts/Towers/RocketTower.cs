@@ -31,6 +31,8 @@ public class RocketTower : Tower
     }
     public override void OnEnemyEnter(Rigidbody target)
     {
+        SoundManager.PlaySound(SoundManager.SoundType.TOWER_MISSLE_START);
+
         unshootTargets.Add(target.GetComponent<CarSphere>());
     }
     public override void OnEnemyLeaves(Rigidbody target)

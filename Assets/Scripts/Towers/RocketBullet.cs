@@ -46,11 +46,11 @@ public class RocketBullet : MonoBehaviour
         Debug.DrawRay(rayOrigin.position, visual.forward, Color.red, rayDistance);
         if (Physics.Raycast(rayOrigin.position, visual.forward, out RaycastHit hit, rayDistance, ~0, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log("triggered By: " + hit.transform.name);
+            //Debug.Log("triggered By: " + hit.transform.name);
             var inRadius = Physics.OverlapSphere(hit.point, radius);
             foreach(var obj in inRadius)
             {
-                Debug.Log("Object In Radius: " + obj.name);
+                //Debug.Log("Object In Radius: " + obj.name);
                 if (obj.CompareTag("CarSphere"))
                 {
                     var dir = (obj.transform.position - hit.point).normalized * hitIntensity;
@@ -60,6 +60,7 @@ public class RocketBullet : MonoBehaviour
                 }
             }
             Instantiate(rocketEffectPrefab, hit.point, Quaternion.identity);
+            SoundManager.PlaySound(SoundManager.SoundType.TOWER_MISSLE_EXPLOSION);
             Destroy(gameObject);
         }
     }
