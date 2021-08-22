@@ -143,6 +143,7 @@ public class GameController : MonoBehaviour
             t.GetComponent<TowerPointerUI>().SetPanel(null);
         }
 
+        SoundManager.PlaySound(SoundManager.SoundType.RACE_COUNTDOWN);
         StartCountdown();
         gameMode = GameMode.RACING;
         towerPlacingCountdown.gameObject.SetActive(false);
@@ -230,9 +231,9 @@ public class GameController : MonoBehaviour
 
     private void StartCountdown()
     {
-        StartCoroutine(SetCountdownText(3));
-        StartCoroutine(SetCountdownText(2));
-        StartCoroutine(SetCountdownText(1));
+        StartCoroutine(SetCountdownText(1.8f));
+        StartCoroutine(SetCountdownText(1.2f));
+        StartCoroutine(SetCountdownText(0.6f));
         StartCoroutine(SetCountdownText(0));
         StartCoroutine(RemoveCountDownText());
     }
@@ -240,7 +241,7 @@ public class GameController : MonoBehaviour
     public void CarFinished(int playerIndex)
     {
         playersFinished.Add(playerIndex);
-        
+        SoundManager.PlaySound(SoundManager.SoundType.PLAYER_FINISHED);
         foreach(var ps in finishLineConfety)
         {
             ps.Play();
@@ -289,9 +290,9 @@ public class GameController : MonoBehaviour
             finishAction.Invoke();
         }
     }
-    private IEnumerator SetCountdownText(int secondsRemain)
+    private IEnumerator SetCountdownText(float secondsRemain)
     {
-        yield return new WaitForSeconds(3 - secondsRemain);
+        yield return new WaitForSeconds(1.8f - secondsRemain);
         if (secondsRemain == 0)
         {
             Debug.Log("GO!!!");
@@ -309,7 +310,7 @@ public class GameController : MonoBehaviour
         {
             foreach (var player in players)
             {
-                player.outline.countDownText.text = "" + secondsRemain;
+                player.outline.countDownText.text = "" + Mathf.RoundToInt(secondsRemain*(1/0.6f));
             }
             
             Debug.Log(secondsRemain);

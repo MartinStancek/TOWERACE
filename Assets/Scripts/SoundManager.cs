@@ -50,7 +50,8 @@ public class SoundManager : MonoBehaviour
         MONEY_SPEND,
         SCREEN_CHANGED,
         PLAYER_READY,
-        PLAYER_FINISHED
+        PLAYER_FINISHED,
+        BUTTON_CLICKED
     }
 
     [System.Serializable]

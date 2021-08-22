@@ -47,6 +47,7 @@ public class ScoreManager : MonoBehaviour
     {
         resultsPanel.SetActive(true);
         roundText.text = "" + (round++);
+        var delay = pointsDelay;
 
         for (var i = 0; i < gc.players.Count; i++)
         {
@@ -57,7 +58,6 @@ public class ScoreManager : MonoBehaviour
 
             var starIncome = Mathf.Clamp(3 - playerPosition, 0, 3);
             var newStarCount = Mathf.Clamp(p.stars + starIncome, 0, starsPanel.childCount);
-            var delay = pointsDelay;
             for (var j = 0; j < starsPanel.childCount; j++)
             {
                 if (j < p.stars)
@@ -70,7 +70,7 @@ public class ScoreManager : MonoBehaviour
                     color.a = 0.6f;
                     StartCoroutine(SetColorWithDelay(delay, starsPanel.GetChild(j).GetComponent<Image>(), color));
                     delay += pointsDelay;
-                } 
+                }
                 else
                 {
                     //starsPanel.GetChild(j).GetComponent<Image>().sprite = starImages.black;
@@ -79,6 +79,13 @@ public class ScoreManager : MonoBehaviour
             p.stars = newStarCount;
 
             playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money - previousMoney[i]) + " $";
+        }
+        delay = pointsDelay;
+        for(var i = 0; i< 3; i++)
+        {
+            StartCoroutine(PlaySoudWithDelay(delay));
+            delay += pointsDelay;
+
         }
 
         countDonwScoreText.text = "" + timeInSeconds;
@@ -97,6 +104,12 @@ public class ScoreManager : MonoBehaviour
 
             StartCoroutine(SetEndRacingResultCountDonw(timeInSeconds - 1, EndRacingResult));
         }
+    }
+
+    private IEnumerator PlaySoudWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SoundManager.PlaySound(SoundManager.SoundType.POINT_ADDED);
     }
 
     private IEnumerator SetColorWithDelay(float delay, Image target, Color color)

@@ -156,6 +156,7 @@ public class TowerPlacer : MonoBehaviour
         if (player.money >= snap.price && snap.playerOwner == null)
         {
             Debug.Log("Player " + player.playerIndex + " is buying snap " + snap.name);
+            SoundManager.PlaySound(SoundManager.SoundType.MONEY_SPEND);
             snap.SetColor(player.playerColor);
             snap.playerOwner = player;
             player.money -= snap.price;
@@ -166,6 +167,7 @@ public class TowerPlacer : MonoBehaviour
         else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money >= towerOptions[towerIndex].price)
         {
             Debug.Log("Player " + player.playerIndex + " is buying " + towerOptions[towerIndex].prefab.name);
+            SoundManager.PlaySound(SoundManager.SoundType.MONEY_SPEND);
 
             player.money -= towerOptions[towerIndex].price;
             var go = Instantiate(towerOptions[towerIndex].prefab, snap.transform.position, snap.transform.rotation);

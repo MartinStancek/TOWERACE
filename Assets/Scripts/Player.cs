@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
     public void ToggleReady()
     {
         SetReady(!isReady);
+        SoundManager.PlaySound(SoundManager.SoundType.PLAYER_READY);
     }
 
     public void SetReady(bool value)
@@ -69,6 +70,7 @@ public class Player : MonoBehaviour
         isReady = value;
         outline.SetReady(value); 
 
+        
 
         switch (GameController.Instance.gameMode)
         {
