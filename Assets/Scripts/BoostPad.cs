@@ -20,6 +20,7 @@ public class BoostPad : MonoBehaviour
     private IEnumerator ActivateBoost(CarController car)
     {
         car.forwardAccel = accelBoost;
+        SoundManager.PlaySound(SoundManager.SoundType.BOOST);
         yield return new WaitForSeconds(boostForSeconds);
         car.forwardAccel = car.originalAccel;
     }

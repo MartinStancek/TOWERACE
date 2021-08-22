@@ -209,6 +209,7 @@ public class CarController : MonoBehaviour
             chickenEffect.Play();
             carSkin.SetActive(false);
             player.outline.wingItPanel.gameObject.SetActive(true);
+            SoundManager.PlaySound(SoundManager.SoundType.CHICKEN_TRANSMISION);
         }
     }
 
@@ -221,6 +222,7 @@ public class CarController : MonoBehaviour
             carSkin.SetActive(true);
             chickenEffect.Play();
             player.outline.wingItPanel.gameObject.SetActive(false);
+            SoundManager.PlaySound(SoundManager.SoundType.CAR_TRANSMISION);
 
         }
     }

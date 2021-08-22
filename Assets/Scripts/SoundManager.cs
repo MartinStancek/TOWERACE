@@ -118,7 +118,7 @@ public class SoundManager : MonoBehaviour
     {
         var sound = Instance.GetSound(type);
 
-        if (sound == null)
+        if (sound == null || sound.clip == null)
         {
             Debug.LogWarning("Can't find audioClip for: " + type.ToString());
             return null;

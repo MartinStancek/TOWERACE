@@ -12,4 +12,5 @@ public class CarSphere : MonoBehaviour
     public bool isRespawned = false;
 
     public CinemachineVirtualCamera vCAM;
+
 }

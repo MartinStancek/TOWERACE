@@ -19,6 +19,7 @@ public class AntimaterLaser : MonoBehaviour
             t.GetComponent<CheckPointController>().Respawn(false);
             tower.destructionEffect.transform.position = t.position;
             tower.destructionEffect.Play();
+            SoundManager.PlaySound(SoundManager.SoundType.TOWER_ANTI_MATER_COLISION);
         }
     }
 }
