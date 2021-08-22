@@ -62,6 +62,7 @@ public class SoundManager : MonoBehaviour
         [Range(0f, 1f)]
         public float volume = 1f;
         public bool canOverlap = true;
+        public bool playOnStart = false;
     }
     private class DictValue
     {
@@ -80,6 +81,11 @@ public class SoundManager : MonoBehaviour
         {
             audioStart[i.type] = new DictValue();
             audioStart[i.type].time = Time.time;
+
+            if (i.playOnStart)
+            {
+                PlaySound(i.type);
+            }
         }
 
         var go = new GameObject("MUSIC_SOUND");
