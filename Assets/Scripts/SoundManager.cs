@@ -178,8 +178,11 @@ public class SoundManager : MonoBehaviour
             if (t.name != "MUSIC_SOUND")
             {
                 var source = t.GetComponent<AudioSource>();
-                var sound = Instance.audios.Where(e => e.clip.Equals(source.clip)).FirstOrDefault();
-                source.volume = sound.volume * value;
+                var sound = Instance.audios.Where(e => e.clip != null && e.clip.Equals(source.clip)).FirstOrDefault();
+                if (sound != null)
+                {
+                    source.volume = sound.volume * value;
+                }
             }
         }
     }

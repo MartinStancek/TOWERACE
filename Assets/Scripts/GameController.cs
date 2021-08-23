@@ -310,7 +310,7 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator SetCountdownText(float secondsRemain)
     {
-        yield return new WaitForSeconds(2.6f - secondsRemain);
+        yield return new WaitForSeconds(1.8f - secondsRemain);
         if (secondsRemain == 0)
         {
             Debug.Log("GO!!!");
@@ -348,7 +348,7 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator RemoveCountDownText()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2.4f);
         foreach(var p in players)
         {
             p.outline.countDownPanel.gameObject.SetActive(false);
