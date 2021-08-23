@@ -176,6 +176,22 @@ MonoBehaviour:
     renderer: {fileID: 4979690459162320782}
     materialIndexes: 00000000
     colorField: Color_f8cb50be49e64291a81b7ed6fdc742a9
+  - particles: {fileID: 0}
+    renderer: {fileID: 246748620541998251}
+    materialIndexes: 00000000
+    colorField: Color_adf1e63e1929402cab9bc33d9b1bf051
+  - particles: {fileID: 0}
+    renderer: {fileID: 1614808350052850230}
+    materialIndexes: 00000000
+    colorField: Color_adf1e63e1929402cab9bc33d9b1bf051
+  - particles: {fileID: 0}
+    renderer: {fileID: 1614808350489246297}
+    materialIndexes: 00000000
+    colorField: Color_adf1e63e1929402cab9bc33d9b1bf051
+  - particles: {fileID: 0}
+    renderer: {fileID: 1614808350945109716}
+    materialIndexes: 00000000
+    colorField: Color_adf1e63e1929402cab9bc33d9b1bf051
   lasers: {fileID: 4796847538635949515}
   speed: -50
   destructionEffect: {fileID: 553700525764727148}

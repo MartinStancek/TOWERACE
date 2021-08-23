@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.ctrlKey.wasPressedThisFrame && !customPlayerJoined && GameController.Instance.gameMode == GameMode.LOBBY)
+        if (Keyboard.current.ctrlKey.wasPressedThisFrame && !customPlayerJoined && normalPlayerJoined && GameController.Instance.gameMode == GameMode.LOBBY)
         {
             //var pim = GetComponent<PlayerInputManager>();
             var go = Instantiate(customKeyboardPlayerPrefab);
