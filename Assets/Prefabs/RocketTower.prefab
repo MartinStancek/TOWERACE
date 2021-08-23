@@ -64,8 +64,8 @@ MonoBehaviour:
   coloredParts:
   - particles: {fileID: 0}
     renderer: {fileID: 1986635649189065293}
-    materialIndexes: 00000000
-    colorField: 
+    materialIndexes: 
+    colorField: Color_7f740b541e4a456db78e17007ea96af4
   - particles: {fileID: 0}
     renderer: {fileID: 7893468552908780405}
     materialIndexes: 0200000001000000
@@ -73,6 +73,30 @@ MonoBehaviour:
   - particles: {fileID: 0}
     renderer: {fileID: 7893468552684150134}
     materialIndexes: 0100000002000000
+    colorField: 
+  - particles: {fileID: 0}
+    renderer: {fileID: 7528898632843492073}
+    materialIndexes: 
+    colorField: Color_0bc2ec7f8b624a31ad9a61ee362a08af
+  - particles: {fileID: 0}
+    renderer: {fileID: 6300298678628451857}
+    materialIndexes: 
+    colorField: Color_0bc2ec7f8b624a31ad9a61ee362a08af
+  - particles: {fileID: 0}
+    renderer: {fileID: 4736787387686224018}
+    materialIndexes: 
+    colorField: Color_0bc2ec7f8b624a31ad9a61ee362a08af
+  - particles: {fileID: 9070158605990650260}
+    renderer: {fileID: 0}
+    materialIndexes: 
+    colorField: 
+  - particles: {fileID: 650920253433849785}
+    renderer: {fileID: 0}
+    materialIndexes: 
+    colorField: 
+  - particles: {fileID: 1888863555197964025}
+    renderer: {fileID: 0}
+    materialIndexes: 
     colorField: 
   head: {fileID: 8812047426433245612}
   rotationSpeed: 10
