@@ -83,6 +83,7 @@ public class GameController : MonoBehaviour
 
     public List<SnapUI> snapsUI;
 
+    public GameObject towerPlacingCountdownBar;
     public Transform towerPlacingCountdown;
     public TMP_Text towerPlacingCountdownText;
     private Coroutine towerPlacingCountdownCor;
@@ -291,6 +292,15 @@ public class GameController : MonoBehaviour
         if (secondsRemain > 0)
         {
             towerPlacingCountdownText.text = "" + secondsRemain;
+            if (secondsRemain < 5)
+            {
+                LeanTween.scale(towerPlacingCountdownBar.gameObject, Vector3.one * 1.4f, 0.1f)
+                    .setOnComplete(() =>
+                    {
+                        LeanTween.scale(towerPlacingCountdownBar.gameObject, Vector3.one, 0.1f);
+                    }
+                    );
+            }
             yield return SetTowerPlacingCountDown(secondsRemain - 1, finishAction);
         }
         else
@@ -310,7 +320,12 @@ public class GameController : MonoBehaviour
                 var cc = player.GetComponentInChildren<CarController>();
                 cc.isActivated = true;
                 player.outline.countDownText.text = "GO!";
-
+                LeanTween.scale(player.outline.countDownText.gameObject, Vector3.one * 1.4f, 0.1f)
+                    .setOnComplete(() =>
+                    {
+                        LeanTween.scale(player.outline.countDownText.gameObject, Vector3.one, 0.1f);
+                    }
+                    );
             }
 
         }
@@ -318,9 +333,16 @@ public class GameController : MonoBehaviour
         {
             foreach (var player in players)
             {
-                player.outline.countDownText.text = "" + Mathf.RoundToInt(secondsRemain*(1/0.6f));
+                player.outline.countDownText.text = "" + Mathf.RoundToInt(secondsRemain * (1 / 0.6f));
+                player.outline.countDownText.transform.localScale = Vector3.one;
+                LeanTween.scale(player.outline.countDownText.gameObject, Vector3.one * 1.4f, 0.1f)
+                    .setOnComplete(() =>
+                    {
+                        LeanTween.scale(player.outline.countDownText.gameObject, Vector3.one, 0.1f);
+                    }
+                    );
             }
-            
+
             Debug.Log(secondsRemain);
         }
     }

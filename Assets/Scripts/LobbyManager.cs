@@ -90,6 +90,12 @@ public class LobbyManager : MonoBehaviour
                 foreach (var p in gc.players)
                 {
                     p.outline.countDownText.text = "" + secondsRemain;
+                    LeanTween.scale(p.outline.countDownText.gameObject, Vector3.one * 1.5f, 0.2f)
+                        .setOnComplete(() =>
+                        {
+                            LeanTween.scale(p.outline.countDownText.gameObject, Vector3.one, 0.2f);
+                        }
+                        );
                 }
                 yield return SetEndLobbyCountDonw(secondsRemain - 1, finishAction, reverseAction);
             }

@@ -5207,10 +5207,10 @@ MonoBehaviour:
   towerPointer: {fileID: 7894747575586699092, guid: 5cc17f4bf73eb984286a58d75051a6c6, type: 3}
   towerOptions:
   - prefab: {fileID: 953750827910792910, guid: a7f0c8c0d3b45a147b566aaa82f29c22, type: 3}
-    price: 50
+    price: 100
     preview: {fileID: 21300000, guid: c94f5548993f0884d8265a910b2c41ae, type: 3}
   - prefab: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
-    price: 100
+    price: 150
     preview: {fileID: 21300000, guid: 5d164e22f0b2ffa4a96680c8c1ee96ce, type: 3}
   - prefab: {fileID: 62542434775429237, guid: 0b60c52518c7919468b7ea40fda293f8, type: 3}
     price: 150

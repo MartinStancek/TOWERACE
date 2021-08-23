@@ -117,6 +117,12 @@ public class ScoreManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         target.color = color;
+        LeanTween.scale(target.gameObject, Vector3.one * 1.4f, 0.1f)
+    .setOnComplete(() =>
+    {
+        LeanTween.scale(target.gameObject, Vector3.one, 0.1f);
+    }
+    );
     }
 
 
