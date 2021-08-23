@@ -10150,6 +10150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: part_CarTrail
       objectReference: {fileID: 0}
+    - target: {fileID: 6415324482888859084, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8420599245542781868, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_Parameters.numCapVertices
       value: 2
