@@ -95,7 +95,7 @@ MonoBehaviour:
     playOnStart: 0
   - type: 8
     clip: {fileID: 8300000, guid: 700df15aba3798545ba10c72325a493c, type: 3}
-    volume: 0.5
+    volume: 0.25
     canOverlap: 1
     playOnStart: 0
   - type: 9
