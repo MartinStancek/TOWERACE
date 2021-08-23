@@ -15403,7 +15403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &372307176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33258,7 +33258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707234199261026776, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5707234199261026777, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_Pivot.x
@@ -33362,7 +33362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707234199691532318, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 124
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5707234200316219517, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_IsActive
@@ -33370,7 +33370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707234200316219518, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -152
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5968464588035933950, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_fontSize
@@ -74895,7 +74895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707234199261026776, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5707234199261026777, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_Pivot.x
@@ -75007,7 +75007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707234199691532318, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 124.00001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5707234200196329545, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: playerIndex
@@ -75019,7 +75019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707234200316219518, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -152
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5968464588035933950, guid: afc796410c12d3f479b7ae65e0a5c9a4, type: 3}
       propertyPath: m_fontSize
