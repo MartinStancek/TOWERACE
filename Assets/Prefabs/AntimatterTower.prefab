@@ -9972,6 +9972,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: part_CarTrail (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6415324482888859084, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8420599245542781868, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_Parameters.numCapVertices
       value: 2
@@ -10056,6 +10060,10 @@ PrefabInstance:
     - target: {fileID: 6415324482888859084, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_Name
       value: part_CarTrail (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415324482888859084, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420599245542781868, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_Parameters.numCapVertices
@@ -10673,6 +10681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 6014027045946260637, guid: 2b72d278f4075e246bccc67cb6eec669, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8352611520545740918, guid: 2b72d278f4075e246bccc67cb6eec669, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -10719,15 +10731,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2412804200775175537, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.579
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 2412804200775175537, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.53
+      value: -0.511
       objectReference: {fileID: 0}
     - target: {fileID: 2412804200775175537, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 2412804200775175537, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10760,6 +10772,10 @@ PrefabInstance:
     - target: {fileID: 6415324482888859084, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_Name
       value: part_CarTrail (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415324482888859084, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420599245542781868, guid: 265af652f9ec6c14f8e06e84b6c59a0a, type: 3}
       propertyPath: m_Parameters.numCapVertices
