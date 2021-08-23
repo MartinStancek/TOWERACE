@@ -162,7 +162,7 @@ public class GameController : MonoBehaviour
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
         backGroundCamera.gameObject.SetActive(false);
-        //countDownText.gameObject.SetActive(false);
+        countDownText.gameObject.SetActive(false);
 
         gameMode = GameMode.RACING_RESULT;
 
@@ -207,7 +207,7 @@ public class GameController : MonoBehaviour
 
 
         }
-        towerPlacingCountdown.gameObject.SetActive(true);
+        towerPlacingCountdownText.gameObject.SetActive(true);
         towerPlacingCountdownText.text = "" + towerPlacingSeconds;
         towerPlacingCountdownCor = StartCoroutine(SetTowerPlacingCountDown(towerPlacingSeconds - 1, () =>
         {

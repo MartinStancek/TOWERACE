@@ -94,7 +94,7 @@ public class ScoreManager : MonoBehaviour
         var maxstars = gc.players.Max(e => e.stars);
         if (maxstars >= 10)
         {
-            var winners = gc.players.Where(e => e.stars == maxstars).Select(e => playersScoreParent.GetChild(e.playerIndex).Find("Name").name).ToArray();
+            var winners = gc.players.Where(e => e.stars == maxstars).Select(e => playersScoreParent.GetChild(e.playerIndex).Find("Name").GetComponent<TMP_Text>().text).ToArray();
             winnerText.text = "THE WINNER IS: " + String.Join(" AND ", winners);
             winnerText.gameObject.SetActive(true);
             towerCountDownParent.gameObject.SetActive(false);

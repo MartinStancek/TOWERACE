@@ -60,7 +60,7 @@ public class PlayerOutline : MonoBehaviour
         {
             SetColorRecur(t, targetColor);
         }
-        GetComponent<Image>().color = GetColorWithA(GetComponent<Image>().color, targetColor);
+        transform.Find("GameObject").GetComponent<Image>().color = GetColorWithA(transform.Find("GameObject").GetComponent<Image>().color, targetColor);
     }
 
     private void SetColorRecur(Transform tr, Color c)
