@@ -170,7 +170,15 @@ public class TowerPlacer : MonoBehaviour
             SoundManager.PlaySound(SoundManager.SoundType.MONEY_SPEND);
 
             player.money -= towerOptions[towerIndex].price;
-            var go = Instantiate(towerOptions[towerIndex].prefab, snap.transform.position, snap.transform.rotation);
+            GameObject go;
+            if(towerIndex == 4)
+            {
+                go = Instantiate(towerOptions[towerIndex].prefab, snap.transform);
+            }
+            else
+            {
+                go = Instantiate(towerOptions[towerIndex].prefab, snap.transform.position, snap.transform.rotation);
+            }
             go.name = towerOptions[towerIndex].prefab.name;
             snap.tower = go.GetComponent<Tower>();
             foreach (var p in snap.tower.coloredParts)
