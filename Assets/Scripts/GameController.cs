@@ -310,7 +310,7 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator SetCountdownText(float secondsRemain)
     {
-        yield return new WaitForSeconds(1.8f - secondsRemain);
+        yield return new WaitForSeconds(2.6f - secondsRemain);
         if (secondsRemain == 0)
         {
             Debug.Log("GO!!!");

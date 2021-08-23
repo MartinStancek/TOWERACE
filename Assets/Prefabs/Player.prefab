@@ -5272,7 +5272,7 @@ MonoBehaviour:
   car: {fileID: 8754894382217880353}
   checkPointController: {fileID: 1063748104}
   startMoney: 0
-  moneyByRound: 400
+  moneyByRound: 500
   scoreMultilier: 0
   stars: 0
   controlScheme: 
