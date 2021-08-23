@@ -8841,7 +8841,7 @@ MonoBehaviour:
   towerPlacingCountdownBar: {fileID: 1359866315}
   towerPlacingCountdown: {fileID: 187913467}
   towerPlacingCountdownText: {fileID: 495905779}
-  towerPlacingSeconds: 10
+  towerPlacingSeconds: 30
   playersOutlineParent: {fileID: 931546701}
   finishLineConfety:
   - {fileID: 1253448779}
@@ -64996,7 +64996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095020204754, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095020204755, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_Pivot.x
