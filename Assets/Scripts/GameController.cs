@@ -208,6 +208,7 @@ public class GameController : MonoBehaviour
 
         }
         towerPlacingCountdownText.gameObject.SetActive(true);
+        towerPlacingCountdown.gameObject.SetActive(true);
         towerPlacingCountdownText.text = "" + towerPlacingSeconds;
         towerPlacingCountdownCor = StartCoroutine(SetTowerPlacingCountDown(towerPlacingSeconds - 1, () =>
         {
