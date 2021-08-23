@@ -4349,7 +4349,9 @@ MonoBehaviour:
   rightArrow: {fileID: 1639963914}
   upArrow: {fileID: 844631309}
   downArrow: {fileID: 1239791783}
-  moneyTexts: []
+  moneyTexts:
+  - {fileID: 1080760160505579891}
+  - {fileID: 6671449628089004940}
 --- !u!1 &8025638019342638958
 GameObject:
   m_ObjectHideFlags: 0
