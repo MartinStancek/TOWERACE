@@ -256,9 +256,10 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator SetEndRaceCountDown(int secondsRemain, Action finishAction)
     {
+        var lastFinishDelay = 1.5f;
         if (playersFinished.Count == players.Count)
         {
-            finishAction.Invoke();
+            StartCoroutine(InvokeLate(lastFinishDelay, finishAction));
         }
         else
         {
@@ -271,10 +272,17 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                finishAction.Invoke();
+                StartCoroutine(InvokeLate(lastFinishDelay, finishAction));
             }
         }
     }
+    private IEnumerator InvokeLate(float delay, Action action)
+    {
+        yield return new WaitForSeconds(delay);
+        action.Invoke();
+
+    }
+
     private IEnumerator SetTowerPlacingCountDown(int secondsRemain, Action finishAction)
     {
         yield return new WaitForSeconds(1);
