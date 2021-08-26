@@ -215,7 +215,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 283276511}
+  - {fileID: 8622417041456366728}
   - {fileID: 1275386629}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -260,11 +260,6 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!224 &283276511 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5790370095020204755, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
-  m_PrefabInstance: {fileID: 2878781414460974683}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1275386628
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +641,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1001 &2878781414460974683
+--- !u!1001 &3966076251293575869
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -747,3 +742,8 @@ PrefabInstance:
       objectReference: {fileID: 1574074805}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+--- !u!224 &8622417041456366728 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5790370095020204755, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+  m_PrefabInstance: {fileID: 3966076251293575869}
+  m_PrefabAsset: {fileID: 0}
