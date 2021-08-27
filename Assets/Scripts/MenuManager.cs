@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public static float botDificultyDefaultValue = 0.8f;
     #region Singleton
     private static MenuManager _instance;
     public static MenuManager Instance
@@ -33,6 +34,7 @@ public class MenuManager : MonoBehaviour
 
     public Slider soundSlider;
     public Slider musicSlider;
+    public Slider botDificultySlider;
 
     [HideInInspector]
     public UnityEvent onGamePaused;
@@ -62,9 +64,12 @@ public class MenuManager : MonoBehaviour
         }
         soundSlider.value = PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
         musicSlider.value = PlayerPrefs.GetFloat("music", SoundManager.musicDefaultValue);
+        botDificultySlider.value = PlayerPrefs.GetFloat("bot_dificulty", MenuManager.botDificultyDefaultValue);
+
 
         soundSlider.onValueChanged.AddListener((value) => OnSliderChanged("sound", value));
         musicSlider.onValueChanged.AddListener((value) => OnSliderChanged("music", value));
+        botDificultySlider.onValueChanged.AddListener((value) => OnSliderChanged("bot_dificulty", value));
 
     }
 
@@ -127,6 +132,8 @@ public class MenuManager : MonoBehaviour
                 break;
             case "music":
                 SoundManager.SetMusicVolume(value);
+                break;
+            case "bot_dificulty":
                 break;
         }
     }

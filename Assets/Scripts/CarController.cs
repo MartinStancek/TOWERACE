@@ -82,15 +82,27 @@ public class CarController : MonoBehaviour
 
             //Debug.Log("OnAcceleration: " + context);
 
-            verticalInput = input;
+            OnAcceleration(input);
         }
     }
+
+    public void OnAcceleration(float value)
+    {
+        verticalInput = value;
+    }
+
     public void OnSteering(InputAction.CallbackContext context)
     {
-            var input = context.ReadValue<float>();
-            //Debug.Log("OnMove: " + input);
+        var input = context.ReadValue<float>();
+        //Debug.Log("OnMove: " + input);
 
-            horizontalInput = input;
+        OnSteering(input);
+    }
+
+    public void OnSteering(float value)
+    {
+        horizontalInput = value;
+
     }
 
     void Update()

@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
     public List<Color> playerColors;
 
     public GameObject customKeyboardPlayerPrefab;
+    public GameObject aiPlayerPrefab;
+    
     private bool customPlayerJoined = false;
     private bool normalPlayerJoined = false;
     
@@ -52,6 +54,12 @@ public class PlayerManager : MonoBehaviour
             var go = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
             //OnPlayerJoined(go.GetComponent<PlayerInputCustom>());
             normalPlayerJoined = true;
+        }
+
+        if (Keyboard.current.bKey.wasPressedThisFrame && GameController.Instance.gameMode == GameMode.LOBBY && GameController.Instance.players.Count < 4 && normalPlayerJoined)
+        {
+            //var pim = GetComponent<PlayerInputManager>();
+            var go = Instantiate(aiPlayerPrefab);
         }
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame || Gamepad.all.Where(e => e.startButton.wasPressedThisFrame).ToList().Count > 0)
@@ -99,7 +107,9 @@ public class PlayerManager : MonoBehaviour
             input.camera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
         }
 
-        foreach(var d in input.devices)
+        GameController.Instance.onePlayerCondition.gameObject.SetActive(false);
+
+        foreach (var d in input.devices)
         {
             Debug.Log("player " + playerCount + "controller: " + d.displayName);
         }

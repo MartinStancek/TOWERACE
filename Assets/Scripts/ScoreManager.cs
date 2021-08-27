@@ -140,6 +140,11 @@ public class ScoreManager : MonoBehaviour
         foreach(var p in gc.players)
         {
             playersScoreParent.GetChild(p.playerIndex).Find("Name").GetComponent<TMP_Text>().color = p.playerColor;
+            if (p.GetComponent<PlayerAI>() != null)
+            {
+                playersScoreParent.GetChild(p.playerIndex).Find("Name").GetComponent<TMP_Text>().text += " (BOT)";
+            }
+
 
         }
 

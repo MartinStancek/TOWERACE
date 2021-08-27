@@ -93,6 +93,8 @@ public class GameController : MonoBehaviour
 
     public List<ParticleSystem> finishLineConfety;
 
+    public TMP_Text onePlayerCondition;
+
     public void StartRace()
     {
         SetCarCameras(true);
@@ -120,9 +122,12 @@ public class GameController : MonoBehaviour
             var cpc = cc.rb.transform.GetComponent<CheckPointController>();
             cpc.lastCheckPointIndex = -1;
             cpc.lastPassed = -1;
-            player.playerInput.currentActionMap.Disable();
-            player.playerInput.SwitchCurrentActionMap("Car");
-            player.playerInput.currentActionMap.Enable();
+            if (player.playerInput.currentActionMap != null)
+            {
+                player.playerInput.currentActionMap.Disable();
+                player.playerInput.SwitchCurrentActionMap("Car");
+                player.playerInput.currentActionMap.Enable();
+            }
 
             player.vcam.Follow = player.car.transform;
 
@@ -200,7 +205,10 @@ public class GameController : MonoBehaviour
 
             var p = players[i];
             p.GetComponent<TowerPlacer>().ClaimRandomSpot();
-            p.playerInput.SwitchCurrentActionMap("Spot");
+            if (p.playerInput.currentActionMap != null)
+            {
+                p.playerInput.SwitchCurrentActionMap("Spot");
+            }
             p.outline.readyPanel.gameObject.SetActive(true);
             p.outline.positionPanel.gameObject.SetActive(false);
             p.SetReady(false);
