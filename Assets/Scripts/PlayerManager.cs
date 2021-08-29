@@ -72,7 +72,7 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 MenuManager.Instance.PauseGame();
-
+                MenuManager.Instance.SetPanel(MenuManager.Instance.mainMenuPanel);
             }
         }
     }

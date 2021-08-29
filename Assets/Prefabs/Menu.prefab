@@ -4758,8 +4758,9 @@ MonoBehaviour:
   backButton: {fileID: 0}
   mainMenuPanel: {fileID: 5790370095508226597}
   loadingPanel: {fileID: 5790370094117121915}
-  controlsPanel: {fileID: 5790370094655577027}
-  soundPanel: {fileID: 3986019269495522098}
+  controlsPanel: {fileID: 5790370095236689237}
+  optionsPanel: {fileID: 3986019269069186140}
+  towersPanel: {fileID: 3966076251501303657}
   soundSlider: {fileID: 5790370094201980961}
   musicSlider: {fileID: 5790370095054413128}
   botDificultySlider: {fileID: 5764885503840037327}

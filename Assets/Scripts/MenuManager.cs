@@ -30,7 +30,8 @@ public class MenuManager : MonoBehaviour
     public Transform mainMenuPanel;
     public Transform loadingPanel;
     public Transform controlsPanel;
-    public Transform soundPanel;
+    public Transform optionsPanel;
+    public Transform towersPanel;
 
     public Slider soundSlider;
     public Slider musicSlider;
@@ -86,10 +87,14 @@ public class MenuManager : MonoBehaviour
 
     }
 
-    private void SetPanel(Transform panel)
+    public void SetPanel(Transform panel)
     {
         mainMenuPanel.gameObject.SetActive(false);
         loadingPanel.gameObject.SetActive(false);
+        controlsPanel.gameObject.SetActive(false);
+        optionsPanel.gameObject.SetActive(false);
+        towersPanel.gameObject.SetActive(false);
+        
         if (panel)
         {
             panel.gameObject.SetActive(true);
