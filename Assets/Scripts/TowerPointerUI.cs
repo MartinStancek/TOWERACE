@@ -24,7 +24,7 @@ public class TowerPointerUI : MonoBehaviour
     public RectTransform selectTower;
     public RectTransform selectSpot;
     public RectTransform buySpot;
-    public RectTransform tower;
+    public RectTransform soldOut;
 
     public float widthOfset = 0.8f;
 
@@ -55,7 +55,7 @@ public class TowerPointerUI : MonoBehaviour
         selectTower.gameObject.SetActive(false);
         selectSpot.gameObject.SetActive(false);
         buySpot.gameObject.SetActive(false);
-        tower.gameObject.SetActive(false);
+        soldOut.gameObject.SetActive(false);
 
         if(panel != null)
         {

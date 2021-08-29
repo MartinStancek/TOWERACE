@@ -51,6 +51,8 @@ public class PlayerAI : MonoBehaviour
         }
     }
 
+    private float randomState = 0f;
+
     void FixedUpdate()
     {
         if (GameController.Instance.gameMode == GameMode.RACING)
@@ -63,15 +65,20 @@ public class PlayerAI : MonoBehaviour
             var angle = Vector3.SignedAngle(targetCheckpoint.transform.position - car.transform.position, car.transform.forward, Vector3.up);
             if (angle > 3f)
             {
-                car.OnSteering(Mathf.Clamp(-1f + Random.Range(-0.2f, 0.2f), -1f, 0f)- dificulty*0.5f);
+                car.OnSteering(Mathf.Clamp(-1f + Random.Range(-0.2f, 0.2f), -1f, 0f) - dificulty * 0.5f + randomState);
             } 
             else if(angle < -3f)
             {
-                car.OnSteering(Mathf.Clamp(1f + Random.Range(-0.2f, 0.2f), 0f, 1f)+ dificulty*0.8f);
+                car.OnSteering(Mathf.Clamp(1f + Random.Range(-0.2f, 0.2f), 0f, 1f) + dificulty * 0.5f + randomState);
             } 
-            else
+            else 
             {
-                car.OnSteering(Random.Range(-0.2f, 0.2f));
+                car.OnSteering(randomState);
+            }
+            if (Time.time - lastTimeAction > actionEvery)
+            {
+                lastTimeAction = Time.time;
+                randomState = Random.Range(-0.6f, 0.6f);
             }
         }
 
@@ -104,10 +111,6 @@ public class PlayerAI : MonoBehaviour
                 lastTimeAction = Time.time;
                 snapBuyed = true;
                 towerPlacer.Clicked();
-                if(player.money < 100)
-                {
-                    player.SetReady(true);
-                }
             }
 
             if (!towerSelected && Time.time - lastTimeAction > actionEvery)
@@ -127,12 +130,14 @@ public class PlayerAI : MonoBehaviour
                     towerSelected = true;
                     towerPlacer.Clicked();
                     ResetTowerPlacing();
-                    if (player.money < 100)
-                    {
-                        player.SetReady(true);
-                    }
                 }
             }
+        }
+
+        if(GameController.Instance.gameMode == GameMode.TOWER_PLACING && !player.isReady && 
+            (player.money < 100 || GameController.Instance.GetAllFreeTowerSnapes(player).Count == 0))
+        {
+            player.SetReady(true);
         }
 
 

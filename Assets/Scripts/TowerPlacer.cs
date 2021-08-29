@@ -131,12 +131,6 @@ public class TowerPlacer : MonoBehaviour
                 player.playerInput.SwitchCurrentActionMap("Towers");
             }
         }
-        else
-        {
-            pointer.SetPanel(pointer.tower);
-            pointer.SetTowerName(snap.tower.name);
-
-        }
     }
     public void OnTowerBackClick(InputAction.CallbackContext context)
     {
@@ -196,7 +190,6 @@ public class TowerPlacer : MonoBehaviour
                 p.SetColor(player.playerColor);
             }
             snap.tower.playerOwner = player.playerIndex;
-            pointer.SetPanel(pointer.tower);
             pointer.SetTowerName(snap.tower.name);
 
             //placingState = TowerPlaceState.CHOOSING_SPOT;
@@ -297,23 +290,24 @@ public class TowerPlacer : MonoBehaviour
         {
             pointer.SetPanel(pointer.selectSpot);
         } 
-        else
-        {
-            pointer.SetPanel(pointer.tower);
-            pointer.SetTowerName(targetSnap.tower.name);
-        }
     }
 
     public void ClaimRandomSpot()
     {
         var count = GameController.Instance.towersSnapParent.transform.childCount;
         var snaps = GameController.Instance.GetAllFreeTowerSnapes(player);
-        if(snaps.Count != 0)
+        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+
+        if (snaps.Count != 0)
         {
             var origTS = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
             var tmpIndex = Random.Range(0, snaps.Count);
             snapIndex = GameController.Instance.IndexOfSnap(snaps[tmpIndex]);
             SetSnap(snaps[tmpIndex], origTS);
+        } 
+        else
+        {
+            pointer.SetPanel(pointer.soldOut);
         }
     }
 }

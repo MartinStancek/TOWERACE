@@ -59563,9 +59563,13 @@ PrefabInstance:
       propertyPath: playerIndex
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 341866428, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 341866429, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51.3
+      value: 16.4
       objectReference: {fileID: 0}
     - target: {fileID: 341866429, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -59601,7 +59605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2076153986918726125, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 90.4
+      value: 55.49994
       objectReference: {fileID: 0}
     - target: {fileID: 3542348916266041349, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -59685,7 +59689,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025638019098606931, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936804, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.49994
       objectReference: {fileID: 0}
     - target: {fileID: 8025638019232933516, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: offset.x
@@ -59813,7 +59837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025638020125365651, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292907435459660491, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8679254559232665842, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: playerIndex
@@ -63171,6 +63199,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025638019217936807, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55.09998
+      objectReference: {fileID: 0}
     - target: {fileID: 8025638019232933516, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: offset.x
       value: 960
@@ -63302,6 +63346,10 @@ PrefabInstance:
     - target: {fileID: 8025638020125365651, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292907435459660491, guid: f3b898a7a08b47048b171252244562c5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8679254559232665842, guid: f3b898a7a08b47048b171252244562c5, type: 3}
       propertyPath: playerIndex
