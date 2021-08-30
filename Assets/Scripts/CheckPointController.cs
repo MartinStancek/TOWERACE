@@ -14,6 +14,7 @@ public class CheckPointController : MonoBehaviour
     private Transform checkPoints;
 
     public int lastCheckPointIndex = -1;
+    public float lastCheckPointTime = 0f;
 
     public int lastPassed = -1;
 
@@ -24,6 +25,14 @@ public class CheckPointController : MonoBehaviour
         startRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
         checkPoints = GameController.Instance.checkPonts;
+        GameController.Instance.onStartRace.AddListener(RaceStartInit);
+    }
+
+    private void RaceStartInit()
+    {
+        lastCheckPointIndex = -1;
+        lastCheckPointTime = 0f;
+        lastPassed = -1;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,6 +44,7 @@ public class CheckPointController : MonoBehaviour
                 && lastCheckPointIndex < passed && passed - lastCheckPointIndex < 20)
             {
                 lastCheckPointIndex += (passed - lastCheckPointIndex);
+                lastCheckPointTime = Time.time;
                 //Debug.Log("CheckPoint:" + lastCheckPointIndex);
 
             }

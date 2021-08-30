@@ -119,9 +119,6 @@ public class GameController : MonoBehaviour
             cc.SetCarSkin();
             //cc.SetChickenSkin();
             player.outline.countDownPanel.gameObject.SetActive(true);
-            var cpc = cc.rb.transform.GetComponent<CheckPointController>();
-            cpc.lastCheckPointIndex = -1;
-            cpc.lastPassed = -1;
             if (player.playerInput.currentActionMap != null)
             {
                 player.playerInput.currentActionMap.Disable();
@@ -541,7 +538,10 @@ public class GameController : MonoBehaviour
 
     public void UpdateCheckPointPanel()
     {
-        var orderedPlayers = players.OrderByDescending(e => e.checkPointController.lastCheckPointIndex).ToList();
+        var orderedPlayers = players
+            .OrderByDescending(e => e.checkPointController.lastCheckPointIndex)
+            .ThenBy(e => e.checkPointController.lastCheckPointTime)
+            .ToList();
 
         for (var i = 0; i < orderedPlayers.Count; i++)
         {
