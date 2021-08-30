@@ -31,9 +31,10 @@ public class CheckPointController : MonoBehaviour
         if(other.CompareTag("CheckPoint"))
         {
             var passed = other.transform.GetSiblingIndex();
-            if (lastCheckPointIndex + 1 < checkPoints.childCount && checkPoints.GetChild(lastCheckPointIndex + 1).Equals(other.transform))
+            if (lastCheckPointIndex + 1 < checkPoints.childCount
+                && lastCheckPointIndex < passed && passed - lastCheckPointIndex < 20)
             {
-                lastCheckPointIndex++;
+                lastCheckPointIndex += (passed - lastCheckPointIndex);
                 //Debug.Log("CheckPoint:" + lastCheckPointIndex);
 
             }
