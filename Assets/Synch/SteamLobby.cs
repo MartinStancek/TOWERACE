@@ -59,7 +59,7 @@ public class SteamLobby : MonoBehaviour
         var hostAddress = SteamMatchmaking.GetLobbyData(
             new CSteamID(callback.m_ulSteamIDLobby),
             HostAddressKey);
-        networkManager.GetComponent<SteamP2PTransport>().ConnectToSteamID = Convert.ToUInt64(hostAddress);
+        networkManager.GetComponent<SteamP2PTransport>().ConnectToSteamID = Convert.ToUInt64(hostAddress); // or callback.m_ulSteamIDLobby
 
         networkManager.StartClient();
 
