@@ -58,7 +58,7 @@ public class SteamLobby : MonoBehaviour
             LeanTween.scale(lobbyNameField.gameObject, Vector3.one * 1.3f, 0.1f).setOnComplete(() => { LeanTween.scale(lobbyNameField.gameObject, Vector3.one, 0.1f); });
             return;
         }
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 10);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 10);
         Debug.Log("CreateLobby was called");
         SetPanel(null);
     }
@@ -110,7 +110,7 @@ public class SteamLobby : MonoBehaviour
 
         Debug.Log("OnLobbyEntered was called");
         SetPanel(lobbyPanel);
-        updatePlayers();
+        UpdatePlayers();
     }
 
     private void OnLobbyDataUpdated(LobbyDataUpdate_t callback)
@@ -194,10 +194,10 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyChatUpdated(LobbyChatUpdate_t callback)
     {
         Debug.Log("OnLobbyChatUpdated was called");
-        updatePlayers();
+        UpdatePlayers();
     }
 
-    private void updatePlayers()
+    private void UpdatePlayers()
     {
         var count = SteamMatchmaking.GetNumLobbyMembers(currentLobbyId);
 
@@ -207,10 +207,10 @@ public class SteamLobby : MonoBehaviour
             Instantiate(steamPlayerPrefabUI, steamLobbyPlayerParent);
         }
 
-        while(steamLobbyPlayerParent.childCount > count)
+        for(var i = 0; i< steamLobbyPlayerParent.childCount - count; i++)
         {
             Debug.Log("Destroing old player UI element");
-            Destroy(steamLobbyPlayerParent.GetChild(steamLobbyPlayerParent.childCount - 1));
+            Destroy(steamLobbyPlayerParent.GetChild(steamLobbyPlayerParent.childCount - 1).gameObject);
         }
         steamLobbyPlayerParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * count);
         for (var i = 0; i< count; i++)
