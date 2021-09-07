@@ -102,6 +102,11 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
         currentLobbyId = new CSteamID(callback.m_ulSteamIDLobby);
+        if (SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID()))
+        {
+            SteamMatchmaking.SetLobbyData(currentLobbyId, LobbyNameKey, lobbyNameField.text);
+        }
+
         Debug.Log("OnLobbyEntered was called");
         SetPanel(lobbyPanel);
         updatePlayers();
@@ -110,7 +115,6 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyDataUpdated(LobbyDataUpdate_t callback)
     {
         if (!callback.m_ulSteamIDLobby.Equals(currentLobbyId)) { return; }
-        if (SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID())) { return; }
         Debug.Log("OnLobbyDataUpdated was called");
 
         var gameStarted = SteamMatchmaking.GetLobbyData(
