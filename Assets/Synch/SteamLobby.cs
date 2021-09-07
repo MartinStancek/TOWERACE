@@ -202,7 +202,7 @@ public class SteamLobby : MonoBehaviour
     private void UpdateLobbies(CSteamID lobbyChanged)
     {
         var lobbyName = SteamMatchmaking.GetLobbyData(lobbyChanged, LobbyNameKey);
-        if (!string.IsNullOrEmpty(lobbyName))
+        //if (!string.IsNullOrEmpty(lobbyName))
         {
             var panel = Instantiate(steamLobbyPrefabUI, steamLobbiesParent).transform;
             panel.GetComponentInChildren<TMP_Text>().text = lobbyName;
@@ -223,12 +223,12 @@ public class SteamLobby : MonoBehaviour
             Instantiate(steamPlayerPrefabUI, steamLobbyPlayerParent);
         }
 
-        for(var i = 0; i< steamLobbyPlayerParent.childCount - count; i++)
+        for (var i = 0; i < steamLobbyPlayerParent.childCount - count; i++)
         {
             Debug.Log("Destroing old player UI element");
             Destroy(steamLobbyPlayerParent.GetChild(steamLobbyPlayerParent.childCount - 1).gameObject);
         }
-        steamLobbyPlayerParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * count);
+        steamLobbyPlayerParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * count + 1);
         for (var i = 0; i< count; i++)
         {
             var playerId = SteamMatchmaking.GetLobbyMemberByIndex(currentLobbyId, i);
