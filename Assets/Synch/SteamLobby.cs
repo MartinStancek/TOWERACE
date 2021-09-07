@@ -48,7 +48,7 @@ public class SteamLobby : MonoBehaviour
         lobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         lobbyDataUpdated = Callback<LobbyDataUpdate_t>.Create(OnLobbyDataUpdated);
         lobbyChatUpdated = Callback<LobbyChatUpdate_t>.Create(OnLobbyChatUpdated);
-        lobbyMatchListUpdated = Callback<LobbyMatchList_t>.Create(onLobbyMatchListUpdated);
+        lobbyMatchListUpdated = Callback<LobbyMatchList_t>.Create(OnLobbyMatchListUpdated);
     }
 
     public void CreateLobby()
@@ -115,7 +115,14 @@ public class SteamLobby : MonoBehaviour
 
     private void OnLobbyDataUpdated(LobbyDataUpdate_t callback)
     {
-        if (!callback.m_ulSteamIDLobby.Equals(currentLobbyId)) { return; }
+        if (!currentLobbyId.Equals(new CSteamID(callback.m_ulSteamIDLobby)))
+        {
+            Debug.Log("Updating Lobbies");
+
+            UpdateLobbies(new CSteamID(callback.m_ulSteamIDLobby));
+            return;
+        }
+
         Debug.Log("OnLobbyDataUpdated was called");
 
         var gameStarted = SteamMatchmaking.GetLobbyData(
@@ -152,7 +159,6 @@ public class SteamLobby : MonoBehaviour
         {
             panel.SetActive(true);
         }
-
     }
 
     public void FindLobbies()
@@ -168,7 +174,7 @@ public class SteamLobby : MonoBehaviour
 
     }
 
-    private void onLobbyMatchListUpdated(LobbyMatchList_t callback)
+    private void OnLobbyMatchListUpdated(LobbyMatchList_t callback)
     {
         steamLobbiesLoadingText.gameObject.SetActive(false);
         var count = callback.m_nLobbiesMatching;
@@ -177,24 +183,34 @@ public class SteamLobby : MonoBehaviour
         for (var i = 0; i < count; i++)
         {
             var lobbyId = SteamMatchmaking.GetLobbyByIndex(i);
-            var lobbyName = SteamMatchmaking.GetLobbyData(lobbyId, LobbyNameKey);
-            if (!string.IsNullOrEmpty(lobbyName))
-            {
-                var panel = Instantiate(steamLobbyPrefabUI, steamLobbiesParent).transform;
-                panel.GetComponentInChildren<TMP_Text>().text = lobbyName;
-                panel.GetComponentInChildren<Button>().onClick.AddListener(() => { SteamMatchmaking.JoinLobby(lobbyId); });
-                panel.localPosition = new Vector3(0f, -30f * index, 0f);
-                index++;
-            }
+            SteamMatchmaking.RequestLobbyData(lobbyId);
+
+
         }
-        steamLobbiesParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * index);
+
 
     }
 
     private void OnLobbyChatUpdated(LobbyChatUpdate_t callback)
     {
         Debug.Log("OnLobbyChatUpdated was called");
+
         UpdatePlayers();
+
+    }
+
+    private void UpdateLobbies(CSteamID lobbyChanged)
+    {
+        var lobbyName = SteamMatchmaking.GetLobbyData(lobbyChanged, LobbyNameKey);
+        if (!string.IsNullOrEmpty(lobbyName))
+        {
+            var panel = Instantiate(steamLobbyPrefabUI, steamLobbiesParent).transform;
+            panel.GetComponentInChildren<TMP_Text>().text = lobbyName;
+            panel.GetComponentInChildren<Button>().onClick.AddListener(() => { SteamMatchmaking.JoinLobby(lobbyChanged); });
+            panel.localPosition = new Vector3(0f, -30f * (steamLobbiesParent.childCount - 2), 0f);
+        }
+        steamLobbiesParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * (steamLobbiesParent.childCount - 1));
+
     }
 
     private void UpdatePlayers()
