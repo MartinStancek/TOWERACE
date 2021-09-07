@@ -104,6 +104,7 @@ public class SteamLobby : MonoBehaviour
         currentLobbyId = new CSteamID(callback.m_ulSteamIDLobby);
         if (SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID()))
         {
+            Debug.Log("Setting Lobby name to: " + lobbyNameField.text);
             SteamMatchmaking.SetLobbyData(currentLobbyId, LobbyNameKey, lobbyNameField.text);
         }
 
@@ -171,27 +172,23 @@ public class SteamLobby : MonoBehaviour
     {
         steamLobbiesLoadingText.gameObject.SetActive(false);
         var count = callback.m_nLobbiesMatching;
-        while (steamLobbiesParent.childCount < count + 1)
-        {
-            Instantiate(steamLobbyPrefabUI, steamLobbiesParent);
-        }
-        steamLobbiesParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * count);
 
+        var index = 0;
         for (var i = 0; i < count; i++)
         {
             var lobbyId = SteamMatchmaking.GetLobbyByIndex(i);
             var lobbyName = SteamMatchmaking.GetLobbyData(lobbyId, LobbyNameKey);
-            if (string.IsNullOrEmpty(lobbyName))
+            if (!string.IsNullOrEmpty(lobbyName))
             {
-                lobbyName = "MISSING NAME";
+                var panel = Instantiate(steamLobbyPrefabUI, steamLobbiesParent).transform;
+                panel.GetComponentInChildren<TMP_Text>().text = lobbyName;
+                panel.GetComponentInChildren<Button>().onClick.AddListener(() => { SteamMatchmaking.JoinLobby(lobbyId); });
+                panel.localPosition = new Vector3(0f, -30f * index, 0f);
+                index++;
             }
-
-            var panel = steamLobbiesParent.GetChild(i+1);
-            panel.GetComponentInChildren<TMP_Text>().text = lobbyName;
-            panel.GetComponentInChildren<Button>().onClick.AddListener(() => { SteamMatchmaking.JoinLobby(lobbyId); });
-            panel.localPosition = new Vector3(0f, -30f * i, 0f);
-
         }
+        steamLobbiesParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * index);
+
     }
 
     private void OnLobbyChatUpdated(LobbyChatUpdate_t callback)
