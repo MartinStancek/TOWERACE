@@ -123,6 +123,11 @@ public class SoundManager : MonoBehaviour
 
     public static AudioSource PlaySound(SoundType type)
     {
+        if(Instance == null)
+        {
+            Debug.LogWarning("Can't find SoundManager In scene, Add one!");
+            return null;
+        }
         var sound = Instance.GetSound(type);
 
         if (sound == null || sound.clip == null)
