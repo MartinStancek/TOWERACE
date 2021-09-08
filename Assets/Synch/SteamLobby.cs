@@ -5,6 +5,7 @@ using Steamworks;
 using MLAPI;
 using MLAPI.Transports.SteamP2P;
 using System;
+using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 
@@ -36,7 +37,8 @@ public class SteamLobby : MonoBehaviour
     protected Callback<LobbyDataUpdate_t> lobbyDataUpdated;
     protected Callback<LobbyChatUpdate_t> lobbyChatUpdated;
     protected Callback<LobbyMatchList_t> lobbyMatchListUpdated;
-    
+    protected Callback<LobbyChatMsg_t> lobbyChatMsgRecieved;
+
     private CSteamID currentLobbyId;
     private List<CSteamID> lobbyList;
     private int lastLobbyRequested = 0;
@@ -50,6 +52,7 @@ public class SteamLobby : MonoBehaviour
         lobbyDataUpdated = Callback<LobbyDataUpdate_t>.Create(OnLobbyDataUpdated);
         lobbyChatUpdated = Callback<LobbyChatUpdate_t>.Create(OnLobbyChatUpdated);
         lobbyMatchListUpdated = Callback<LobbyMatchList_t>.Create(OnLobbyMatchListUpdated);
+        lobbyChatMsgRecieved = Callback<LobbyChatMsg_t>.Create(OnLobbyChatMsgRecieved);
     }
 
     public void CreateLobby()
@@ -149,6 +152,7 @@ public class SteamLobby : MonoBehaviour
     {
         SteamMatchmaking.LeaveLobby(currentLobbyId);
         currentLobbyId = CSteamID.Nil;
+        SetPanel(introPanel);
     }
 
 
@@ -201,7 +205,6 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyChatUpdated(LobbyChatUpdate_t callback)
     {
         Debug.Log("OnLobbyChatUpdated was called");
-
         UpdatePlayers();
 
     }
@@ -254,9 +257,38 @@ public class SteamLobby : MonoBehaviour
             var playerName = SteamFriends.GetFriendPersonaName(playerId);
             var panel = steamLobbyPlayerParent.GetChild(i);
             panel.GetComponentInChildren<TMP_Text>().text = playerName;
+            panel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
+            panel.GetComponentInChildren<Button>().onClick.AddListener(()=> { 
+                SteamMatchmaking.SendLobbyChatMsg(
+                    currentLobbyId, 
+                    BitConverter.GetBytes((int)EChatEntryType.k_EChatEntryTypeWasKicked)
+                        .Concat(BitConverter.GetBytes(playerId.m_SteamID)).ToArray(), 
+                    300); });
+
             panel.localPosition = new Vector3(0f, -30f * i, 0f);
         }
 
+    }
+
+    private void OnLobbyChatMsgRecieved(LobbyChatMsg_t callback)
+    {
+        Debug.Log("calltype: " + ((int)callback.m_eChatEntryType));
+        if ((int)callback.m_eChatEntryType == (int)EChatEntryType.k_EChatEntryTypeChatMsg) 
+        {
+            byte[] msgData = new byte[300];
+            CSteamID user;
+            EChatEntryType type;
+            SteamMatchmaking.GetLobbyChatEntry(currentLobbyId, (int)callback.m_iChatID, out user, msgData, 300, out type);
+
+            var msgType = BitConverter.ToInt32(msgData, 0);
+            var msgUserToKick = BitConverter.ToUInt64(msgData, 0 + sizeof(int));
+            Debug.Log("msgtype: " + msgType + ", msgUser: " + msgUserToKick);
+            if(msgType == (int)EChatEntryType.k_EChatEntryTypeWasKicked && SteamUser.GetSteamID().Equals(new CSteamID(msgUserToKick)))
+            {
+                Debug.Log("I was kicked from the session :(");
+                LeaveLobby();
+            }
+        }
     }
 
 }
