@@ -290,6 +290,13 @@ public class SteamLobby : MonoBehaviour
         }
     }
 
+    public void InviteFriends()
+    {
+        if (!currentLobbyId.Equals(CSteamID.Nil)){
+            SteamFriends.ActivateGameOverlayInviteDialog(currentLobbyId);
+        }
+    }
+
     private bool IsCurrentUserOwner() => SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID());
 
 }
