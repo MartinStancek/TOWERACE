@@ -88,7 +88,7 @@ public class SteamLobby : MonoBehaviour
     public void StartGame()
     {
         if (!SteamManager.Initialized) { return; }
-        if (!SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID())) { return; }
+        if (!IsCurrentUserOwner()) { return; }
 
         Debug.Log("StartGame was called");
         SetPanel(null);
@@ -106,7 +106,7 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
         currentLobbyId = new CSteamID(callback.m_ulSteamIDLobby);
-        if (SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID()))
+        if (IsCurrentUserOwner())
         {
             Debug.Log("Setting Lobby name to: " + lobbyNameField.text);
             SteamMatchmaking.SetLobbyData(currentLobbyId, LobbyNameKey, lobbyNameField.text);
@@ -257,6 +257,7 @@ public class SteamLobby : MonoBehaviour
             var playerName = SteamFriends.GetFriendPersonaName(playerId);
             var panel = steamLobbyPlayerParent.GetChild(i);
             panel.GetComponentInChildren<TMP_Text>().text = playerName;
+            panel.GetComponentInChildren<Button>().interactable = IsCurrentUserOwner();
             panel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
             panel.GetComponentInChildren<Button>().onClick.AddListener(()=> { 
                 SteamMatchmaking.SendLobbyChatMsg(
@@ -290,5 +291,7 @@ public class SteamLobby : MonoBehaviour
             }
         }
     }
+
+    private bool IsCurrentUserOwner() => SteamMatchmaking.GetLobbyOwner(currentLobbyId).Equals(SteamUser.GetSteamID());
 
 }
