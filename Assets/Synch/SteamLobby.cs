@@ -216,7 +216,7 @@ public class SteamLobby : MonoBehaviour
 
         }
         var lobbyName = SteamMatchmaking.GetLobbyData(lobbyChanged, LobbyNameKey);
-        //if (!string.IsNullOrEmpty(lobbyName))
+        if (!string.IsNullOrEmpty(lobbyName))
         {
             var panel = Instantiate(steamLobbyPrefabUI, steamLobbiesParent).transform;
             panel.GetComponentInChildren<TMP_Text>().text = lobbyName;
