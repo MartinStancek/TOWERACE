@@ -38,7 +38,8 @@ public class SteamLobby : MonoBehaviour
     protected Callback<LobbyMatchList_t> lobbyMatchListUpdated;
     
     private CSteamID currentLobbyId;
-
+    private List<CSteamID> lobbyList;
+    private int lastLobbyRequested = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -106,6 +107,7 @@ public class SteamLobby : MonoBehaviour
         {
             Debug.Log("Setting Lobby name to: " + lobbyNameField.text);
             SteamMatchmaking.SetLobbyData(currentLobbyId, LobbyNameKey, lobbyNameField.text);
+            SteamMatchmaking.SetLobbyData(currentLobbyId, GameStartedKey, "false");
         }
 
         Debug.Log("OnLobbyEntered was called");
@@ -117,7 +119,7 @@ public class SteamLobby : MonoBehaviour
     {
         if (!currentLobbyId.Equals(new CSteamID(callback.m_ulSteamIDLobby)))
         {
-            Debug.Log("Updating Lobbies");
+            Debug.Log("Updating Lobby " + callback.m_ulSteamIDLobby + "DataCount: " + SteamMatchmaking.GetLobbyDataCount(new CSteamID(callback.m_ulSteamIDLobby)));
 
             UpdateLobbies(new CSteamID(callback.m_ulSteamIDLobby));
             return;
@@ -163,6 +165,8 @@ public class SteamLobby : MonoBehaviour
 
     public void FindLobbies()
     {
+        SteamMatchmaking.AddRequestLobbyListDistanceFilter(ELobbyDistanceFilter.k_ELobbyDistanceFilterClose);
+        //SteamMatchmaking.AddRequestLobbyListStringFilter(GameStartedKey, "false", ELobbyComparison.k_ELobbyComparisonEqual);
         SteamMatchmaking.RequestLobbyList();
         steamLobbiesLoadingText.gameObject.SetActive(true);
         SetPanel(findLobbyPanel);
@@ -171,6 +175,7 @@ public class SteamLobby : MonoBehaviour
         {
             Destroy(steamLobbiesParent.GetChild(i).gameObject);
         }
+        steamLobbiesParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * (steamLobbiesParent.childCount));
 
     }
 
@@ -178,15 +183,17 @@ public class SteamLobby : MonoBehaviour
     {
         steamLobbiesLoadingText.gameObject.SetActive(false);
         var count = callback.m_nLobbiesMatching;
-
-        var index = 0;
+        lobbyList = new List<CSteamID>();
         for (var i = 0; i < count; i++)
         {
             var lobbyId = SteamMatchmaking.GetLobbyByIndex(i);
-            SteamMatchmaking.RequestLobbyData(lobbyId);
+            lobbyList.Add(lobbyId);
 
 
         }
+        lastLobbyRequested = 0;
+        SteamMatchmaking.RequestLobbyData(lobbyList[lastLobbyRequested]);
+
 
 
     }
@@ -201,6 +208,14 @@ public class SteamLobby : MonoBehaviour
 
     private void UpdateLobbies(CSteamID lobbyChanged)
     {
+        if(SteamMatchmaking.GetLobbyDataCount(lobbyChanged)> 0)
+        {
+            string key;
+            string value;
+            SteamMatchmaking.GetLobbyDataByIndex(lobbyChanged, 0, out key, 10000, out value, 10000);
+            Debug.Log("key: "+ key+ ", value: "+value);
+
+        }
         var lobbyName = SteamMatchmaking.GetLobbyData(lobbyChanged, LobbyNameKey);
         //if (!string.IsNullOrEmpty(lobbyName))
         {
@@ -210,7 +225,11 @@ public class SteamLobby : MonoBehaviour
             panel.localPosition = new Vector3(0f, -30f * (steamLobbiesParent.childCount - 2), 0f);
         }
         steamLobbiesParent.sizeDelta = new Vector2(steamLobbyPlayerParent.sizeDelta.x, 30 * (steamLobbiesParent.childCount - 1));
-
+        lastLobbyRequested += 1;
+        if (lastLobbyRequested < lobbyList.Count)
+        {
+            SteamMatchmaking.RequestLobbyData(lobbyList[lastLobbyRequested]);
+        }
     }
 
     private void UpdatePlayers()
