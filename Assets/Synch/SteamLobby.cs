@@ -78,11 +78,6 @@ public class SteamLobby : MonoBehaviour
 
         Debug.Log("OnLobbyCreated was called");
 
-        SteamMatchmaking.SetLobbyData(
-            currentLobbyId,
-            HostAddressKey,
-            SteamUser.GetSteamID().ToString());
-
     }
 
     public void StartGame()
@@ -111,6 +106,7 @@ public class SteamLobby : MonoBehaviour
             Debug.Log("Setting Lobby name to: " + lobbyNameField.text);
             SteamMatchmaking.SetLobbyData(currentLobbyId, LobbyNameKey, lobbyNameField.text);
             SteamMatchmaking.SetLobbyData(currentLobbyId, GameStartedKey, "false");
+            SteamMatchmaking.SetLobbyData(currentLobbyId, HostAddressKey, SteamUser.GetSteamID().ToString());
         }
 
         Debug.Log("OnLobbyEntered was called");
