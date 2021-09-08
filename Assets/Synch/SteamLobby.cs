@@ -260,7 +260,9 @@ public class SteamLobby : MonoBehaviour
                     currentLobbyId, 
                     BitConverter.GetBytes((int)EChatEntryType.k_EChatEntryTypeWasKicked)
                         .Concat(BitConverter.GetBytes(playerId.m_SteamID)).ToArray(), 
-                    300); });
+                    300);
+                panel.GetComponentInChildren<Button>().interactable = false;
+            });
 
             panel.localPosition = new Vector3(0f, -30f * i, 0f);
         }
