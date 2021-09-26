@@ -13,8 +13,8 @@ using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
-    private const int STEAM = 0;
-    private const int LAN = 1;
+    public const int STEAM = 0;
+    public const int LAN = 1;
 
     public static float botDificultyDefaultValue = 0.8f;
     public static float networkDefaultValue = STEAM;
@@ -94,15 +94,21 @@ public class MenuManager : MonoBehaviour
     {
         networkDropdown.onValueChanged.AddListener((value) => SaveValue("network", value));
 
+        var networkValue = GetNetworkType();
+        networkDropdown.SetValueWithoutNotify(networkValue);
+        HandleNetwork(networkValue);
+        lanConnectIP.text = PlayerPrefs.GetString("connect_to", networkLANconnectIPValue);
+        lanConnectIP.onValueChanged.AddListener(value => PlayerPrefs.SetString("connect_to", value));
+    }
+
+    public int GetNetworkType()
+    {
         var networkValue = (int)PlayerPrefs.GetFloat("network", MenuManager.networkDefaultValue);
         if (networkValue == STEAM && !SteamManager.Initialized)
         {
             networkValue = LAN;
         }
-        networkDropdown.SetValueWithoutNotify(networkValue);
-        HandleNetwork(networkValue);
-        lanConnectIP.text = PlayerPrefs.GetString("connect_to", networkLANconnectIPValue);
-        lanConnectIP.onValueChanged.AddListener(value => PlayerPrefs.SetString("connect_to", value));
+        return networkValue;
     }
 
     public void Quit()

@@ -7978,9 +7978,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5764885502712207899}
-        m_TargetAssemblyTypeName: SteamLobby, Assembly-CSharp
-        m_MethodName: LeaveLobby
+      - m_Target: {fileID: 5764885502712207874}
+        m_TargetAssemblyTypeName: LANLobby, Assembly-CSharp
+        m_MethodName: LeaveServer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12789,6 +12789,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9654b3a4d9cd1f54d9699c0ef7b75286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLANLobbyPrefab: {fileID: 1607222281371622782, guid: 9333ddc2581138d489441f80b9b83f7b, type: 3}
+  lanLobbyPlayerParent: {fileID: 1066459180}
+  introPanel: {fileID: 785532241}
+  lobbyPanel: {fileID: 322668352}
 --- !u!224 &5764885502712207875
 RectTransform:
   m_ObjectHideFlags: 0

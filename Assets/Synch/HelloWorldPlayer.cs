@@ -1,4 +1,3 @@
-
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
@@ -39,7 +38,7 @@ namespace HelloWorld
             }
         }
 
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
         void SubmitPositionRequestServerRpc(ServerRpcParams rpcParams = default)
         {
             Position.Value = GetRandomPositionOnPlane();
