@@ -51,6 +51,7 @@ public class MenuManager : MonoBehaviour
     public Slider botDificultySlider;
     public TMP_Dropdown networkDropdown;
     public TMP_InputField lanConnectIP;
+    public TMP_InputField lanName;
 
     [HideInInspector]
     public UnityEvent onGamePaused;
@@ -81,12 +82,14 @@ public class MenuManager : MonoBehaviour
         soundSlider.value = PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
         musicSlider.value = PlayerPrefs.GetFloat("music", SoundManager.musicDefaultValue);
         botDificultySlider.value = PlayerPrefs.GetFloat("bot_dificulty", MenuManager.botDificultyDefaultValue);
-
+        lanName.text = PlayerPrefs.GetString("lan_name", "");
 
         soundSlider.onValueChanged.AddListener((value) => SaveValue("sound", value));
         musicSlider.onValueChanged.AddListener((value) => SaveValue("music", value));
         botDificultySlider.onValueChanged.AddListener((value) => SaveValue("bot_dificulty", value));
+        lanName.onValueChanged.AddListener(value => PlayerPrefs.SetString("lan_name", value));
     }
+
     void Start()
     {
         networkDropdown.onValueChanged.AddListener((value) => SaveValue("network", value));
