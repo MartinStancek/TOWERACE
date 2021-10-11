@@ -67,14 +67,6 @@ public class Player : MonoBehaviour
 
     public void SetReady(bool value)
     {
-        if(GameController.Instance.players.Count <= 1)
-        {
-            GameController.Instance.onePlayerCondition.gameObject.SetActive(true);
-            LeanTween.scale(GameController.Instance.onePlayerCondition.gameObject, Vector3.one * 1.4f, 0.3f)
-                .setOnComplete(()=> { LeanTween.scale(GameController.Instance.onePlayerCondition.gameObject, Vector3.one, 0.3f); }
-                );
-            return;
-        }
         isReady = value;
         outline.SetReady(value); 
 
@@ -87,6 +79,7 @@ public class Player : MonoBehaviour
             case GameMode.LOBBY:
                 if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
                 {
+                    Debug.Log("Checking player ready");
                     LobbyManager.Instance.LobbyPlayersReady();
                 }
                 else

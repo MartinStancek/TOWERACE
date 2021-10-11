@@ -153,6 +153,7 @@ public class ScoreManager : MonoBehaviour
 
     private void RoundReinicialization()
     {
+        Debug.Log("Player count:" + gc.players.Count);
         for (var i = 0; i < gc.players.Count; i++)
         {
             previousMoney[i] = gc.players[i].money;

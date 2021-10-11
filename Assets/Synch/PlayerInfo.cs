@@ -6,6 +6,7 @@ using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
 using Steamworks;
 using System;
+using UnityEngine.InputSystem;
 
 public class PlayerInfo : NetworkBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerInfo : NetworkBehaviour
         WritePermission = NetworkVariablePermission.OwnerOnly,
         ReadPermission = NetworkVariablePermission.Everyone
     });
+
+    private Player player;
 
     private int networkType;
 
@@ -45,6 +48,23 @@ public class PlayerInfo : NetworkBehaviour
                     throw new Exception("Unknown networkValue " + networkType);
             }
 
+        }
+    }
+
+    [ClientRpc]
+    public void SpawnCarClientRpc()
+    {
+        Debug.Log("RPC SpawnCarClientRpc");
+        try
+        {
+
+            var go = Instantiate(GameController.Instance.playerPrefab);
+            go.GetComponent<NetworkObject>().Spawn();
+            GameController.Instance.GetComponentInChildren<PlayerManager>().OnPlayerJoined(go.GetComponent<PlayerInput>());
+            //GameController.Instance.StartRace();
+        } catch (Exception e)
+        {
+            Debug.LogError(e);
         }
     }
 }

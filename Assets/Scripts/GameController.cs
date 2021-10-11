@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.InputSystem;
+using MLAPI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SnapUI
@@ -48,11 +50,9 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public List<Camera> carCameras = new List<Camera>();
     public Camera mapCamera;
-    public Camera backGroundCamera;
 
     public TMP_Text countDownText;
 
-    public GameObject joinPanel;
 
     public GameObject towersSnapParent;
 
@@ -93,16 +93,21 @@ public class GameController : MonoBehaviour
 
     public List<ParticleSystem> finishLineConfety;
 
-    public TMP_Text onePlayerCondition;
+    public GameObject playerPrefab;
+
+    void Awake()
+    {
+        if (NetworkManager.Singleton == null || !(NetworkManager.Singleton.IsServer || NetworkManager.Singleton.IsClient))
+        {
+            SceneManager.LoadScene("MainMenu");
+            _instance = null;
+        }
+    }
 
     public void StartRace()
     {
         SetCarCameras(true);
         mapCamera.gameObject.SetActive(false);
-        if (players.Count == 3)
-        {
-            backGroundCamera.gameObject.SetActive(true);
-        }
 
         //countDownText.gameObject.SetActive(true);
 
@@ -119,7 +124,7 @@ public class GameController : MonoBehaviour
             cc.SetCarSkin();
             //cc.SetChickenSkin();
             player.outline.countDownPanel.gameObject.SetActive(true);
-            if (player.playerInput.currentActionMap != null)
+            if (player.playerInput && player.playerInput.currentActionMap != null)
             {
                 player.playerInput.currentActionMap.Disable();
                 player.playerInput.SwitchCurrentActionMap("Car");
@@ -163,7 +168,6 @@ public class GameController : MonoBehaviour
     {
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(true);
-        backGroundCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
 
         gameMode = GameMode.RACING_RESULT;
@@ -368,16 +372,13 @@ public class GameController : MonoBehaviour
         SetCarCameras(false);
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
-        joinPanel.SetActive(true);
         towerPlacingCountdown.gameObject.SetActive(false);
 
     }
 
     public void StartGame()
     {
-        joinPanel.SetActive(false);
-
-        transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
+        //transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
         onStartGame.Invoke();
         SetupUISnaps();
 

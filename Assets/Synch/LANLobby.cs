@@ -4,6 +4,7 @@ using UnityEngine;
 using MLAPI;
 using MLAPI.Transports.UNET;
 using MLAPI.Connection;
+using MLAPI.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
@@ -31,6 +32,23 @@ public class LANLobby : MonoBehaviour
         {
             panel.SetActive(true);
         }
+    }
+
+    public void LobbyReady()
+    {
+        Debug.Log("Lobby Ready");
+        var progress = NetworkSceneManager.SwitchScene("MartinScene3");
+        progress.OnComplete += (timeOut) =>
+        {
+            Debug.Log("On complete");
+            foreach(var c in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                Debug.Log("foreach loop");
+
+                c.PlayerObject.GetComponent<PlayerInfo>().SpawnCarClientRpc();
+            }
+            
+        };
     }
 
     public void ConnectToHost()

@@ -25,7 +25,6 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         playerCount = 0;
-        GameController.Instance.backGroundCamera.gameObject.SetActive(true);
         GameController.Instance.onStartGame.AddListener(SetPlayerCameraFinal);
         GameController.Instance.onStartGame.AddListener(()=>
         {
@@ -79,6 +78,8 @@ public class PlayerManager : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput input)
     {
+        Debug.Log("PlayerJoined");
+        /*
         if (playerCount == 0)
         {
             input.camera.rect = new Rect(new Vector2(0f, 0.5f), new Vector2(1f, 0.5f));
@@ -100,14 +101,13 @@ public class PlayerManager : MonoBehaviour
             input.camera.rect = new Rect(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             GameController.Instance.backGroundCamera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
 
-        }
-        /* TODO test*/
+        }*/
+        /* TODO test*//*
         if (playerCount == 3)
         {
             input.camera.rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
-        }
+        }*/
 
-        GameController.Instance.onePlayerCondition.gameObject.SetActive(false);
 
         foreach (var d in input.devices)
         {
@@ -194,7 +194,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
     private void SetPlayerCameraFinal()
-    {
+    {/*
         if (playerCount == 1)
         {
             playerCameras[0].rect = new Rect(new Vector2(0f, 0f), new Vector2(1f, 1f));
@@ -225,7 +225,7 @@ public class PlayerManager : MonoBehaviour
             playerCameras[2].rect = new Rect(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
             playerCameras[3].rect = new Rect(new Vector2(0.5f, 0f), new Vector2(0.5f, 0.5f));
             GameController.Instance.backGroundCamera.gameObject.SetActive(false);
-        }
+        }*/
 
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5697852518136692098}
   - component: {fileID: 4098170395142261956}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkInstanceId: 0
-  PrefabHash: 1897319656204293034
-  PrefabHashGenerator: Player
+  PrefabHash: 2649565935772236750
+  PrefabHashGenerator: PlayerRoot
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
 --- !u!114 &5697852518136692098
