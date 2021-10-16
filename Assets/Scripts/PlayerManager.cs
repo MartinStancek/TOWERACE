@@ -8,6 +8,21 @@ using System.Linq;
 
 public class PlayerManager : MonoBehaviour
 {
+    #region Singleton
+    private static PlayerManager _instance;
+    public static PlayerManager Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                _instance = GameObject.FindObjectOfType<PlayerManager>();
+            }
+            return _instance;
+
+        }
+    }
+    #endregion
     private int playerCount = 0;
 
     private List<Camera> playerCameras = new List<Camera>();
@@ -114,28 +129,16 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("player " + playerCount + "controller: " + d.displayName);
         }
 
-        playerCameras.Add(input.camera);
-        GameController.Instance.carCameras.Add(input.camera);
-
         input.camera.gameObject.SetActive(true);
 
         input.transform.position = GameController.Instance.spawnPoints.GetChild(playerCount).position;
         input.transform.rotation = GameController.Instance.spawnPoints.GetChild(playerCount).rotation;
 
-        input.camera.cullingMask = cameraMasks[playerCount];
         var p = input.gameObject.GetComponent<Player>();
         p.playerIndex = playerCount;
         p.playerColor = playerColors[playerCount];
 
 
-        if (p.isCustomPlayer)
-        {
-            p.controlScheme = "Keyboard2";
-        }
-        else
-        {
-            p.controlScheme = input.currentControlScheme;
-        }
         Debug.Log("PlayerJoined with scheme: \"" + p.controlScheme + "\"");
 
         foreach (var r in p.coloredParts)
@@ -143,7 +146,7 @@ public class PlayerManager : MonoBehaviour
             r.SetColor(p.playerColor);
         }
 
-        var panel = GameController.Instance.towerPointerParent.GetChild(playerCount);
+        var panel = GameController.Instance.towerPointerParent.GetChild(0);
         var tpUI = panel.GetComponent<TowerPointerUI>();
         tpUI.SetPanel(null);
         panel.gameObject.SetActive(true);
@@ -160,8 +163,7 @@ public class PlayerManager : MonoBehaviour
 
 
         var count = GameController.Instance.players.Count;
-        var targetPlayer = (count + ((count == 4) ? 0 : 1) + (count == 2 ? 1 : 0));
-        var outline = GameController.Instance.playersOutlineParent.Find("" + targetPlayer + "players");
+        var outline = GameController.Instance.playersOutlineParent.Find("1players");
         SetPlayerOutLine(outline);
 
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
@@ -181,7 +183,7 @@ public class PlayerManager : MonoBehaviour
         outline.gameObject.SetActive(true);
         foreach (var player in GameController.Instance.players)
         {
-            player.outline = outline.GetChild(player.playerIndex).GetComponent<PlayerOutline>();
+            player.outline = outline.GetChild(0).GetComponent<PlayerOutline>();
             player.outline.SetReady(player.isReady);
             player.outline.readyPanel.gameObject.SetActive(true);
             player.outline.positionPanel.gameObject.SetActive(false);

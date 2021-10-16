@@ -95,6 +95,10 @@ public class GameController : MonoBehaviour
 
     public GameObject playerPrefab;
 
+    public Transform playerUIParent;
+    public GameObject playerUIPrefab;
+
+
     void Awake()
     {
         if (NetworkManager.Singleton == null || !(NetworkManager.Singleton.IsServer || NetworkManager.Singleton.IsClient))
@@ -369,7 +373,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         playersFinished = new List<int>();
-        SetCarCameras(false);
+        SetCarCameras(true);
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
         towerPlacingCountdown.gameObject.SetActive(false);

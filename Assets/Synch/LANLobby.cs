@@ -44,10 +44,9 @@ public class LANLobby : MonoBehaviour
             foreach(var c in NetworkManager.Singleton.ConnectedClientsList)
             {
                 Debug.Log("foreach loop");
-
-                c.PlayerObject.GetComponent<PlayerInfo>().SpawnCarClientRpc();
-            }
-            
+                var go = Instantiate(GameController.Instance.playerPrefab);
+                go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
+            }            
         };
     }
 
