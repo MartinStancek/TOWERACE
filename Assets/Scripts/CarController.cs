@@ -63,6 +63,8 @@ public class CarController : MonoBehaviour
 
     public AudioSource engineSound;
 
+    public Camera carCamera;
+
     void Start()
     {
         rb.transform.parent = null;

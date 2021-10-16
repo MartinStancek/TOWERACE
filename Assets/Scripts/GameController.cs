@@ -9,6 +9,8 @@ using System.Linq;
 using UnityEngine.InputSystem;
 using MLAPI;
 using UnityEngine.SceneManagement;
+using MLAPI.NetworkVariable;
+using MLAPI;
 
 [System.Serializable]
 public class SnapUI
@@ -26,7 +28,7 @@ public enum GameMode
 {
     LOBBY, TOWER_PLACING, RACING, RACING_RESULT
 }
-public class GameController : MonoBehaviour
+public class GameController : NetworkBehaviour
 {
     #region Singleton
     private static GameController _instance;
@@ -47,8 +49,6 @@ public class GameController : MonoBehaviour
     [Tooltip("Vyjadrenie, kolko sa bude cakat po prvom aute, ktore prislo do ciela v sekundach")]
     public int waitingTime = 10;
 
-    [HideInInspector]
-    public List<Camera> carCameras = new List<Camera>();
     public Camera mapCamera;
 
     public TMP_Text countDownText;
@@ -78,8 +78,10 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public UnityEvent onRacingResultEnd;
 
-    [HideInInspector]
-    public GameMode gameMode = GameMode.LOBBY;
+    public NetworkVariable<GameMode> gameMode = new NetworkVariable<GameMode>(
+        new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly, 
+                                      ReadPermission = NetworkVariablePermission.Everyone },
+        GameMode.LOBBY);
 
     public List<SnapUI> snapsUI;
 
@@ -106,129 +108,115 @@ public class GameController : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
             _instance = null;
         }
+
+        gameMode.OnValueChanged += (oldVal, newVal) =>
+        {
+            if (oldVal == GameMode.LOBBY && newVal == GameMode.RACING)
+            {
+                Debug.Log("OnStartGameEvent + onStartRaceEvent");
+                onStartGame.Invoke();
+                onStartRace.Invoke();
+            }
+            else if (oldVal == GameMode.RACING && newVal == GameMode.RACING_RESULT)
+            {
+                Debug.Log("onEndRaceEvent");
+                onEndRace.Invoke();
+            }
+            else if (oldVal == GameMode.RACING_RESULT && newVal == GameMode.TOWER_PLACING)
+            {
+                Debug.Log("onRacingResultEndEvent");
+                onRacingResultEnd.Invoke();
+            }
+            else if (oldVal == GameMode.TOWER_PLACING && newVal == GameMode.RACING)
+            {
+                Debug.Log("onStartRaceEvent");
+                onStartRace.Invoke();
+            }
+        };
+    }
+
+    void Start()
+    {
+        playersFinished = new List<int>();
+        mapCamera.gameObject.SetActive(false);
+        countDownText.gameObject.SetActive(false);
+        towerPlacingCountdown.gameObject.SetActive(false);
+        onStartGame.AddListener(SetupUISnaps);
+
+        onStartRace.AddListener(() => {
+            mapCamera.gameObject.SetActive(false);
+            playersFinished.Clear();
+            foreach (Transform t in towerPointerParent)
+            {
+                t.GetComponent<TowerPointerUI>().SetPanel(null);
+            }
+
+            SoundManager.PlaySound(SoundManager.SoundType.RACE_COUNTDOWN);
+            StartCountdown();
+            towerPlacingCountdown.gameObject.SetActive(false);
+            if (towerPlacingCountdownCor != null)
+            {
+                StopCoroutine(towerPlacingCountdownCor);
+            }
+        });
+
+        onEndRace.AddListener(() =>
+        {
+            mapCamera.gameObject.SetActive(true);
+            countDownText.gameObject.SetActive(false);
+            FixFinishedPlayersCount();
+        });
+
+        onRacingResultEnd.AddListener(() =>
+        {
+            towerPlacingCountdownText.gameObject.SetActive(true);
+            towerPlacingCountdown.gameObject.SetActive(true);
+            towerPlacingCountdownText.text = "" + towerPlacingSeconds;
+            towerPlacingCountdownCor = StartCoroutine(SetTowerPlacingCountDown(towerPlacingSeconds - 1, () =>
+            {
+                towerPlacingCountdownCor = null;
+                StartRace();
+            }));
+        });
+    }
+
+    public void StartGame()
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            Debug.Log("Start Game Server");
+            gameMode.Value = GameMode.RACING;
+        }
     }
 
     public void StartRace()
     {
-        SetCarCameras(true);
-        mapCamera.gameObject.SetActive(false);
-
-        //countDownText.gameObject.SetActive(true);
-
-        foreach (var player in players)
+        if (NetworkManager.Singleton.IsServer)
         {
-            var cc = player.GetComponentInChildren<CarController>();
-            var position = players.Count - playersFinished.IndexOf(player.playerIndex);
-            var targetPositionIndex = position - 1;
-            player.outline.positionPlayer.text = "" + position;
-            var point = spawnPoints.GetChild(targetPositionIndex);
+            Debug.Log("Start Race Server");
 
-            cc.RestartPostion(point.position, point.rotation);
-            cc.isActivated = false;
-            cc.SetCarSkin();
-            //cc.SetChickenSkin();
-            player.outline.countDownPanel.gameObject.SetActive(true);
-            if (player.playerInput && player.playerInput.currentActionMap != null)
-            {
-                player.playerInput.currentActionMap.Disable();
-                player.playerInput.SwitchCurrentActionMap("Car");
-                player.playerInput.currentActionMap.Enable();
-            }
-
-            player.vcam.Follow = player.car.transform;
-
-            var tt = player.GetComponent<TowerPlacer>();
-
-            player.outline.readyPanel.gameObject.SetActive(false);
-            player.outline.positionPanel.gameObject.SetActive(true);
-            player.outline.gameObject.SetActive(true);
-
-
-            //tt.placingState = TowerPlaceState.CHOOSING_SPOT;
-            //towersSnapParent.transform.GetChild(tt.snapIndex).GetComponent<TowerSnap>().SetPanel(null, -1);
-        }
-        playersFinished.Clear();
-
-
-        foreach(Transform t in towerPointerParent)
-        {
-            t.GetComponent<TowerPointerUI>().SetPanel(null);
+            gameMode.Value = GameMode.RACING;
         }
 
-        SoundManager.PlaySound(SoundManager.SoundType.RACE_COUNTDOWN);
-        StartCountdown();
-        gameMode = GameMode.RACING;
-        towerPlacingCountdown.gameObject.SetActive(false);
-        if (towerPlacingCountdownCor != null) 
-        {
-            StopCoroutine(towerPlacingCountdownCor);
-        }
-
-        
-
-        onStartRace.Invoke();
     }
     public void EndRace()
     {
-        SetCarCameras(false);
-        mapCamera.gameObject.SetActive(true);
-        countDownText.gameObject.SetActive(false);
-
-        gameMode = GameMode.RACING_RESULT;
-
-        FixFinishedPlayersCount();
-
-        foreach (var player in players)
+        if (NetworkManager.Singleton.IsServer)
         {
-            var cc = player.GetComponentInChildren<CarController>();
-            var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
-            var point = spawnPoints.GetChild(targetPositionIndex);
-            cc.RestartPostion(point.position, point.rotation);
-            cc.isActivated = false;
-            cc.SetCarSkin();
+            Debug.Log("End Race Server");
 
-            player.outline.countDownPanel.gameObject.SetActive(false);
-
-
-            var playerPosition = playersFinished.IndexOf(player.playerIndex);
-            var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
-
-            player.money += (4 * player.moneyByRound) / players.Count + extra_income;
-            player.outline.positionPanel.gameObject.SetActive(false);
-            player.outline.gameObject.SetActive(false);
-
+            gameMode.Value = GameMode.RACING_RESULT;
         }
-
-        onEndRace.Invoke();
     }
 
     public void EndRacingResult()
     {
-        gameMode = GameMode.TOWER_PLACING;
-        for (var i = 0; i < players.Count; i++)
+        if (NetworkManager.Singleton.IsServer)
         {
+            Debug.Log("End Racing Result Server");
 
-            var p = players[i];
-            p.GetComponent<TowerPlacer>().ClaimRandomSpot();
-            if (p.playerInput.currentActionMap != null)
-            {
-                p.playerInput.SwitchCurrentActionMap("Spot");
-            }
-            p.outline.readyPanel.gameObject.SetActive(true);
-            p.outline.positionPanel.gameObject.SetActive(false);
-            p.SetReady(false);
-
-
+            gameMode.Value = GameMode.TOWER_PLACING;
         }
-        towerPlacingCountdownText.gameObject.SetActive(true);
-        towerPlacingCountdown.gameObject.SetActive(true);
-        towerPlacingCountdownText.text = "" + towerPlacingSeconds;
-        towerPlacingCountdownCor = StartCoroutine(SetTowerPlacingCountDown(towerPlacingSeconds - 1, () =>
-        {
-            towerPlacingCountdownCor = null;
-            StartRace();
-        }));
-        onRacingResultEnd.Invoke();
     }
 
     private void FixFinishedPlayersCount()
@@ -369,35 +357,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-
-    void Start()
-    {
-        playersFinished = new List<int>();
-        SetCarCameras(true);
-        mapCamera.gameObject.SetActive(false);
-        countDownText.gameObject.SetActive(false);
-        towerPlacingCountdown.gameObject.SetActive(false);
-
-    }
-
-    public void StartGame()
-    {
-        //transform.Find("InputManager").GetComponent<PlayerInputManager>().DisableJoining();
-        onStartGame.Invoke();
-        SetupUISnaps();
-
-        StartRace();
-        //EndRace();
-    }
-
-    private void SetCarCameras(bool value)
-    {
-        foreach (var cam in carCameras)
-        {
-            cam.gameObject.SetActive(value);
-        }
-
-    }
 
     public List<TowerSnap> GetFreeTowerSnapsInDirection(int actualSnapIndex, Vector2 direction, Player player)
     {

@@ -5281,6 +5281,7 @@ MonoBehaviour:
   isCustomPlayer: 0
   playerInput: {fileID: 9126561931698728850}
   outline: {fileID: 0}
+  playerUIVisual: {fileID: 0}
   isReady: 0
 --- !u!114 &9126561931698728850
 MonoBehaviour:
@@ -6230,6 +6231,7 @@ MonoBehaviour:
   magnitudePowMultiplier: 1.1
   player: {fileID: 641373233649129941}
   engineSound: {fileID: 5474088288180044852}
+  carCamera: {fileID: 4252000830672934312}
 --- !u!114 &3995678597884270580
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,7 +55,7 @@ public class PlayerAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameController.Instance.gameMode == GameMode.RACING)
+        if (GameController.Instance.gameMode.Value == GameMode.RACING)
         {
             var dificulty = (PlayerPrefs.GetFloat("bot_dificulty", MenuManager.botDificultyDefaultValue) - 0.5f) * 0.4f;
             car.OnAcceleration(Mathf.Clamp(1f + dificulty, 0.9f, 2f));
@@ -82,7 +82,7 @@ public class PlayerAI : MonoBehaviour
             }
         }
 
-        if (GameController.Instance.gameMode == GameMode.TOWER_PLACING && player.money >= 100)
+        if (GameController.Instance.gameMode.Value == GameMode.TOWER_PLACING && player.money >= 100)
         {
             if (!snapSelected && Time.time - lastTimeAction > actionEvery)
             {
@@ -134,7 +134,7 @@ public class PlayerAI : MonoBehaviour
             }
         }
 
-        if(GameController.Instance.gameMode == GameMode.TOWER_PLACING && !player.isReady && 
+        if(GameController.Instance.gameMode.Value == GameMode.TOWER_PLACING && !player.isReady && 
             (player.money < 100 || GameController.Instance.GetAllFreeTowerSnapes(player).Count == 0))
         {
             player.SetReady(true);

@@ -72,7 +72,10 @@ public class Player : NetworkBehaviour
         if (IsOwner)
         {
             playerInfo = PlayerInfo.Local;
-        } 
+            GameController.Instance.onStartRace.AddListener(RaceStartInit);
+            GameController.Instance.onEndRace.AddListener(EndRaceInit);
+            GameController.Instance.onEndRace.AddListener(EndRacingResultInit);
+        }
         else
         {
             Debug.Log("OtherPlayer");
@@ -80,7 +83,9 @@ public class Player : NetworkBehaviour
             playerInput.enabled = false;
             car.enabled = false;
             car.rb.isKinematic = true;
-            playerInfo = GameObject.FindObjectsOfType<PlayerInfo>().Where(e=>e.OwnerClientId.Equals(OwnerClientId)).FirstOrDefault();
+            playerInfo = GameObject.FindObjectsOfType<PlayerInfo>().Where(e => e.OwnerClientId.Equals(OwnerClientId)).FirstOrDefault();
+            car.carCamera.gameObject.SetActive(false);
+            vcam.gameObject.SetActive(false);
         }
         playerInput = GetComponent<PlayerInput>();
         //playerInput.SwitchCurrentActionMap("Spot");
@@ -91,6 +96,75 @@ public class Player : NetworkBehaviour
         go.transform.localPosition = new Vector3(0f, offset, 0f);
         playerUIVisual = go.GetComponent<PlayerUIVisual>();
         playerUIVisual.playerName.text = playerInfo.Name.Value;
+    }
+
+    private void RaceStartInit()
+    {
+        /*TODO
+        var cc = GetComponentInChildren<CarController>();
+
+        var position = players.Count - playersFinished.IndexOf(player.playerIndex);
+        var targetPositionIndex = position - 1;
+        player.outline.positionPlayer.text = "" + position;
+        var point = spawnPoints.GetChild(targetPositionIndex);
+
+
+        cc.RestartPostion(point.position, point.rotation);*/
+        car.isActivated = false;
+        car.SetCarSkin();
+        //cc.SetChickenSkin();
+        outline.countDownPanel.gameObject.SetActive(true);
+        if (playerInput && playerInput.currentActionMap != null)
+        {
+            playerInput.currentActionMap.Disable();
+            playerInput.SwitchCurrentActionMap("Car");
+            playerInput.currentActionMap.Enable();
+        }
+
+        vcam.Follow = car.transform;
+
+        var tt = GetComponent<TowerPlacer>();
+
+        outline.readyPanel.gameObject.SetActive(false);
+        outline.positionPanel.gameObject.SetActive(true);
+        outline.gameObject.SetActive(true);
+        car.carCamera.gameObject.SetActive(true);
+
+    }
+
+    private void EndRaceInit()
+    {
+        /*var cc = player.GetComponentInChildren<CarController>();
+        var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
+        var point = spawnPoints.GetChild(targetPositionIndex);
+        cc.RestartPostion(point.position, point.rotation);*/
+        car.isActivated = false;
+        car.SetCarSkin();
+
+        outline.countDownPanel.gameObject.SetActive(false);
+
+        /*
+        var playerPosition = playersFinished.IndexOf(player.playerIndex);
+        var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
+
+        player.money += (4 * player.moneyByRound) / players.Count + extra_income;*/
+        outline.positionPanel.gameObject.SetActive(false);
+        outline.gameObject.SetActive(false);
+        car.carCamera.gameObject.SetActive(false);
+
+    }
+
+    private void EndRacingResultInit()
+    {
+        GetComponent<TowerPlacer>().ClaimRandomSpot();
+        if (playerInput.currentActionMap != null)
+        {
+            playerInput.SwitchCurrentActionMap("Spot");
+        }
+        outline.readyPanel.gameObject.SetActive(true);
+        outline.positionPanel.gameObject.SetActive(false);
+        SetReady(false);
+
     }
 
     void Awake()
@@ -121,29 +195,25 @@ public class Player : NetworkBehaviour
         {
             playerUIVisual.SetReady(value);
         }
-
-        if (NetworkManager.Singleton.IsServer)
+        switch (GameController.Instance.gameMode.Value)
         {
-            switch (GameController.Instance.gameMode)
-            {
-                case GameMode.LOBBY:
-                    if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
-                    {
-                        Debug.Log("Checking player ready");
-                        LobbyManager.Instance.LobbyPlayersReady();
-                    }
-                    else
-                    {
-                        LobbyManager.Instance.ResetLobbyPlayersReady();
-                    }
-                    break;
-                case GameMode.TOWER_PLACING:
-                    if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
-                    {
-                        GameController.Instance.StartRace();
-                    }
-                    break;
-            }
+            case GameMode.LOBBY:
+                if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+                {
+                    Debug.Log("Checking player ready");
+                    LobbyManager.Instance.LobbyPlayersReady();
+                }
+                else
+                {
+                    LobbyManager.Instance.ResetLobbyPlayersReady();
+                }
+                break;
+            case GameMode.TOWER_PLACING:
+                if (LobbyManager.Instance.ReadyPlayersCount() == GameController.Instance.players.Count)
+                {
+                    GameController.Instance.StartRace();
+                }
+                break;
         }
     }
 }

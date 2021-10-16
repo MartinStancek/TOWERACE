@@ -8752,6 +8752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232940785}
   - component: {fileID: 232940786}
+  - component: {fileID: 232940787}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -8791,7 +8792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitingTime: 10
-  carCameras: []
   mapCamera: {fileID: 863554965}
   countDownText: {fileID: 2146922680}
   towersSnapParent: {fileID: 1008758805}
@@ -8812,7 +8812,8 @@ MonoBehaviour:
   onRacingResultEnd:
     m_PersistentCalls:
       m_Calls: []
-  gameMode: 0
+  gameMode:
+    m_InternalValue: 0
   snapsUI: []
   towerPlacingCountdownBar: {fileID: 1359866315}
   towerPlacingCountdown: {fileID: 187913467}
@@ -8829,6 +8830,23 @@ MonoBehaviour:
   playerPrefab: {fileID: 5845937106439851996, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
   playerUIParent: {fileID: 1471255978}
   playerUIPrefab: {fileID: 7177010050327001049, guid: c04220e28ee82784e906b96e4afb1515, type: 3}
+--- !u!114 &232940787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232940784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 11898639618283956779
+  PrefabHashGenerator: GameController
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 1
 --- !u!1 &233465947
 GameObject:
   m_ObjectHideFlags: 0

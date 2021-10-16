@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
         {
             var count = GameController.Instance.players.Count;
             var targetPlayer = (count + (count == 3 ? 1 : 0));
-            var outline = GameController.Instance.playersOutlineParent.Find("" + targetPlayer + "players");
+            var outline = GameController.Instance.playersOutlineParent.Find("1players");
             SetPlayerOutLine(outline);
 
         });
@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.ctrlKey.wasPressedThisFrame && !customPlayerJoined && normalPlayerJoined && GameController.Instance.gameMode == GameMode.LOBBY)
+        if (Keyboard.current.ctrlKey.wasPressedThisFrame && !customPlayerJoined && normalPlayerJoined && GameController.Instance.gameMode.Value == GameMode.LOBBY)
         {
             //var pim = GetComponent<PlayerInputManager>();
             var go = Instantiate(customKeyboardPlayerPrefab);
@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour
             customPlayerJoined = true;
         }
 
-        if (Keyboard.current.eKey.wasPressedThisFrame && !normalPlayerJoined && GameController.Instance.gameMode == GameMode.LOBBY)
+        if (Keyboard.current.eKey.wasPressedThisFrame && !normalPlayerJoined && GameController.Instance.gameMode.Value == GameMode.LOBBY)
         {
             //var pim = GetComponent<PlayerInputManager>();
             var go = Instantiate(GetComponent<PlayerInputManager>().playerPrefab);
@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
             normalPlayerJoined = true;
         }
 
-        if (Keyboard.current.bKey.wasPressedThisFrame && GameController.Instance.gameMode == GameMode.LOBBY && GameController.Instance.players.Count < 4 && normalPlayerJoined)
+        if (Keyboard.current.bKey.wasPressedThisFrame && GameController.Instance.gameMode.Value == GameMode.LOBBY && GameController.Instance.players.Count < 4 && normalPlayerJoined)
         {
             //var pim = GetComponent<PlayerInputManager>();
             var go = Instantiate(aiPlayerPrefab);
