@@ -69,6 +69,9 @@ public class Player : NetworkBehaviour
 
     public override void NetworkStart()
     {
+        GameController.Instance.onStartRace.AddListener(() => car.SetCarSkin());
+        GameController.Instance.onEndRace.AddListener(() => car.SetCarSkin());
+
         if (IsOwner)
         {
             playerInfo = PlayerInfo.Local;
@@ -100,18 +103,18 @@ public class Player : NetworkBehaviour
 
     private void RaceStartInit()
     {
-        /*TODO
-        var cc = GetComponentInChildren<CarController>();
-
-        var position = players.Count - playersFinished.IndexOf(player.playerIndex);
+        var position = GameController.Instance.players.Count - GameController.Instance.playersFinishedOld.IndexOf(playerIndex);
         var targetPositionIndex = position - 1;
-        player.outline.positionPlayer.text = "" + position;
-        var point = spawnPoints.GetChild(targetPositionIndex);
+        Debug.Log("Real race position: " + targetPositionIndex);
+        Debug.Log("GameController.Instance.players.Count: " + GameController.Instance.players.Count);
+        Debug.Log("GameController.Instance.playersFinishedOld.IndexOf(playerIndex): " + GameController.Instance.playersFinishedOld.IndexOf(playerIndex));
+
+        outline.positionPlayer.text = "" + position;
+        var point = GameController.Instance.spawnPoints.GetChild(targetPositionIndex);
 
 
-        cc.RestartPostion(point.position, point.rotation);*/
+        car.RestartPostion(point.position, point.rotation);
         car.isActivated = false;
-        car.SetCarSkin();
         //cc.SetChickenSkin();
         outline.countDownPanel.gameObject.SetActive(true);
         if (playerInput && playerInput.currentActionMap != null)
@@ -134,20 +137,18 @@ public class Player : NetworkBehaviour
 
     private void EndRaceInit()
     {
-        /*var cc = player.GetComponentInChildren<CarController>();
-        var targetPositionIndex = players.Count - playersFinished.IndexOf(player.playerIndex) - 1;
-        var point = spawnPoints.GetChild(targetPositionIndex);
-        cc.RestartPostion(point.position, point.rotation);*/
+        var targetPositionIndex = GameController.Instance.players.Count - GameController.Instance.playersFinished.IndexOf(playerIndex) - 1;
+        var point = GameController.Instance.spawnPoints.GetChild(targetPositionIndex);
+        car.RestartPostion(point.position, point.rotation);
         car.isActivated = false;
-        car.SetCarSkin();
 
         outline.countDownPanel.gameObject.SetActive(false);
 
-        /*
-        var playerPosition = playersFinished.IndexOf(player.playerIndex);
-        var extra_income = (int)((4 - playerPosition) * player.scoreMultilier);
 
-        player.money += (4 * player.moneyByRound) / players.Count + extra_income;*/
+        var playerPosition = GameController.Instance.playersFinished.IndexOf(playerIndex);
+        var extra_income = (int)((4 - playerPosition) * scoreMultilier);
+
+        money += (4 * moneyByRound) / GameController.Instance.players.Count + extra_income;
         outline.positionPanel.gameObject.SetActive(false);
         outline.gameObject.SetActive(false);
         car.carCamera.gameObject.SetActive(false);

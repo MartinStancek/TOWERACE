@@ -167,6 +167,7 @@ public class PlayerManager : MonoBehaviour
         SetPlayerOutLine(outline);
 
         GameController.Instance.playersFinished.Insert(0, p.playerIndex);
+        GameController.Instance.playersFinishedOld.Insert(0, p.playerIndex);
 
         GameController.Instance.UpdateCheckPointPanel();
 

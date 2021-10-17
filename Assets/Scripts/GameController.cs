@@ -58,8 +58,9 @@ public class GameController : NetworkBehaviour
 
     public Transform towerPointerParent;
 
-    public List<int> playersFinished;
-
+    public List<int> playersFinished = new List<int>();
+    public List<int> playersFinishedOld;
+    
     public List<Player> players;
 
     public Transform checkPonts;
@@ -137,15 +138,14 @@ public class GameController : NetworkBehaviour
 
     void Start()
     {
-        playersFinished = new List<int>();
         mapCamera.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(false);
         towerPlacingCountdown.gameObject.SetActive(false);
         onStartGame.AddListener(SetupUISnaps);
 
         onStartRace.AddListener(() => {
-            mapCamera.gameObject.SetActive(false);
             playersFinished.Clear();
+            mapCamera.gameObject.SetActive(false);
             foreach (Transform t in towerPointerParent)
             {
                 t.GetComponent<TowerPointerUI>().SetPanel(null);
@@ -165,6 +165,7 @@ public class GameController : NetworkBehaviour
             mapCamera.gameObject.SetActive(true);
             countDownText.gameObject.SetActive(false);
             FixFinishedPlayersCount();
+            playersFinishedOld = new List<int>(playersFinished);
         });
 
         onRacingResultEnd.AddListener(() =>

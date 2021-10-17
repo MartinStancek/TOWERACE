@@ -112,7 +112,7 @@ public class TowerPlacer : MonoBehaviour
     public void OnSpotClick()
     {
         Debug.Log("OnSpotClick performed");
-        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
         var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
         if (snap.playerOwner == null)
         {
@@ -144,7 +144,7 @@ public class TowerPlacer : MonoBehaviour
     public void BackClicked()
     {
         var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
-        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         pointer.SetPanel(pointer.selectSpot);
         player.playerInput.SwitchCurrentActionMap("Spot");
@@ -155,7 +155,7 @@ public class TowerPlacer : MonoBehaviour
     {
         Debug.Log("Clicked");
         var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
-        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         if (player.money >= snap.price && snap.playerOwner == null)
         {
@@ -229,7 +229,7 @@ public class TowerPlacer : MonoBehaviour
     }
     private void SetTowerInMenu()
     {
-        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         pointer.towerPrice.text = "" + towerOptions[towerIndex].price + " $";
         pointer.towerName.text = towerOptions[towerIndex].prefab.name;
@@ -283,7 +283,7 @@ public class TowerPlacer : MonoBehaviour
         }
 
         targetSnap.isOccupied = true;
-        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         pointer.SetPointer(targetSnap.gameObject);
         if (targetSnap.tower == null)
@@ -296,7 +296,7 @@ public class TowerPlacer : MonoBehaviour
     {
         var count = GameController.Instance.towersSnapParent.transform.childCount;
         var snaps = GameController.Instance.GetAllFreeTowerSnapes(player);
-        var pointer = GameController.Instance.towerPointerParent.GetChild(player.playerIndex).GetComponent<TowerPointerUI>();
+        var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         if (snaps.Count != 0)
         {
