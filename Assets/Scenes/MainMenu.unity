@@ -781,6 +781,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5764885502712207874}
+    - target: {fileID: 769043851330425631, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5790370095020204754, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_Name
       value: Menu
@@ -987,6 +991,10 @@ PrefabInstance:
       value: NetworkManager
       objectReference: {fileID: 0}
     - target: {fileID: 6788681989978878384, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788681989978878384, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
       propertyPath: introPanel
       value: 
       objectReference: {fileID: 1163245360}
@@ -1053,7 +1061,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1024219955144272811}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23003eeb8449626438d4e9dccfc52ce2, type: 3}
   m_Name: 
