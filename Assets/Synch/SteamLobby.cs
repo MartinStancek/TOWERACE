@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Steamworks;
 using MLAPI;
+using MLAPI.SceneManagement;
 using MLAPI.Transports.SteamP2P;
 using System;
 using System.Linq;
@@ -89,7 +90,17 @@ public class SteamLobby : MonoBehaviour
         SetPanel(null);
 
         networkManager.StartHost();
-        SteamMatchmaking.SetLobbyData(currentLobbyId, GameStartedKey, "true");
+        var progress = NetworkSceneManager.SwitchScene("MartinScene3");
+        progress.OnComplete += (timeOut) =>
+        {
+            Debug.Log("On complete");
+            foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                Debug.Log("foreach loop");
+                var go = Instantiate(GameController.Instance.playerPrefab);
+                go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
+            }
+        };
 
     }
 
