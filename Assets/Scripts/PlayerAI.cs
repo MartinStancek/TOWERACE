@@ -45,7 +45,7 @@ public class PlayerAI : MonoBehaviour
         snapMoves = Mathf.RoundToInt(Random.Range(0f, 5f)) + 1;
         targetTowerIndex = Mathf.RoundToInt(Random.Range(-0.5f, 4.5f));
 
-        while (targetTowerIndex > 0 && towerPlacer.towerOptions[targetTowerIndex].price + 100 > player.money )
+        while (targetTowerIndex > 0 && towerPlacer.towerOptions[targetTowerIndex].price + 100 > player.money.Value )
         {
             targetTowerIndex--;
         }
@@ -82,7 +82,7 @@ public class PlayerAI : MonoBehaviour
             }
         }
 
-        if (GameController.Instance.gameMode.Value == GameMode.TOWER_PLACING && player.money >= 100)
+        if (GameController.Instance.gameMode.Value == GameMode.TOWER_PLACING && player.money.Value >= 100)
         {
             if (!snapSelected && Time.time - lastTimeAction > actionEvery)
             {
@@ -135,7 +135,7 @@ public class PlayerAI : MonoBehaviour
         }
 
         if(GameController.Instance.gameMode.Value == GameMode.TOWER_PLACING && !player.isReady && 
-            (player.money < 100 || GameController.Instance.GetAllFreeTowerSnapes(player).Count == 0))
+            (player.money.Value < 100 || GameController.Instance.GetAllFreeTowerSnapes(player).Count == 0))
         {
             player.SetReady(true);
         }

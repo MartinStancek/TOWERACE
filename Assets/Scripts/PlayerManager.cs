@@ -152,7 +152,6 @@ public class PlayerManager : MonoBehaviour
         panel.gameObject.SetActive(true);
         tpUI.SetColor(p.playerColor);
         p.towerPlacer = tpUI;
-        p.money = p.startMoney;
 
         playerCount++;
 

@@ -8797,6 +8797,7 @@ MonoBehaviour:
   towersSnapParent: {fileID: 1008758805}
   towerPointerParent: {fileID: 2061042763}
   playersFinished: 
+  playersFinishedOld: 
   players: []
   checkPonts: {fileID: 1693827817}
   spawnPoints: {fileID: 1498642101}
@@ -8818,7 +8819,7 @@ MonoBehaviour:
   towerPlacingCountdownBar: {fileID: 1359866315}
   towerPlacingCountdown: {fileID: 187913467}
   towerPlacingCountdownText: {fileID: 495905779}
-  towerPlacingSeconds: 30
+  towerPlacingSeconds: 30000
   playersOutlineParent: {fileID: 931546701}
   finishLineConfety:
   - {fileID: 1253448779}

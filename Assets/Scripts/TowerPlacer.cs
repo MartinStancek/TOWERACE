@@ -157,23 +157,21 @@ public class TowerPlacer : MonoBehaviour
         var snap = GameController.Instance.towersSnapParent.transform.GetChild(snapIndex).GetComponent<TowerSnap>();
         var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
-        if (player.money >= snap.price && snap.playerOwner == null)
+        if (player.money.Value >= snap.price && snap.playerOwner == null)
         {
             Debug.Log("Player " + player.playerIndex + " is buying snap " + snap.name);
             SoundManager.PlaySound(SoundManager.SoundType.MONEY_SPEND);
-            snap.SetColor(player.playerColor);
-            snap.playerOwner = player;
-            player.money -= snap.price;
+            snap.BuySpotServerRPC(player.OwnerClientId);
             //placingState = TowerPlaceState.CHOOSING_TOWER;
             pointer.SetPanel(pointer.selectTower);
             SetTowerInMenu();
         }
-        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money >= towerOptions[towerIndex].price)
+        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money.Value >= towerOptions[towerIndex].price)
         {
             Debug.Log("Player " + player.playerIndex + " is buying " + towerOptions[towerIndex].prefab.name);
             SoundManager.PlaySound(SoundManager.SoundType.MONEY_SPEND);
-
-            player.money -= towerOptions[towerIndex].price;
+            /*
+            player.money -= towerOptions[towerIndex].price;*/
             GameObject go;
             if(towerIndex == 4)
             {
@@ -278,11 +276,11 @@ public class TowerPlacer : MonoBehaviour
     {
         if (previousSnap != null)
         {
-            previousSnap.isOccupied = false;
+            previousSnap.UnlockServerRPC();
             //previousSnap.SetPanel(null, -1);
         }
 
-        targetSnap.isOccupied = true;
+        targetSnap.LockServerRPC(PlayerInfo.Local.OwnerClientId);
         var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         pointer.SetPointer(targetSnap.gameObject);

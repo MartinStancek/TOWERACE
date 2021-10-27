@@ -11,7 +11,6 @@ using System.Linq;
 
 public class Player : NetworkBehaviour
 {
-
     public List<MeshRendererMaterials> coloredParts;
 
     public int playerIndex;
@@ -24,16 +23,9 @@ public class Player : NetworkBehaviour
     public int startMoney = 100;
     public int moneyByRound = 100;
     public float scoreMultilier = 30;
-    private int _money = 0;
-    public int money
-    {
-        set
-        {
-            _money = value;
-            towerPlacer.SetMoney(value);
-        }
-        get { return _money; }
-    }
+
+    public NetworkVariable<int> money = new NetworkVariable<int>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, 0);
+
     public int stars = 0;
 
     public string controlScheme;
@@ -72,6 +64,22 @@ public class Player : NetworkBehaviour
         GameController.Instance.onStartRace.AddListener(() => car.SetCarSkin());
         GameController.Instance.onEndRace.AddListener(() => car.SetCarSkin());
 
+        if (NetworkManager.Singleton.IsServer)
+        {
+            GameController.Instance.onStartGame.AddListener(() =>
+            {
+                money.Value = startMoney;
+            });
+
+            GameController.Instance.onEndRace.AddListener(() =>
+            {
+                var playerPosition = GameController.Instance.playersFinished.IndexOf(playerIndex);
+                var extra_income = (int)((4 - playerPosition) * scoreMultilier);
+
+                money.Value += (4 * moneyByRound) / GameController.Instance.players.Count + extra_income;
+
+            });
+        }
         if (IsOwner)
         {
             playerInfo = PlayerInfo.Local;
@@ -143,16 +151,9 @@ public class Player : NetworkBehaviour
         car.isActivated = false;
 
         outline.countDownPanel.gameObject.SetActive(false);
-
-
-        var playerPosition = GameController.Instance.playersFinished.IndexOf(playerIndex);
-        var extra_income = (int)((4 - playerPosition) * scoreMultilier);
-
-        money += (4 * moneyByRound) / GameController.Instance.players.Count + extra_income;
         outline.positionPanel.gameObject.SetActive(false);
         outline.gameObject.SetActive(false);
         car.carCamera.gameObject.SetActive(false);
-
     }
 
     private void EndRacingResultInit()
@@ -216,6 +217,11 @@ public class Player : NetworkBehaviour
                 }
                 break;
         }
+    }
+
+    public static Player FindById(ulong id)
+    {
+        return GameObject.FindObjectsOfType<Player>().Where(e => e.OwnerClientId == id).FirstOrDefault();
     }
 }
 

@@ -187,7 +187,12 @@ public class GameController : NetworkBehaviour
         {
             Debug.Log("Start Game Server");
             gameMode.Value = GameMode.RACING;
+            Invoke("TowerPlaceOnStart", 1f);
         }
+    }
+    private void TowerPlaceOnStart()
+    {
+        gameMode.Value = GameMode.RACING_RESULT;
     }
 
     public void StartRace()
@@ -404,7 +409,7 @@ public class GameController : NetworkBehaviour
             if (PointInTriangle(snapUI.position, p0, p1, p2))
             {
                 var snap = snapUI.snap;
-                if ((!snap.isOccupied && snap.playerOwner == null) ||
+                if ((!snap.isOccupied.Value && snap.playerOwner == null) ||
                     (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null))
                 {
                     freeTowerSnaps.Add(snapUI);
@@ -462,7 +467,7 @@ public class GameController : NetworkBehaviour
         foreach (Transform snapT in towersSnapParent.transform)
         {
             var snap = snapT.GetComponent<TowerSnap>();
-            if ((!snap.isOccupied && snap.playerOwner == null) ||
+            if ((!snap.isOccupied.Value && snap.playerOwner == null) ||
                 (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null))
             {
                 freeTowerSnaps.Add(snap);

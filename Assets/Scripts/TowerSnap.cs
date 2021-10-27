@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-public class TowerSnap : MonoBehaviour
+using MLAPI.Messaging;
+using MLAPI;
+using MLAPI.NetworkVariable;
+public class TowerSnap : NetworkBehaviour
 {
-    public bool isOccupied = false;
+
+    public NetworkVariable<bool> isOccupied = new NetworkVariable<bool>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, false);
+    public NetworkVariable<ulong> occupiedBy = new NetworkVariable<ulong>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, 0);
 
     public int price = 60;
 
@@ -33,8 +37,45 @@ public class TowerSnap : MonoBehaviour
             }
         }
 
+        if (NetworkManager.Singleton.IsServer)
+        {
+            GameController.Instance.onRacingResultEnd.AddListener(() => { isOccupied.Value = false; });
+        }
+
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void LockServerRPC(ulong player)
+    {
+        isOccupied.Value = true;
+        occupiedBy.Value = player;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void UnlockServerRPC()
+    {
+        isOccupied.Value = false;
+        occupiedBy.Value = 0;
+
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void BuySpotServerRPC(ulong playerId)
+    {
+        playerOwner = Player.FindById(playerId);
+        playerOwner.money.Value -= price;
+        BuySpotClientClientRPC(playerId);
+
+
+    }
+
+    [ClientRpc]
+    public void BuySpotClientClientRPC(ulong playerId)
+    {
+        playerOwner = Player.FindById(playerId);
+        SetColor(playerOwner.playerColor);
+
+    }
 
     public void ResetColor()
     {

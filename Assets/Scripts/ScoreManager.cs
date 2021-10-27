@@ -79,7 +79,7 @@ public class ScoreManager : MonoBehaviour
             }
             p.stars = newStarCount;
 
-            playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money - previousMoney[i]) + " $";
+            playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money.Value - previousMoney[i]) + " $";
         }
         delay = pointsDelay;
         for(var i = 0; i< 3; i++)
@@ -156,7 +156,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Player count:" + gc.players.Count);
         for (var i = 0; i < gc.players.Count; i++)
         {
-            previousMoney[i] = gc.players[i].money;
+            previousMoney[i] = gc.players[i].money.Value;
             previousStars[i] = gc.players[i].stars;
         }
     }
