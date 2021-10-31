@@ -5,8 +5,12 @@ using TMPro;
 using MLAPI.Messaging;
 using MLAPI;
 using MLAPI.NetworkVariable;
+using MLAPI.Spawning;
+using System;
 public class TowerSnap : NetworkBehaviour
 {
+    [SerializeField]
+    public TowerOptions towerOptions;
 
     public NetworkVariable<bool> isOccupied = new NetworkVariable<bool>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, false);
     public NetworkVariable<ulong> occupiedBy = new NetworkVariable<ulong>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, 0);
@@ -77,6 +81,53 @@ public class TowerSnap : NetworkBehaviour
 
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void BuyTowerServerRPC(ulong playerId, int towerIndex)
+    {
+        try
+        {
+            var player = Player.FindById(playerId);
+            player.money.Value -= towerOptions.data[towerIndex].price;
+
+            var go = Instantiate(towerOptions.data[towerIndex].prefab, transform.position, transform.rotation);
+            var no = go.GetComponent<NetworkObject>();
+            no.SpawnWithOwnership(playerId);
+            ;
+
+            BuyTowerClientRPC(playerId, no.NetworkObjectId, towerIndex);
+        }catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
+
+    [ClientRpc]
+    public void BuyTowerClientRPC(ulong playerId, ulong towerId, int towerIndex)
+    {
+        foreach (var pad in nearBoostPads)
+        {
+            pad.gameObject.SetActive(false);
+        }
+
+        var tower = NetworkSpawnManager.SpawnedObjects[towerId].GetComponent<Tower>();
+
+
+        GameObject go;
+        if (towerIndex == 4)
+        {
+            tower.transform.SetParent(transform);
+        }
+
+        tower.name = towerOptions.data[towerIndex].prefab.name;
+        this.tower = tower;
+        foreach (var p in tower.coloredParts)
+        {
+            p.SetColor(playerOwner.playerColor);
+        }
+        tower.playerOwner = playerOwner.playerIndex;
+
+    }
+
     public void ResetColor()
     {
         var j = 0;
@@ -89,7 +140,7 @@ public class TowerSnap : NetworkBehaviour
     public void SetColor(Color c)
     {
         var j = 0;
-        foreach(var cp in coloredParts)
+        foreach (var cp in coloredParts)
         {
             cp.SetColor(c);
         }

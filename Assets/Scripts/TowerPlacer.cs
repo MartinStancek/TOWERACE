@@ -5,13 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
-[System.Serializable]
-public class TowerData
-{
-    public GameObject prefab;
-    public int price;
-    public Sprite preview;
-}
 /*
 public enum TowerPlaceState
 {
@@ -28,7 +21,7 @@ public class TowerPlacer : MonoBehaviour
 
     public GameObject towerPointer;
 
-    public List<TowerData> towerOptions = new List<TowerData>();
+    public TowerOptions towerOptions;
 
     private GameObject actualTowerPointer = null;
 
@@ -166,29 +159,19 @@ public class TowerPlacer : MonoBehaviour
             pointer.SetPanel(pointer.selectTower);
             SetTowerInMenu();
         }
-        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money.Value >= towerOptions[towerIndex].price)
+        else if (snap.playerOwner != null && snap.playerOwner.Equals(player) && snap.tower == null && player.money.Value >= towerOptions.data[towerIndex].price)
         {
-            Debug.Log("Player " + player.playerIndex + " is buying " + towerOptions[towerIndex].prefab.name);
+            Debug.Log("Player " + player.playerIndex + " is buying " + towerOptions.data[towerIndex].prefab.name);
             SoundManager.PlaySound(SoundManager.SoundType.MONEY_SPEND);
             /*
-            player.money -= towerOptions[towerIndex].price;*/
-            GameObject go;
-            if(towerIndex == 4)
-            {
-                go = Instantiate(towerOptions[towerIndex].prefab, snap.transform);
-            }
-            else
-            {
-                go = Instantiate(towerOptions[towerIndex].prefab, snap.transform.position, snap.transform.rotation);
-            }
-            go.name = towerOptions[towerIndex].prefab.name;
-            snap.tower = go.GetComponent<Tower>();
-            foreach (var p in snap.tower.coloredParts)
-            {
-                p.SetColor(player.playerColor);
-            }
-            snap.tower.playerOwner = player.playerIndex;
-            pointer.SetTowerName(snap.tower.name);
+            */
+
+            snap.BuyTowerServerRPC(player.OwnerClientId, towerIndex);
+            /*
+
+            */
+
+            pointer.SetTowerName(towerOptions.data[towerIndex].prefab.name);
 
             //placingState = TowerPlaceState.CHOOSING_SPOT;
             if (player.playerInput.currentActionMap != null)
@@ -198,13 +181,6 @@ public class TowerPlacer : MonoBehaviour
 
             ClaimRandomSpot();
 
-            foreach (var pad in snap.nearBoostPads)
-            {
-                pad.gameObject.SetActive(false);
-            }
-
-
-            
 
         }
     }
@@ -219,7 +195,7 @@ public class TowerPlacer : MonoBehaviour
     }
     public void MoveTowerRight()
     {
-        if (towerIndex < towerOptions.Count - 1)
+        if (towerIndex < towerOptions.data.Count - 1)
         {
             towerIndex++;
             SetTowerInMenu();
@@ -229,14 +205,14 @@ public class TowerPlacer : MonoBehaviour
     {
         var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
-        pointer.towerPrice.text = "" + towerOptions[towerIndex].price + " $";
-        pointer.towerName.text = towerOptions[towerIndex].prefab.name;
-        pointer.towerPreview.sprite = towerOptions[towerIndex].preview;
+        pointer.towerPrice.text = "" + towerOptions.data[towerIndex].price + " $";
+        pointer.towerName.text = towerOptions.data[towerIndex].prefab.name;
+        pointer.towerPreview.sprite = towerOptions.data[towerIndex].preview;
 
 
         var disableCol = Color.white;
         disableCol.a = 0.5f;
-        if (towerIndex == towerOptions.Count - 1)
+        if (towerIndex == towerOptions.data.Count - 1)
         {
             pointer.towerRight.color = disableCol;
         } 

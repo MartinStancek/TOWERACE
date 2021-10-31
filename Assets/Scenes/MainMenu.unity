@@ -1028,12 +1028,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.size
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.data[1].Prefab
       value: 
       objectReference: {fileID: 5845937106439851996, guid: d35a2da89ccc22946852cbc899a9610c, type: 3}
+    - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[2].Prefab
+      value: 
+      objectReference: {fileID: 953750827910792910, guid: a7f0c8c0d3b45a147b566aaa82f29c22, type: 3}
+    - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[3].Prefab
+      value: 
+      objectReference: {fileID: 3502274560526825319, guid: 0216621c280422149962dc26b0775a98, type: 3}
+    - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[4].Prefab
+      value: 
+      objectReference: {fileID: 62542434775429237, guid: 0b60c52518c7919468b7ea40fda293f8, type: 3}
+    - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[5].Prefab
+      value: 
+      objectReference: {fileID: 4979690458547984797, guid: 3e21c742cc5023a488fff4b900c490bd, type: 3}
+    - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[6].Prefab
+      value: 
+      objectReference: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
+    - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[7].Prefab
+      value: 
+      objectReference: {fileID: 4923217540681022335, guid: 2520187778727f04fa7c1b64dd29fca3, type: 3}
     - target: {fileID: 6788681989978878389, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.data[0].PlayerPrefab
       value: 1

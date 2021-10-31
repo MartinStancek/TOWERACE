@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 953750827910792911}
   - component: {fileID: 953750827910792904}
   - component: {fileID: 953750827910792496}
+  - component: {fileID: 1985955588291776611}
   m_Layer: 13
   m_Name: RocketTower
   m_TagString: Untagged
@@ -102,6 +103,23 @@ MonoBehaviour:
   rotationSpeed: 10
   rocketBulletPrefab: {fileID: 6177441068931486623, guid: ad3e5e2919b976942aea26a7c2a8868c, type: 3}
   bulletSpawn: {fileID: 8812047426570301840}
+--- !u!114 &1985955588291776611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953750827910792910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 11632844144188765668
+  PrefabHashGenerator: RocketTower
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
 --- !u!1 &1241161233398427750
 GameObject:
   m_ObjectHideFlags: 0

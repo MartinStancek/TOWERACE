@@ -4850,7 +4850,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ea70f861dad244881c1a55e5b75bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
+  towerOptions: {fileID: 11400000, guid: 13d9a372a8e049748a39cb8fc6a7d9ee, type: 2}
+  isOccupied:
+    m_InternalValue: 0
+  occupiedBy:
+    m_InternalValue: 0
   price: 100
   playerOwner: {fileID: 0}
   coloredParts:

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6384994e23ecf9d4096a8a498fa5ec98, type: 3}
+  m_Name: TowerOptions
+  m_EditorClassIdentifier: 
+  data:
+  - prefab: {fileID: 953750827910792910, guid: a7f0c8c0d3b45a147b566aaa82f29c22, type: 3}
+    price: 100
+    preview: {fileID: 21300000, guid: c94f5548993f0884d8265a910b2c41ae, type: 3}
+  - prefab: {fileID: 712771469306539757, guid: a59e65b0b8e32cc43a73a0eacfd6c2b4, type: 3}
+    price: 150
+    preview: {fileID: 21300000, guid: 5d164e22f0b2ffa4a96680c8c1ee96ce, type: 3}
+  - prefab: {fileID: 62542434775429237, guid: 0b60c52518c7919468b7ea40fda293f8, type: 3}
+    price: 150
+    preview: {fileID: 21300000, guid: 514bfba2e25f6cd4981f777a1cf2ab29, type: 3}
+  - prefab: {fileID: 3502274560526825319, guid: 0216621c280422149962dc26b0775a98, type: 3}
+    price: 200
+    preview: {fileID: 21300000, guid: fe12eba102974a14b87a89330e6ef53c, type: 3}
+  - prefab: {fileID: 4979690458547984797, guid: 3e21c742cc5023a488fff4b900c490bd, type: 3}
+    price: 250
+    preview: {fileID: 21300000, guid: 04810d5f2454f794895bbd6e8b5328bc, type: 3}

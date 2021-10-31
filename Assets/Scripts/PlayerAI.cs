@@ -45,7 +45,7 @@ public class PlayerAI : MonoBehaviour
         snapMoves = Mathf.RoundToInt(Random.Range(0f, 5f)) + 1;
         targetTowerIndex = Mathf.RoundToInt(Random.Range(-0.5f, 4.5f));
 
-        while (targetTowerIndex > 0 && towerPlacer.towerOptions[targetTowerIndex].price + 100 > player.money.Value )
+        while (targetTowerIndex > 0 && towerPlacer.towerOptions.data[targetTowerIndex].price + 100 > player.money.Value )
         {
             targetTowerIndex--;
         }
