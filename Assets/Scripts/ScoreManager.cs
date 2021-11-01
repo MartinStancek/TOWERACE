@@ -31,7 +31,7 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         gc = GameController.Instance;
-        gc.onEndRace.AddListener(EndRaceScoreHandle);
+        gc.onEndRaceLate.AddListener(EndRaceScoreHandle);
         gc.onStartRace.AddListener(RoundReinicialization);
         gc.onStartGame.AddListener(StartGameInit);
         resultsPanel.SetActive(false);
@@ -78,8 +78,6 @@ public class ScoreManager : MonoBehaviour
                 }
             }
             p.stars = newStarCount;
-
-            playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (p.money.Value - previousMoney[i]) + " $";
         }
         delay = pointsDelay;
         for(var i = 0; i< 3; i++)
@@ -130,8 +128,6 @@ public class ScoreManager : MonoBehaviour
     {
         previousMoney = new int[gc.players.Count];
         previousStars = new int[gc.players.Count];
-        RoundReinicialization();
-
         for (var i = 0; i < 4; i++) 
         {
             playersScoreParent.GetChild(i).gameObject.SetActive(i < gc.players.Count);
@@ -144,6 +140,11 @@ public class ScoreManager : MonoBehaviour
             {
                 playersScoreParent.GetChild(p.playerIndex).Find("Name").GetComponent<TMP_Text>().text += " (BOT)";
             }
+            var playerPanel = playersScoreParent.GetChild(p.playerIndex);
+            p.money.OnValueChanged += (int oldVal, int newVal) =>
+              {
+                  playerPanel.Find("Income").GetComponent<TMP_Text>().text = "+" + (newVal - previousMoney[p.playerIndex]) + " $";
+              };
 
 
         }
@@ -154,10 +155,21 @@ public class ScoreManager : MonoBehaviour
     private void RoundReinicialization()
     {
         Debug.Log("Player count:" + gc.players.Count);
-        for (var i = 0; i < gc.players.Count; i++)
+        if (round == 1)
         {
-            previousMoney[i] = gc.players[i].money.Value;
-            previousStars[i] = gc.players[i].stars;
+            for (var i = 0; i < gc.players.Count; i++)
+            {
+                previousMoney[i] = gc.players[i].startMoney;
+                previousStars[i] = 0;
+            }
+        }
+        else
+        {
+            for (var i = 0; i < gc.players.Count; i++)
+            {
+                previousMoney[i] = gc.players[i].money.Value;
+                previousStars[i] = gc.players[i].stars;
+            }
         }
     }
 

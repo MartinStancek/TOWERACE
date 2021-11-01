@@ -94,7 +94,7 @@ public class TowerSnap : NetworkBehaviour
             no.SpawnWithOwnership(playerId);
             ;
 
-            BuyTowerClientRPC(playerId, no.NetworkObjectId, towerIndex);
+            BuyTowerClientRPC(no.NetworkObjectId, towerIndex);
         }catch (Exception e)
         {
             Debug.LogError(e);
@@ -102,15 +102,19 @@ public class TowerSnap : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void BuyTowerClientRPC(ulong playerId, ulong towerId, int towerIndex)
+    public void BuyTowerClientRPC(ulong towerId, int towerIndex)
     {
         foreach (var pad in nearBoostPads)
         {
             pad.gameObject.SetActive(false);
         }
+        StartCoroutine(InitTower(towerId, towerIndex));
+    }
 
+    private IEnumerator InitTower(ulong towerId, int towerIndex)
+    {
+        yield return 1;
         var tower = NetworkSpawnManager.SpawnedObjects[towerId].GetComponent<Tower>();
-
 
         GameObject go;
         if (towerIndex == 4)
@@ -125,7 +129,6 @@ public class TowerSnap : NetworkBehaviour
             p.SetColor(playerOwner.playerColor);
         }
         tower.playerOwner = playerOwner.playerIndex;
-
     }
 
     public void ResetColor()

@@ -86,6 +86,7 @@ public class Player : NetworkBehaviour
             GameController.Instance.onStartRace.AddListener(RaceStartInit);
             GameController.Instance.onEndRace.AddListener(EndRaceInit);
             GameController.Instance.onEndRace.AddListener(EndRacingResultInit);
+            money.OnValueChanged += (int oldVal, int newVal) => towerPlacer.SetMoney(newVal);
         }
         else
         {

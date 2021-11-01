@@ -75,6 +75,8 @@ public class GameController : NetworkBehaviour
 
     [HideInInspector]
     public UnityEvent onEndRace;
+    [HideInInspector]
+    public UnityEvent onEndRaceLate;
 
     [HideInInspector]
     public UnityEvent onRacingResultEnd;
@@ -122,6 +124,7 @@ public class GameController : NetworkBehaviour
             {
                 Debug.Log("onEndRaceEvent");
                 onEndRace.Invoke();
+                onEndRaceLate.Invoke();
             }
             else if (oldVal == GameMode.RACING_RESULT && newVal == GameMode.TOWER_PLACING)
             {
