@@ -16,6 +16,8 @@ public class LANLobby : MonoBehaviour
     public GameObject introPanel;
     public GameObject lobbyPanel;
 
+    public Button startGameButton;
+
     public void StartHost()
     {
         if (!CanConnect(true)) { return; }
@@ -57,6 +59,7 @@ public class LANLobby : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = MenuManager.Instance.lanConnectIP.text;
         NetworkManager.Singleton.StartClient();
         SetPanel(lobbyPanel);
+        startGameButton.interactable = false;
 
     }
 

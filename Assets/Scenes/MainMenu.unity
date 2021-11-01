@@ -883,6 +883,17 @@ PrefabInstance:
       objectReference: {fileID: 5764885502712207899}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+--- !u!114 &769043850829881440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 769043850085089046, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+  m_PrefabInstance: {fileID: 769043850829881439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1024219955144272811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,6 +993,10 @@ PrefabInstance:
       propertyPath: lobbyPanel
       value: 
       objectReference: {fileID: 322668352}
+    - target: {fileID: 6788681989978878377, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
+      propertyPath: startGameButton
+      value: 
+      objectReference: {fileID: 769043850829881440}
     - target: {fileID: 6788681989978878377, guid: 3d8f1dec7a7a5dc409d9ce669220ba48, type: 3}
       propertyPath: lanLobbyPlayerParent
       value: 
