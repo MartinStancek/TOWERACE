@@ -94,15 +94,23 @@ public class SteamLobby : MonoBehaviour
         progress.OnComplete += (timeOut) =>
         {
             Debug.Log("On complete");
-            foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
-            {
-                Debug.Log("foreach loop");
-                var go = Instantiate(GameController.Instance.playerPrefab);
-                go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
-            }
-        };
+            StartCoroutine(SpawnCarsWithDelay());
 
+        };
     }
+
+    IEnumerator SpawnCarsWithDelay()
+    {
+
+        yield return new WaitForSeconds(5f);
+        foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            Debug.Log("foreach loop");
+            var go = Instantiate(GameController.Instance.playerPrefab);
+            go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
+        }
+    }
+
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
     {
