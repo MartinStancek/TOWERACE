@@ -190,7 +190,7 @@ public class GameController : NetworkBehaviour
         {
             Debug.Log("Start Game Server");
             gameMode.Value = GameMode.RACING;
-            Invoke("TowerPlaceOnStart", 1f);
+            //Invoke("TowerPlaceOnStart", 1f);
         }
     }
     private void TowerPlaceOnStart()
