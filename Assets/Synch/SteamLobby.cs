@@ -88,7 +88,7 @@ public class SteamLobby : MonoBehaviour
 
         Debug.Log("StartGame was called");
         SetPanel(null);
-
+        SteamMatchmaking.SetLobbyData(currentLobbyId, GameStartedKey, "true");
         networkManager.StartHost();
         var progress = NetworkSceneManager.SwitchScene("MartinScene3");
         progress.OnComplete += (timeOut) =>
