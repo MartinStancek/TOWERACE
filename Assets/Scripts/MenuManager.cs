@@ -79,8 +79,12 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1f;
 
         }
+    }
+
+    void Start()
+    {
         soundSlider.value = PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
-        musicSlider.value = PlayerPrefs.GetFloat("music", SoundManager.musicDefaultValue);
+        musicSlider.value = PlayerPrefs.GetFloat("music", MusicManager.musicDefaultValue);
         botDificultySlider.value = PlayerPrefs.GetFloat("bot_dificulty", MenuManager.botDificultyDefaultValue);
         lanName.text = PlayerPrefs.GetString("lan_name", "");
 
@@ -88,10 +92,8 @@ public class MenuManager : MonoBehaviour
         musicSlider.onValueChanged.AddListener((value) => SaveValue("music", value));
         botDificultySlider.onValueChanged.AddListener((value) => SaveValue("bot_dificulty", value));
         lanName.onValueChanged.AddListener(value => PlayerPrefs.SetString("lan_name", value));
-    }
 
-    void Start()
-    {
+
         networkDropdown.onValueChanged.AddListener((value) => SaveValue("network", value));
 
         var networkValue = GetNetworkType();
@@ -113,7 +115,14 @@ public class MenuManager : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            SceneManager.LoadSceneAsync("MainMenu");
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 
     public void PlayGame()
@@ -174,7 +183,7 @@ public class MenuManager : MonoBehaviour
                 SoundManager.SetSoundVolume(value);
                 break;
             case "music":
-                SoundManager.SetMusicVolume(value);
+                MusicManager.SetMusicVolume(value);
                 break;
             case "bot_dificulty":
                 break;
@@ -193,10 +202,12 @@ public class MenuManager : MonoBehaviour
     }
     private void HandleNetwork(int value)
     {
-
         NetworkTransport transport = NetworkManager.Singleton.gameObject.GetComponent<NetworkTransport>();
-        if (transport != null)
+        if (transport != null && (NetworkManager.Singleton.IsServer || NetworkManager.Singleton.IsClient))
         {
+            return;
+        }
+        else if(transport != null) {
             Destroy(transport);
             transport = null;
         }

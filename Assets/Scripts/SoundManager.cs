@@ -24,9 +24,6 @@ public class SoundManager : MonoBehaviour
     #endregion
 
     public static float soundDefaultValue = 0.7f;
-    public static float musicDefaultValue = 0.5f;
-
-    public static float musicPosition = 0f;
 
     [System.Serializable]
     public enum SoundType
@@ -72,8 +69,18 @@ public class SoundManager : MonoBehaviour
     private static Dictionary<SoundType, DictValue> audioStart;
 
     public List<SoundAudio> audios;
-    public SoundAudio music;
-    private AudioSource musicSource;
+
+    public GameObject musicManager;
+    private static bool musicInited = false;
+
+    private void Awake()
+    {
+        if(!musicInited)
+        {
+            Instantiate(musicManager);
+            musicInited = true;
+        }
+    }
     private void Start()
     {
         audioStart = new Dictionary<SoundType, DictValue>();
@@ -88,18 +95,7 @@ public class SoundManager : MonoBehaviour
             }
         }
 
-        var go = new GameObject("MUSIC_SOUND");
-        go.transform.parent = transform;
-        musicSource = go.AddComponent<AudioSource>();
-
-        musicSource.volume = music.volume;
-        musicSource.loop = true;
-        musicSource.clip = music.clip;
-        musicSource.time = musicPosition;
-        musicSource.Play();
-
         SetSoundVolume(PlayerPrefs.GetFloat("sound", soundDefaultValue));
-        SetMusicVolume(PlayerPrefs.GetFloat("music", musicDefaultValue));
 
         MenuManager.Instance.onGamePaused.AddListener(HandlePause((s) => s.Pause()));
         MenuManager.Instance.onGameResumed.AddListener(HandlePause((s) => s.UnPause()));
@@ -190,14 +186,5 @@ public class SoundManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void OnSceneChange()
-    {
-        musicPosition = musicSource.time;
-    }
-    public static void SetMusicVolume(float value)
-    {
-        Instance.musicSource.volume = value * Instance.music.volume;
     }
 }

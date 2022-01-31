@@ -8,6 +8,7 @@ TagManager:
   - CarSphere
   - Floor
   - CheckPoint
+  - Music
   layers:
   - Default
   - TransparentFX

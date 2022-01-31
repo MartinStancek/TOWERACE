@@ -8810,6 +8810,9 @@ MonoBehaviour:
   onEndRace:
     m_PersistentCalls:
       m_Calls: []
+  onEndRaceLate:
+    m_PersistentCalls:
+      m_Calls: []
   onRacingResultEnd:
     m_PersistentCalls:
       m_Calls: []

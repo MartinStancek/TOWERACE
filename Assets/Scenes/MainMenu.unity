@@ -505,6 +505,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8967375943247467745, guid: 4749f32383c1b904ab1d53ce16ab77a4, type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 2730794367367497178, guid: a81e2de1162f53e4d96361e4b7213581, type: 3}
+    - target: {fileID: 8967375943247467745, guid: 4749f32383c1b904ab1d53ce16ab77a4, type: 3}
+      propertyPath: audios.Array.data[1].playOnStart
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8967375943247467748, guid: 4749f32383c1b904ab1d53ce16ab77a4, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -871,6 +879,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5790370095020204755, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790370095376504647, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6533823231997152694, guid: e082217607251eb4999b3f3afeb2e8c9, type: 3}
