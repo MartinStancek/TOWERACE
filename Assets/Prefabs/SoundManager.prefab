@@ -153,9 +153,24 @@ MonoBehaviour:
     volume: 0.1
     canOverlap: 1
     playOnStart: 0
-  music:
-    type: 0
-    clip: {fileID: 8300000, guid: 70375dbc2aed0e84a9d5f34fb0615b25, type: 3}
-    volume: 0.2
-    canOverlap: 0
+  - type: 21
+    clip: {fileID: 8300000, guid: a0504bf88849ec446830fec8624589b5, type: 3}
+    volume: 0.5
+    canOverlap: 1
     playOnStart: 0
+  - type: 22
+    clip: {fileID: 8300000, guid: 832d2ed1d97ec4148954a439b674eaa1, type: 3}
+    volume: 0.5
+    canOverlap: 1
+    playOnStart: 0
+  - type: 23
+    clip: {fileID: 8300000, guid: 58c274cee674ea84695a15a7f4d2b7f8, type: 3}
+    volume: 0.5
+    canOverlap: 1
+    playOnStart: 0
+  - type: 24
+    clip: {fileID: 8300000, guid: bb1399c1e50bc3f4a81ae4991e4772ca, type: 3}
+    volume: 0.5
+    canOverlap: 1
+    playOnStart: 0
+  musicManagerPrefab: {fileID: 0}

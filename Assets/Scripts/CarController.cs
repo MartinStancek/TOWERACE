@@ -58,22 +58,38 @@ public class CarController : MonoBehaviour
     public float magnitudePowMultiplier = 2f;
 
     public Player player;
-    private float maxSpeedvelocity = 100f;
+    private float maxSpeedvelocity = 60f;
     // Start is called before the first frame update
 
     public AudioSource engineSound;
 
     public Camera carCamera;
 
+    private AudioSource soundNormal;
+    //private AudioSource soundMax;
+    private float soundScale;
+    [Range(0f, 1f)]
+    public float carSpeed = 0f;
+    private float targetRpm;
+    private float soundVolume;
+    private int maxGear = 0;
+    private float maxRpm = 0;
+    public float rpmGainSpeed = 10f;
     void Start()
     {
         rb.transform.parent = null;
         originalAccel = forwardAccel;
-        /*GameController.Instance.onStartRace.AddListener(() =>
-        {
-            verticalInput = player.playerInput.actions.actionMaps[0].v
-        })*/
+        soundNormal = SoundManager.PlaySound(SoundManager.SoundType.CAR1_NORMAL, true);
+        //soundMax = SoundManager.PlaySound(SoundManager.SoundType.CAR1_SPEED, true);
+        soundVolume = SoundManager.Instance.GetSound(SoundManager.SoundType.CAR1_NORMAL).volume;
+        //SoundManager.PlaySound(SoundManager.SoundType.CAR1_SPEED); // start sound
+        soundScale = Mathf.Pow(2f, 1.0f / 12f);
     }
+
+    /*GameController.Instance.onStartRace.AddListener(() =>
+    {
+        verticalInput = player.playerInput.actions.actionMaps[0].v
+    })*/
 
     public void OnAcceleration(InputAction.CallbackContext context)
     {
@@ -121,8 +137,8 @@ public class CarController : MonoBehaviour
         speedInput = Mathf.Lerp(speedInput, verticalInput * accel * 1000f, Time.deltaTime * speedGrainMultiplier);
         direction = speedInput > 0 ? 1 : -1;
 
-
-        player.outline.SetSpeedBar(rb.velocity.magnitude / maxSpeedvelocity);
+        carSpeed = rb.velocity.magnitude / maxSpeedvelocity;
+        player.outline.SetSpeedBar(carSpeed);
         engineSound.pitch = (grounded) ? (rb.velocity.magnitude / maxSpeedvelocity) * 2 + 1 : 2;
 
         //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
@@ -152,7 +168,32 @@ public class CarController : MonoBehaviour
         leftFrontWheel.localEulerAngles = new Vector3(leftFrontWheel.localEulerAngles.x, (wheelRotationInput * maxWheelTurn)/* - 180*/, 0f);
         rightFrontWheel.localEulerAngles = new Vector3(rightFrontWheel.localEulerAngles.x, wheelRotationInput * maxWheelTurn, 0f);
 
+        if (carSpeed < 0.8f)
+        {
+            //soundNormal.volume = soundVolume * PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
+            targetRpm = Mathf.Pow(soundScale, (carSpeed * (1f / 0.8f)) * 7f);
+            //soundMax.volume = 0f;
+            maxGear = 1;
+            maxRpm = 0.3f;
+        }
+        else
+        {
+            //soundMax.volume = soundVolume * PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
+            //soundNormal.volume = 0f;
+            maxRpm += (Time.deltaTime / 5f) / maxGear;
+            if (maxRpm > 1f)
+            {
+                maxRpm = 0.3f;
+                maxGear++;
+                soundNormal.pitch = Mathf.Pow(soundScale, maxRpm * 7f);
+            }
 
+            targetRpm = Mathf.Pow(soundScale, maxRpm * 7f);
+
+        }
+
+        soundNormal.pitch += Mathf.Sign(targetRpm - soundNormal.pitch) * Time.deltaTime * rpmGainSpeed;
+        
 
 
         transform.position = rb.transform.position;

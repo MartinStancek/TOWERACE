@@ -48,7 +48,11 @@ public class SoundManager : MonoBehaviour
         SCREEN_CHANGED,
         PLAYER_READY,
         PLAYER_FINISHED,
-        BUTTON_CLICKED
+        BUTTON_CLICKED,
+        CAR1_NORMAL,
+        CAR1_SPEED,
+        CAR2_NORMAL,
+        CAR2_SPEED
     }
 
     [System.Serializable]
@@ -70,14 +74,14 @@ public class SoundManager : MonoBehaviour
 
     public List<SoundAudio> audios;
 
-    public GameObject musicManager;
+    public GameObject musicManagerPrefab;
     private static bool musicInited = false;
 
     private void Awake()
     {
         if(!musicInited)
         {
-            Instantiate(musicManager);
+            Instantiate(musicManagerPrefab);
             musicInited = true;
         }
     }
@@ -116,10 +120,9 @@ public class SoundManager : MonoBehaviour
             }
         };
     }
-
-    public static AudioSource PlaySound(SoundType type)
+    public static AudioSource PlaySound(SoundType type, bool loop)
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Debug.LogWarning("Can't find SoundManager In scene, Add one!");
             return null;
@@ -140,8 +143,12 @@ public class SoundManager : MonoBehaviour
         {
             audioSource.volume = sound.volume * PlayerPrefs.GetFloat("sound", soundDefaultValue);
             audioSource.clip = sound.clip;
+            audioSource.loop = loop;
             audioSource.Play();
-            Destroy(go, sound.clip.length);
+            if (!loop)
+            {
+                Destroy(go, sound.clip.length);
+            }
         }
         else
         {
@@ -149,6 +156,12 @@ public class SoundManager : MonoBehaviour
         }
         audioStart[type].source = audioSource;
         return audioSource;
+    }
+
+
+    public static AudioSource PlaySound(SoundType type)
+    {
+        return PlaySound(type, false);
     }
 
     private static bool CanPlay(SoundAudio sound)
