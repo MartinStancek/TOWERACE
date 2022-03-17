@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MLAPI;
-using MLAPI.Transports.UNET;
-using MLAPI.Connection;
-using MLAPI.SceneManagement;
+using Unity.Netcode;
+using Unity.Netcode.Transports.UNET;
 using TMPro;
 using UnityEngine.UI;
 
@@ -39,17 +37,18 @@ public class LANLobby : MonoBehaviour
     public void LobbyReady()
     {
         Debug.Log("Lobby Ready");
-        var progress = NetworkSceneManager.SwitchScene("MartinScene3");
-        progress.OnComplete += (timeOut) =>
-        {
+        var progress = NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        /*progress
+        progress..OnComplete += (timeOut) =>
+        {*/
             Debug.Log("On complete");
             foreach(var c in NetworkManager.Singleton.ConnectedClientsList)
             {
                 Debug.Log("foreach loop");
                 var go = Instantiate(GameController.Instance.playerPrefab);
                 go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
-            }            
-        };
+            }  /*          
+        };*/
     }
 
     public void ConnectToHost()
@@ -65,7 +64,7 @@ public class LANLobby : MonoBehaviour
 
     public void LeaveServer()
     {
-        NetworkManager.Singleton.StopClient();
+        NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
         SetPanel(introPanel);
     }
 
@@ -102,7 +101,7 @@ public class LANLobby : MonoBehaviour
                 var panel = Instantiate(playerLANLobbyPrefab, lanLobbyPlayerParent);
 
 
-                panel.GetComponentInChildren<TMP_Text>().text = name;
+                panel.GetComponentInChildren<TMP_Text>().text = name.ToString();
                 panel.GetComponentInChildren<Button>().interactable = false; /*true; // nefunguje :(
                 panel.GetComponentInChildren<Button>().onClick.RemoveAllListeners();
                 panel.GetComponentInChildren<Button>().onClick.AddListener(()=>
@@ -124,7 +123,7 @@ public class LANLobby : MonoBehaviour
                 var panel = Instantiate(playerLANLobbyPrefab, lanLobbyPlayerParent);
 
 
-                panel.GetComponentInChildren<TMP_Text>().text = name;
+                panel.GetComponentInChildren<TMP_Text>().text = name.ToString();
                 panel.GetComponentInChildren<Button>().interactable = false;
 
                 panel.transform.localPosition = new Vector3(0f, -30f * i, 0f);

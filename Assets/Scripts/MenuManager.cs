@@ -5,11 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using MLAPI;
-using MLAPI.Transports.SteamP2P;
-using MLAPI.Transports;
-using MLAPI.Transports.UNET;
+using Unity.Netcode;
+using Unity.Netcode.Transports.UNET;
 using TMPro;
+using Unity.Netcode;
+using Netcode.Transports;
 
 public class MenuManager : MonoBehaviour
 {
@@ -214,7 +214,7 @@ public class MenuManager : MonoBehaviour
         switch (value)
         {
             case STEAM:
-                transport = NetworkManager.Singleton.gameObject.AddComponent<SteamP2PTransport>();
+                transport = NetworkManager.Singleton.gameObject.AddComponent<SteamNetworkingTransport>();
                 break;
             case LAN:
                 transport = NetworkManager.Singleton.gameObject.AddComponent<UNetTransport>();

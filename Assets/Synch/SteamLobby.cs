@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Steamworks;
-using MLAPI;
-using MLAPI.SceneManagement;
-using MLAPI.Transports.SteamP2P;
+using Unity.Netcode;
 using System;
 using System.Linq;
 using UnityEngine.UI;
 using TMPro;
+using Netcode.Transports;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -90,13 +89,13 @@ public class SteamLobby : MonoBehaviour
         SetPanel(null);
         SteamMatchmaking.SetLobbyData(currentLobbyId, GameStartedKey, "true");
         networkManager.StartHost();
-        var progress = NetworkSceneManager.SwitchScene("MartinScene3");
-        progress.OnComplete += (timeOut) =>
-        {
+        var progress = NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        /*progress.OnComplete += (timeOut) =>
+        {*/
             Debug.Log("On complete");
             StartCoroutine(SpawnCarsWithDelay());
-
-        };
+/*
+        };*/
     }
 
     IEnumerator SpawnCarsWithDelay()
@@ -156,7 +155,7 @@ public class SteamLobby : MonoBehaviour
             var hostAddress = SteamMatchmaking.GetLobbyData(
                 currentLobbyId,
                 HostAddressKey);
-            networkManager.GetComponent<SteamP2PTransport>().ConnectToSteamID = Convert.ToUInt64(hostAddress); // or callback.m_ulSteamIDLobby
+            networkManager.GetComponent<SteamNetworkingTransport>().ConnectToSteamID = Convert.ToUInt64(hostAddress); // or callback.m_ulSteamIDLobby
             networkManager.StartClient();
             SetPanel(null);
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -256,7 +257,7 @@ public class TowerPlacer : MonoBehaviour
             //previousSnap.SetPanel(null, -1);
         }
 
-        targetSnap.LockServerRPC(PlayerInfo.Local.OwnerClientId);
+        targetSnap.LockServerRPC(NetworkManager.Singleton.LocalClientId);
         var pointer = GameController.Instance.towerPointerParent.GetChild(0).GetComponent<TowerPointerUI>();
 
         pointer.SetPointer(targetSnap.gameObject);

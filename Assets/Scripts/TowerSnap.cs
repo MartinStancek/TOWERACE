@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using MLAPI.Messaging;
-using MLAPI;
-using MLAPI.NetworkVariable;
-using MLAPI.Spawning;
+using Unity.Netcode;
+
 using System;
 public class TowerSnap : NetworkBehaviour
 {
     [SerializeField]
     public TowerOptions towerOptions;
 
-    public NetworkVariable<bool> isOccupied = new NetworkVariable<bool>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, false);
-    public NetworkVariable<ulong> occupiedBy = new NetworkVariable<ulong>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, 0);
+    public NetworkVariable<bool> isOccupied = new NetworkVariable<bool>();
+    public NetworkVariable<ulong> occupiedBy = new NetworkVariable<ulong>();
 
     public int price = 60;
 
@@ -47,7 +45,14 @@ public class TowerSnap : NetworkBehaviour
         }
 
     }
-
+    public override void OnNetworkSpawn()
+    {
+        if (IsServer)
+        {
+            isOccupied.Value = false;
+            occupiedBy.Value = 0;
+        }
+    }
     [ServerRpc(RequireOwnership = false)]
     public void LockServerRPC(ulong player)
     {
@@ -114,7 +119,7 @@ public class TowerSnap : NetworkBehaviour
     private IEnumerator InitTower(ulong towerId, int towerIndex)
     {
         yield return 1;
-        var tower = NetworkSpawnManager.SpawnedObjects[towerId].GetComponent<Tower>();
+        var tower = NetworkManager.Singleton.SpawnManager.SpawnedObjects[towerId].GetComponent<Tower>();
 
         GameObject go;
         if (towerIndex == 4)

@@ -4,10 +4,10 @@ using UnityEngine;
 using Cinemachine;
 using TMPro;
 using UnityEngine.InputSystem;
-using MLAPI.NetworkVariable;
-using MLAPI;
-using MLAPI.Messaging;
+using Unity.Netcode;
 using System.Linq;
+using Unity.Netcode;
+using Unity.Netcode.Components;
 
 public class Player : NetworkBehaviour
 {
@@ -24,7 +24,7 @@ public class Player : NetworkBehaviour
     public int moneyByRound = 100;
     public float scoreMultilier = 30;
 
-    public NetworkVariable<int> money = new NetworkVariable<int>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.ServerOnly }, 0);
+    public NetworkVariable<int> money = new NetworkVariable<int>();
 
     public int stars = 0;
 
@@ -40,7 +40,7 @@ public class Player : NetworkBehaviour
 
     public bool isReady = false;
 
-    private NetworkVariable<bool> IsReadySynch = new NetworkVariable<bool>(new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly }, false);
+    private NetworkVariable<bool> IsReadySynch = new NetworkVariable<bool>();
 
     private PlayerInfo playerInfo;
 
@@ -59,7 +59,7 @@ public class Player : NetworkBehaviour
         SetReady(newVal);
     }
 
-    public override void NetworkStart()
+    public override void OnNetworkSpawn()
     {
         GameController.Instance.onStartRace.AddListener(() => car.SetCarSkin());
         GameController.Instance.onEndRace.AddListener(() => car.SetCarSkin());
@@ -107,7 +107,7 @@ public class Player : NetworkBehaviour
         var offset = -5 - count * 40 - 5 * count;
         go.transform.localPosition = new Vector3(0f, offset, 0f);
         playerUIVisual = go.GetComponent<PlayerUIVisual>();
-        playerUIVisual.playerName.text = playerInfo.Name.Value;
+        playerUIVisual.playerName.text = playerInfo == null ? null : playerInfo.Name.Value.ToString();
     }
 
     private void RaceStartInit()

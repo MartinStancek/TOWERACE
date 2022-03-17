@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.community.netcode.transport.steamnetworking": {
+      "version": "https://github.com/Unity-Technologies/multiplayer-community-contributions.git?path=/Transports/com.community.netcode.transport.steamnetworking",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6fae8cce558d71e0cbf251122993ed496de8961a"
+    },
+    "com.rlabrecque.steamworks.net": {
+      "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4d3e125d2e023ac58a265bb36b89577f04ef950e"
+    },
     "com.unity.burst": {
       "version": "1.6.0",
       "depth": 1,
@@ -23,6 +37,16 @@
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0",
         "com.unity.services.core": "1.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.collections": {
+      "version": "1.1.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.5.4",
+        "com.unity.test-framework": "1.1.29"
       },
       "url": "https://packages.unity.com"
     },
@@ -74,16 +98,18 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.multiplayer.mlapi": {
-      "version": "https://github.com/Unity-Technologies/com.unity.multiplayer.mlapi.git?path=/com.unity.multiplayer.mlapi#release/0.1.0",
+    "com.unity.netcode.gameobjects": {
+      "version": "1.0.0-pre.6",
       "depth": 0,
-      "source": "git",
+      "source": "registry",
       "dependencies": {
-        "com.unity.modules.ai": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-        "com.unity.nuget.mono-cecil": "1.10.1-preview.1"
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.physics2d": "1.0.0",
+        "com.unity.nuget.mono-cecil": "1.10.1",
+        "com.unity.collections": "1.1.0"
       },
-      "hash": "3e3aef6aa02c2a25359898319e5bd49d3518b57b"
+      "url": "https://packages.unity.com"
     },
     "com.unity.nuget.mono-cecil": {
       "version": "1.10.1",

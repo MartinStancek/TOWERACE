@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MLAPI;
-using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
 using Steamworks;
 using System;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 using System.Linq;
+using Unity.Collections;
 
 public class PlayerInfo : NetworkBehaviour
 {
@@ -27,11 +26,7 @@ public class PlayerInfo : NetworkBehaviour
     }
     #endregion
 
-    public NetworkVariableString Name = new NetworkVariableString(new NetworkVariableSettings
-    {
-        WritePermission = NetworkVariablePermission.OwnerOnly,
-        ReadPermission = NetworkVariablePermission.Everyone
-    });
+    public NetworkVariable<FixedString32Bytes> Name = new NetworkVariable<FixedString32Bytes>();
 
     private int networkType;
 
@@ -46,7 +41,7 @@ public class PlayerInfo : NetworkBehaviour
         };
     }
 
-    public override void NetworkStart()
+    public override void OnNetworkSpawn()
     {
         networkType = MenuManager.Instance.GetNetworkType();
         if (NetworkManager.Singleton.LocalClientId == OwnerClientId)

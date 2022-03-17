@@ -1,12 +1,14 @@
 {
   "dependencies": {
+    "com.community.netcode.transport.steamnetworking": "https://github.com/Unity-Technologies/multiplayer-community-contributions.git?path=/Transports/com.community.netcode.transport.steamnetworking",
+    "com.rlabrecque.steamworks.net": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net",
     "com.unity.cinemachine": "2.8.0",
     "com.unity.collab-proxy": "1.13.5",
     "com.unity.ide.rider": "3.0.7",
     "com.unity.ide.visualstudio": "2.0.11",
     "com.unity.ide.vscode": "1.2.4",
     "com.unity.inputsystem": "1.1.1",
-    "com.unity.multiplayer.mlapi": "https://github.com/Unity-Technologies/com.unity.multiplayer.mlapi.git?path=/com.unity.multiplayer.mlapi#release/0.1.0",
+    "com.unity.netcode.gameobjects": "1.0.0-pre.6",
     "com.unity.postprocessing": "3.1.1",
     "com.unity.render-pipelines.universal": "12.1.0",
     "com.unity.test-framework": "1.1.29",

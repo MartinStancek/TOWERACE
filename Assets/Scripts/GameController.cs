@@ -7,11 +7,9 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
 using UnityEngine.InputSystem;
-using MLAPI;
+using Unity.Netcode;
 using UnityEngine.SceneManagement;
-using MLAPI.NetworkVariable;
-using MLAPI;
-
+using Unity.Netcode;
 [System.Serializable]
 public class SnapUI
 {
@@ -60,7 +58,7 @@ public class GameController : NetworkBehaviour
 
     public List<int> playersFinished = new List<int>();
     public List<int> playersFinishedOld;
-    
+
     public List<Player> players;
 
     public Transform checkPonts;
@@ -81,10 +79,7 @@ public class GameController : NetworkBehaviour
     [HideInInspector]
     public UnityEvent onRacingResultEnd;
 
-    public NetworkVariable<GameMode> gameMode = new NetworkVariable<GameMode>(
-        new NetworkVariableSettings { WritePermission = NetworkVariablePermission.OwnerOnly, 
-                                      ReadPermission = NetworkVariablePermission.Everyone },
-        GameMode.LOBBY);
+    public NetworkVariable<GameMode> gameMode = new NetworkVariable<GameMode>();
 
     public List<SnapUI> snapsUI;
 
@@ -102,6 +97,14 @@ public class GameController : NetworkBehaviour
 
     public Transform playerUIParent;
     public GameObject playerUIPrefab;
+
+    public override void OnNetworkSpawn()
+    {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            gameMode.Value = GameMode.LOBBY;
+        }
+    }
 
 
     void Awake()
@@ -146,7 +149,8 @@ public class GameController : NetworkBehaviour
         towerPlacingCountdown.gameObject.SetActive(false);
         onStartGame.AddListener(SetupUISnaps);
 
-        onStartRace.AddListener(() => {
+        onStartRace.AddListener(() =>
+        {
             playersFinished.Clear();
             mapCamera.gameObject.SetActive(false);
             foreach (Transform t in towerPointerParent)
@@ -254,7 +258,7 @@ public class GameController : NetworkBehaviour
     {
         playersFinished.Add(playerIndex);
         SoundManager.PlaySound(SoundManager.SoundType.PLAYER_FINISHED);
-        foreach(var ps in finishLineConfety)
+        foreach (var ps in finishLineConfety)
         {
             ps.Play();
         }
@@ -360,7 +364,7 @@ public class GameController : NetworkBehaviour
     private IEnumerator RemoveCountDownText()
     {
         yield return new WaitForSeconds(2.4f);
-        foreach(var p in players)
+        foreach (var p in players)
         {
             p.outline.countDownPanel.gameObject.SetActive(false);
         }
@@ -418,7 +422,7 @@ public class GameController : NetworkBehaviour
                     freeTowerSnaps.Add(snapUI);
                 }
                 //snapUI.go.GetComponent<Image>().color = Color.cyan;
-            } 
+            }
             else
             {
                 //snapUI.go.GetComponent<Image>().color = Color.white;

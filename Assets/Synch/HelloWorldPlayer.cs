@@ -1,18 +1,11 @@
-using MLAPI;
-using MLAPI.Messaging;
-using MLAPI.NetworkVariable;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace HelloWorld
 {
     public class HelloWorldPlayer : NetworkBehaviour
     {
-        public NetworkVariableVector3 Position = new NetworkVariableVector3(new NetworkVariableSettings
-        {
-            WritePermission = NetworkVariablePermission.ServerOnly,
-            ReadPermission = NetworkVariablePermission.Everyone
-        });
-
+        public NetworkVariable<Vector3> Position = new NetworkVariable<Vector3>();
         private void Start()
         {
             Position.OnValueChanged += (prevValue, newValue) =>
@@ -20,7 +13,7 @@ namespace HelloWorld
                 transform.position = newValue;
             };
         }
-        public override void NetworkStart()
+        public override void OnNetworkSpawn()
         {
             Move();
         }
