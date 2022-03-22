@@ -79,6 +79,16 @@ public class CarController : MonoBehaviour
     {
         rb.transform.parent = null;
         originalAccel = forwardAccel;
+
+        StartCoroutine(LateInit());
+    }
+
+    IEnumerator LateInit()
+    {
+        while (PlayerManager.Instance == null)
+        {
+            yield return null;
+        }
         soundNormal = SoundManager.PlaySound(SoundManager.SoundType.CAR1_NORMAL, true);
         //soundMax = SoundManager.PlaySound(SoundManager.SoundType.CAR1_SPEED, true);
         soundVolume = SoundManager.Instance.GetSound(SoundManager.SoundType.CAR1_NORMAL).volume;
@@ -138,7 +148,10 @@ public class CarController : MonoBehaviour
         direction = speedInput > 0 ? 1 : -1;
 
         carSpeed = rb.velocity.magnitude / maxSpeedvelocity;
-        player.outline.SetSpeedBar(carSpeed);
+        if (player != null && player.outline != null)
+        {
+            player.outline.SetSpeedBar(carSpeed);
+        }
         engineSound.pitch = (grounded) ? (rb.velocity.magnitude / maxSpeedvelocity) * 2 + 1 : 2;
 
         //Debug.Log(rb.velocity.magnitude * animChickenMultiplier);
@@ -168,32 +181,34 @@ public class CarController : MonoBehaviour
         leftFrontWheel.localEulerAngles = new Vector3(leftFrontWheel.localEulerAngles.x, (wheelRotationInput * maxWheelTurn)/* - 180*/, 0f);
         rightFrontWheel.localEulerAngles = new Vector3(rightFrontWheel.localEulerAngles.x, wheelRotationInput * maxWheelTurn, 0f);
 
-        if (carSpeed < 0.8f)
+        if (soundNormal != null)
         {
-            //soundNormal.volume = soundVolume * PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
-            targetRpm = Mathf.Pow(soundScale, (carSpeed * (1f / 0.8f)) * 7f);
-            //soundMax.volume = 0f;
-            maxGear = 1;
-            maxRpm = 0.3f;
-        }
-        else
-        {
-            //soundMax.volume = soundVolume * PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
-            //soundNormal.volume = 0f;
-            maxRpm += (Time.deltaTime / 5f) / maxGear;
-            if (maxRpm > 1f)
+            if (carSpeed < 0.8f)
             {
+                //soundNormal.volume = soundVolume * PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
+                targetRpm = Mathf.Pow(soundScale, (carSpeed * (1f / 0.8f)) * 7f);
+                //soundMax.volume = 0f;
+                maxGear = 1;
                 maxRpm = 0.3f;
-                maxGear++;
-                soundNormal.pitch = Mathf.Pow(soundScale, maxRpm * 7f);
+            }
+            else
+            {
+                //soundMax.volume = soundVolume * PlayerPrefs.GetFloat("sound", SoundManager.soundDefaultValue);
+                //soundNormal.volume = 0f;
+                maxRpm += (Time.deltaTime / 5f) / maxGear;
+                if (maxRpm > 1f)
+                {
+                    maxRpm = 0.3f;
+                    maxGear++;
+                    soundNormal.pitch = Mathf.Pow(soundScale, maxRpm * 7f);
+                }
+
+                targetRpm = Mathf.Pow(soundScale, maxRpm * 7f);
+
             }
 
-            targetRpm = Mathf.Pow(soundScale, maxRpm * 7f);
-
+            soundNormal.pitch += Mathf.Sign(targetRpm - soundNormal.pitch) * Time.deltaTime * rpmGainSpeed;
         }
-
-        soundNormal.pitch += Mathf.Sign(targetRpm - soundNormal.pitch) * Time.deltaTime * rpmGainSpeed;
-        
 
 
         transform.position = rb.transform.position;

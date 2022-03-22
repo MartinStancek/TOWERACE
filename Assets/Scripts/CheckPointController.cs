@@ -24,8 +24,20 @@ public class CheckPointController : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(LateInit());
+
+    }
+
+
+    IEnumerator LateInit()
+    {
+        while (GameController.Instance == null)
+        {
+            yield return null;
+        }
         checkPoints = GameController.Instance.checkPonts;
         GameController.Instance.onStartRace.AddListener(RaceStartInit);
+
     }
 
     private void RaceStartInit()
@@ -37,6 +49,8 @@ public class CheckPointController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(checkPoints == null) { return; }
+
         if(other.CompareTag("CheckPoint"))
         {
             var passed = other.transform.GetSiblingIndex();

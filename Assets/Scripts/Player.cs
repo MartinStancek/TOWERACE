@@ -61,6 +61,17 @@ public class Player : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        StartCoroutine(LateInit());
+    }
+
+    IEnumerator LateInit()
+    {
+        while (PlayerManager.Instance == null)
+        {
+            yield return null;
+        }
+        PlayerManager.Instance.OnPlayerJoined(playerInput);
+
         GameController.Instance.onStartRace.AddListener(() => car.SetCarSkin());
         GameController.Instance.onEndRace.AddListener(() => car.SetCarSkin());
 
@@ -170,11 +181,6 @@ public class Player : NetworkBehaviour
 
     }
 
-    void Awake()
-    {
-        PlayerManager.Instance.OnPlayerJoined(playerInput);
-    }
- 
     public void OnPlayerReady(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -187,9 +193,16 @@ public class Player : NetworkBehaviour
 
     public void ToggleReady()
     {
-        IsReadySynch.Value = !IsReadySynch.Value;
+        SetReadyServerRPC(!IsReadySynch.Value);
         SoundManager.PlaySound(SoundManager.SoundType.PLAYER_READY);
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetReadyServerRPC(bool value)
+    {
+        IsReadySynch.Value = value;
+    }
+
 
     public void SetReady(bool value)
     {
@@ -197,6 +210,11 @@ public class Player : NetworkBehaviour
         if (playerUIVisual != null)
         {
             playerUIVisual.SetReady(value);
+        }
+
+        if(GameController.Instance == null)
+        {
+            return;
         }
         switch (GameController.Instance.gameMode.Value)
         {

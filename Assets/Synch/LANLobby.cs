@@ -5,7 +5,7 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UNET;
 using TMPro;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class LANLobby : MonoBehaviour
 {
     public GameObject playerLANLobbyPrefab;
@@ -37,18 +37,24 @@ public class LANLobby : MonoBehaviour
     public void LobbyReady()
     {
         Debug.Log("Lobby Ready");
-        var progress = NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", UnityEngine.SceneManagement.LoadSceneMode.Single);
-        /*progress
-        progress..OnComplete += (timeOut) =>
-        {*/
-            Debug.Log("On complete");
-            foreach(var c in NetworkManager.Singleton.ConnectedClientsList)
+        if (!NetworkManager.Singleton.IsServer) { return; }
+        var playerCountReady = 0;
+        NetworkManager.Singleton.SceneManager.OnLoadComplete += (ulong clientId, string sceneName, LoadSceneMode loadSceneMode) =>
+        {
+            Debug.Log("On complete" + clientId + " " + sceneName + " " + loadSceneMode);
+            playerCountReady++;
+            if (NetworkManager.Singleton.ConnectedClients.Count == playerCountReady)
             {
-                Debug.Log("foreach loop");
-                var go = Instantiate(GameController.Instance.playerPrefab);
-                go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
-            }  /*          
-        };*/
+                foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
+                {
+                    Debug.Log("foreach loop");
+                    var go = Instantiate(GameController.Instance.playerPrefab);
+                    go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
+                }
+            }
+        };
+        NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", LoadSceneMode.Single);
+
     }
 
     public void ConnectToHost()
@@ -85,6 +91,8 @@ public class LANLobby : MonoBehaviour
 
     public void UpdatePlayers()
     {
+        if (!NetworkManager.Singleton.IsServer) { return; }
+
         var count = NetworkManager.Singleton.ConnectedClientsList.Count;
         for (var j = lanLobbyPlayerParent.childCount - 1; j >= 0; j--)
         {

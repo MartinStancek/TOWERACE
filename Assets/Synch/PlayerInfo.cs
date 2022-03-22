@@ -49,15 +49,21 @@ public class PlayerInfo : NetworkBehaviour
             switch (networkType)
             {
                 case MenuManager.LAN:
-                    Name.Value = MenuManager.Instance.lanName.text;
+                    SetNameServerRpc(new FixedString32Bytes(MenuManager.Instance.lanName.text));
                     break;
                 case MenuManager.STEAM:
-                    Name.Value = SteamFriends.GetPersonaName();
+                    SetNameServerRpc(SteamFriends.GetPersonaName());
                     break;
                 default:
                     throw new Exception("Unknown networkValue " + networkType);
             }
 
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void SetNameServerRpc(FixedString32Bytes name, ServerRpcParams rpcParams = default)
+    {
+        Name.Value = name;
     }
 }

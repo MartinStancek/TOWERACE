@@ -92,8 +92,8 @@ public class SteamLobby : MonoBehaviour
         var progress = NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", UnityEngine.SceneManagement.LoadSceneMode.Single);
         /*progress.OnComplete += (timeOut) =>
         {*/
-            Debug.Log("On complete");
-            StartCoroutine(SpawnCarsWithDelay());
+            /*Debug.Log("On complete");
+            StartCoroutine(SpawnCarsWithDelay());*/
 /*
         };*/
     }
