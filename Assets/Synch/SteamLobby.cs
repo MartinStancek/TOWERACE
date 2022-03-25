@@ -8,7 +8,6 @@ using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 using Netcode.Transports;
-using UnityEngine.SceneManagement;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -90,31 +89,25 @@ public class SteamLobby : MonoBehaviour
         SetPanel(null);
         SteamMatchmaking.SetLobbyData(currentLobbyId, GameStartedKey, "true");
         networkManager.StartHost();
-       
-        StartCoroutine(SwitchSceneDelayed());
-
+        var progress = NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        /*progress.OnComplete += (timeOut) =>
+        {*/
+            /*Debug.Log("On complete");
+            StartCoroutine(SpawnCarsWithDelay());*/
+/*
+        };*/
     }
 
-    IEnumerator SwitchSceneDelayed()
+    IEnumerator SpawnCarsWithDelay()
     {
 
         yield return new WaitForSeconds(5f);
-        var playerCountReady = 0;
-        NetworkManager.Singleton.SceneManager.OnLoadComplete += (ulong clientId, string sceneName, LoadSceneMode loadSceneMode) =>
+        foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
         {
-            Debug.Log("On complete" + clientId + " " + sceneName + " " + loadSceneMode);
-            playerCountReady++;
-            /*if (NetworkManager.Singleton.ConnectedClients.Count == playerCountReady)
-            {
-                foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
-                {
-                    Debug.Log("foreach loop");
-                    var go = Instantiate(GameController.Instance.playerPrefab);
-                    go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
-                }
-            }*/
-        };
-        NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", LoadSceneMode.Single);
+            Debug.Log("foreach loop");
+            var go = Instantiate(GameController.Instance.playerPrefab);
+            go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
+        }
     }
 
 
