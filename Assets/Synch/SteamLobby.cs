@@ -98,21 +98,27 @@ public class SteamLobby : MonoBehaviour
     IEnumerator SwitchSceneDelayed()
     {
 
-        yield return new WaitForSeconds(5f);
-        var playerCountReady = 0;
+        yield return new WaitForSeconds(1f);
+        var serverReady = false;
         NetworkManager.Singleton.SceneManager.OnLoadComplete += (ulong clientId, string sceneName, LoadSceneMode loadSceneMode) =>
         {
-            Debug.Log("On complete" + clientId + " " + sceneName + " " + loadSceneMode);
-            playerCountReady++;
-            if (NetworkManager.Singleton.ConnectedClients.Count == playerCountReady)
+            Debug.Log("On complete, clientId: " + clientId + ", sceneName: " + sceneName + ", mode: " + loadSceneMode);
+            if (!serverReady && NetworkManager.Singleton.LocalClientId.Equals(clientId))
             {
+                serverReady = true;
                 foreach (var c in NetworkManager.Singleton.ConnectedClientsList)
                 {
                     Debug.Log("foreach loop");
                     var go = Instantiate(GameController.Instance.playerPrefab);
                     go.GetComponent<NetworkObject>().SpawnWithOwnership(c.ClientId);
                 }
+            } 
+            else
+            {
+                var go = Instantiate(GameController.Instance.playerPrefab);
+                go.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
             }
+
         };
         NetworkManager.Singleton.SceneManager.LoadScene("MartinScene3", LoadSceneMode.Single);
     }
