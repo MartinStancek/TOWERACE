@@ -9,7 +9,7 @@ using System.Linq;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
-using Unity.Netcode;
+
 [System.Serializable]
 public class SnapUI
 {

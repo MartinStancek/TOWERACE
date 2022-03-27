@@ -24,8 +24,6 @@ public class TowerPlacer : MonoBehaviour
 
     public TowerOptions towerOptions;
 
-    private GameObject actualTowerPointer = null;
-
     /*public TowerPlaceState placingState = TowerPlaceState.BUYING_SPOT;*/
 
     void Awake()

@@ -121,7 +121,6 @@ public class TowerSnap : NetworkBehaviour
         yield return 1;
         var tower = NetworkManager.Singleton.SpawnManager.SpawnedObjects[towerId].GetComponent<Tower>();
 
-        GameObject go;
         if (towerIndex == 4)
         {
             tower.transform.SetParent(transform);
@@ -147,7 +146,6 @@ public class TowerSnap : NetworkBehaviour
 
     public void SetColor(Color c)
     {
-        var j = 0;
         foreach (var cp in coloredParts)
         {
             cp.SetColor(c);

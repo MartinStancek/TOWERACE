@@ -7,7 +7,7 @@ public class InfraSoundTower : Tower
     public Transform head;
     public float strengthMultiplier = 40000f;
     public float backwardMultiplier = 40000f;
-    private AudioSource audio;
+    private AudioSource audioSource;
     private void Update()
     {
         if (Time.time - lastShot > shootEvery)
@@ -27,12 +27,12 @@ public class InfraSoundTower : Tower
         if(targets.Count > 0)
         {
             head.LookAt(targets[0].transform.position);
-            audio = SoundManager.PlaySound(SoundManager.SoundType.TOWER_INFRA_SOUND);
+            audioSource = SoundManager.PlaySound(SoundManager.SoundType.TOWER_INFRA_SOUND);
         } 
-        else if(audio != null)
+        else if(audioSource != null)
         {
-            audio.Stop();
-            audio = null;
+            audioSource.Stop();
+            audioSource = null;
         }
     }
 }

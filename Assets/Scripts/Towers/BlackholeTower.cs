@@ -7,7 +7,7 @@ public class BlackholeTower : Tower
     public float strengthMultiplier = 10f;
     public float backwardMultiplier = 2000f;
 
-    private AudioSource audio;
+    private AudioSource audioSource;
 
     private void Update()
     {
@@ -25,12 +25,12 @@ public class BlackholeTower : Tower
 
         if (targets.Count > 0)
         {
-            audio = SoundManager.PlaySound(SoundManager.SoundType.TOWER_BLACK_HOLE);
+            audioSource = SoundManager.PlaySound(SoundManager.SoundType.TOWER_BLACK_HOLE);
         }
-        else if (audio != null)
+        else if (audioSource != null)
         {
-            audio.Stop();
-            audio = null;
+            audioSource.Stop();
+            audioSource = null;
         }
     }
 }

@@ -100,7 +100,7 @@ public class CheckPointController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.other.CompareTag("Floor"))
+        if (collision.collider.CompareTag("Floor"))
         {
             rb.angularVelocity = Vector3.zero;
             rb.velocity = Vector3.zero;

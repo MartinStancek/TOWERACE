@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
 using System.Linq;
-using Unity.Netcode;
 using Unity.Netcode.Components;
 
 public class Player : NetworkBehaviour

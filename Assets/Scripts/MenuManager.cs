@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UNET;
 using TMPro;
-using Unity.Netcode;
 using Netcode.Transports;
 
 public class MenuManager : MonoBehaviour
@@ -68,7 +67,7 @@ public class MenuManager : MonoBehaviour
         try
         {
             startButton.Select();
-        } catch (Exception e)
+        } catch 
         {
             //jeble unity 
         }
